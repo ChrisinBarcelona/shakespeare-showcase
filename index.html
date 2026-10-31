@@ -444,6 +444,26 @@ details.more>summary::before{color:#f5f5f4}
 .actor .head img,.head img{object-fit:cover;object-position:50% 25%}
 @media (max-width:700px){.bulk{flex-direction:column;align-items:stretch}}
 
+
+/* ===== Books: stable hit area, no flicker ===== */
+.shelf{scroll-behavior:auto!important;overscroll-behavior-x:contain}
+.book{transform:none!important;transition:none!important;transform-style:preserve-3d!important;margin-left:0!important;animation:bookfade .6s ease backwards!important;animation-delay:calc(var(--i) * 35ms + .15s)!important;-webkit-tap-highlight-color:transparent}
+@keyframes bookfade{from{opacity:0}to{opacity:1}}
+.book .bk{position:absolute;inset:0;display:block;transform-style:preserve-3d;transform-origin:left center;transform:rotateY(42deg);transition:transform .45s cubic-bezier(.2,.7,.1,1);will-change:transform;backface-visibility:hidden}
+.book .cover,.book .pages{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.book:hover,.book:focus-visible{margin-right:-62px!important;margin-left:0!important;transform:none!important;z-index:5}
+.book.slim:hover,.book.slim:focus-visible{margin-right:-40px!important}
+@media (hover:hover){.book:hover .bk{transform:rotateY(10deg) translateY(-18px) translateZ(60px)}}
+.book:focus-visible .bk{transform:rotateY(10deg) translateY(-18px) translateZ(60px)}
+.shelf.scrolling .book .bk{transform:rotateY(42deg)!important;transition:none}
+.shelf.scrolling{pointer-events:none}
+.shelfnav{position:absolute;top:50%;z-index:6;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:1px solid #3f3f46;background:rgba(10,10,10,.85);color:#f5f5f4;font:500 22px/1 var(--fb);cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(6px)}
+.shelfnav.prev{left:12px}.shelfnav.next{right:12px}
+.shelfnav:hover{background:#18181b;border-color:#71717a}
+.shelfnav:disabled{opacity:0;pointer-events:none}
+@media (hover:none){.shelfnav{display:none}}
+@media (prefers-reduced-motion:reduce){.book .bk{transition:none}.book{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -734,7 +754,10 @@ function route(){
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
   else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,staging:pStaging,fights:pFights,mosaics:pMosaics,me:pMe}[h]||pHome)();
   wireEdits(v);
-  v.querySelectorAll('.shelf').forEach(sh=>sh.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)&&sh.scrollWidth>sh.clientWidth){const before=sh.scrollLeft;sh.scrollLeft+=e.deltaY;if(sh.scrollLeft!==before)e.preventDefault()}},{passive:false}));
+  v.querySelectorAll('.shelfwrap').forEach(w=>{const sh=w.querySelector('.shelf');let t=null;
+    const upd=()=>{w.querySelector('.prev').disabled=sh.scrollLeft<8;w.querySelector('.next').disabled=sh.scrollLeft+sh.clientWidth>=sh.scrollWidth-8};
+    sh.addEventListener('scroll',()=>{sh.classList.add('scrolling');clearTimeout(t);t=setTimeout(()=>sh.classList.remove('scrolling'),160);upd()},{passive:true});
+    w.querySelectorAll('[data-shelf]').forEach(b=>b.onclick=()=>sh.scrollBy({left:+b.dataset.shelf*Math.max(320,sh.clientWidth*.7),behavior:'smooth'}));upd()});
   v.querySelectorAll('[data-jump]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById('play-'+a.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
   if(base==="home")startCountdown();
   if(base==="booking")wireBooking();
@@ -832,10 +855,10 @@ function itemPlay(i){const c=i.chars&&i.chars[0]&&CH[i.chars[0]];return c?c.play
 function vol(o){ // {href|data, bg, fg, kick, title, meta, sub, i, slim, dot}
   const tag=o.href?"a":"button";
   return `<${tag} class="book${o.slim?" slim":""}" ${o.href?`href="${o.href}"`:""} ${o.attrs||""} style="--bg:${o.bg};--fg:${o.fg};--i:${o.i||0}" aria-label="${esc(o.label||o.title)}">
-    <span class="cover"><span class="bplay">${esc(o.kick||"")}</span><span class="bname">${esc(o.title)}</span>${o.meta?`<span class="bmeta">${esc(o.meta)}${o.dot?`<i class="dot ${o.dot}"></i>`:""}</span>`:""}${o.sub?`<span class="bwords">${esc(o.sub)}</span>`:""}</span>
-    <span class="pages"></span></${tag}>`;
+    <span class="bk"><span class="cover"><span class="bplay">${esc(o.kick||"")}</span><span class="bname">${esc(o.title)}</span>${o.meta?`<span class="bmeta">${esc(o.meta)}${o.dot?`<i class="dot ${o.dot}"></i>`:""}</span>`:""}${o.sub?`<span class="bwords">${esc(o.sub)}</span>`:""}</span>
+    <span class="pages"></span></span></${tag}>`;
 }
-function shelf(html,label){return `<div class="shelfwrap"><div class="shelf" tabindex="0" aria-label="${esc(label||"Shelf")}">${html}</div></div>`}
+function shelf(html,label){return `<div class="shelfwrap"><button class="shelfnav prev" aria-label="Scroll left" data-shelf="-1">‹</button><div class="shelf" tabindex="0" aria-label="${esc(label||"Shelf")}">${html}</div><button class="shelfnav next" aria-label="Scroll right" data-shelf="1">›</button></div>`}
 function folioHero(kick,title,extra){return `<section class="folio"><div class="fhero"><div class="fkick">${kick}</div><h1 class="ftitle">${title}</h1>${extra||""}</div>`}
 
 function pScenes(){
@@ -931,12 +954,12 @@ function pCast(){
       <h1 class="ftitle">The Company</h1>
       <nav class="fnav">${plays.map(p=>`<button class="${p===castFilter?"on":""}" data-play="${esc(p)}">${esc(p)}</button>`).join("")}</nav>
     </div>
-    <div class="shelfwrap"><div class="shelf" id="shelf" tabindex="0" aria-label="Parts. Scroll sideways, select a volume to open the part.">
+    <div class="shelfwrap"><button class="shelfnav prev" aria-label="Scroll left" data-shelf="-1">‹</button><div class="shelf" id="shelf" tabindex="0" aria-label="Parts. Scroll sideways, select a volume to open the part.">
       ${shown.map((p,i)=>{const pl=(CH[p.ch]||{}).play||"";const [bg,fg]=PLAYCOL[pl]||["#222","#eee"];const st=statusOf(p.actor);
         return `<button class="book" style="--bg:${bg};--fg:${fg};--i:${i}" data-actor="${esc(p.actor)}" data-part="${p.id}" aria-label="${esc(p.name)}, ${esc(pl)}, played by ${esc(p.actor)}">
-          <span class="cover"><span class="bplay">${esc(ABBR[pl]||pl)}</span><span class="bname">${esc(p.name.replace(", Duke of Gloucester",""))}</span><span class="bmeta">${esc(p.actor)}<i class="dot ${st}"></i></span><span class="bwords">≈ ${p.words.toLocaleString("en-GB")} words</span></span>
-          <span class="pages"></span></button>`}).join("")}
-    </div></div>
+          <span class="bk"><span class="cover"><span class="bplay">${esc(ABBR[pl]||pl)}</span><span class="bname">${esc(p.name.replace(", Duke of Gloucester",""))}</span><span class="bmeta">${esc(p.actor)}<i class="dot ${st}"></i></span><span class="bwords">≈ ${p.words.toLocaleString("en-GB")} words</span></span>
+          <span class="pages"></span></span></button>`}).join("")}
+    </div><button class="shelfnav next" aria-label="Scroll right" data-shelf="1">›</button></div>
     <div class="fstats">${[["accepted","Accepted"],["offered","Pending"],["declined","Declined"]].map(([s,l])=>`<div><b>${CAST.filter(n=>statusOf(n)===s).length}</b><span>${l}</span></div>`).join("")}</div>
   </section>
   ${isOwner?`<div class="card bulk"><div><span class="small">Headshots</span><h3>Drop in everyone's photos at once</h3><div class="meta">Select all the files together. Each one is matched to an actor by the file name (full name, first name or surname, e.g. <b>sophie-heideker.jpg</b> or <b>Rob.png</b>). Anything that doesn't match is listed so you can assign it on the card.</div><div class="meta" style="margin-top:6px">${CAST.filter(n=>headSrc(n)).length} of ${CAST.length} actors have a photo.</div></div><label class="btn primary">Choose headshots<input type="file" accept="image/*" multiple id="bulkhs" hidden></label></div>`:""}
