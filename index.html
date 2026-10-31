@@ -464,6 +464,12 @@ details.more>summary::before{color:#f5f5f4}
 @media (hover:none){.shelfnav{display:none}}
 @media (prefers-reduced-motion:reduce){.book .bk{transition:none}.book{animation:none!important}}
 
+
+/* ===== Books v3: flat hit-boxes, 3D is purely visual ===== */
+.book{transform-style:flat!important;perspective:1100px;perspective-origin:0% 45%}
+.book .bk,.book .bk *{pointer-events:none}
+.book:hover,.book:focus-visible{z-index:5}
+
 </style>
 </head>
 <body>
