@@ -1,4 +1,4 @@
-html.light .card.apcard{background:linear-gradient(160deg,color-mix(in srgb,var(--cl,#888) 10%,#ffffff) 0%,#ffffff 60%)!important;border-color:color-mix(in srgb,var(--cl,#888) 25%,#e4e4e7)!important}
+html.light .card.apcard{background:#ffffff!important;border-color:color-mix(in srgb,var(--cl,#888) 25%,#e4e4e7)!important}
 html.light .card.apcard::before{background:var(--cl,#888)}
 html.light .apn{color:var(--cl,#666)!important;background:color-mix(in srgb,var(--cl,#888) 12%,transparent)}
 html.light .apdot{background:var(--cl)}

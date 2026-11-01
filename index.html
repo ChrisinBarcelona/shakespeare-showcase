@@ -262,20 +262,13 @@ a.book{display:block;text-decoration:none}
 .apgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .apcard{margin-top:10px!important}.apcard h3{margin:6px 0 8px}.apcard p{margin:0;line-height:1.6;color:#c4c4cc}
 .apn{font:600 13px "Inter Tight",Inter,sans-serif;color:#8a8a93;letter-spacing:.06em}
-.sptable{margin-top:16px;border:1px solid #2a2a2f;border-radius:16px;overflow:hidden}
-.sprow{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #1f1f23}.sprow:first-child{border-top:0}
-.sprow>*{padding:14px 18px;line-height:1.65;font-size:15px}
-.sphead{background:#111113;font:600 13px "Inter Tight",Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#a1a1aa}
-.spo{font-family:Georgia,"Times New Roman",serif;font-size:16.5px;color:#f5f5f4;border-right:1px solid #1f1f23}
-.spm{color:#c4c4cc}
-.spwho{display:block;font:600 11px "Inter Tight",Inter,sans-serif;letter-spacing:.08em;color:#f4c75c;margin-bottom:4px}
-.spsc{margin-top:12px!important;font-size:14px}.spsc a{color:#f5f5f4;text-underline-offset:3px}
-@media (max-width:700px){.sprow{grid-template-columns:1fr}.spo{border-right:0;border-bottom:1px dashed #2a2a2f}.sphead{display:none}.spm::before{content:"Modern English";display:block;font:600 11px "Inter Tight",Inter,sans-serif;letter-spacing:.08em;color:#8a8a93;margin-bottom:4px;text-transform:uppercase}.spm .spwho{display:none}}
-.themebtn{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;border:1px solid #27272a;background:#0a0a0a;color:#f5f5f4;cursor:pointer}
-.themebtn:hover{border-color:#52525b}.themebtn:focus-visible{outline:3px solid #f5f5f4;outline-offset:2px}
-.themebtn .ti-moon{display:none}html.light .themebtn .ti-sun{display:none}html.light .themebtn .ti-moon{display:block}
-@media (max-width:1240px){.themebtn{margin-left:auto;order:1}.menubtn{margin-left:8px!important;order:2}}
-.card.apcard{position:relative;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--c,#888) 13%,#111113) 0%,#111113 55%)!important;border:1px solid color-mix(in srgb,var(--c,#888) 28%,#2a2a2f)!important}
+.sptwo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.spcol{background:#111113;border:1px solid #2a2a2f;border-radius:16px;padding:20px 22px}
+.spcap{margin:0 0 10px;font:600 12px "Inter Tight",Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8a8a93}
+.spo p,.spm p{margin:0 0 12px;line-height:1.7;font-size:15.5px}.spo p:last-child,.spm p:last-child{margin:0}
+.spo{color:#f5f5f4}.spm{color:#c4c4cc}
+@media (max-width:760px){.sptwo{grid-template-columns:1fr}}
+.card.apcard{position:relative;overflow:hidden;background:#111113!important;border:1px solid color-mix(in srgb,var(--c,#888) 28%,#2a2a2f)!important}
 .card.apcard::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--c,#888)}
 .card.apcard:hover{border-color:color-mix(in srgb,var(--c,#888) 60%,#2a2a2f)!important}
 .apn{display:inline-block;padding:3px 9px;border-radius:999px;color:var(--c,#888)!important;background:color-mix(in srgb,var(--c,#888) 14%,transparent)}
@@ -1048,19 +1041,11 @@ html.light .excta{background:#f6f5f4;color:#0b0b0a}
 html.light .venn .vc{fill:#f6f5f4}
 html.light .apcard p{color:#34343a}
 html.light .apn{color:#75726c}
-html.light .sptable{border:1px solid #d0d0d5}
-html.light .sprow{border-top:1px solid #dcdce0}
-html.light .sphead{background:#ececee;color:#55555e}
-html.light .spo{color:#0b0b0a;border-right:1px solid #dcdce0}
+html.light .spcol{background:#ececee;border:1px solid #d0d0d5}
+html.light .spcap{color:#75726c}
+html.light .spo{color:#0b0b0a}
 html.light .spm{color:#34343a}
-html.light .spwho{color:#a27813}
-html.light .spsc a{color:#0b0b0a}
-@media (max-width:700px){html.light .spo{border-bottom:1px dashed #d0d0d5}
-html.light .spm::before{color:#75726c}}
-html.light .themebtn{border:1px solid #d8d7d5;background:#f6f5f4;color:#0b0b0a}
-html.light .themebtn:hover{border-color:#a4a4ad}
-html.light .themebtn:focus-visible{outline:3px solid #0b0b0a}
-html.light .card.apcard{background:linear-gradient(160deg,color-mix(in srgb,var(--c,#7c7972) 13%,#ececee) 0%,#ececee 55%)!important;border:1px solid color-mix(in srgb,var(--c,#7c7972) 28%,#d0d0d5)!important}
+html.light .card.apcard{background:#ececee!important;border:1px solid color-mix(in srgb,var(--c,#7c7972) 28%,#d0d0d5)!important}
 html.light .card.apcard::before{background:var(--c,#7c7972)}
 html.light .card.apcard:hover{border-color:color-mix(in srgb,var(--c,#7c7972) 60%,#d0d0d5)!important}
 html.light .apn{color:var(--c,#7c7972)!important;background:color-mix(in srgb,var(--c,#7c7972) 14%,transparent)}
@@ -1392,7 +1377,7 @@ html.light .stb.open{color:#363532;border:1px dashed #8e8b85}
 html.light .cnote{background:#ebeae9;border:1px solid #d0d0d5;border-left:4px solid #550bc9}
 html.light .cnote p{color:#18181b}
 html.light .cnote b{color:#000000}
-html.light .card.apcard{background:linear-gradient(160deg,color-mix(in srgb,var(--cl,#888) 10%,#ffffff) 0%,#ffffff 60%)!important;border-color:color-mix(in srgb,var(--cl,#888) 25%,#e4e4e7)!important}
+html.light .card.apcard{background:#ffffff!important;border-color:color-mix(in srgb,var(--cl,#888) 25%,#e4e4e7)!important}
 html.light .card.apcard::before{background:var(--cl,#888)}
 html.light .apn{color:var(--cl,#666)!important;background:color-mix(in srgb,var(--cl,#888) 12%,transparent)}
 html.light .apdot{background:var(--cl)}
@@ -2463,12 +2448,10 @@ const SPEECH=[
  ["HAMLET","Speak the speech, I pray you, as I pronounced it to you, trippingly on the tongue: but if you mouth it, as many of your players do, I had as lief the town-crier spoke my lines.","Say the speech the way I showed you, light and quick off the tongue. If you chew it and over-pronounce it, the way so many actors do, I'd rather have the town crier read it."],
  ["","Nor do not saw the air too much with your hand, thus, but use all gently; for in the very torrent, tempest, and, as I may say, the whirlwind of passion, you must acquire and beget a temperance that may give it smoothness.","Don't wave your arms about like this. Do everything with control. Even in the middle of a storm of feeling, find a calm inside it that keeps it smooth."],
  ["","O, it offends me to the soul to hear a robustious periwig-pated fellow tear a passion to tatters, to very rags, to split the ears of the groundlings, who for the most part are capable of nothing but inexplicable dumb-shows and noise: I would have such a fellow whipped for o'erdoing Termagant; it out-herods Herod: pray you, avoid it.","It kills me to hear some big, bewigged actor rip an emotion to shreds, yelling to deafen the cheap seats, who mostly only like mime and noise anyway. I'd have him whipped for overacting the villain. It's more over the top than the over-the-top roles themselves. Please, don't do it."],
- ["FIRST PLAYER","I warrant your honour.","I promise, my lord."],
  ["HAMLET","Be not too tame neither, but let your own discretion be your tutor: suit the action to the word, the word to the action; with this special observance, that you o'erstep not the modesty of nature:","But don't be too timid either. Let your own judgement guide you. Match what you do to what you say, and what you say to what you do, and above all don't go beyond what's natural."],
  ["","for any thing so overdone is from the purpose of playing, whose end, both at the first and now, was and is, to hold, as 'twere, the mirror up to nature; to show virtue her own feature, scorn her own image, and the very age and body of the time his form and pressure.","Overdoing it defeats the whole point of acting, which has always been, and still is, to hold a mirror up to life: to show goodness and foolishness as they really are, and to show our own times exactly as they are."],
  ["","Now this overdone, or come tardy off, though it make the unskilful laugh, [[cannot but make the judicious grieve;]] the censure of the which one must in your allowance o'erweigh a whole theatre of others.","Overdo it, or underplay it, and you might get a laugh from people who don't know better, [[but the people who do know will wince.]] And the opinion of one of them should matter more to you than a whole theatre full of the others."],
  ["","O, there be players that I have seen play, and heard others praise, and that highly, not to speak it profanely, that, neither having the accent of Christians nor the gait of Christian, pagan, nor man, have so strutted and bellowed that I have thought some of nature's journeymen had made men and not made them well, they imitated humanity so abominably.","I've seen actors, highly praised ones too, who didn't speak or walk like any human being. They strutted and bellowed so much that I thought nature's apprentices must have made them, and botched the job, they imitated people so badly."],
- ["FIRST PLAYER","I hope we have reformed that indifferently with us, sir.","I think we've more or less fixed that in our company, sir."],
  ["HAMLET","O, reform it altogether. And let those that play your clowns speak no more than is set down for them; for there be of them that will themselves laugh, to set on some quantity of barren spectators to laugh too; though, in the mean time, some necessary question of the play be then to be considered: that's villanous, and shows a most pitiful ambition in the fool that uses it. Go, make you ready.","Fix it completely. And make your comedians say only what's written for them. Some of them laugh at their own jokes to get the dimmer part of the audience laughing too, just when something important in the play needs attention. That's unforgivable, and it shows how cheap the ambition of a clown who does it is. Go and get ready."]
 ];
 const SPEECH_US=[
@@ -2483,10 +2466,7 @@ function pSpeech(){
   const link=([id,t])=>IT[id]?`<a href="#scene-${id}">${esc(IT[id].play)}: ${esc(t)}</a>`:esc(t);
   return `<section class="apgroup speech" aria-labelledby="sp-h"><p class="ckick" style="margin:0 0 6px">Hamlet 3.2 · Hamlet's advice to the players</p><h2 id="sp-h">"Speak the speech, I pray you"</h2>
     <p class="clede">Before the play-within-the-play, Hamlet tells a company of actors how to act. Four hundred years later it is still the best short guide to playing Shakespeare, and it is basically what we'll be doing. Shakespeare on the left, plain modern English on the right.</p>
-    <div class="sptable" role="table" aria-label="Hamlet's advice to the players, with a modern translation">
-      <div class="sprow sphead" role="row"><span role="columnheader">Shakespeare</span><span role="columnheader">In modern English</span></div>
-      ${SPEECH.map(([who,o,m])=>{const hl=t=>esc(t).replace(/\[\[(.*?)\]\]/g,'<mark class="sphl">$1</mark>');return `<div class="sprow" role="row"><div role="cell" class="spo">${who?`<b class="spwho">${who}</b>`:""}${hl(o)}</div><div role="cell" class="spm">${who?`<b class="spwho">${who}</b>`:""}${hl(m)}</div></div>`}).join("")}
-    </div>
+    ${(()=>{const hl=t=>esc(t).replace(/\[\[(.*?)\]\]/g,'<mark class="sphl">$1</mark>');return `<div class="sptwo"><div class="spcol"><p class="spcap">Shakespeare</p><div class="spo">${SPEECH.map(x=>`<p>${hl(x[1])}</p>`).join("")}</div></div><div class="spcol"><p class="spcap">In modern English</p><div class="spm">${SPEECH.map(x=>`<p>${hl(x[2])}</p>`).join("")}</div></div></div>`})()}
     <h2 style="margin-top:34px">What this means for us</h2>
     <p class="clede">Each part of the speech, and where you'll see it in our show.</p>
     <div class="apgrid" style="--c:#c9a6ff;--cl:#6d3fc0">${SPEECH_US.map(([t,d,...sc])=>`<article class="card apcard"><h3>${esc(t)}</h3><p>${esc(d)}</p><p class="spsc">${sc.map(link).join("<br>")}</p></article>`).join("")}</div>
