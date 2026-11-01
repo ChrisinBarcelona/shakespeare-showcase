@@ -613,6 +613,21 @@ details.more summary{min-height:40px;display:flex;align-items:center;cursor:poin
 .mepieces{margin:14px 0 0;font-size:14.5px;color:#d4d4d8}.mepieces a{color:#fff}
 .mecard input[type=password]{width:100%;min-height:46px;background:#050505;border:1px solid #3a3a40;border-radius:12px;color:#f5f5f4;padding:0 14px;font:500 15px var(--fb)}
 .youare{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px}
+
+.nav a.navout{margin-left:6px;color:#c9c9cd!important;border:1px solid #3a3a40!important;border-radius:999px;padding:7px 12px!important;background:none!important}
+.nav a.navout:hover{color:#fff!important;border-color:#f5f5f4!important}
+
+@media(min-width:1241px) and (max-width:1440px){.nav{gap:2px!important}.nav a{padding:7px 9px!important;font-size:13.5px!important}.nav a.navout,.nav a.navcta{padding:7px 11px!important}}
+
+@media (max-width:1240px){
+  .topin{flex-direction:row!important;align-items:center!important}
+  .menubtn{display:block}
+  .nav{display:none!important;position:fixed;inset:65px 0 auto 0;background:#000;border-bottom:1px solid #27272a;flex-direction:column;align-items:stretch!important;padding:10px 16px 18px;max-height:calc(100dvh - 65px);overflow:auto;width:auto!important}
+  body.menuopen .nav{display:flex!important}
+  .nav a{font-size:17px!important;padding:13px 12px!important}
+  .nav a.navcta{margin:10px 0 0;text-align:center}
+  .nav a.navout{margin:8px 0 0!important;text-align:center;padding:13px 12px!important}
+}
 </style>
 </head>
 <body>
@@ -978,10 +993,11 @@ function wireEdits(root){
 /* ================= ROUTER ================= */
 const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["scripts","Scripts"],["cast","The Company"],["characters","Characters"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
 let cdTimer=null;
+function signOut(){try{["ss-gate2","ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}history.replaceState(null,"",location.pathname+location.search);location.reload()}
 function route(){
-  const h=(location.hash||"#home").slice(1);
+  const h=(location.hash||"#home").slice(1);if(h==="signout"){signOut();return}
   const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics"].includes(h)?"staging":h;
-  $("nav").innerHTML=PAGES.filter(([k])=>k!=="me").map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"My panel"}</a>`;
+  $("nav").innerHTML=PAGES.filter(([k])=>k!=="me").map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"My panel"}</a><a href="#signout" class="navout">Sign out</a>`;
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
   const lbl=(PAGES.find(([k])=>k===base)||[,"Home"])[1];document.title=`${lbl} · Shakespeare Showcase`;
   clearInterval(cdTimer);
@@ -1336,7 +1352,7 @@ function pMe(){
       <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p></section>`}
   }
   return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Hello, ${esc(name.split(" ")[0])}</h1>
-    <div class="btns" style="margin-top:12px">${notYou}<a class="btn sm" href="#booking">Book a rehearsal</a></div></header>${body}</div>`;
+    <div class="btns" style="margin-top:12px">${notYou}<a class="btn sm" href="#booking">Book a rehearsal</a><a class="btn sm" href="#signout">Sign out</a></div></header>${body}</div>`;
 }
 function wireMe(){
   document.querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);route();window.scrollTo(0,0)});
