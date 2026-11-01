@@ -744,6 +744,53 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .op-art{max-height:42vh;object-position:50% 100%}
 @media(max-width:700px){.opener .cd div{padding:0 9px!important}.opener .cd b{font-size:clamp(30px,10.4vw,60px)!important}.opener .cd span{font-size:12px!important}}
 .op-btns .btn{flex:none!important}@media(max-width:700px){.op-btns .btn{flex:1!important}}
+
+/* ---- rehearsal format ---- */
+.rsec{background:#0c0c0e;border:1px solid #26262b;border-radius:22px;padding:24px;margin-top:22px}
+.rhead{display:flex;gap:16px;align-items:flex-start}
+.rnum{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:#f5f5f4;color:#0a0a0a;font:700 26px var(--fd)}
+.rhead h2{margin:2px 0 0!important;font-size:clamp(28px,4.4vw,44px)!important;line-height:1.05}
+.rhead .clede{margin:8px 0 0}
+.rgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:16px;margin-top:20px}
+@media(max-width:860px){.rgrid{grid-template-columns:1fr}}
+.rtime,.rclass{background:#141416;border:1px solid #2a2a2f;border-radius:16px;padding:18px}
+.rtime h3{margin:0 0 10px!important;font-size:20px!important}
+.ttable{list-style:none;margin:0;padding:0}
+.ttable li{display:grid;grid-template-columns:72px 1fr;align-items:baseline;padding:11px 0;border-top:1px solid #26262b;font-size:16px}
+.ttable li:first-child{border-top:0}
+.ttable b{font:600 18px var(--fd);font-variant-numeric:tabular-nums;color:#fff}.ttable span{color:#d4d4d8}
+.ttable li.prac span{color:#fff;font-weight:600}
+.rmap{background:#141416;border:1px solid #2a2a2f;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.rmap iframe{display:block;width:100%;flex:1;min-height:260px;border:0;filter:grayscale(.35) contrast(1.05)}
+.rmapfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px}
+.rmapfoot b{display:block;font-size:15px}.rmapfoot span{display:block;font-size:13.5px;color:#b8b8bd}
+.ryou{margin-top:20px}
+.satgrid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-top:14px}
+.satgrid2.one{grid-template-columns:minmax(0,520px)}
+.satc{background:#141416;border:1px solid #2a2a2f;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.satc.next{border-color:#f5f5f4;box-shadow:0 0 0 1px #f5f5f4 inset}
+.satc.past{opacity:.55}
+.sathead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.sathead h3{margin:2px 0 0!important;font-size:21px!important}
+.satphase{flex:none;font:600 12.5px var(--fb);border-radius:999px;padding:3px 10px;color:#8cbcff;border:1px solid rgba(140,188,255,.45);background:rgba(140,188,255,.1)}
+.satphase.run{color:#ff8a8a;border-color:rgba(255,138,138,.45);background:rgba(255,138,138,.1)}
+.satplan{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.satplan li{display:grid;grid-template-columns:58px 1fr;align-items:baseline;background:#1b1b1f;border-radius:10px;padding:10px 12px}
+.satplan b{font:600 15px var(--fd);color:#b8b8bd;font-variant-numeric:tabular-nums}.satplan span{font-weight:600;color:#fff}
+.satbtns{display:flex;gap:10px}.satbtns .btn{flex:1;min-height:48px}
+.btn.on-go{background:rgba(127,224,160,.14)!important;color:#7fe0a0!important;border-color:rgba(127,224,160,.55)!important}
+.btn.on-no{background:rgba(255,138,138,.1)!important;color:#ff9c9c!important;border-color:rgba(255,138,138,.5)!important}
+.satwho p{margin:0;font-size:14.5px;color:#b8b8bd}.satwho b.g{color:#7fe0a0}
+.satnames{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.nm{font-size:13px;font-weight:600;border-radius:999px;padding:3px 10px;border:1px solid}
+.nm.go{color:#7fe0a0;border-color:rgba(127,224,160,.4);background:rgba(127,224,160,.08)}
+.nm.no{color:#a8a8ae;border-color:#3a3a40;background:#18181b;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
+.nm.me{box-shadow:0 0 0 2px #f5f5f4}
+.satafter{margin-top:16px;color:#d4d4d8;font-size:15px}
+.topics{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.topics li{font-size:14.5px;font-weight:600;border:1px solid #3a3a40;border-radius:999px;padding:7px 13px;background:#18181b;color:#f5f5f4}
+.partner{margin-top:16px;border-left:4px solid #f4c75c;background:rgba(244,199,92,.08);border-radius:12px;padding:12px 14px;color:#e4e4e7;font-size:15px}
+.partner b{color:#f4c75c}
 </style>
 </head>
 <body>
@@ -961,6 +1008,10 @@ const VENUES={
 };
 const SATURDAYS=["2027-01-23","2027-01-30","2027-02-06","2027-02-13","2027-02-20","2027-02-27"];
 const TECH={date:"2027-03-03",label:"Wed 3 March 2027 (approx.)"};
+const SAT_TIMES=[["09:00","Check in"],["09:15","First practical"],["10:15","Break"],["10:30","Second practical"],["11:30","Close"]];
+const SAT_PLAN={"2027-01-23":["Stage combat","Voice"],"2027-01-30":["Character physicality","Animals"],"2027-02-06":["Mosaic choreography","Blocking, entrances & exits"],"2027-02-13":["Full run-through 1","Notes"],"2027-02-20":["Full run-through 2","Notes"],"2027-02-27":["Full run-through 3","Director's notes"]};
+const CLASSES=["Dramaturgy","Language breakdown","Rhythm & iambic pentameter","Character objectives","Super-objectives","Tensions","Run-throughs"];
+function mapEmbed(v){return `<div class="rmap"><iframe title="Map: ${esc(v.name)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${encodeURIComponent(v.name+", "+v.addr)}&output=embed"></iframe><div class="rmapfoot"><div><b>${esc(v.name)}</b><span>${esc(v.addr)}</span></div><a class="btn sm" href="${v.map}" target="_blank" rel="noopener">Open in Google Maps ↗</a></div></div>`}
 const SHOWS=(()=>{const a=[];for(let d=1;d<=31;d++){const x=new Date(2027,2,d);if([4,5,6].includes(x.getDay()))a.push(dkey(x))}return a})();
 const CALL=[["18:00","Arrive"],["18:30–19:30","Warm-up"],["20:00","Curtain"]];
 const CREW=[
@@ -1117,17 +1168,17 @@ function pHome(){
         <div><dt>Shows</dt><dd>Every Thursday, Friday &amp; Saturday in March 2027 · ${SHOWS.length} performances<br><span class="meta">${VENUES.gaudi.name}, ${VENUES.gaudi.addr}</span></dd></div>
         <div><dt>Show day</dt><dd>${CALL.map(([t,l])=>`<b>${t}</b> ${l}`).join(" · ")}</dd></div>
         <div><dt>Tech</dt><dd>${TECH.label} · Teatre Gaudí</dd></div>
-        <div><dt>Saturday rehearsals</dt><dd>09:00–11:00 · six Saturdays, 23 Jan – 27 Feb<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
-        <div><dt>Book a session</dt><dd>Mon–Fri, 15:30–19:30 (2-hour slots)<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
+        <div><dt>Saturday rehearsals</dt><dd>09:00–11:30 · six Saturdays, 23 Jan – 27 Feb<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
+        <div><dt>Dramaturgy sessions</dt><dd>Mon–Fri, 15:30–19:30 (2-hour slots, book with your scene partners)<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
       </dl>
       <div class="btns"><a class="btn primary" href="#booking">Book a rehearsal</a><a class="btn" href="#shows">Performance schedule</a></div>
     </div>
   </section>
   <div id="checkin">${checkIn()}</div>
-  <h2>Mark <em>attending</em></h2><p class="sub">Next Saturday rehearsal. Tick it so Chris knows who's coming.</p>
+  <h2>This <em>Saturday</em></h2><p class="sub">Company rehearsal at ${VENUES.albareda.name}, 09:00–11:30. Let Chris know if you're coming.</p>
   ${meSelect()}
-  <div class="satgrid">${satCard(nextSat,true)}</div>
-  <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:10px">All six Saturdays →</a>
+  <div class="satgrid2 one">${satCard(nextSat,true)}</div>
+  <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and all six Saturdays →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
     ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["scripts","Scripts","Every scene's full text, ready to download."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights and mosaics."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
@@ -1142,21 +1193,30 @@ function pHome(){
 /* ---- shared: who am I + Saturday attendance ---- */
 function meSelect(){if(me)return `<div class="mesel youare">You're <b>${esc(me)}</b> <button type="button" class="btn sm" data-notme>Not you? Change name</button></div>`;
   return `<p class="attendhint">Choose your name to mark attending or book. This browser will remember it.</p><div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
-function attendees(date){return Object.values(attendance).filter(a=>a.date===date&&a.going).map(a=>a.actor).sort()}
+function attendees(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===true).map(a=>a.actor).sort()}
+function notGoing(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===false).map(a=>a.actor).sort()}
 function satCard(date,big){
-  const d=new Date(date+"T09:00"),past=new Date(date+"T11:00")<new Date();
-  const names=attendees(date),mine=me&&names.includes(me),idx=SATURDAYS.indexOf(date)+1;
-  return `<div class="card sat ${past?"past":""} ${big?"big":""}">
-    <div class="kicker">Saturday ${idx} of 6 · 09:00–11:00</div>
-    <h3>${d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3>
-    <div class="meta">${VENUES.albareda.name}, ${VENUES.albareda.area}</div>
-    <div class="who">${names.length?names.map(n=>`<span class="pill ${n===me?"me":""}">${esc(n)}</span>`).join(""):`<span class="meta">No one has marked attending yet.</span>`}</div>
-    <div class="btns"><button class="btn ${mine?"":"primary"} sm" data-attend="${date}" ${!me||past?"disabled":""}>${mine?"✓ Attending · undo":"I'm attending"}</button><span class="meta" style="align-self:center">${names.length} of ${CAST.length}</span></div>
-  </div>`;
+  const d=new Date(date+"T09:00"),past=new Date(date+"T11:30")<new Date(),idx=SATURDAYS.indexOf(date)+1,plan=SAT_PLAN[date]||["",""];
+  const go=attendees(date),no=notGoing(date),mine=me?(go.includes(me)?"going":no.includes(me)?"no":null):null;
+  const nextUp=date===(SATURDAYS.find(x=>new Date(x+"T11:30")>new Date())||"");
+  return `<article class="satc ${past?"past":""} ${nextUp?"next":""} ${big?"big":""}">
+    <div class="sathead"><div><p class="ckick">Saturday ${idx} of 6${nextUp?" · Next up":""}</p><h3>${d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3></div><span class="satphase ${idx>3?"run":""}">${idx>3?"Run-through":"Workshop"}</span></div>
+    <ol class="satplan"><li><b>09:15</b><span>${esc(plan[0])}</span></li><li><b>10:30</b><span>${esc(plan[1])}</span></li></ol>
+    <div class="satbtns"><button type="button" class="btn ${mine==="going"?"on-go":"primary"}" data-att="going" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="going"}">${mine==="going"?"✓ Going":"I'm going"}</button><button type="button" class="btn ${mine==="no"?"on-no":""}" data-att="no" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="no"}">${mine==="no"?"Not going ✕":"Not going"}</button></div>
+    <div class="satwho"><p><b class="g">${go.length} going</b>${no.length?` · <span>${no.length} not going</span>`:""}</p>
+      ${go.length||no.length?`<div class="satnames">${go.map(n=>`<span class="nm go ${n===me?"me":""}">${esc(n)}</span>`).join("")}${no.map(n=>`<span class="nm no ${n===me?"me":""}">${esc(n)}</span>`).join("")}</div>`:`<p class="meta" style="margin:0">No answers yet.</p>`}</div>
+  </article>`;
 }
 function wireAttend(root){
   root.querySelectorAll(".mepick").forEach(sel=>sel.onchange=e=>{setMe(e.target.value);route()});
   root.querySelectorAll("[data-notme]").forEach(b=>b.onclick=()=>{setMe("");route()});
+  root.querySelectorAll("[data-att]").forEach(b=>b.onclick=async()=>{
+    if(!db){toast("Can't save in this view");return}if(!me){openPicker();toast("Pick your name, then tap again");return}
+    const date=b.dataset.date,want=b.dataset.att==="going",ref=db.collection("attendance").doc(date+"_"+ck(me));
+    const cur=attendees(date).includes(me)?"going":notGoing(date).includes(me)?"no":null;b.disabled=true;
+    try{if(cur===b.dataset.att){await ref.delete();toast("Answer cleared")}else{await ref.set({date,actor:me,going:want,by:myId||"",at:new Date().toISOString()});toast(want?"See you Saturday ✓":"Marked not going")}}
+    catch(e){toast("Couldn't save");b.disabled=false}
+  });
   root.querySelectorAll("[data-attend]").forEach(b=>b.onclick=async()=>{
     if(!db){toast("Sign in to mark attending");return}if(!me){toast("Choose your name first");return}
     const date=b.dataset.attend,ref=db.collection("attendance").doc(date+"_"+ck(me));const going=attendees(date).includes(me);
@@ -1515,12 +1575,28 @@ function pShows(){
 }
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){
-  return folioHero(`Six Saturdays · 09:00–11:00 · ${VENUES.albareda.name}`,"Saturdays",`<p class="ftag">23 January – 27 February. <em>Mark the ones you'll be at.</em></p>`)+`</section>
-  <div class="card venue"><div><span class="small">Where</span><h3>${VENUES.albareda.name}</h3><div class="meta">${VENUES.albareda.addr} · ${VENUES.albareda.area}</div></div><a class="btn sm" href="${VENUES.albareda.map}" target="_blank" rel="noopener">Map ↗</a></div>
-  ${meSelect()}
-  <div class="satgrid">${SATURDAYS.map(d=>satCard(d)).join("")}</div>
-  <div class="card"><span class="small">Weekday sessions</span><h3>One-to-one scene work with Chris</h3><div class="meta">Mon–Fri, 15:30–17:30 or 17:30–19:30 at ${VENUES.bcs.name}, ${VENUES.bcs.addr}.</div><a class="btn sm" href="#booking" style="display:inline-block;margin-top:10px">Book a session →</a></div>
-  <div class="card tech"><span class="small">Then</span><h3>Tech · ${TECH.label}</h3><div class="meta">Teatre Gaudí, the day before opening night.</div></div>`;
+  return folioHero("Rehearsal format","Rehearsals",`<p class="ftag">Two ways we work: <em>Saturday company rehearsals, and weekday classes you book.</em></p>`)+`</section>
+  <section class="rsec" aria-labelledby="r1">
+    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick">Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · six Saturdays, 23 January – 27 February</p></div></div>
+    <div class="rgrid">
+      <div class="rtime"><h3>The morning</h3><ol class="ttable">${SAT_TIMES.map(([t,l])=>`<li class="${/practical/.test(l)?"prac":""}"><b>${t}</b><span>${l}</span></li>`).join("")}</ol>
+        <p class="meta" style="margin:14px 0 0">Two practical hours each Saturday. Workshops first; the last three Saturdays are full run-throughs with notes, leading into tech week.</p></div>
+      ${mapEmbed(VENUES.albareda)}
+    </div>
+    <div class="ryou">${meSelect()}</div>
+    <div class="satgrid2">${SATURDAYS.map(d=>satCard(d)).join("")}</div>
+    <div class="satafter"><span class="ckick">Then</span> <b>Tech · ${TECH.label}</b> at Teatre Gaudí, the day before opening night.</div>
+  </section>
+  <section class="rsec" aria-labelledby="r2">
+    <div class="rhead"><span class="rnum" aria-hidden="true">2</span><div><p class="ckick">Weekday classes · optional</p><h2 id="r2">Dramaturgy sessions</h2><p class="clede">${VENUES.bcs.name}, ${VENUES.bcs.area} · Mon–Fri, 15:30–17:30 or 17:30–19:30</p></div></div>
+    <div class="rgrid">
+      <div class="rclass"><p class="clede" style="margin:0">Two-hour sessions with Chris on the text and the work behind it. They're open: come when it helps you and your scene.</p>
+        <ul class="topics">${CLASSES.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>
+        <div class="partner"><b>Please book with your scene partners.</b> Sessions work best when everyone in the scene is in the room. Agree a time together, then one of you books it.</div>
+        <div class="btns"><a class="btn primary" href="#booking">Book a session →</a></div></div>
+      ${mapEmbed(VENUES.bcs)}
+    </div>
+  </section>`;
 }
 /* ---------- Scripts ---------- */
 function pScripts(){
@@ -1616,7 +1692,9 @@ function pStaging(){return `<h1>Staging</h1><p class="sub">The pieces between an
 
 /* ---------- Booking ---------- */
 function pBooking(){
-  return `<h1>Rehearsal <em>booking</em></h1><p class="sub">Book a 2-hour session with Chris, Mon–Fri 15:30–17:30 or 17:30–19:30, at <b style="color:var(--paper)">${VENUES.bcs.name}</b>, ${VENUES.bcs.addr}. Agree a time with your scene partners first. Booked slots show everyone called.</p>
+  return `<h1>Book a <em>dramaturgy session</em></h1><p class="sub">Two hours with Chris, Mon–Fri 15:30–17:30 or 17:30–19:30, at <b style="color:var(--paper)">${VENUES.bcs.name}</b>. Optional: come when it helps you and your scene.</p>
+  <div class="partner" style="margin-top:14px"><b>Please book with your scene partners.</b> Agree a time together first; booked slots show everyone called.</div>
+  <div class="rgrid" style="margin-top:16px"><div class="rclass"><h3 style="margin:0 0 4px">What we can work on</h3><ul class="topics">${CLASSES.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>${mapEmbed(VENUES.bcs)}</div>
   <div class="card"><span class="small">I am</span><select id="mesel" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option ${c===me?"selected":""}>${esc(c)}</option>`).join("")}</select><div id="myscenes" class="chips"></div></div>
   ${!db?`<div class="note warn">Live booking isn't available in this view. Open the page signed in to book.</div>`:canWrite===false&&!isOwner?`<div class="note warn">You can see the calendar but can't book yet. Ask Chris to invite you by email as an Editor.</div>`:""}
   <div class="legend" style="margin-top:16px"><span><i style="border:1px dashed #6b5a49"></i>Free</span><span><i style="background:#2b231d;border:1px solid var(--acc)"></i>Booked</span><span><i style="background:#1b2230;border:1px solid #2f4560"></i>Company call</span><span><i style="background:#241818;border:1px solid #4a2626"></i>Chris unavailable</span></div>
@@ -1641,7 +1719,7 @@ function renderBooking(){
     if(!b)return `<button class="slot free" data-id="${id}" ${past?"disabled":""}><div class="t">${t}–${endTime(t)}</div><div class="s">${loaded?"Free":"Loading…"}</div></button>`;
     if(b.type==="block")return `<button class="slot block ${b.company?"company":""}" data-id="${id}"><div class="t">${t}–${endTime(t)}</div><div class="s">${esc(b.label||(b.company?"Company call":"Unavailable"))}</div></button>`;
     const s=IT[b.scene];const mine=me&&s&&s.actors.includes(me);
-    return `<button class="slot booked ${mine?"mine":""}" data-id="${id}"><div class="t">${t} · ${s?esc(s.play):"Scene"}</div><div class="s">${s?esc(s.title)+"<br>"+s.actors.join(", "):""}</div></button>`;
+    return `<button class="slot booked ${mine?"mine":""}" data-id="${id}"><div class="t">${t} · ${s?esc(s.play):"Scene"}</div><div class="s">${s?esc(s.title)+(b.focus?" · "+esc(b.focus):"")+"<br>"+s.actors.join(", "):""}</div></button>`;
   }).join("")}</div></div>`}).join("");
   $("days").querySelectorAll(".slot").forEach(b=>b.onclick=()=>openSlot(b.dataset.id));
 }
@@ -1649,18 +1727,19 @@ function openSlot(id){
   const p=parseSlot(id),b=bookings[id],when=`${fmtDay(p.date)}, ${p.time}–${endTime(p.time)}`,sh=$("sheet");
   if(b){
     const s=b.type==="scene"?IT[b.scene]:null,canCancel=isOwner||(myId&&b.by===myId)||(!!me&&b.actor===me&&b.type==="scene");
-    sh.innerHTML=`<h3>${s?esc(s.play+" — "+s.title):esc(b.label||(b.company?"Company call":"Unavailable"))}</h3><p>${when}${s?"<br>Called: "+s.actors.join(", ")+(b.actor?"<br>Booked by "+esc(b.actor):""):""}</p><div class="btns">${canCancel?`<button class="btn danger" id="cancel">${b.type==="block"?"Remove":"Cancel booking"}</button>`:""}<button class="btn" id="cx">Close</button></div>`;
+    sh.innerHTML=`<h3>${s?esc(s.play+" — "+s.title):esc(b.label||(b.company?"Company call":"Unavailable"))}</h3><p>${when}${s?"<br>Called: "+s.actors.join(", ")+(b.focus?"<br>Focus: "+esc(b.focus):"")+(b.actor?"<br>Booked by "+esc(b.actor):""):""}</p><div class="btns">${canCancel?`<button class="btn danger" id="cancel">${b.type==="block"?"Remove":"Cancel booking"}</button>`:""}<button class="btn" id="cx">Close</button></div>`;
     $("cx").onclick=closeSheet;
     if(canCancel)$("cancel").onclick=async()=>{try{await db.collection("bookings").doc(id).delete();toast("Removed");closeSheet()}catch(e){toast("Couldn't remove")}};
   }else{
     const opts=me?bookable().filter(i=>i.actors.includes(me)):bookable();
     sh.innerHTML=`<h3>Book this session</h3><p>${when} with Chris</p>
       <div class="field"><span class="small">Piece</span><select id="scn">${opts.map(s=>`<option value="${s.id}" ${s.id===selScene?"selected":""}>${s.n} · ${esc(s.play)} — ${esc(s.title)} (${s.actors.join(", ")})</option>`).join("")}</select></div>
+      <div class="field"><span class="small">Focus</span><select id="foc">${CLASSES.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>
       ${!me?`<div class="field"><span class="small">Your name</span><select id="who"><option value="">Choose…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`:""}
       <div class="btns"><button class="btn" id="cx">Cancel</button><button class="btn primary" id="go" ${!db||(canWrite===false&&!isOwner)?"disabled":""}>Book</button></div>
       ${isOwner?`<div class="rule"></div><span class="small">Chris only</span><input type="text" id="lbl" placeholder="Label, e.g. Full company run"><div class="btns"><button class="btn" id="blk">Mark unavailable</button><button class="btn" id="cmp">Company call</button></div>`:""}`;
     $("cx").onclick=closeSheet;
-    $("go").onclick=()=>{const actor=me||($("who")&&$("who").value);if(!actor){toast("Choose your name");return}claim(id,{type:"scene",scene:$("scn").value,actor,by:myId||"",at:new Date().toISOString()})};
+    $("go").onclick=()=>{const actor=me||($("who")&&$("who").value);if(!actor){toast("Choose your name");return}claim(id,{type:"scene",scene:$("scn").value,focus:$("foc").value,actor,by:myId||"",at:new Date().toISOString()})};
     if(isOwner){$("blk").onclick=()=>claim(id,{type:"block",company:false,label:$("lbl").value.trim()||"Unavailable",by:myId||"",at:new Date().toISOString()});
       $("cmp").onclick=()=>claim(id,{type:"block",company:true,label:$("lbl").value.trim()||"Company call",by:myId||"",at:new Date().toISOString()})}
   }
