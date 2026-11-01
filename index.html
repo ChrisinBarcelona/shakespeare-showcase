@@ -1194,7 +1194,7 @@ function mapEmbed(v){return `<div class="rmap"><iframe title="Map: ${esc(v.name)
 const SHOWS=(()=>{const a=[];for(let d=1;d<=31;d++){const x=new Date(2027,2,d);if([4,5,6].includes(x.getDay()))a.push(dkey(x))}return a})();
 const CALL=[["18:00","Arrive"],["18:30–19:30","Warm-up"],["20:00","Curtain"]];
 const CREW=[
- {key:"chris-kelly",name:"Chris Kelly",role:"Director",fixed:true,link:"https://bluebooktheatrecompany.com/chriskelly/",linkLabel:"Profile ↗",link2:"https://chriskelly.it",link2Label:"chriskelly.it ↗"},
+ {key:"chris-kelly",name:"Chris Kelly",role:"Director",fixed:true,link:"https://bluebooktheatrecompany.com/chriskelly/",linkLabel:"Profile ↗",link2:"https://chriskelly.it",link2Label:"chriskelly.it ↗",link3:"https://www.imdb.com/name/nm5854428/",link3Label:"IMDb ↗"},
  {key:"jessica-kollande",name:"Jessica Kollande",role:"Assistant Producer",link:"https://bluebooktheatrecompany.com/jessica-kollande/",linkLabel:"Profile ↗"},
  {key:"adrian-p-smith",name:"Adrian P. Smith",role:"Set Director",field:"crewStatus",note:"Also plays Polonius"},
  {key:"g-lab-barcelona",name:"G Lab Barcelona",role:"Set Designer",link:"https://www.instagram.com/g.lab.barcelona/",linkLabel:"Instagram @g.lab.barcelona ↗"}
@@ -1597,7 +1597,7 @@ function playSection(pl){
 }
 function crewCard(c){
   const ps=PARTS.filter(p=>p.actor===c.name),src=headSrc(c.name),st=crewStatus(c);
-  const links=[[c.link,c.linkLabel],[c.link2,c.link2Label]].filter(x=>x[0]);
+  const links=[[c.link,c.linkLabel],[c.link2,c.link2Label],[c.link3,c.link3Label]].filter(x=>x[0]);
   return `<article class="acard" data-keys="${esc((c.name+" "+c.role).toLowerCase())}" aria-labelledby="c-${esc(c.key)}">
     <header class="ahead">
       <div class="avatar" style="--c:#f5f5f4">${src?`<img src="${src}" alt="">`:`<span aria-hidden="true">${esc(initials(c.name))}</span>`}</div>
