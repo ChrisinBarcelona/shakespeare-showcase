@@ -656,60 +656,44 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .lb-nav[hidden]{visibility:hidden;display:block}
 #lbox button:focus-visible,#lbox a:focus-visible{outline:3px solid #f5f5f4;outline-offset:2px}
 @media(max-width:600px){#lbox{grid-template-columns:0 1fr 0}.lb-nav{display:none!important}#lbimg{max-height:calc(100dvh - 80px)}.lb-btn{padding:0 12px;font-size:14px}}
+
+/* ---- company check-in ---- */
+.stb.pend{color:#f4c75c;border-color:rgba(244,199,92,.45);background:rgba(244,199,92,.1)}
+.checkin{background:#0c0c0e;border:1px solid #26262b;border-radius:20px;padding:22px;margin:22px 0 8px}
+.ckhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.ckhead h2{margin:2px 0 0!important;font-size:30px!important}
+.ckick{margin:0;font:600 13px var(--fb);color:#b8b8bd}
+.ckprog{min-width:220px;flex:0 1 320px}.ckprog p{margin:0 0 6px;color:#d4d4d8;font-size:15px;text-align:right}.ckprog b{color:#fff}
+.pbar{height:10px;border-radius:999px;background:#26262b;overflow:hidden}.pbar i{display:block;height:100%;background:#7fe0a0;border-radius:999px;transition:width .4s}
+.ckyou{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:#141416;border:1px solid #2a2a2f;border-radius:16px;padding:16px 18px;margin-top:18px}
+.ckwho h3{margin:2px 0 4px!important;font-size:22px!important}.ckroles{margin:0 0 8px;color:#b8b8bd;font-size:14.5px}
+.ckbtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.ckbtns .btn:not(.sm){min-width:150px;min-height:48px}
+.btn.ghost{border-color:transparent!important;text-decoration:underline;text-underline-offset:3px}
+.board{margin-top:18px}
+.bh{display:flex;align-items:center;gap:8px;font-size:17px!important;margin:16px 0 10px!important}
+.bdot{width:10px;height:10px;border-radius:50%}.bdot.pend{background:#f4c75c}.bdot.ok{background:#7fe0a0}
+.bn{font:600 13px var(--fb);color:#b8b8bd;background:#1c1c20;border-radius:999px;padding:2px 8px}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.pchip{display:flex;align-items:stretch;border-radius:12px;border:1px solid;overflow:hidden}
+.pchip.pend{border-color:rgba(244,199,92,.45);background:rgba(244,199,92,.08)}.pchip.accepted{border-color:rgba(127,224,160,.4);background:rgba(127,224,160,.07)}
+.pchip button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;background:none;border:0;color:#f5f5f4;padding:8px 12px;cursor:pointer;font:inherit;min-height:44px}
+.pchip b{font-size:14.5px;font-weight:600}.pchip span{font-size:12.5px;color:#b8b8bd;max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pchip.pend b{color:#f4c75c}.pchip.accepted b{color:#7fe0a0}
+.pchip:hover{border-color:#f5f5f4}
+.nudge{display:flex;align-items:center;padding:0 12px;border-left:1px solid rgba(244,199,92,.35);color:#f4c75c;font:600 13px var(--fb);text-decoration:none}
+.nudge:hover{background:rgba(244,199,92,.15)}
+.full{color:#7fe0a0;font-weight:600;margin:12px 0 0}
+
+.pchip{max-width:100%}.pchip button{min-width:0;flex:1 1 auto}.pchip span{max-width:100%}
+.ckbtns .btn.primary:disabled,.mebtns .btn.primary:disabled{opacity:1!important;background:rgba(127,224,160,.14)!important;color:#7fe0a0!important;border-color:rgba(127,224,160,.5)!important}
+.ckbtns .btn:disabled:not(.primary),.mebtns .btn:disabled:not(.primary){opacity:.45}
+.folio.cdwrap{margin-top:0!important}.folio.cdwrap::before{display:none}
+@media(max-width:600px){.ckhead{align-items:stretch}.ckprog{flex:1 1 100%}.ckprog p{text-align:left}.ckbtns{width:100%}.ckbtns .btn:not(.sm){flex:1;min-width:0}}
 </style>
 </head>
 <body>
-<style>
-#gate{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;padding:24px;background:#050505;
-  background-image:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(255,255,255,.09),transparent 70%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(255,255,255,.04),transparent 70%)}
-#gate .gbox{width:100%;max-width:520px;text-align:center;animation:gin .6s cubic-bezier(.2,.7,.1,1) both}
-@keyframes gin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-#gate .gk{font:600 13px var(--fb);color:#b8b8bd}
-#gate h1{font-family:var(--fd);font-weight:600;letter-spacing:-.05em;font-size:clamp(38px,10vw,58px);line-height:.95;margin:14px 0 0;color:#f5f5f4}
-#gate h1 em{font-style:normal;color:#9a9aa0;display:block}
-#gate .gsub{color:#b8b8bd;font-size:15px;margin:16px 0 18px;line-height:1.5}
-#gate .gplays{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:0 0 28px}
-#gate .gplays span{font:600 12.5px var(--fb);color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:6px;padding:2px 8px}
-#gate .gcard{max-width:400px;margin:0 auto;background:#0e0e10;border:1px solid #232327;border-radius:18px;padding:22px;text-align:left;box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
-#gate label{display:block;font-size:14px;font-weight:600;color:#e4e4e7;margin:0 0 6px}
-#gate input{width:100%;background:#050505;color:#f5f5f4;border:1px solid #2c2c31;border-radius:11px;padding:13px 14px;font:500 15px var(--fb);margin-bottom:14px;transition:border-color .15s}
-#gate input:focus{outline:none;border-color:#f5f5f4}
-#gate button{width:100%;background:#f5f5f4;color:#050505;border:0;border-radius:11px;padding:14px;font:600 15px var(--fb);cursor:pointer;margin-top:4px;transition:transform .1s,opacity .15s}
-#gate button:hover{opacity:.9}#gate button:active{transform:scale(.98)}
-#gate .gerr{color:#f08c8c;font-size:13px;min-height:18px;margin:12px 0 0;text-align:center}
-#gate .gcard.shake{animation:gshake .35s}
-@keyframes gshake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
-#gate .gfoot{margin-top:26px;font:500 13px var(--fb);color:#8a8a90}
-</style>
-<div id="gate" role="dialog" aria-labelledby="gtitle">
-  <div class="gbox">
-    <div class="gk">Cast &amp; crew area</div>
-    <h1 id="gtitle">Selected Works <em>of Shakespeare</em></h1>
-    <p class="gsub">Teatre Gaudí · March 2027<br>Sign in to see scenes, scripts and rehearsals.</p>
-    <div class="gplays" aria-hidden="true"><span style="--c:#7fe0a0">Love</span><span style="--c:#c9a6ff">Power</span><span style="--c:#8cbcff">Madness</span><span style="--c:#ffab6e">Hate</span></div>
-    <div class="gcard" id="gcard">
-      <label for="gateuser">Username</label>
-      <input id="gateuser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
-      <label for="gatepw">Password</label>
-      <input id="gatepw" type="password" autocomplete="current-password">
-      <button type="button" id="gatebtn">Sign in</button>
-      <p class="gerr" id="gateerr" role="alert"></p>
-    </div>
-    <div class="gfoot">A Chris Kelly production</div>
-  </div>
-</div>
-<script>
-(function(){var g=document.getElementById("gate"),ok=false;try{ok=localStorage.getItem("ss-gate2")==="1"}catch(e){}
-if(ok){g.remove();return}
-document.documentElement.style.overflow="hidden";
-var u=document.getElementById("gateuser"),p=document.getElementById("gatepw"),c=document.getElementById("gcard"),er=document.getElementById("gateerr");
-setTimeout(function(){u.focus()},50);
-function tryLogin(){
-  if(u.value.trim().toLowerCase()==="actor"&&p.value==="actor01"){try{localStorage.setItem("ss-gate2","1")}catch(_){}document.documentElement.style.overflow="";g.style.transition="opacity .35s";g.style.opacity="0";setTimeout(function(){g.remove()},350)}
-  else{er.textContent="Wrong username or password.";c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake");p.value="";p.focus()}}
-document.getElementById("gatebtn").addEventListener("click",tryLogin);
-[u,p].forEach(function(el){el.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();if(el===u&&!p.value)p.focus();else tryLogin()}})});})();
-</script>
+
+
 <a class="skip" href="#view">Skip to content</a>
 <header class="top"><div class="topin">
   <a class="brand" href="#home" aria-label="Selected Works of Shakespeare, home">Selected Works <em>of Shakespeare</em></a>
@@ -931,7 +915,7 @@ const CREW=[
 ];
 const PROFILE={"Sophie Heideker":"https://bluebooktheatrecompany.com/sophie-heideker/","Aldo D'Ibaños":"https://aldodibanos.com","Chrystele Alix":"https://bluebooktheatrecompany.com/chrystele-alix/","Teo Jansen":"https://bluebooktheatrecompany.com/teo-jansen/","Alex Lui":"https://bluebooktheatrecompany.com/alex-liu/","Sarah Dillamore":"https://bluebooktheatrecompany.com/sarah-dillamore/","Hannah Di Bella":"https://bluebooktheatrecompany.com/hannah-dibella/","Sarah Burns":"https://bluebooktheatrecompany.com/sarah-burns/","Rob McLoughlin":"https://www.imdb.com/name/nm5345862/","Carlos Toca":"https://bluebooktheatrecompany.com/carlos-toca/","Dario Roberto":"https://bluebooktheatrecompany.com/dario-giuseppe-roberto/","Julien Paschal":"https://www.sinemalar.com/sanatci/769226/julien-paschal","Chris Kelly":"https://bluebooktheatrecompany.com/chriskelly/","Jan Zammit":"https://www.instagram.com/janzammit/","Adrian P. Smith":"https://www.instagram.com/adrian_p_smith_actor/","Kyle Scudder":"https://www.instagram.com/kyle.scudder/","Elle":"https://www.instagram.com/joella.a9/","Jean-Baptiste Courtois":"https://www.instagram.com/jean_baptiste_courtois/","Michael Strelow":"https://www.instagram.com/mishastrelow/","Jessica Kollande":"https://bluebooktheatrecompany.com/jessica-kollande/"};
 const PEOPLE=[...CAST,"Jessica Kollande","Chris Kelly"];
-function crewStatus(c){const d=castDocs[c.key]||{};return d[c.field||"status"]||"offered"}
+function crewStatus(c){const d=castDocs[c.key]||{};return d[c.field||"status"]==="accepted"?"accepted":"pending"}
 const POSTER_KEYS=["love","power","madness","hate","company","macbeth","hamlet","midsummer","shrew","richard","coriolanus","ayli"];
 const IMG_FULL=Object.fromEntries([...POSTER_KEYS.flatMap(k=>[k+"-ig",k+"-story"]),"ticket"].map(n=>[n,"posters/jpg/"+n+".jpg"]));
 const IMG=Object.fromEntries(Object.keys(IMG_FULL).map(n=>[n,"posters/thumb/"+n+".jpg"]));
@@ -997,7 +981,7 @@ function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";cle
 function closeSheet(){$("sheetbg").classList.remove("on");$("sheet").classList.remove("wide")}
 $("sheetbg").onclick=e=>{if(e.target.id==="sheetbg")closeSheet()};
 const _cs=closeSheet;
-const statusOf=name=>(castDocs[ck(name)]&&castDocs[ck(name)].status)||"offered";
+const statusOf=name=>{const s=castDocs[ck(name)]&&castDocs[ck(name)].status;return s==="accepted"?"accepted":"pending"};
 const rolesOf=name=>CHARS.filter(c=>c.actor.split(", ").includes(name));
 const itemsOf=name=>ITEMS.filter(i=>i.actors.includes(name));
 const bookable=()=>ITEMS.filter(i=>i.actors[0]!=="Whole company");
@@ -1025,11 +1009,11 @@ function wireEdits(root){
 /* ================= ROUTER ================= */
 const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["scripts","Scripts"],["cast","The Company"],["characters","Characters"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
 let cdTimer=null;
-function signOut(){try{["ss-gate2","ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}history.replaceState(null,"",location.pathname+location.search);location.reload()}
+function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Signed out on this device")}
 function route(){
   const h=(location.hash||"#home").slice(1);if(h==="signout"){signOut();return}
   const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics"].includes(h)?"staging":h;
-  $("nav").innerHTML=PAGES.filter(([k])=>k!=="me").map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"My panel"}</a><a href="#signout" class="navout">Sign out</a>`;
+  $("nav").innerHTML=PAGES.filter(([k])=>k!=="me").map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"Find your name"}</a>${me?`<a href="#signout" class="navout">Sign out</a>`:""}`;
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
   const lbl=(PAGES.find(([k])=>k===base)||[,"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
   clearInterval(cdTimer);
@@ -1044,7 +1028,7 @@ function route(){
     sh.addEventListener('scroll',()=>{sh.classList.add('scrolling');clearTimeout(t);t=setTimeout(()=>sh.classList.remove('scrolling'),160);upd()},{passive:true});
     w.querySelectorAll('[data-shelf]').forEach(b=>b.onclick=()=>sh.scrollBy({left:+b.dataset.shelf*Math.max(320,sh.clientWidth*.7),behavior:'smooth'}));upd()});
   v.querySelectorAll('[data-jump]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById('play-'+a.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
-  if(base==="home")startCountdown();
+  if(base==="home"){startCountdown();wireCheckIn(v)}
   if(base==="booking")wireBooking();
   if(base==="me")wireMe();
   wireAttend(v);wireDownloads(v);
@@ -1064,6 +1048,9 @@ function pHome(){
     <div class="fkick">A Chris Kelly production</div>
     <h1 class="ftitle">Selected Works <em>of Shakespeare</em></h1>
     <p class="hthemes">${themeTags()}</p>
+  </div></section>
+  ${checkIn()}
+  <section class="folio home cdwrap"><div class="fhero">
     <div class="cd" id="cd"><div><b id="cd-d">–</b><span>Days</span></div><div><b id="cd-h">–</b><span>Hours</span></div><div><b id="cd-m">–</b><span>Minutes</span></div><div><b id="cd-s">–</b><span>Seconds</span></div></div>
     <p class="sub" style="text-align:center">until curtain · <b style="color:var(--paper)">${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
     ${isOwner?`<button class="btn sm" id="setdate" style="margin-top:12px">Change opening date</button>`:""}
@@ -1298,7 +1285,7 @@ function pCast(){
     <p class="ckick">A Chris Kelly production</p>
     <h1>The Company</h1>
     <p class="clede">${CAST.length} actors play ${PARTS.length} parts across ${plays.length} plays. ${multi} actors play more than one part, so every card lists all of an actor's parts together.</p>
-    <p class="csum">${(()=>{const ppl=[...CAST.map(n=>statusOf(n)),...CREW.map(c=>crewStatus(c))];const a=ppl.filter(x=>x==="accepted").length;return `<b>${a} of ${ppl.length}</b> have accepted.`})()} <a href="#me">${me?"See or change your answer":"Find your name and accept"} →</a></p>
+
   </header>
   <div class="ctools" role="region" aria-label="Filter the cast">
     <div class="cview" role="group" aria-label="Show cast">
@@ -1310,6 +1297,7 @@ function pCast(){
       ${["All",...plays].map(pl=>{const k=pl==="All"?"All":pshort(pl);return `<button type="button" data-play="${esc(k)}" aria-pressed="${k===castFilter}" style="--c:${PLAYACC[pl]||"#f5f5f4"}">${pl==="All"?"":`<span class="fdot" aria-hidden="true"></span>`}${esc(k)}</button>`}).join("")}
     </div>
   </div>
+  ${checkIn()}
   <p class="cempty" id="cempty" hidden>No one matches that search.</p>
   ${castView==="actor"
     ?`<div class="agrid">${order.map(actorCard).join("")}</div>`
@@ -1330,6 +1318,7 @@ function wireCast(){
   const bulk=$("bulkhs");if(bulk)bulk.onchange=async()=>{const files=[...bulk.files];if(!files.length)return;const done=[],miss=[];
     for(const f of files){const n=matchActor(f.name);if(!n){miss.push(f.name);continue}toast(`Uploading ${done.length+1}/${files.length}: ${n}`);try{await saveHeadshot(n,f);done.push(n)}catch(e){miss.push(f.name+" (upload failed)")}}
     $("sheet").innerHTML=`<h3>Headshots</h3><p>${done.length} added${done.length?": "+done.map(esc).join(", "):""}.</p>${miss.length?`<p><b>Not matched:</b> ${miss.map(esc).join(", ")}. Use “Add photo” on the right card.</p>`:""}<div class="btns"><button class="btn primary" id="cx">Done</button></div>`;$("cx").onclick=closeSheet;$("sheetbg").classList.add("on");bulk.value=""};
+  wireCheckIn(document.getElementById("view"));
   const keep=fn=>{const y=window.scrollY;fn();route();window.scrollTo(0,y)};
   document.querySelectorAll(".cfilter button").forEach(b=>b.onclick=()=>keep(()=>{castFilter=b.dataset.play}));
   document.querySelectorAll(".cview button").forEach(b=>b.onclick=()=>keep(()=>{castView=b.dataset.view}));
@@ -1374,7 +1363,38 @@ function pMosaics(){
 /* ---------- My panel ---------- */
 function myCast(){if(!me)return null;const k=ck(me);return [k,castDocs[k]||{}]}
 function setMe(n){me=n||"";try{if(me)localStorage.setItem("ss_me",me);else localStorage.removeItem("ss_me")}catch(_){}if(me!=="Chris Kelly")isOwner=db&&db.supa?false:isOwner}
-function stBadge(st){return st==="accepted"?`<span class="stb ok">✓ Accepted</span>`:st==="declined"?`<span class="stb no">Declined</span>`:`<span class="stb wait">Not answered yet</span>`}
+function stBadge(st){return st==="accepted"?`<span class="stb ok">✓ Accepted</span>`:`<span class="stb pend">Pending response</span>`}
+const PEOPLE_ALL=()=>[...CAST,...CREW.map(c=>c.name).filter(n=>!CAST.includes(n))];
+function rolesTxt(n){const c=CREW.find(x=>x.name===n);return [...PARTS.filter(p=>p.actor===n).map(p=>p.name),...(c?[c.role]:[])].join(", ")}
+function personStatus(n){const c=CREW.find(x=>x.name===n),inCast=PARTS.some(p=>p.actor===n);const ok=(!inCast||statusOf(n)==="accepted")&&(!c||crewStatus(c)==="accepted");return ok?"accepted":"pending"}
+async function setPersonStatus(n,st){if(!db){toast("Can't save in this view");return false}const c=CREW.find(x=>x.name===n),patch={at:new Date().toISOString()};
+  if(PARTS.some(p=>p.actor===n))patch.status=st;if(c)patch[c.field||"status"]=st;
+  try{await db.collection("cast").doc(ck(n)).update(patch);toast(st==="accepted"?"Accepted, welcome aboard!":"Set back to pending");return true}catch(e){toast("Couldn't save");return false}}
+function nudgeLink(n){const first=n.split(" ")[0];const t=`Hey ${first} 👋 you're still pending for Selected Works of Shakespeare (${rolesTxt(n)}). Accept your part here: https://shakespeareshow.actor/`;return "https://wa.me/?text="+encodeURIComponent(t)}
+function checkIn(){
+  const all=PEOPLE_ALL(),acc=all.filter(n=>personStatus(n)==="accepted"),pend=all.filter(n=>personStatus(n)!=="accepted"),pct=Math.round(acc.length/all.length*100);
+  const mine=me&&all.includes(me)?personStatus(me):null;
+  const you=me&&all.includes(me)?`<div class="ckyou"><div class="ckwho"><p class="ckick" style="margin:0">You're</p><h3>${esc(me)}</h3><p class="ckroles">${esc(rolesTxt(me))}</p>${stBadge(mine)}</div>
+      <div class="ckbtns"><button type="button" class="btn primary" data-ck="accepted" ${mine==="accepted"?"disabled":""}>${mine==="accepted"?"✓ Accepted":"Accept role"}</button><button type="button" class="btn" data-ck="pending" ${mine!=="accepted"?"disabled":""}>Decline role</button>
+      <button type="button" class="btn sm ghost" data-notme>Not you? Change name</button></div></div>`
+    :`<div class="ckyou"><div class="ckwho"><h3>Are you in the company?</h3><p class="ckroles">Find your name, then accept your part. Your browser will remember you.</p></div><div class="ckbtns"><button type="button" class="btn primary" data-pickme>Find your name</button></div></div>`;
+  const chip=(n,st)=>`<li class="pchip ${st}"><button type="button" data-isme="${esc(n)}" aria-label="${esc(n)}: ${st==="accepted"?"accepted":"pending response"}. Select if this is you."><b>${esc(n)}</b><span>${esc(rolesTxt(n))}</span></button>${st!=="accepted"?`<a class="nudge" href="${nudgeLink(n)}" target="_blank" rel="noopener" aria-label="Nudge ${esc(n)} on WhatsApp">Nudge</a>`:""}</li>`;
+  return `<section class="checkin" aria-labelledby="ckh"><div class="ckhead"><div><p class="ckick">Company check-in</p><h2 id="ckh">Who's in?</h2></div>
+    <div class="ckprog"><p><b>${acc.length} of ${all.length}</b> accepted</p><div class="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="${all.length}" aria-valuenow="${acc.length}" aria-label="Company accepted"><i style="width:${pct}%"></i></div></div></div>
+    ${you}
+    <div class="board">${pend.length?`<h3 class="bh"><span class="bdot pend"></span>Pending response <span class="bn">${pend.length}</span></h3><ul class="chips">${pend.map(n=>chip(n,"pend")).join("")}</ul>`:`<p class="full">Full company ✓ Everyone has accepted.</p>`}
+      ${acc.length?`<h3 class="bh"><span class="bdot ok"></span>Accepted <span class="bn">${acc.length}</span></h3><ul class="chips">${acc.map(n=>chip(n,"accepted")).join("")}</ul>`:""}</div></section>`;
+}
+function openPicker(){const crewN=CREW.map(c=>c.name);const btn=n=>`<button type="button" class="pickme" data-me="${esc(n)}"><b>${esc(n)}</b><span>${esc(rolesTxt(n)||"Company")}</span></button>`;
+  $("sheet").innerHTML=`<h3>Find your name</h3><p class="meta">Your browser will remember you.</p><span class="small" style="margin-top:12px">Actors</span><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div><span class="small" style="margin-top:14px">Crew</span><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div><div class="btns"><button class="btn" id="cx">Cancel</button></div>`;
+  $("sheet").classList.add("wide");$("sheetbg").classList.add("on");$("cx").onclick=closeSheet;
+  $("sheet").querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);closeSheet();route()})}
+function confirmMe(n){$("sheet").innerHTML=`<h3>Are you ${esc(n)}?</h3><p class="meta">${esc(rolesTxt(n))}</p><div class="btns"><button class="btn primary" id="yes">Yes, that's me</button><button class="btn" id="cx">Cancel</button></div>`;
+  $("sheetbg").classList.add("on");$("cx").onclick=closeSheet;$("yes").onclick=()=>{setMe(n);closeSheet();route()}}
+function wireCheckIn(root){
+  root.querySelectorAll("[data-pickme]").forEach(b=>b.onclick=openPicker);
+  root.querySelectorAll("[data-isme]").forEach(b=>b.onclick=()=>{if(b.dataset.isme===me)return;confirmMe(b.dataset.isme)});
+  root.querySelectorAll("[data-ck]").forEach(b=>b.onclick=async()=>{b.disabled=true;await setPersonStatus(me,b.dataset.ck)})}
 function pMe(){
   if(!db)return `<h1>My <em>panel</em></h1><div class="note warn">This page can't save answers in this view yet.</div>`;
   if(!me){
@@ -1391,15 +1411,15 @@ function pMe(){
   let body="";
   if(crew&&crew.fixed){const cs=crewStatus(crew);
     body=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
-      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"Accepted":"Accept role"}</button><button class="btn" data-crew="declined" ${cs==="declined"?"disabled":""}>Decline</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div>`
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div>`
       :`<p class="clede" style="margin:0 0 12px">Enter your director code to edit notes, settings and slots from this device.</p><label class="sr" for="dirpin">Director code</label><input type="password" id="dirpin" placeholder="Director code" autocomplete="off"><div class="btns"><button class="btn primary" id="unlockdir">Unlock editing</button></div>`}</section>`;
   }else{
     if(crew){const cs=crewStatus(crew);body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
-      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"Accepted":"Accept role"}</button><button class="btn" data-crew="declined" ${cs==="declined"?"disabled":""}>Decline</button></div></section>`}
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section>`}
     if(ps.length){body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your part${ps.length>1?"s":""}</p><h2>${ps.length>1?ps.length+" parts":esc(ps[0].name)}</h2></div>${stBadge(st)}</div>
       <ul class="clist">${ps.map(p=>partRow(p)).join("")}</ul>
       <p class="mepieces"><b>Pieces you're in:</b> ${itemsOf(name).map(i=>`<a href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join(", ")||"none yet"}</p>
-      <div class="mebtns"><button class="btn primary" id="acc" ${st==="accepted"?"disabled":""}>${st==="accepted"?"Accepted":ps.length>1?"Accept my parts":"Accept my part"}</button><button class="btn" id="dec" ${st==="declined"?"disabled":""}>Decline</button></div>
+      <div class="mebtns"><button class="btn primary" id="acc" ${st==="accepted"?"disabled":""}>${st==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" id="dec" ${st!=="accepted"?"disabled":""}>Decline role</button></div>
       <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p></section>`}
   }
   return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Hello, ${esc(name.split(" ")[0])}</h1>
@@ -1413,9 +1433,9 @@ function wireMe(){
   const ld=$("lockdir");if(ld)ld.onclick=()=>{try{localStorage.removeItem("ss_dir_pin")}catch(_){}isOwner=false;toast("Editing locked");route()};
   if(!me||!db)return;const ref=db.collection("cast").doc(ck(me));
   const save=async(patch,msg)=>{try{await ref.update({...patch,at:new Date().toISOString()});toast(msg)}catch(e){toast(e&&e.code==="not_allowed"?"That isn't allowed":"Couldn't save")}};
-  document.querySelectorAll("[data-crew]").forEach(b=>b.onclick=()=>{const c=CREW.find(x=>x.name===me);save({[c.field||"status"]:b.dataset.crew},b.dataset.crew==="accepted"?"Accepted, welcome aboard!":"Declined")});
+  document.querySelectorAll("[data-crew]").forEach(b=>b.onclick=()=>{const c=CREW.find(x=>x.name===me);save({[c.field||"status"]:b.dataset.crew},b.dataset.crew==="accepted"?"Accepted, welcome aboard!":"Set back to pending")});
   const ac=$("acc");if(ac)ac.onclick=()=>save({status:"accepted"},"Accepted, welcome aboard!");
-  const dc=$("dec");if(dc)dc.onclick=()=>save({status:"declined"},"Declined");
+  const dc=$("dec");if(dc)dc.onclick=()=>save({status:"pending"},"Set back to pending");
 }
 
 
