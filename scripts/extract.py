@@ -3,7 +3,7 @@ M='/tmp/shakespeare-material/texts/moby/'
 want={ # id: (file, act, scene)
  'mac13':('macbeth',1,3),'mac32':('macbeth',3,2),'mac55':('macbeth',5,5),'mac41':('macbeth',4,1),
  'ham13':('hamlet',1,3),'ham31':('hamlet',3,1),'ham34':('hamlet',3,4),'ham45':('hamlet',4,5),'ham47':('hamlet',4,7),'ham51':('hamlet',5,1),'ham52':('hamlet',5,2),
- 'mnd21':('midsummer_nights_dream',2,1),'mnd32':('midsummer_nights_dream',3,2),
+ 'mnd21':('midsummer_nights_dream',2,1),'mnd32':('midsummer_nights_dream',3,2),'mnd41':('midsummer_nights_dream',4,1),
  'shr21':('taming_of_the_shrew',2,1),'r312':('richard_iii',1,2),'cor45':('coriolanus',4,5),'ayl21':('as_you_like_it',2,1)}
 def txt(e): return ''.join(e.itertext()).strip()
 out={}
