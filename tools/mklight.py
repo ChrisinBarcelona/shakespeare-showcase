@@ -8,13 +8,13 @@ def clamp(x): return max(0, min(1, x))
 
 def mapc(r, g, b):
     h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
-    if s < 0.18 or l > 0.97 or l < 0.03:          # neutrals: flip lightness
-        nl = 1 - l
-        nl = 0.985 if nl > 0.985 else nl
-        # keep a little separation for very dark surfaces -> near-white surfaces
-        s2 = min(s, 0.06)
-        h2 = 40/360 if s < 0.05 else h            # warm paper tone for pure greys
-        if s < 0.05: s2 = 0.06 if nl > 0.85 else 0.04
+    if s < 0.18 or l > 0.97 or l < 0.03:          # neutrals
+        if l < 0.02:   nl, h2, s2 = 0.968, 40/360, 0.10     # page -> warm off-white
+        elif l < 0.13: nl, h2, s2 = 1.0 - (l-0.02)*0.18, 40/360, 0.08   # surfaces -> white
+        elif l < 0.30: nl, h2, s2 = 0.905 - (l-0.13)*0.55, 30/360, 0.05 # borders -> soft greys
+        else:
+            nl = 1 - l; h2 = h; s2 = min(s, 0.06)
+            if nl < 0.08: nl = 0.08                           # text -> near-black, not pure
         r2, g2, b2 = colorsys.hls_to_rgb(h2, nl, s2)
     elif l >= 0.5:                                # bright accent used on dark -> deeper version
         nl = clamp(0.30 + (l-0.5)*0.35)
@@ -56,14 +56,15 @@ def fixdecls(d):
         out.append(prop.strip() + ':' + v.strip())
     return ';'.join(out)
 
+SKIP = re.compile(r'ssign|book|\.b2|bname|bmeta|bkick|\.vol\b|\.cal\b|\.cal[mdw]\b|\.cal\.sm|fccal|firstcall|\.fc[a-z]+|op-art|poster|\.ticket')
 def scope(sel):
     res = []
     for s in sel.split(','):
         s = s.strip()
-        if not s: continue
+        if not s or SKIP.search(s): continue
         if s.startswith(':root'): res.append('html.light' + s[5:])
         elif s.startswith('html'): res.append('html.light' + s[4:])
-        else: res.append('html.light ' + s)
+        else: res.append(':where(html.light) ' + s)
     return ','.join(res)
 
 def walk(css):
@@ -88,7 +89,8 @@ def walk(css):
             continue
         else:
             d = fixdecls(re.sub(r'/\*.*?\*/', '', body, flags=re.S))
-            if d: out.append(scope(head) + '{' + d + '}')
+            sc = scope(head)
+            if d and sc: out.append(sc + '{' + d + '}')
     return '\n'.join(out)
 
 p = sys.argv[1] if len(sys.argv) > 1 else 'index.html'
