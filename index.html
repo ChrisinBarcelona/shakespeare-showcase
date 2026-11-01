@@ -4,6 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Selected Works of Shakespeare</title>
+<meta name="description" content="A CHRIS KELLY PRODUCTION. Love, power, madness and hate: scenes from seven of Shakespeare's plays in one evening. Teatre Gaudí Barcelona, Thursdays to Saturdays in March 2027, curtain 20:00.">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://shakespeareshow.actor/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Selected Works of Shakespeare">
+<meta property="og:title" content="Selected Works of Shakespeare">
+<meta property="og:description" content="Love · Power · Madness · Hate. A CHRIS KELLY PRODUCTION at Teatre Gaudí Barcelona, Thursdays to Saturdays in March 2027.">
+<meta property="og:url" content="https://shakespeareshow.actor/">
+<meta property="og:image" content="https://shakespeareshow.actor/posters/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Selected Works of Shakespeare: a garland of emblems over the company in silhouette on a red sky">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Selected Works of Shakespeare">
+<meta name="twitter:description" content="Love · Power · Madness · Hate. Teatre Gaudí Barcelona, March 2027.">
+<meta name="twitter:image" content="https://shakespeareshow.actor/posters/share.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D8432A'/%3E%3Cpath d='M14 46V24l9 9 9-15 9 15 9-9v22Z' fill='%23111'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -849,6 +866,43 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .costgrid.one{grid-template-columns:1fr;margin-top:10px}
 .costgrid.one img{aspect-ratio:4/3}
 .vfx{display:flex;gap:18px;align-items:flex-start;margin-top:12px;color:#8cbcff}
+
+/* ---- buttons: text always centred ---- */
+a.btn,button.btn,label.btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center}
+/* ---- first call ---- */
+.firstcall{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;margin:26px 0 8px;padding:24px;border-radius:22px;background:#f5f5f4;color:#0a0a0a;box-shadow:0 20px 50px -30px #000}
+.fckick{margin:0;font:700 13px var(--fb);letter-spacing:.06em;text-transform:uppercase;color:#D8432A}
+.firstcall h2{margin:4px 0 0!important;font-size:clamp(30px,5vw,52px)!important;line-height:1!important;color:#0a0a0a!important;letter-spacing:-.04em}
+.fcwhat{margin:12px 0 0;font-size:17px;color:#18181b}.fcwhat b{color:#0a0a0a}
+.fcnote{margin:6px 0 0;font-size:15px;color:#3f3f46}
+.fcbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.firstcall .btn{min-height:48px;background:#fff!important;color:#0a0a0a!important;border:1px solid #d4d4d8!important;padding:0 16px!important}
+.firstcall .btn:hover{border-color:#0a0a0a!important}
+.firstcall .btn.fcgo{background:#0a0a0a!important;color:#fff!important;border-color:#0a0a0a!important}
+.firstcall .btn.on-go{background:#dcfce7!important;color:#14532d!important;border-color:#16a34a!important}
+.firstcall .btn.on-no{background:#fee2e2!important;color:#7f1d1d!important;border-color:#dc2626!important}
+.fcwho{margin:12px 0 0;font-size:14px;color:#3f3f46}
+.fccal{width:120px;border-radius:16px;overflow:hidden;background:#fff;border:1px solid #e4e4e7;text-align:center;box-shadow:0 12px 24px -16px rgba(0,0,0,.6)}
+.fccal .calm{display:block;background:#D8432A;color:#fff;font:700 15px var(--fb);letter-spacing:.08em;text-transform:uppercase;padding:7px 0}
+.fccal .cald{display:block;font:600 60px/1 var(--fd);letter-spacing:-.04em;padding:10px 0 2px}
+.fccal .calw{display:block;font:600 13px var(--fb);color:#52525b;padding:0 0 10px}
+@media(max-width:640px){.firstcall{grid-template-columns:1fr}.fccal{display:none}.fcbtns .btn{flex:1}}
+/* ---- Saturday schedule ---- */
+.legend2{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 0;font-size:13.5px;color:#b8b8bd}.legend2 span{display:inline-flex;align-items:center;gap:6px}.legend2 i{width:12px;height:12px;padding:0!important;border-radius:4px!important}
+.satphase.scene{color:#7fe0a0;border-color:rgba(127,224,160,.45);background:rgba(127,224,160,.1)}
+.smonth{margin:22px 0 8px!important;font-size:18px!important;color:#d4d4d8}
+.sched{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.srow{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:#141416;border:1px solid #2a2a2f;border-radius:18px;padding:14px}
+.srow.next{border-color:#f5f5f4;box-shadow:0 0 0 1px #f5f5f4 inset}
+.srow.past{opacity:.5}
+.srow.brk{background:transparent;border-style:dashed;grid-template-columns:auto 1fr}.srow.brk b{color:#9a9aa0;font-weight:600}
+.cal.sm{width:66px}.cal.sm .cald{font-size:32px;padding:6px 0 1px}.cal.sm .calm{font-size:11.5px;padding:4px 0}.cal.sm .calw{font-size:11.5px;padding:0 0 6px}
+.srmain .ckick{margin:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.srplan{list-style:none;margin:8px 0 0;padding:0;display:flex;gap:8px 18px;flex-wrap:wrap;font-size:16px;font-weight:600;color:#fff}
+.srplan b{font:600 14px var(--fd);color:#9a9aa0;margin-right:6px;font-variant-numeric:tabular-nums}
+.srwho{margin:8px 0 0;font-size:13.5px;color:#b8b8bd}.srwho b.g{color:#7fe0a0}
+.srbtns{display:flex;gap:8px}.srbtns .btn{min-height:46px;min-width:116px}
+@media(max-width:760px){.srow{grid-template-columns:auto 1fr}.srbtns{grid-column:1/-1}.srbtns .btn{flex:1}}
 </style>
 </head>
 <body>
@@ -1064,10 +1118,29 @@ const VENUES={
   albareda:{name:"Centre Cultural Albareda",addr:"Carrer d'Albareda, 22–24, 08004 Barcelona",area:"Poble-sec",tel:"934 433 719",map:"https://www.google.com/maps/search/?api=1&query=Centre+Cultural+Albareda+Barcelona"},
   bcs:{name:"Barcelona Code School",addr:"Carrer de París, 157, 08036 Barcelona",area:"Eixample",tel:"",map:"https://www.google.com/maps/search/?api=1&query=Barcelona+Code+School+Carrer+de+Par%C3%ADs+157"}
 };
-const SATURDAYS=["2027-01-23","2027-01-30","2027-02-06","2027-02-13","2027-02-20","2027-02-27"];
+const SAT_ALL=[
+ ["2026-11-07","Mosaic choreography","Movement","Workshop"],
+ ["2026-11-14","Stage combat","Voice","Workshop"],
+ ["2026-11-21","Stage combat","Character physicality","Workshop"],
+ ["2026-11-28","Animals","Mosaic choreography","Workshop"],
+ ["2026-12-05","Blocking: Macbeth","Entrances & exits","Scene work"],
+ ["2026-12-12","Blocking: Hamlet","Stage combat","Scene work"],
+ ["2026-12-19","Blocking: Midsummer","Mosaic choreography","Scene work"],
+ ["2026-12-26",null,null,"Break","No rehearsal · Christmas"],
+ ["2027-01-02",null,null,"Break","No rehearsal · New Year"],
+ ["2027-01-09","Blocking: Shrew · Richard III","Blocking: Coriolanus · As You Like It","Scene work"],
+ ["2027-01-16","Fight call: all four fights","Transitions & SFX","Scene work"],
+ ["2027-01-23","First half: stumble-through","Notes","Scene work"],
+ ["2027-01-30","Second half: stumble-through","Notes","Scene work"],
+ ["2027-02-06","Mosaics & transitions polish","Fight call","Scene work"],
+ ["2027-02-13","Full run-through 1","Notes","Run-through"],
+ ["2027-02-20","Full run-through 2","Notes","Run-through"],
+ ["2027-02-27","Full run-through 3","Director's notes","Run-through"]];
+const SATURDAYS=SAT_ALL.filter(x=>x[1]).map(x=>x[0]);
+const FIRST={date:"2026-11-10",time:"13:30",what:"Full read-through & first dramaturgy session"};
 const TECH={date:"2027-03-03",label:"Wed 3 March 2027 (approx.)"};
 const SAT_TIMES=[["09:00","Check in"],["09:15","First practical"],["10:15","Break"],["10:30","Second practical"],["11:30","Close"]];
-const SAT_PLAN={"2027-01-23":["Stage combat","Voice"],"2027-01-30":["Character physicality","Animals"],"2027-02-06":["Mosaic choreography","Blocking, entrances & exits"],"2027-02-13":["Full run-through 1","Notes"],"2027-02-20":["Full run-through 2","Notes"],"2027-02-27":["Full run-through 3","Director's notes"]};
+const SAT_PLAN=Object.fromEntries(SAT_ALL.filter(x=>x[1]).map(x=>[x[0],[x[1],x[2],x[3]]]));
 const CLASSES=["Dramaturgy","Language breakdown","Rhythm & iambic pentameter","Character objectives","Super-objectives","Tensions","Run-throughs"];
 function mapEmbed(v){return `<div class="rmap"><iframe title="Map: ${esc(v.name)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${encodeURIComponent(v.name+", "+v.addr)}&output=embed"></iframe><div class="rmapfoot"><div><b>${esc(v.name)}</b><span>${esc(v.addr)}</span></div><a class="btn sm" href="${v.map}" target="_blank" rel="noopener">Open in Google Maps ↗</a></div></div>`}
 const SHOWS=(()=>{const a=[];for(let d=1;d<=31;d++){const x=new Date(2027,2,d);if([4,5,6].includes(x.getDay()))a.push(dkey(x))}return a})();
@@ -1219,6 +1292,7 @@ function pHome(){
       <div class="op-btns"><button type="button" class="btn primary" id="tockin">Who's in? ↓</button><a class="btn" href="#shows">Performance schedule</a>${isOwner?`<button class="btn" id="setdate">Change opening date</button>`:""}</div>
     </div>
   </section>
+  ${firstCall()}
   <section class="flyer">
     <a class="flyerimg" href="#marketing"><img src="${IMG["company-ig"]}" alt="Selected Works of Shakespeare poster: a garland of seven emblems hanging over the company in silhouette" loading="lazy"></a>
     <div class="flyerinfo">
@@ -1227,7 +1301,8 @@ function pHome(){
         <div><dt>Shows</dt><dd>Every Thursday, Friday &amp; Saturday in March 2027 · ${SHOWS.length} performances<br><span class="meta">${VENUES.gaudi.name}, ${VENUES.gaudi.addr}</span></dd></div>
         <div><dt>Show day</dt><dd>${CALL.map(([t,l])=>`<b>${t}</b> ${l}`).join(" · ")}</dd></div>
         <div><dt>Tech</dt><dd>${TECH.label} · Teatre Gaudí</dd></div>
-        <div><dt>Saturday rehearsals</dt><dd>09:00–11:30 · six Saturdays, 23 Jan – 27 Feb<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
+        <div><dt>First call</dt><dd><b>Tuesday 10 November, 13:30</b> · full read-through &amp; first dramaturgy session<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
+        <div><dt>Saturday rehearsals</dt><dd>09:00–11:30 · every Saturday, 7 Nov – 27 Feb<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
         <div><dt>Dramaturgy sessions</dt><dd>Mon–Fri, 15:30–19:30 (2-hour slots, book with your scene partners)<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
       </dl>
       <div class="btns"><a class="btn primary" href="#booking">Book a rehearsal</a><a class="btn" href="#shows">Performance schedule</a></div>
@@ -1237,7 +1312,7 @@ function pHome(){
   <h2>This <em>Saturday</em></h2><p class="sub">Company rehearsal at ${VENUES.albareda.name}, 09:00–11:30. Let Chris know if you're coming.</p>
   ${meSelect()}
   <div class="satgrid2 one">${satCard(nextSat,true)}</div>
-  <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and all six Saturdays →</a>
+  <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
     ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights, mosaics and costume."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
@@ -1254,13 +1329,35 @@ function meSelect(){if(me)return `<div class="mesel youare">You're <b>${esc(me)}
   return `<p class="attendhint">Choose your name to mark attending or book. This browser will remember it.</p><div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
 function attendees(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===true).map(a=>a.actor).sort()}
 function notGoing(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===false).map(a=>a.actor).sort()}
+const phaseCls=p=>p==="Run-through"?"run":p==="Scene work"?"scene":"";
+function satRow(x){const [date,a,b,ph,note]=x,d=new Date(date+"T09:00");
+  const cal=`<div class="cal sm" aria-hidden="true"><span class="calm">${d.toLocaleDateString("en-GB",{month:"short"})}</span><span class="cald">${d.getDate()}</span><span class="calw">Sat</span></div>`;
+  if(!a)return `<li class="srow brk">${cal}<div class="srmain"><b>${esc(note)}</b></div></li>`;
+  const past=new Date(date+"T11:30")<new Date(),idx=SATURDAYS.indexOf(date)+1,go=attendees(date),no=notGoing(date),mine=me?(go.includes(me)?"going":no.includes(me)?"no":null):null;
+  const nextUp=date===(SATURDAYS.find(z=>new Date(z+"T11:30")>new Date())||"");
+  return `<li class="srow ${past?"past":""} ${nextUp?"next":""}">${cal}
+    <div class="srmain"><p class="ckick">Saturday ${idx} of ${SATURDAYS.length}${nextUp?" · Next up":""} <span class="satphase ${phaseCls(ph)}">${esc(ph)}</span></p>
+      <ol class="srplan"><li><b>09:15</b> ${esc(a)}</li><li><b>10:30</b> ${esc(b)}</li></ol>
+      <p class="srwho"><b class="g">${go.length} going</b>${no.length?` · ${no.length} not going`:""}${go.length?` · <span>${go.map(esc).join(", ")}</span>`:""}</p></div>
+    <div class="srbtns"><button type="button" class="btn ${mine==="going"?"on-go":"primary"}" data-att="going" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="going"}" aria-label="I'm going on ${d.toLocaleDateString("en-GB",{day:"numeric",month:"long"})}">${mine==="going"?"✓ Going":"I'm going"}</button><button type="button" class="btn ${mine==="no"?"on-no":""}" data-att="no" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="no"}" aria-label="Not going on ${d.toLocaleDateString("en-GB",{day:"numeric",month:"long"})}">${mine==="no"?"Not going ✕":"Not going"}</button></div></li>`;
+}
+function icsFirst(){const t="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Selected Works of Shakespeare//EN\r\nBEGIN:VEVENT\r\nUID:first-call-2026@shakespeareshow.actor\r\nDTSTAMP:20261101T120000Z\r\nDTSTART;TZID=Europe/Madrid:20261110T133000\r\nDTEND;TZID=Europe/Madrid:20261110T153000\r\nSUMMARY:Selected Works of Shakespeare: full read-through & first dramaturgy session\r\nLOCATION:Barcelona Code School\\, Carrer de París 157\\, 08036 Barcelona\r\nDESCRIPTION:Rehearsals officially start. https://shakespeareshow.actor/\r\nEND:VEVENT\r\nEND:VCALENDAR";return "data:text/calendar;charset=utf-8,"+encodeURIComponent(t)}
+function firstCall(){const d=FIRST.date,past=new Date(d+"T15:30")<new Date();if(past)return "";
+  const go=attendees(d),no=notGoing(d),mine=me?(go.includes(me)?"going":no.includes(me)?"no":null):null;
+  return `<section class="firstcall" aria-labelledby="fch"><div class="fcmain"><p class="fckick">First call · rehearsals officially start</p>
+    <h2 id="fch">Tuesday 10 November, 13:30</h2>
+    <p class="fcwhat"><b>${esc(FIRST.what)}</b> at ${VENUES.bcs.name}, ${VENUES.bcs.addr}.</p>
+    <p class="fcnote">Everyone, please come, and pick your name and accept your part on this site before then.</p>
+    <div class="fcbtns"><button type="button" class="btn ${mine==="going"?"on-go":"fcgo"}" data-att="going" data-date="${d}" aria-pressed="${mine==="going"}">${mine==="going"?"✓ I'll be there":"I'll be there"}</button><button type="button" class="btn ${mine==="no"?"on-no":""}" data-att="no" data-date="${d}" aria-pressed="${mine==="no"}">${mine==="no"?"Can't make it ✕":"Can't make it"}</button><a class="btn" href="${icsFirst()}" download="first-call-10-november.ics">Add to calendar</a><a class="btn" href="${VENUES.bcs.map}" target="_blank" rel="noopener">Map ↗</a></div>
+    <p class="fcwho"><b>${go.length}</b> coming${go.length?": "+go.map(esc).join(", "):""}${no.length?` · ${no.length} can't make it`:""}</p></div>
+    <div class="fccal" aria-hidden="true"><span class="calm">Nov</span><span class="cald">10</span><span class="calw">Tue · 13:30</span></div></section>`}
 function satCard(date,big){
   const d=new Date(date+"T09:00"),past=new Date(date+"T11:30")<new Date(),idx=SATURDAYS.indexOf(date)+1,plan=SAT_PLAN[date]||["",""];
   const go=attendees(date),no=notGoing(date),mine=me?(go.includes(me)?"going":no.includes(me)?"no":null):null;
   const nextUp=date===(SATURDAYS.find(x=>new Date(x+"T11:30")>new Date())||"");
   return `<article class="satc ${past?"past":""} ${nextUp?"next":""} ${big?"big":""}">
-    <div class="sathead"><div><p class="ckick">Saturday ${idx} of 6${nextUp?" · Next up":""}</p><h3>${d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3></div><span class="satphase ${idx>3?"run":""}">${idx>3?"Run-through":"Workshop"}</span></div>
-    <ol class="satplan"><li><b>09:15</b><span>${esc(plan[0])}</span></li><li><b>10:30</b><span>${esc(plan[1])}</span></li></ol>
+    <div class="sathead"><div><p class="ckick">Saturday ${idx} of ${SATURDAYS.length}${nextUp?" · Next up":""}</p><h3>${d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3></div><span class="satphase ${phaseCls(plan[2])}">${esc(plan[2]||"")}</span></div>
+    <ol class="satplan"><li><b>09:15</b><span>${esc(plan[0]||"")}</span></li><li><b>10:30</b><span>${esc(plan[1]||"")}</span></li></ol>
     <div class="satbtns"><button type="button" class="btn ${mine==="going"?"on-go":"primary"}" data-att="going" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="going"}">${mine==="going"?"✓ Going":"I'm going"}</button><button type="button" class="btn ${mine==="no"?"on-no":""}" data-att="no" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="no"}">${mine==="no"?"Not going ✕":"Not going"}</button></div>
     <div class="satwho"><p><b class="g">${go.length} going</b>${no.length?` · <span>${no.length} not going</span>`:""}</p>
       ${go.length||no.length?`<div class="satnames">${go.map(n=>`<span class="nm go ${n===me?"me":""}">${esc(n)}</span>`).join("")}${no.map(n=>`<span class="nm no ${n===me?"me":""}">${esc(n)}</span>`).join("")}</div>`:`<p class="meta" style="margin:0">No answers yet.</p>`}</div>
@@ -1644,19 +1741,21 @@ function pShows(){
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){
   return folioHero("Rehearsal format","Rehearsals",`<p class="ftag">Two ways we work: <em>Saturday company rehearsals, and weekday classes you book.</em></p>`)+`</section>
+  ${firstCall()}
   <section class="rsec" aria-labelledby="r1">
-    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick">Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · six Saturdays, 23 January – 27 February</p></div></div>
+    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick">Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · ${SATURDAYS.length} Saturdays, 7 November – 27 February (no rehearsal 26 Dec and 2 Jan)</p></div></div>
     <div class="rgrid">
       <div class="rtime"><h3>The morning</h3><ol class="ttable">${SAT_TIMES.map(([t,l])=>`<li class="${/practical/.test(l)?"prac":""}"><b>${t}</b><span>${l}</span></li>`).join("")}</ol>
-        <p class="meta" style="margin:14px 0 0">Two practical hours each Saturday. Workshops first; the last three Saturdays are full run-throughs with notes, leading into tech week.</p></div>
+        <p class="meta" style="margin:14px 0 0">Two practical hours each Saturday. November is workshops (mosaics and movement first, stage combat in weeks 2 and 3), then scene work by play, and the last three Saturdays are full run-throughs with notes, leading into tech week.</p></div>
       ${mapEmbed(VENUES.albareda)}
     </div>
     <div class="ryou">${meSelect()}</div>
-    <div class="satgrid2">${SATURDAYS.map(d=>satCard(d)).join("")}</div>
+    ${(()=>{const months={};SAT_ALL.forEach(x=>{const m=new Date(x[0]+"T12:00").toLocaleDateString("en-GB",{month:"long",year:"numeric"});(months[m]=months[m]||[]).push(x)});
+      return `<div class="legend2"><span><i class="satphase"></i>Workshop</span><span><i class="satphase scene"></i>Scene work</span><span><i class="satphase run"></i>Run-through</span></div>`+Object.entries(months).map(([m,xs])=>`<h3 class="smonth">${m}</h3><ol class="sched">${xs.map(satRow).join("")}</ol>`).join("")})()}
     <div class="satafter"><span class="ckick">Then</span> <b>Tech · ${TECH.label}</b> at Teatre Gaudí, the day before opening night.</div>
   </section>
   <section class="rsec" aria-labelledby="r2">
-    <div class="rhead"><span class="rnum" aria-hidden="true">2</span><div><p class="ckick">Weekday classes · optional</p><h2 id="r2">Dramaturgy sessions</h2><p class="clede">${VENUES.bcs.name}, ${VENUES.bcs.area} · Mon–Fri, 15:30–17:30 or 17:30–19:30</p></div></div>
+    <div class="rhead"><span class="rnum" aria-hidden="true">2</span><div><p class="ckick">Weekday classes · optional</p><h2 id="r2">Dramaturgy sessions</h2><p class="clede">${VENUES.bcs.name}, ${VENUES.bcs.area} · Mon–Fri, 15:30–17:30 or 17:30–19:30 · first session Tuesday 10 November, 13:30</p></div></div>
     <div class="rgrid">
       <div class="rclass"><p class="clede" style="margin:0">Two-hour sessions with Chris on the text and the work behind it. They're open: come when it helps you and your scene.</p>
         <ul class="topics">${CLASSES.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>

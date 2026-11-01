@@ -372,6 +372,23 @@ def hero_art(W, H, gfrac, figh):
         f'<path d="{grass(ground, rnd, W)}" fill="#000"/><rect y="{ground+40}" width="{W}" height="{H-ground}" fill="#000"/>',
         f'<rect width="{W}" height="{ground+30}" filter="url(#grain)" opacity=".12"/></svg>'])
 
+def share_card():
+    W, H = 1200, 630
+    rnd = random.Random("share"); bg = "#D8432A"; ground = 395; figh = 112
+    ox = (W - 1080) / 2
+    return "".join([f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
+        '<defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.2 1.05"/></filter>',
+        '<radialGradient id="vig" cx=".5" cy=".35" r=".8"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></radialGradient></defs>',
+        f'<rect width="{W}" height="{H}" fill="{bg}"/>',
+        f'<g fill="{INK}">{motif("all", W/2, 0, ground - figh - 20, bg, rnd)}</g>',
+        f'<g fill="{INK}" transform="translate({ox},0)">{FIGS["all"](ground + 6, figh)}</g>',
+        f'<rect width="{W}" height="{H}" fill="url(#vig)"/>',
+        f'<path d="{grass(ground, rnd, W)}" fill="{INK}"/><rect y="{ground+40}" width="{W}" height="{H-ground}" fill="{INK}"/>',
+        f'<text x="64" y="{ground+72}" font-family="Inter" font-weight="600" font-size="22" fill="{GREY}">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</text>',
+        f'<text x="60" y="{ground+148}" font-family="Tight" font-weight="600" font-size="78" letter-spacing="-3.5" fill="{WHITE}">Selected Works <tspan fill="{GREY}">of Shakespeare</tspan></text>',
+        f'<text x="64" y="{ground+196}" font-family="Inter" font-weight="500" font-size="24" fill="{WHITE}" fill-opacity=".85">Love · Power · Madness · Hate  —  Thursdays to Saturdays, curtain 20:00</text>',
+        f'<rect width="{W}" height="{ground+30}" filter="url(#grain)" opacity=".12"/></svg>'])
+
 os.makedirs(os.path.join(OUT, "html"), exist_ok=True)
 jobs = []
 for p in POSTERS:
@@ -381,6 +398,8 @@ for p in POSTERS:
         jobs.append([name, W, H])
 open(os.path.join(OUT, "html", "ticket.html"), "w").write(f"<!doctype html><html><head><meta charset='utf-8'><style>{FONTS}html,body{{margin:0}}</style></head><body>{ticket()}</body></html>")
 jobs.append(["ticket", 1600, 620])
+open(os.path.join(OUT, "html", "share.html"), "w").write(f"<!doctype html><html><head><meta charset='utf-8'><style>{FONTS}html,body{{margin:0}}</style></head><body>{share_card()}</body></html>")
+jobs.append(["share", 1200, 630])
 for (name, W, H, gf, fh) in [("hero-wide", 2800, 820, .86, 150), ("hero-tall", 1080, 1100, .9, 150)]:
     open(os.path.join(OUT, "html", name + ".html"), "w").write(f"<!doctype html><html><head><meta charset='utf-8'><style>html,body{{margin:0;background:#000}}</style></head><body>{hero_art(W, H, gf, fh)}</body></html>")
     jobs.append([name, W, H])
