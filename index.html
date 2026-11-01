@@ -1785,7 +1785,7 @@ function pShows(){
   <div class="callrow">${CALL.map(([t,l])=>`<div><b>${t}</b><span>${l}</span></div>`).join("")}</div>
   <div class="card venue"><div><span class="small">Venue</span><h3>${VENUES.gaudi.name}</h3><div class="meta">${VENUES.gaudi.addr} · ${VENUES.gaudi.area}<br>Box office ${VENUES.gaudi.tel}</div></div><a class="btn sm" href="${VENUES.gaudi.map}" target="_blank" rel="noopener">Map ↗</a></div>
   <div class="card tech"><span class="small">Tech rehearsal</span><h3>${TECH.label}</h3><div class="meta">At Teatre Gaudí. Exact call time to be confirmed.</div></div>
-  <div class="share slim" role="note"><div class="shicon" aria-hidden="true">★</div><p><b>Share the show!</b> Post and tag away, but please don't record the performances themselves.</p></div>
+  <div class="share slim" role="note"><div class="shicon" aria-hidden="true">★</div><p><b>Share the show!</b> Post, tag away and take photos at the event. Just don't take photos of people without their consent, and make sure your photos are awesome!</p></div>
   <p class="tbcline"><span class="tbc">TBC</span> Performance dates to be confirmed</p>
   ${Object.values(weeks).map((ds,i)=>`<h2 class="wk">Week ${i+1}</h2><div class="showgrid">${ds.map((d,j)=>{const x=new Date(d+"T20:00");const n=SHOWS.indexOf(d)+1;const past=x<new Date();
     return `<article class="show2 ${past?"past":""}"><div class="cal" aria-hidden="true"><span class="calm">${x.toLocaleDateString("en-GB",{month:"short"})}</span><span class="cald">${x.getDate()}</span><span class="calw">${x.toLocaleDateString("en-GB",{weekday:"short"})}</span></div>
