@@ -941,6 +941,11 @@ select option{background:#111113;color:#f5f5f4}
 .scmusic audio{width:100%;height:42px;color-scheme:dark}
 @media(max-width:640px){.scmusic{grid-template-columns:auto 1fr}.scmusic audio{grid-column:1/-1}}
 .sgmain a{color:#fff}
+
+.stb.open{color:#c9c9cd;border:1px dashed #71717a;background:transparent}
+.acard.vacant{border-style:dashed;background:transparent}
+.cnote{margin-top:18px;padding:16px 18px;border-radius:16px;background:#141416;border:1px solid #2a2a2f;border-left:4px solid #c9a6ff}
+.cnote p{margin:6px 0 0;font-size:16px;color:#e4e4e7;line-height:1.55}.cnote b{color:#fff}
 </style>
 </head>
 <body>
@@ -1191,8 +1196,10 @@ const CALL=[["18:00","Arrive"],["18:30–19:30","Warm-up"],["20:00","Curtain"]];
 const CREW=[
  {key:"chris-kelly",name:"Chris Kelly",role:"Director",fixed:true,link:"https://bluebooktheatrecompany.com/chriskelly/",linkLabel:"Profile ↗",link2:"https://chriskelly.it",link2Label:"chriskelly.it ↗"},
  {key:"jessica-kollande",name:"Jessica Kollande",role:"Assistant Producer",link:"https://bluebooktheatrecompany.com/jessica-kollande/",linkLabel:"Profile ↗"},
- {key:"adrian-p-smith",name:"Adrian P. Smith",role:"Set Designer",field:"crewStatus",note:"Also plays Polonius"}
+ {key:"adrian-p-smith",name:"Adrian P. Smith",role:"Set Director",field:"crewStatus",note:"Also plays Polonius"},
+ {key:"g-lab-barcelona",name:"G Lab Barcelona",role:"Set Designer",link:"https://www.instagram.com/g.lab.barcelona/",linkLabel:"Instagram @g.lab.barcelona ↗"}
 ];
+const VACANCIES=[{role:"Costumier",note:"Costume is symbolic: colour and fabric volume show status. If you know someone, tell Chris."}];
 const PROFILE={"Sophie Heideker":"https://bluebooktheatrecompany.com/sophie-heideker/","Aldo D'Ibaños":"https://aldodibanos.com","Chrystele Alix":"https://bluebooktheatrecompany.com/chrystele-alix/","Teo Jansen":"https://bluebooktheatrecompany.com/teo-jansen/","Alex Lui":"https://bluebooktheatrecompany.com/alex-liu/","Sarah Dillamore":"https://bluebooktheatrecompany.com/sarah-dillamore/","Hannah Di Bella":"https://bluebooktheatrecompany.com/hannah-dibella/","Sarah Burns":"https://bluebooktheatrecompany.com/sarah-burns/","Rob McLoughlin":"https://www.imdb.com/name/nm5345862/","Carlos Toca":"https://bluebooktheatrecompany.com/carlos-toca/","Dario Roberto":"https://bluebooktheatrecompany.com/dario-giuseppe-roberto/","Julien Paschal":"https://www.sinemalar.com/sanatci/769226/julien-paschal","Chris Kelly":"https://bluebooktheatrecompany.com/chriskelly/","Jan Zammit":"https://www.instagram.com/janzammit/","Adrian P. Smith":"https://www.instagram.com/adrian_p_smith_actor/","Kyle Scudder":"https://www.instagram.com/kyle.scudder/","Ella Arkeus":"https://www.instagram.com/joella.a9/","Jean-Baptiste Courtois":"https://www.instagram.com/jean_baptiste_courtois/","Michael Strelow":"https://www.instagram.com/mishastrelow/","Jessica Kollande":"https://bluebooktheatrecompany.com/jessica-kollande/"};
 const PEOPLE=[...CAST,"Jessica Kollande","Chris Kelly"];
 function crewStatus(c){const d=castDocs[c.key]||{};return d[c.field||"status"]==="accepted"?"accepted":"pending"}
@@ -1636,7 +1643,7 @@ function pCast(){
     :`<div class="pgrid">${shownPlays.map(playSection).join("")}</div>`}
 
   <h2 class="ccrewh">The crew</h2>
-  <div class="agrid">${CREW.map(crewCard).join("")}</div>
+  <div class="agrid">${CREW.map(crewCard).join("")}${VACANCIES.map(v=>`<article class="acard vacant"><header class="ahead"><div class="avatar" style="--c:#52525b"><span aria-hidden="true">?</span></div><div class="aid"><h3>${esc(v.role)}</h3><p class="acount">Crew</p><p style="margin:6px 0 0"><span class="stb open">Open vacancy</span></p></div></header><p class="meta" style="margin-top:12px">${esc(v.note)}</p></article>`).join("")}</div>
   <p class="cfoot">Word counts are from the full scene texts and will drop as cuts are made.</p>
   </div>`;
 }
@@ -1919,6 +1926,7 @@ const COSTUME=[
   {id:"witches",title:"The witches",play:"Macbeth",note:"Floor-length black velvet cloaks with deep hoods and fur trim. Faces hidden until the reveal.",imgs:[["witches","The witches: hooded black velvet cloak with fur trim"]]}];
 function pCostume(){
   return `<a class="back" href="#staging">← Staging</a><div class="chero"><p class="ckick">Staging</p><h1>Costume</h1><p class="clede">The looks we're going for, by group. Tap a photo to see it full size.</p></div>
+  <div class="cnote" role="note"><p class="ckick" style="margin:0">Costume notes</p><p>Costume will be generally <b>symbolic</b>, relying on <b>colour</b> and <b>fabric volume</b> to portray status.</p><p class="meta" style="margin-top:6px">Costumier: <span class="stb open">Open vacancy</span></p></div>
   ${COSTUME.map(g=>{const pl=Object.entries(PLAYACC).find(([k])=>k===g.play);const c=pl?pl[1]:"#ddd";
     return `<section class="cost" aria-labelledby="cost-${g.id}"><div class="costhead"><h2 id="cost-${g.id}">${esc(g.title)}</h2><span class="ctag" style="--c:${c}">${esc(ABBR[g.play]||g.play)}</span></div><p class="clede">${esc(g.note)}</p>
       <div class="costgrid">${g.imgs.map(([f,alt])=>`<figure><img src="costume/${f}.jpg" data-full="costume/${f}.jpg" data-dl="${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`).join("")}</div>
@@ -1974,7 +1982,7 @@ function pStaging(){
     <div class="vfx">${icon("projector",54)}<div><p class="clede" style="margin:0">A projector for the moments that need more than light: the moon over the wood, Ophelia's father behind the scrim, water for her drowning, and the emblems between the plays.</p><p class="meta" style="margin-top:8px">Projection list and screen position to be set in tech.</p></div></div></section>
 
   <section class="cost" id="st-cost"><div class="costhead"><span class="rnum sm">6</span><h2>Costume</h2></div>
-    <p class="clede">The looks for Titania's fairies, Oberon's fairy and the witches.</p>
+    <p class="clede">Costume is symbolic: colour and fabric volume show status. Looks so far for Titania's fairies, Oberon's fairy and the witches. Costumier: open vacancy.</p>
     <a class="card link" href="#costume" style="margin-top:14px"><h3>Open costume →</h3><div class="meta">Photos and notes for each group.</div></a></section>`;
 }
 function wireStaging(root){root.querySelectorAll("[data-jumpto]").forEach(b=>b.onclick=()=>{const t=document.getElementById(b.dataset.jumpto);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})})}
