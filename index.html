@@ -592,6 +592,9 @@ const ORDER=[
   syn:"Banished from Rome, Coriolanus arrives in disguise at Aufidius's house in Antium and offers himself: kill me, or let me fight 'against my cankered country.' Aufidius embraces him.",arc:"Exile, part two: unlike Duke Senior, Coriolanus turns his exile into revenge."},
  {id:"ham31",type:"scene",n:"7",play:"Hamlet 3.1",title:"The nunnery scene",actors:["Julien Paschal","Chrystele Alix"],chars:["hamlet","ophelia"],mins:4,
   syn:"Sent by her father, Ophelia tries to return Hamlet's letters and gifts. He turns on her, denying he ever loved her, and drives her away: 'Get thee to a nunnery.'",arc:"Ophelia arc: rejection."},
+ {id:"mos-crown",type:"mosaic",n:"◐",play:"Mosaic",title:"The crowning",actors:["Rob McLoughlin","Hannah Di Bella","Chrystele Alix","Sarah Dillamore"],chars:["macbeth","witches"],mins:1.5,
+  syn:"A dark, wordless ritual. The three witches draw Macbeth into their circle and lower the crown onto his head, as if his reign is theirs to give. It bridges the prophecy and the sleepless king of 3.2: he has the crown, and they put it there.",
+  ideas:"Bring back the low drum and breath sounds from the first ritual. Hands reach out of the dark to anoint him and place the crown. The witches whisper 'All hail, Macbeth, that shalt be king hereafter' as a chant. On the last beat two witches melt away; the third drops her hood and is Lady Macbeth (Hannah plays both), straight into 3.2."},
  {id:"mac32",type:"scene",n:"8",play:"Macbeth 3.2",title:"Full of scorpions",actors:["Rob McLoughlin","Hannah Di Bella"],chars:["macbeth","lady-macbeth"],mins:4,
   syn:"King now, Macbeth cannot sleep: 'O, full of scorpions is my mind, dear wife!' He hints at 'a deed of dreadful note' against Banquo but keeps his wife in the dark.",arc:"Macbeth arc: the middle (paranoia). Lady Macbeth starts to lose him."},
  {id:"f1",type:"fight",n:"⚔",play:"Fight",title:"Macbeth vs Banquo",actors:["Rob McLoughlin","Julien Paschal"],chars:["macbeth","banquo"],mins:1.5,
@@ -641,7 +644,8 @@ const TRANS={
  "mnd21b":{snd:"War drums and a battle roar.",lx:"Red side-light and haze.",note:"Straight into the fight."},
  "f4":{snd:"The drums cut to silence; a knock at a door.",lx:"Hold the red; add a doorway special.",note:"Continuous: Coriolanus 'arrives'."},
  "cor45":{snd:"Silence. A single piano note.",lx:"A cold, bare interior.",note:"Ophelia waits with the letters."},
- "ham31":{snd:"Wind, distant bells.",lx:"Dim and close; one lamp.",note:"Fast; Rob is already set."},
+ "ham31":{snd:"Wind and distant bells, then the witches' low drum returns.",lx:"Dim; a single cold top light.",note:"Rob kneels in place in the dark as the witches circle him."},
+ "mos-crown":{snd:"The drum stops dead as the crown lands; one held breath.",lx:"The crown special narrows into the palace pool of light.",note:"Hannah drops the witch's hood and is Lady Macbeth. No exit needed."},
  "mac32":{snd:"Low strings swell.",lx:"Narrowing to a pool of light.",note:"Straight into the Banquo fight."},
  "f1":{snd:"A sting, then the house music.",lx:"Blackout, then house lights.",note:"INTERVAL."},
  "shr21":{snd:"Laughter cuts; a slow funeral drum.",lx:"Bright comedy light snaps to grey steel.",note:"The mirror pair's hinge: same situation, opposite tone."},
@@ -812,7 +816,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:10px">All six Saturdays →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["scenes","Scene running order","16 scenes, 4 fights, 4 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["scripts","Scripts","Every scene's full text, ready to download."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights and mosaics."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
+    ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["scripts","Scripts","Every scene's full text, ready to download."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights and mosaics."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
