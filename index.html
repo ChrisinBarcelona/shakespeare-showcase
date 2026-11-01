@@ -970,7 +970,7 @@ const ck=n=>n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").repl
 const CHARS=[
  {id:"macbeth",name:"Macbeth",play:"Macbeth",actor:"Rob McLoughlin",bio:"A Scottish general and war hero. The witches' prophecy wakes an ambition he can't control. He murders his way to the crown and ends up hollowed out by what he has done."},
  {id:"lady-macbeth",name:"Lady Macbeth",play:"Macbeth",actor:"Hannah Di Bella",bio:"Macbeth's wife and, at first, the stronger will of the two. She drives him to murder Duncan, but by the middle of the play he has stopped confiding in her. She dies offstage, broken by guilt."},
- {id:"banquo",name:"Banquo",play:"Macbeth",actor:"Julien Paschal",bio:"Macbeth's fellow general, who hears the same prophecy: he will father kings without being one. His decency makes him a threat, and Macbeth has him murdered."},
+ {id:"banquo",name:"Banquo",play:"Macbeth",actor:"Julien Paschal",bio:"Macbeth's fellow general, who hears the same prophecy: he will father kings without being one. His decency makes him a threat, and Macbeth has him murdered. In our staging his body is carried off by the company and becomes the dead Edward that Anne mourns."},
  {id:"witches",name:"The Witches",play:"Macbeth",actor:"Hannah Di Bella, Ella Arkeus, Sarah Dillamore",bio:"Three 'weird sisters' who speak in riddles and rhyme. They never tell Macbeth to kill anyone. They only name what he already wants."},
  {id:"seyton",name:"Seyton",play:"Macbeth",actor:"Sarah Dillamore",bio:"Macbeth's officer at Dunsinane, among the last to stay loyal. It is Seyton who brings the news: 'The queen, my lord, is dead.'"},
  {id:"hamlet",name:"Hamlet",play:"Hamlet",actor:"Julien Paschal",bio:"Prince of Denmark, grieving his father and disgusted by his mother's quick remarriage to his uncle. Brilliant, cruel and paralysed by thought. His feigned madness destroys Ophelia along the way."},
@@ -992,9 +992,8 @@ const CHARS=[
  {id:"lysander",name:"Lysander",play:"A Midsummer Night's Dream",actor:"Jan Zammit",bio:"Hermia's beloved. He is romantic and loyal until Puck's mistake makes him abandon her for Helena overnight."},
  {id:"kate",name:"Katherine (Kate)",play:"The Taming of the Shrew",actor:"Hannah Di Bella",bio:"Sharp-tongued and quick-witted. Padua calls her a shrew. She meets her match in a verbal duel with Petruchio."},
  {id:"petruchio",name:"Petruchio",play:"The Taming of the Shrew",actor:"Jan Zammit",bio:"A swaggering fortune-hunter who arrives in Padua to marry Kate whatever she says. He out-talks, out-plays and outlasts her."},
- {id:"richard",name:"Richard, Duke of Gloucester",play:"Richard III",actor:"Dario Roberto",bio:"Charming, murderous and self-aware, he confides in the audience as he schemes his way to the throne. Here he woos Anne over the coffin of a king he killed."},
- {id:"anne",name:"Lady Anne",play:"Richard III",actor:"Sarah Burns",bio:"A young widow escorting the body of her father-in-law, Henry VI. Richard killed both him and her husband. She curses and spits at Richard, and is still won by him."},
- {id:"edward",name:"Prince Edward",play:"Richard III",actor:"Kyle Scudder",bio:"Anne's husband, killed by Richard and his brothers at Tewkesbury. Seen only in the movement piece that opens the Richard scene."},
+ {id:"richard",name:"Richard, Duke of Gloucester",play:"Richard III",actor:"Dario Roberto",bio:"Charming, murderous and self-aware, he confides in the audience as he schemes his way to the throne. Here he woos Anne over the body of the husband he killed."},
+ {id:"anne",name:"Lady Anne",play:"Richard III",actor:"Sarah Burns",bio:"A young widow escorting a body to burial. In our staging it is her husband Edward's (Banquo's body, carried on by the company). Richard killed him. She curses and spits at Richard, and is still won by him."},
  {id:"coriolanus",name:"Coriolanus",play:"Coriolanus",actor:"Alex Lui",bio:"Rome's greatest soldier, too proud to beg the people for their votes. Banished, he goes to his sworn enemy and offers to fight against Rome."},
  {id:"aufidius",name:"Tullus Aufidius",play:"Coriolanus",actor:"Rob McLoughlin",bio:"General of the Volscians and Coriolanus's lifelong rival. They have fought each other again and again. When his enemy arrives at his door in disguise, he embraces him."},
  {id:"amiens",name:"Amiens",play:"As You Like It",actor:"Teo Jansen",bio:"A lord who has followed Duke Senior into exile. He answers the Duke's praise of forest life: 'Happy is your grace, that can translate the stubbornness of fortune into so quiet and so sweet a style.'"},
@@ -1024,7 +1023,6 @@ const PARTS=[
  {id:"polonius",ch:"polonius",name:"Polonius",actor:"Adrian P. Smith",words:602},
  {id:"horatio",ch:"horatio",name:"Horatio",actor:"Michael Strelow",words:53},
  {id:"demetrius",ch:"demetrius",name:"Demetrius",actor:"Kyle Scudder",words:865},
- {id:"edward",ch:"edward",name:"Prince Edward",actor:"Kyle Scudder",words:0},
  {id:"lysander",ch:"lysander",name:"Lysander",actor:"Jan Zammit",words:551},
  {id:"petruchio",ch:"petruchio",name:"Petruchio",actor:"Jan Zammit",words:1300},
  {id:"richard",ch:"richard",name:"Richard, Duke of Gloucester",actor:"Dario Roberto",words:1185},
@@ -1086,16 +1084,16 @@ const ORDER=[
  {id:"mac32",type:"scene",n:"8",play:"Macbeth 3.2",title:"Full of scorpions",actors:["Rob McLoughlin","Hannah Di Bella"],chars:["macbeth","lady-macbeth"],mins:4,
   syn:"King now, Macbeth cannot sleep: 'O, full of scorpions is my mind, dear wife!' He hints at 'a deed of dreadful note' against Banquo but keeps his wife in the dark.",arc:"Macbeth arc: the middle (paranoia). Lady Macbeth starts to lose him."},
  {id:"f1",type:"fight",n:"⚔",play:"Fight",title:"Macbeth vs Banquo",actors:["Rob McLoughlin","Julien Paschal"],chars:["macbeth","banquo"],mins:1.5,
-  syn:"The 'deed of dreadful note' made visible. It is abstract: Macbeth, the friend who shared the prophecy, cuts it down. This ends Act 1.",
-  beats:"1. Banquo walks in a pool of light.\n2. Macbeth circles at the edge, in shadow.\n3. The strike lands with the blackout or the music sting.\n4. The light lingers on Macbeth alone. INTERVAL."},
+  syn:"The 'deed of dreadful note' made visible. It is abstract: Macbeth, the friend who shared the prophecy, cuts it down. Banquo's body stays on stage and becomes the body in the funeral procession that leads into Richard III.",
+  beats:"1. Banquo walks in a pool of light.\n2. Macbeth circles at the edge, in shadow.\n3. The strike lands with the blackout or the music sting.\n4. The light lingers on Macbeth and the body. No blackout: the bearers enter for Banquo."},
+ {id:"mos-bier",type:"mosaic",n:"◐",play:"Mosaic",title:"Banquo's body becomes Edward's",actors:["Julien Paschal","Carlos Toca","Alex Lui","Adrian P. Smith","Michael Strelow","Kyle Scudder","Jan Zammit","Teo Jansen","Jean-Baptiste Courtois","Aldo D'Ibaños","Sarah Burns"],chars:["banquo","anne"],mins:1.5,
+  syn:"Banquo falls, and the men of the company who are not on stage come out of the dark, lift his body and carry it, shoulder-high, as a funeral procession. Anne walks behind it. By the time she says 'Set down, set down your honourable load', Banquo's body has become her dead husband Edward's, and Richard steps out to stop her.",
+  ideas:"No blackout after the kill: the bearers enter while the light is still on Macbeth, who backs away. Slow, heavy, in step, to the funeral bell. Julien stays limp and still the whole way. They lower him at Anne's line and stand as the mourners; Richard enters through them."},
+ {id:"r312",type:"scene",n:"9",play:"Richard III 1.2",title:"Richard woos Anne",actors:["Dario Roberto","Sarah Burns"],chars:["richard","anne"],mins:7,
+  syn:"Anne follows the body of her murdered husband, Edward (in our staging, Banquo's body, carried in by the company), and curses his killer. Richard stops the procession, admits everything, offers her his sword, and wins her, to his own astonishment.",arc:"Mirror pair, A: hostile wooing as horror. It closes Act 1."},
  {id:"INTERVAL",type:"interval"},
- {id:"shr21",type:"scene",n:"9",play:"Shrew 2.1",title:"The wooing",actors:["Hannah Di Bella","Jan Zammit"],chars:["kate","petruchio"],mins:5,
-  syn:"Petruchio meets Kate for the first time and declares he will marry her whether she likes it or not. Insult after insult, pun after pun: a duel of wits played at full speed.",arc:"Mirror pair, A: hostile wooing as comedy."},
- {id:"f2",type:"fight",n:"⚔",play:"Fight",title:"Richard kills Edward",actors:["Dario Roberto","Kyle Scudder"],chars:["richard","edward"],mins:1.5,
-  syn:"At Tewkesbury, Richard and his brothers stab Prince Edward, Anne's husband. Showing it here means the audience knows exactly what Richard has done before he woos the widow.",
-  beats:"1. Edward stands defiant.\n2. Richard is joined by shadows (his brothers suggested by light).\n3. A swift, ugly kill. Brutal, not balletic.\n4. Richard wipes his hands as Anne's funeral procession enters."},
- {id:"r312",type:"scene",n:"10",play:"Richard III 1.2",title:"Richard woos Anne",actors:["Dario Roberto","Sarah Burns"],chars:["richard","anne"],mins:7,
-  syn:"Anne mourns over Henry VI's coffin and curses his murderer. Richard interrupts, admits everything, offers her his sword, and wins her, to his own astonishment.",arc:"Mirror pair, B: hostile wooing as horror."},
+ {id:"shr21",type:"scene",n:"10",play:"Shrew 2.1",title:"The wooing",actors:["Hannah Di Bella","Jan Zammit"],chars:["kate","petruchio"],mins:5,
+  syn:"Petruchio meets Kate for the first time and declares he will marry her whether she likes it or not. Insult after insult, pun after pun: a duel of wits played at full speed.",arc:"Mirror pair, B: hostile wooing as comedy. After the interval, the same situation as Richard and Anne, played for laughs."},
  {id:"ham34",type:"scene",n:"11",play:"Hamlet 3.4",title:"The closet scene",actors:["Julien Paschal","Sophie Heideker","Adrian P. Smith"],chars:["hamlet","gertrude","polonius"],mins:6,
   syn:"Hamlet confronts his mother in her chamber: 'Come, come, and sit you down.' Hearing a noise behind the arras, he stabs through it, 'How now! A rat?', and kills Polonius.",arc:"Ophelia arc: her father dies (offstage to her)."},
  {id:"mnd32",type:"scene",n:"12",play:"Midsummer 3.2",title:"Puck's mistake & the lovers",actors:["Kyle Scudder","Jan Zammit","Sarah Dillamore","Hannah Di Bella","Jean-Baptiste Courtois","Teo Jansen","Aldo D'Ibaños"],chars:["oberon","puck","lysander","demetrius","helena","hermia","oberons-fairy"],mins:8,
@@ -1135,10 +1133,10 @@ const TRANS={
  "ham31":{snd:"Wind and distant bells, then the witches' low drum returns.",lx:"Dim; a single cold top light.",note:"Rob kneels in place in the dark as the witches circle him."},
  "mos-crown":{snd:"The drum stops dead as the crown lands; one held breath.",lx:"The crown special narrows into the palace pool of light.",note:"Hannah drops the witch's hood and is Lady Macbeth. No exit needed."},
  "mac32":{snd:"Low strings swell.",lx:"Narrowing to a pool of light.",note:"Straight into the Banquo fight."},
- "f1":{snd:"A sting, then the house music.",lx:"Blackout, then house lights.",note:"INTERVAL."},
- "shr21":{snd:"Laughter cuts; a slow funeral drum.",lx:"Bright comedy light snaps to grey steel.",note:"The mirror pair's hinge: same situation, opposite tone."},
- "f2":{snd:"Drum continues into a funeral bell.",lx:"Grey, with a coffin special.",note:"Anne's procession enters as Richard wipes his hands."},
- "r312":{snd:"Bell fades; footsteps on stone.",lx:"Warm private chamber, with the arras lit from behind.",note:"Polonius hides behind the arras before the lights come up."},
+ "f1":{snd:"A sting, then a slow funeral bell.",lx:"No blackout: the light stays on the body.",note:"The bearers come out of the dark for Banquo."},
+ "mos-bier":{snd:"The bell keeps time with the bearers' steps.",lx:"Grey procession light, with a special where the body is set down.",note:"Banquo becomes Edward. Anne: 'Set down, set down your honourable load.'"},
+ "r312":{snd:"A sting as Richard is left alone, then the house music.",lx:"Blackout, then house lights.",note:"INTERVAL. Julien must be up and clear before Act 2."},
+ "shr21":{snd:"Laughter fades; footsteps on stone.",lx:"Bright comedy light warms down to a private chamber, with the arras lit from behind.",note:"The mirror pair's hinge, now across the interval: the same wooing, played for laughs. Polonius hides behind the arras before the lights come up."},
  "ham34":{snd:"Silence breaks into a burst of Puck's laughter.",lx:"Snap to bright magic blue and green.",note:"The most jarring jump, on purpose."},
  "mnd32":{snd:"Laughter fades into a held, low hum.",lx:"Scrim backlight only.",note:"The silhouette pulls the audience out of the laughter."},
  "sil":{snd:"Hum, then a single sung note from Ophelia offstage.",lx:"Silhouette fades as the court light rises.",note:"Chrystele walks straight from the silhouette into 4.5."},
@@ -1170,7 +1168,7 @@ const VENUES={
 const SAT_ALL=[
  ["2026-11-07","Opening mosaic: the characters","Movement for the opening mosaic","Mosaics"],
  ["2026-11-14","Stage combat","Stage combat","Stage combat"],
- ["2026-11-21","The witches' ritual","The crowning","Mosaics"],
+ ["2026-11-21","The witches' ritual","The crowning · Banquo's funeral procession","Mosaics"],
  ["2026-11-28","The fairy dance","The fairy dance","Mosaics"],
  ["2026-12-05","Ophelia's water","Ophelia's water · Ophelia sees her father","Mosaics"],
  ["2026-12-12","Stage combat","Stage combat","Stage combat"],
@@ -1179,8 +1177,8 @@ const SAT_ALL=[
  ["2027-01-02",null,null,"Break","No rehearsal · New Year"],
  ["2027-01-09","Blocking: Macbeth · Hamlet","Blocking: Midsummer","Scene work"],
  ["2027-01-16","Blocking: Shrew · Richard III","Blocking: Coriolanus · As You Like It","Scene work"],
- ["2027-01-23","All six mosaics, in running order","Entrances & exits","Mosaics"],
- ["2027-01-30","Fight call: all four fights","Voice","Stage combat"],
+ ["2027-01-23","All seven mosaics, in running order","Entrances & exits","Mosaics"],
+ ["2027-01-30","Fight call: all three fights","Voice","Stage combat"],
  ["2027-02-06","Transitions & SFX","Voice","Scene work"],
  ["2027-02-13","Full run-through 1","Notes","Run-through"],
  ["2027-02-20","Full run-through 2","Notes","Run-through"],
@@ -1369,7 +1367,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["scenes","Scene running order","16 scenes, 4 fights, 6 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights, mosaics and costume."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
+    ${[["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights, mosaics and costume."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
@@ -1960,7 +1958,8 @@ function pStaging(){
   const secs=[["st-trans","Transitions"],["st-sfx","SFX"],["st-atmos","Atmos"],["st-props","Props"],["st-vfx","Visual effects"],["st-cost","Costume"]];
   const ph=(f,alt)=>`<figure><img src="staging/${f}.jpg" data-full="staging/${f}.jpg" data-dl="${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`;
   return `<div class="chero"><p class="ckick">Staging</p><h1>Staging</h1>
-    <p class="clede">Everything around the scenes: how we move from one piece to the next, what the audience hears and sees, and the physical things on stage. Six parts, in the order we build them.</p></div>
+    <p class="clede">Everything around the scenes: how we move from one piece to the next, what the audience hears and sees, and the physical things on stage. Six parts, in the order we build them.</p>
+    <p class="clede">Most of the cast never exchange a word. Of the 153 possible pairs of actors, 98 never speak to each other or share a scene. The only time everyone is on stage together is the opening mosaic, which is wordless and uses the whole company.</p></div>
   <nav class="stjump" aria-label="Staging sections">${secs.map(([id,l])=>`<button type="button" data-jumpto="${id}">${l}</button>`).join("")}</nav>
 
   <section class="cost" id="st-trans"><div class="costhead"><span class="rnum sm">1</span><h2>Transitions</h2></div>
