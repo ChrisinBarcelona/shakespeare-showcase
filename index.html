@@ -1789,7 +1789,7 @@ function pHome(){
   const nextSat=SATURDAYS.find(d=>new Date(d+"T11:00")>new Date())||SATURDAYS[SATURDAYS.length-1];
   return `<section class="opener" aria-labelledby="optitle">
     <div class="op-body">
-      <p class="op-kick">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</p>
+      <p class="op-kick">a CHRIS KELLY production · Teatre Gaudí · March 2027</p>
       <h1 class="op-title" id="optitle">Selected Works <em>of Shakespeare</em></h1>
       <div class="cd op-cd" id="cd" role="timer" aria-label="Time until curtain"><div><b id="cd-d">–</b><span>Days</span></div><div><b id="cd-h">–</b><span>Hours</span></div><div><b id="cd-m">–</b><span>Minutes</span></div><div><b id="cd-s">–</b><span>Seconds</span></div></div>
       <p class="op-when"><span class="tbc">TBC</span> UNTIL CURTAIN · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
