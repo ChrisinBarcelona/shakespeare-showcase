@@ -6,6 +6,7 @@
 <title>Selected Works of Shakespeare</title>
 <meta name="description" content="A CHRIS KELLY PRODUCTION. Love, power, madness and hate: scenes from seven of Shakespeare's plays in one evening. Teatre Gaudí Barcelona, Thursdays to Saturdays in March 2027, curtain 20:00.">
 <meta name="theme-color" content="#000000">
+<script>(function(){try{var t=localStorage.getItem("ss_theme");if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";if(t==="light"){document.documentElement.classList.add("light");document.querySelector('meta[name="theme-color"]').content="#fafaf9"}}catch(e){}})()</script>
 <link rel="canonical" href="https://shakespeareshow.actor/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Selected Works of Shakespeare">
@@ -270,6 +271,16 @@ a.book{display:block;text-decoration:none}
 .spwho{display:block;font:600 11px "Inter Tight",Inter,sans-serif;letter-spacing:.08em;color:#f4c75c;margin-bottom:4px}
 .spsc{margin-top:12px!important;font-size:14px}.spsc a{color:#f5f5f4;text-underline-offset:3px}
 @media (max-width:700px){.sprow{grid-template-columns:1fr}.spo{border-right:0;border-bottom:1px dashed #2a2a2f}.sphead{display:none}.spm::before{content:"Modern English";display:block;font:600 11px "Inter Tight",Inter,sans-serif;letter-spacing:.08em;color:#8a8a93;margin-bottom:4px;text-transform:uppercase}.spm .spwho{display:none}}
+.themebtn{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;border:1px solid #27272a;background:#0a0a0a;color:#f5f5f4;cursor:pointer}
+.themebtn:hover{border-color:#52525b}.themebtn:focus-visible{outline:3px solid #f5f5f4;outline-offset:2px}
+.themebtn .ti-moon{display:none}html.light .themebtn .ti-sun{display:none}html.light .themebtn .ti-moon{display:block}
+@media (max-width:1240px){.themebtn{margin-left:auto;order:1}.menubtn{margin-left:8px!important;order:2}}
+.card.apcard{position:relative;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--c,#888) 13%,#111113) 0%,#111113 55%)!important;border:1px solid color-mix(in srgb,var(--c,#888) 28%,#2a2a2f)!important}
+.card.apcard::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--c,#888)}
+.card.apcard:hover{border-color:color-mix(in srgb,var(--c,#888) 60%,#2a2a2f)!important}
+.apn{display:inline-block;padding:3px 9px;border-radius:999px;color:var(--c,#888)!important;background:color-mix(in srgb,var(--c,#888) 14%,transparent)}
+.apdot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c);margin-right:10px;vertical-align:middle;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
+.sphl{background:color-mix(in srgb,#f4c75c 26%,transparent);color:inherit;padding:1px 3px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone;box-shadow:inset 0 -2px 0 #f4c75c}
 .sitefoot{max-width:1100px;margin:56px auto 0;padding:22px 20px 34px;border-top:1px solid #1f1f23;font-size:13px;color:#8a8a93;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .sitefoot a{color:#a1a1aa;text-decoration:underline;text-underline-offset:3px}.sitefoot a:hover{color:#f5f5f4}
 .sitefoot .dot{opacity:.5}
@@ -974,6 +985,422 @@ select option{background:#111113;color:#f5f5f4}
 .cnote{margin-top:18px;padding:16px 18px;border-radius:16px;background:#141416;border:1px solid #2a2a2f;border-left:4px solid #c9a6ff}
 .cnote p{margin:6px 0 0;font-size:16px;color:#e4e4e7;line-height:1.55}.cnote b{color:#fff}
 </style>
+<style id="light-theme">
+html.light{--ink:#f1eeec;--ink2:#eae6e4;--ink3:#e5e0dc;--line:#e5e0dc;--paper:#9e803f;--muted:#6f6a62;--blood:#ecd5d5;--moss:#4b5e40;--sky:#355e89}
+html.light .top{background:rgba(241,238,236,.94)}
+html.light .st-offered{background:#e5e0dc}
+html.light .st-accepted{background:#dee6da}
+html.light .st-declined{background:#e6dada;color:#853636}
+html.light .btn.danger{color:#9a3030}
+html.light .count.zero{color:#853636;border-color:#e7dada}
+html.light .count.ok{border-color:#dee6db}
+html.light .slot.booked{border-color:#e6e0db}
+html.light .slot.block{background:#e8e0e0;border-color:#e7dada}
+html.light .slot.block .t{color:#853636}
+html.light .slot.company{background:#dadee6;border-color:#d9e0e8}
+html.light .sheetbg{background:rgba(0,0,0,.6)}
+html.light .accept.ok{background:#dee6da;border:1px solid #dee6db}
+html.light .accept.no{background:#e6dada;color:#853636;border:1px solid #e7dada}
+html.light .folio{background:#fbfbfb}
+html.light .folio::before{background:radial-gradient(60% 50% at 50% 0%,rgba(119,95,41,.16),transparent 70%)}
+html.light .fkick{color:#847e75}
+html.light .ftitle{color:#9b7e4b}
+html.light .fnav button{color:#756f67}
+html.light .fnav button.on,html.light .fnav button:hover{color:#9b7e4b}
+html.light .shelfwrap::before{background:linear-gradient(90deg,#fbfbfb,transparent)}
+html.light .shelfwrap::after{background:linear-gradient(-90deg,#fbfbfb,transparent)}
+html.light .cover{box-shadow:inset 6px 0 10px -4px rgba(0,0,0,0.203),0 18px 30px -12px rgba(0,0,0,.9);background-image:linear-gradient(90deg,rgba(0,0,0,.08),transparent 8%,transparent 92%,rgba(0,0,0,0.081)),linear-gradient(var(--bg),var(--bg))}
+html.light .dot{background:#7c7972}
+html.light .dot.accepted{background:#2d8c38}
+html.light .dot.declined{background:#932222}
+html.light .pages{background:repeating-linear-gradient(90deg,#9a7f4b 0 1px,#7c6f54 1px 2px)}
+html.light .fstats{color:#756f67}
+html.light .fstats b{color:#9b7e4b}
+html.light{--ink:#fbfbfb;--ink2:#f5f4f3;--ink3:#ebeae9;--line:#dbdad7;--paper:#9b7e4b;--muted:#756f67}
+html.light body{background:#fbfbfb}
+html.light .top{background:rgba(0,0,0,.86);border-bottom:1px solid #e5e4e1}
+html.light .rule{background:#dbdad7}
+html.light .card{background:#f8f8f8;border-color:#e2e1de}
+html.light .pill{border-color:#cecdca}
+html.light .btn{border-color:#c7c6c3}
+html.light .btn.primary{color:#fbfbfb}
+html.light .stat{background:#f8f8f8}
+html.light .slot{background:#f8f8f8}
+html.light .slot.booked{background:#ecebea}
+html.light .pfacts div{background:#efeeed}
+html.light .sheet{background:#f5f4f3}
+html.light .trans{border-left-color:#cecdca}
+html.light .ftag{color:#3d3b37}
+html.light .folio .cd div{border-left:1px solid #dbdad7}
+html.light .fnav a{color:#756f67}
+html.light .flyerimg img{box-shadow:0 30px 60px -20px rgba(0,0,0,.9);border:1px solid #e2e1de}
+html.light .facts div{border-top:1px solid #e2e1de}
+html.light .pill.warnpill{border-color:#ebe5d6}
+html.light .card.exhot{background:#0b0b0a!important;border:1px solid #0b0b0a!important;color:#f6f5f4!important;box-shadow:0 0 0 1px #0b0b0a,0 18px 50px -12px rgba(11,11,10,.35)}
+html.light .card.exhot h3{color:#f6f5f4!important}
+html.light .card.exhot .meta{color:#b9b9c0!important}
+html.light .exhot .exico{color:#0b0b0a;background:#f6f5f4}
+html.light .card.exhot:hover{box-shadow:0 0 0 1px #000000,0 24px 60px -12px rgba(11,11,10,.45)}
+html.light .excta{background:#f6f5f4;color:#0b0b0a}
+html.light .venn .vc{fill:#f6f5f4}
+html.light .apcard p{color:#34343a}
+html.light .apn{color:#75726c}
+html.light .sptable{border:1px solid #d0d0d5}
+html.light .sprow{border-top:1px solid #dcdce0}
+html.light .sphead{background:#ececee;color:#55555e}
+html.light .spo{color:#0b0b0a;border-right:1px solid #dcdce0}
+html.light .spm{color:#34343a}
+html.light .spwho{color:#a27813}
+html.light .spsc a{color:#0b0b0a}
+@media (max-width:700px){html.light .spo{border-bottom:1px dashed #d0d0d5}
+html.light .spm::before{color:#75726c}}
+html.light .themebtn{border:1px solid #d8d7d5;background:#f6f5f4;color:#0b0b0a}
+html.light .themebtn:hover{border-color:#a4a4ad}
+html.light .themebtn:focus-visible{outline:3px solid #0b0b0a}
+html.light .card.apcard{background:linear-gradient(160deg,color-mix(in srgb,var(--c,#7c7972) 13%,#ececee) 0%,#ececee 55%)!important;border:1px solid color-mix(in srgb,var(--c,#7c7972) 28%,#d0d0d5)!important}
+html.light .card.apcard::before{background:var(--c,#7c7972)}
+html.light .card.apcard:hover{border-color:color-mix(in srgb,var(--c,#7c7972) 60%,#d0d0d5)!important}
+html.light .apn{color:var(--c,#7c7972)!important;background:color-mix(in srgb,var(--c,#7c7972) 14%,transparent)}
+html.light .sphl{background:color-mix(in srgb,#a27813 26%,transparent);box-shadow:inset 0 -2px 0 #a27813}
+html.light .sitefoot{border-top:1px solid #dcdce0;color:#75726c}
+html.light .sitefoot a{color:#55555e}
+html.light .sitefoot a:hover{color:#0b0b0a}
+html.light .callrow{border-top:1px solid #dbdad7;border-bottom:1px solid #dbdad7}
+html.light .callrow div{border-left:1px solid #dbdad7}
+html.light .show{border:1px solid #e2e1de;background:#f8f8f8}
+html.light .script .speech.cut p{text-decoration-color:rgba(0,0,0,.25)}
+html.light .phases{border-top:1px solid #dbdad7}
+html.light .phase{border-left:1px solid #dbdad7}
+html.light .seg{border:1px solid #cecdca}
+html.light .seg button.on{color:#fbfbfb}
+html.light .postergrid img{border:1px solid #e2e1de}
+html.light .post .cap{background:#efeeed}
+html.light{--acc:#0b0b0a;--gold:#0b0b0a;--gold2:#000000}
+html.light{--paper:#0b0b0a;--muted:#55555e;--line:#d8d7d5;--ink2:#f6f5f4;--ink3:#ecebea;--acc:#0b0b0a;--acc-ink:#fbfbfb;--ok:#1ea44f;--warn:#2b2a27;--bad:#c11111}
+html.light .ftag{color:#2b2a27}
+html.light .skip{color:#fbfbfb}
+html.light .top{background:rgba(0,0,0,.72);border-bottom:1px solid #e0e0e3}
+html.light .nav a{color:#55555e!important}
+html.light .nav a:hover{background:#e4e4e7!important}
+html.light .nav a.on{background:#e4e4e7!important}
+html.light .nav a.navcta{color:#fbfbfb!important}
+html.light .nav a.navcta:hover{background:#000000!important}
+html.light .menubtn{border:1px solid #d8d7d5;background:#f6f5f4}
+@media (max-width:1100px){html.light .nav{background:#fbfbfb;border-bottom:1px solid #d8d7d5}}
+html.light .card{background:#f6f5f4!important;border:1px solid #dcdce0!important}
+html.light .card.link:hover{border-color:#b9b9c0!important;background:#f0f0ef!important}
+html.light .stat{background:#f6f5f4!important;border-color:#dcdce0!important}
+html.light .btn:hover{border-color:#a4a4ad}
+html.light .btn.primary{color:#fbfbfb!important}
+html.light .btn.primary:hover{background:#000000!important}
+html.light .btn.good{border-color:#d3eedd}
+html.light .btn.danger{border-color:#eed3d3}
+html.light .pill{border-color:#ccccd1!important;background:#ececee!important}
+html.light .pill.warnpill{border-color:#a4a4ad!important;color:#18181b!important;background:#ebeae9!important}
+html.light select,html.light input[type=text],html.light input[type=url],html.light input[type=datetime-local],html.light textarea{background:#f6f5f4!important;border-color:#ccccd1!important}
+html.light .note{background:#f6f5f4!important;border-color:#dcdce0!important}
+html.light .rule{background:#dcdce0!important}
+html.light .accept.ok{background:#dbf5e6!important;border-color:#d3eede!important}
+html.light .accept.wait{background:#ececee!important;color:#18181b!important;border:1px dashed #b9b9c0!important}
+html.light .accept.no{background:#f1dddd!important;border-color:#eed3d3!important}
+html.light .st-offered{background:#e7e5e4;color:#bc990d}
+html.light .st-accepted{background:#dbf5e6}
+html.light .st-declined{background:#f1dddd}
+html.light .pfacts div{background:#ececee!important}
+html.light .bar{background:#dcdce0!important}
+html.light .head{background:#ececee!important}
+html.light .ro{border-top:1px solid #e0e0e3!important}
+html.light .ro:hover{background:#f3f3f2}
+html.light .ro .num{color:#55555e!important}
+html.light .count.go{border-color:#b9b9c0!important;background:#ebeae9!important}
+html.light .count.zero{border-color:#eed3d3!important}
+html.light .count.ok{border-color:#d3eede!important}
+html.light .interval{color:#55555e!important}
+html.light .slot.free{border-color:#ccccd1!important}
+html.light .slot.free:hover{background:#ebeae9!important}
+html.light .dayname{color:#18181b!important}
+html.light .folio::before{background:radial-gradient(60% 50% at 50% 0%,rgba(0,0,0,.14),transparent 70%)!important}
+html.light .script .theirs p{color:#55555e}
+html.light .script .theirs .spk{color:#55555e!important}
+html.light .script .sd{color:#55555e!important}
+html.light .post .cap{background:#ececee!important}
+html.light .seg{border-color:#ccccd1!important}
+html.light .sheet{background:#f6f5f4!important;border-color:#d8d7d5!important}
+@media (min-width:700px){html.light .sheet{border-bottom:1px solid #d8d7d5!important}}
+html.light .toast{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+html.light details.more{border-top:1px solid #dcdce0}
+html.light details.more>summary{color:#18181b}
+html.light details.more>summary::before{border:1px solid #b9b9c0}
+html.light details.more>summary:hover{color:#000000}
+html.light{--acc:#0b0b0a;--gold:#0b0b0a;--gold2:#000000}
+html.light h1 em,html.light h2 em,html.light .ftag em,html.light .brand em{color:#74716b!important}
+html.light .kicker{color:#55555e!important}
+html.light .folio::before{background:radial-gradient(60% 50% at 50% 0%,rgba(0,0,0,.07),transparent 70%)!important}
+html.light .script .spk span{color:#2b2a27!important}
+html.light .head{color:#18181b!important}
+html.light .count.go{color:#18181b!important}
+html.light .dot.offered{background:#55555e}
+html.light .slot.booked{background:#ebeae9!important}
+html.light .bar i{background:#0b0b0a!important}
+html.light details.more>summary::before{color:#0b0b0a}
+html.light .hsup{color:#55555e}
+html.light .hsup:hover{color:#000000}
+html.light .shelfnav{border:1px solid #b9b9c0;background:rgba(246,245,244,.85);color:#0b0b0a}
+html.light .shelfnav:hover{background:#e4e4e7;border-color:#8e8b85}
+html.light .chero .ckick{color:#474542}
+html.light .clede{color:#2b2a27}
+html.light .ctools{background:#f1f1f3;border:1px solid #d4d4d9}
+html.light .cview{border:1px solid #c4c3c0}
+html.light .cview button{color:#2b2a27}
+html.light .cview button[aria-pressed="true"]{background:#0b0b0a;color:#fafafa}
+html.light .csearch input{background:#ececee;border:1px solid #c4c3c0;color:#0b0b0a}
+html.light .csearch input::placeholder{color:#66635e}
+html.light .cfilter button{border:1px solid #c4c3c0;background:#ececee;color:#18181b}
+html.light .cfilter button[aria-pressed="true"]{color:#f6f5f4}
+html.light .cfilter button[aria-pressed="true"] .fdot{background:#f6f5f4}
+html.light .cwrap button:focus-visible,html.light .cwrap a:focus-visible,html.light .cwrap input:focus-visible{outline:3px solid #0b0b0a}
+html.light .cempty{color:#2b2a27}
+html.light .acard{background:#ececee;border:1px solid #d0d0d5}
+html.light .avatar{background:color-mix(in srgb,var(--c) 20%,#efeeed);color:#0b0b0a}
+html.light .acount{color:#474542}
+html.light .acount b{color:#0b0b0a}
+html.light .abio{border-top:1px solid rgba(0,0,0,.12)}
+html.light .aprof{color:#0b0b0a}
+html.light .aprof:hover{color:#000000}
+html.light .hsup2{color:#474542}
+html.light .crow{background:#e4e4e7;color:#0b0b0a}
+html.light .crow:hover{background:#dbdbdf}
+html.light .cmeta{color:#474542}
+html.light .cgo{color:#77746d}
+html.light .crow:hover .cgo{color:#0b0b0a}
+html.light .also{color:#474542}
+html.light .also a{color:#0b0b0a}
+html.light .alsop{color:#66635e}
+html.light .pgroup{background:#ececee;border:1px solid #d0d0d5}
+html.light .pgn{color:#474542}
+html.light .ptable li{border-top:1px solid #d4d4d9}
+html.light .pt-name{color:#0b0b0a}
+html.light .pt-also{color:#575551}
+html.light .pt-w{color:#575551}
+html.light .crew2{background:#ececee;border:1px solid #d0d0d5}
+html.light .crole{color:#474542}
+html.light .cnote{color:#2b2a27}
+html.light .clinks a{color:#0b0b0a;border:1px solid #c4c3c0}
+html.light .clinks a:hover{border-color:#0b0b0a}
+html.light .cfoot{color:#575551}
+html.light{--muted:#474542;--line:#d0d0d5}
+html.light .nav a{color:#363532!important}
+html.light .nav a.on{color:#000000!important}
+html.light .nav a.navcta,html.light .nav a.navcta.on{color:#fbfbfb!important}
+html.light a:focus-visible,html.light button:focus-visible,html.light select:focus-visible,html.light input:focus-visible,html.light textarea:focus-visible,html.light summary:focus-visible,html.light [tabindex]:focus-visible{outline:3px solid #0b0b0a!important}
+html.light .small,html.light .kicker,html.light .fkick,html.light .pfacts dt,html.light .facts dt,html.light .dayname,html.light .legend,html.light .status,html.light .interval,html.light .show .sday,html.light .cd span,html.light .callrow span,html.light .fstats span,html.light .ckick{color:#474542!important}
+html.light .meta{color:#474542!important}
+html.light .sub{color:#2b2a27!important}
+html.light .sd{color:#474542!important}
+html.light .ftitle{color:#0b0b0a!important}
+html.light .fnav button,html.light .fnav a{border:1px solid #c4c3c0!important;background:#ececee!important;color:#18181b!important}
+html.light .fnav button.on,html.light .fnav button[aria-pressed="true"]{background:#0b0b0a!important;color:#f6f5f4!important;border-color:#0b0b0a!important}
+html.light .fnav button:hover,html.light .fnav a:hover{border-color:#0b0b0a!important}
+html.light .book:hover .cover{box-shadow:0 0 0 2px #0b0b0a!important}
+html.light .book:focus-visible{outline:3px solid #0b0b0a!important}
+html.light .card{background:#ececee!important;border:1px solid #d0d0d5!important}
+html.light .card.link:hover{border-color:#0b0b0a!important}
+html.light .note{background:#ececee!important;border:1px solid #d0d0d5!important;border-left:4px solid #0b0b0a!important;color:#2b2a27!important}
+html.light .note.warn{border-left-color:#bf0a0a!important}
+html.light .btn{border-color:#c4c3c0!important}
+html.light .btn:hover{border-color:#0b0b0a!important}
+html.light .pill{border-color:#c4c3c0!important}
+html.light select,html.light input[type=text],html.light input[type=url],html.light input[type=search],html.light input[type=datetime-local],html.light textarea{background:#ececee!important;border:1px solid #c4c3c0!important;color:#0b0b0a!important}
+html.light .ro{border-color:#d4d4d9!important}
+html.light .seg{border-color:#c4c3c0!important}
+html.light .seg button{color:#2b2a27!important}
+html.light .seg button.on{background:#0b0b0a!important;color:#f6f5f4!important}
+html.light .stb.ok{color:#2a914d;border-color:rgba(42,145,77,.45);background:rgba(42,145,77,.1)}
+html.light .stb.no{color:#bf0a0a;border-color:rgba(191,10,10,.45);background:rgba(191,10,10,.1)}
+html.light .stb.wait{color:#363532;border-color:#c4c3c0;background:#e4e4e7}
+html.light .csum{color:#2b2a27}
+html.light .csum b{color:#000000}
+html.light .csum a{color:#000000}
+html.light .pickme{border:1px solid #d0d0d5;background:#ececee;color:#0b0b0a}
+html.light .pickme span{color:#474542}
+html.light .pickme:hover{border-color:#0b0b0a;background:#e4e4e7}
+html.light .mecard{background:#ececee;border:1px solid #d0d0d5}
+html.light .mehead .ckick{color:#474542}
+html.light .mepieces{color:#2b2a27}
+html.light .mepieces a{color:#000000}
+html.light .mecard input[type=password]{background:#fafafa;border:1px solid #c4c3c0;color:#0b0b0a}
+html.light .nav a.navout{color:#363532!important;border:1px solid #c4c3c0!important}
+html.light .nav a.navout:hover{color:#000000!important;border-color:#0b0b0a!important}
+@media (max-width:1240px){html.light .nav{background:#fbfbfb;border-bottom:1px solid #d8d7d5}}
+html.light .stb.dir{color:#f6f5f4;background:#0b0b0a;border-color:#0b0b0a}
+html.light .ftitle em{color:#66635e}
+html.light .brand em{color:#66635e}
+html.light img[data-full]:focus-visible{outline:3px solid #0b0b0a}
+html.light #lbox{background:rgba(0,0,0,.97)}
+html.light .lb-cap{color:#18181b}
+html.light .lb-btn{border:1px solid #c4c3c0;background:#ececee;color:#0b0b0a}
+html.light .lb-btn:hover{border-color:#0b0b0a}
+html.light #lbimg{box-shadow:0 30px 80px -20px #fbfbfb}
+html.light .lb-nav{border:1px solid #c4c3c0;background:#ececee;color:#0b0b0a}
+html.light .lb-nav:hover{border-color:#0b0b0a}
+html.light #lbox button:focus-visible,html.light #lbox a:focus-visible{outline:3px solid #0b0b0a}
+html.light .stb.pend{color:#a27813;border-color:rgba(162,120,19,.45);background:rgba(162,120,19,.1)}
+html.light .checkin{background:#f1f1f3;border:1px solid #d4d4d9}
+html.light .ckick{color:#474542}
+html.light .ckprog p{color:#2b2a27}
+html.light .ckprog b{color:#000000}
+html.light .pbar{background:#d4d4d9}
+html.light .pbar i{background:#2a914d}
+html.light .ckyou{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .ckroles{color:#474542}
+html.light .bdot.pend{background:#a27813}
+html.light .bdot.ok{background:#2a914d}
+html.light .bn{color:#474542;background:#dfdfe3}
+html.light .pchip.pend{border-color:rgba(162,120,19,.45);background:rgba(162,120,19,.08)}
+html.light .pchip.accepted{border-color:rgba(42,145,77,.4);background:rgba(42,145,77,.07)}
+html.light .pchip button{color:#0b0b0a}
+html.light .pchip span{color:#474542}
+html.light .pchip.pend b{color:#a27813}
+html.light .pchip.accepted b{color:#2a914d}
+html.light .pchip:hover{border-color:#0b0b0a}
+html.light .nudge{border-left:1px solid rgba(162,120,19,.35);color:#a27813}
+html.light .nudge:hover{background:rgba(162,120,19,.15)}
+html.light .full{color:#2a914d}
+html.light .ckbtns .btn.primary:disabled,html.light .mebtns .btn.primary:disabled{background:rgba(42,145,77,.14)!important;color:#2a914d!important;border-color:rgba(42,145,77,.5)!important}
+html.light .opener{background:#fbfbfb}
+html.light .op-kick{color:#474542}
+html.light .op-title{color:#0b0b0a}
+html.light .op-title em{color:#66635e}
+html.light .opener .cd div{border-left:1px solid #d0d0d5!important}
+html.light .opener .cd b{color:#000000!important}
+html.light .opener .cd span{color:#66635e!important}
+html.light .op-when{color:#2b2a27}
+html.light .op-when b{color:#000000}
+html.light .shelf2{scrollbar-color:#c4c3c0 transparent;-webkit-mask-image:linear-gradient(90deg,transparent,#fbfbfb 28px,#fbfbfb calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#fbfbfb 28px,#fbfbfb calc(100% - 28px),transparent)}
+html.light .shelf2:focus-visible{outline:3px solid #0b0b0a}
+html.light .book2 .b2{box-shadow:0 16px 22px -14px rgba(0,0,0,.95),inset -1px 0 0 rgba(0,0,0,.07)}
+html.light .b2spine{background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,0.081) 55%,rgba(0,0,0,.1));border-right:1px solid rgba(0,0,0,0.158)}
+html.light .b2pages{background:repeating-linear-gradient(0deg,#937c4a 0 1px,#766950 1px 2px)}
+html.light .book2:hover .b2,html.light .book2:focus-visible .b2{box-shadow:0 30px 30px -18px #fbfbfb,inset -1px 0 0 rgba(0,0,0,.07)}
+html.light .book2:focus-visible .b2{box-shadow:0 0 0 3px #0b0b0a,0 30px 30px -18px #fbfbfb}
+html.light .s2ledge{background:linear-gradient(#ceced3,#ebebed);box-shadow:0 14px 24px -10px #fbfbfb}
+html.light .s2nav{border:1px solid #c4c3c0;background:rgba(241,241,243,.92);color:#0b0b0a}
+html.light .s2nav:hover{border-color:#0b0b0a}
+html.light .s2nav:focus-visible{outline:3px solid #0b0b0a}
+html.light .rsec{background:#f1f1f3;border:1px solid #d4d4d9}
+html.light .rnum{background:#0b0b0a;color:#f6f5f4}
+html.light .rtime,html.light .rclass{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .ttable li{border-top:1px solid #d4d4d9}
+html.light .ttable b{color:#000000}
+html.light .ttable span{color:#2b2a27}
+html.light .ttable li.prac span{color:#000000}
+html.light .rmap{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .rmapfoot span{color:#474542}
+html.light .satc{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .satc.next{border-color:#0b0b0a;box-shadow:0 0 0 1px #0b0b0a inset}
+html.light .satphase{color:#0a56c0;border:1px solid rgba(10,86,192,.45);background:rgba(10,86,192,.1)}
+html.light .satphase.run{color:#bf0a0a;border-color:rgba(191,10,10,.45);background:rgba(191,10,10,.1)}
+html.light .satplan li{background:#e0e0e4}
+html.light .satplan b{color:#474542}
+html.light .satplan span{color:#000000}
+html.light .btn.on-go{background:rgba(42,145,77,.14)!important;color:#2a914d!important;border-color:rgba(42,145,77,.55)!important}
+html.light .btn.on-no{background:rgba(191,10,10,.1)!important;color:#c50a0a!important;border-color:rgba(191,10,10,.5)!important}
+html.light .satwho p{color:#474542}
+html.light .satwho b.g{color:#2a914d}
+html.light .nm.go{color:#2a914d;border-color:rgba(42,145,77,.4);background:rgba(42,145,77,.08)}
+html.light .nm.no{color:#575551;border-color:#c4c3c0;background:#e4e4e7;text-decoration-color:rgba(0,0,0,.25)}
+html.light .nm.me{box-shadow:0 0 0 2px #0b0b0a}
+html.light .satafter{color:#2b2a27}
+html.light .topics li{border:1px solid #c4c3c0;background:#e4e4e7;color:#0b0b0a}
+html.light .partner{border-left:4px solid #a27813;background:rgba(162,120,19,.08);color:#18181b}
+html.light .partner b{color:#a27813}
+html.light .scta{background:linear-gradient(135deg,#ebeae9,#f1f1f3);border:1px solid #d0d0d5}
+html.light .scta:hover .scta-book .b2{box-shadow:0 30px 30px -18px #fbfbfb}
+html.light .show2{background:#ececee;border:1px solid #d0d0d5}
+html.light .cal{background:#0b0b0a;color:#f6f5f4;box-shadow:0 10px 20px -12px #fbfbfb}
+html.light .calm{background:#7d2b1d;color:#000000}
+html.light .calw{color:#a4a4ad}
+html.light .cost{background:#f1f1f3;border:1px solid #d4d4d9}
+html.light .costgrid img{border:1px solid #d0d0d5;background:#ebeae9}
+html.light .costgrid img:hover{border-color:#0b0b0a}
+html.light .stjump button{border:1px solid #c4c3c0;background:#ececee;color:#18181b}
+html.light .stjump button:hover{border-color:#0b0b0a}
+html.light .strobe{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .ssign{background:#000000}
+html.light .splate{background:#918308;color:#f6f5f4}
+html.light .swarn{color:#918308}
+html.light .stwhere{color:#2b2a27}
+html.light .stwhere b{color:#000000}
+html.light .amb li{background:#ebeae9;border:1px solid #d0d0d5;color:#328c79}
+html.light .amb b{color:#000000}
+html.light .amb span{color:#474542}
+html.light .songs li{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .sgicon{background:#dbdbe0;color:#550bc9}
+html.light .sgmain span{color:#474542}
+html.light .vfx{color:#0a56c0}
+html.light .firstcall{background:#0b0b0a;color:#f6f5f4;box-shadow:0 20px 50px -30px #fbfbfb}
+html.light .fckick{color:#7d2b1d}
+html.light .firstcall h2{color:#f6f5f4!important}
+html.light .fcwhat{color:#e4e4e7}
+html.light .fcwhat b{color:#f6f5f4}
+html.light .fcnote{color:#b9b9c0}
+html.light .firstcall .btn{background:#000000!important;color:#f6f5f4!important;border:1px solid #2b2a27!important}
+html.light .firstcall .btn:hover{border-color:#f6f5f4!important}
+html.light .firstcall .btn.fcgo{background:#f6f5f4!important;color:#000000!important;border-color:#f6f5f4!important}
+html.light .firstcall .btn.on-go{background:#1cc957!important;color:#d3eede!important;border-color:#d0f1dc!important}
+html.light .firstcall .btn.on-no{background:#d51313!important;color:#eed3d3!important;border-color:#7f1b1b!important}
+html.light .fcwho{color:#b9b9c0}
+html.light .fccal{background:#000000;border:1px solid #18181b;box-shadow:0 12px 24px -16px rgba(0,0,0,.6)}
+html.light .fccal .calm{background:#7d2b1d;color:#000000}
+html.light .fccal .calw{color:#a4a4ad}
+html.light .legend2{color:#474542}
+html.light .satphase.scene{color:#2a914d;border-color:rgba(42,145,77,.45);background:rgba(42,145,77,.1)}
+html.light .smonth{color:#2b2a27}
+html.light .srow{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .srow.next{border-color:#0b0b0a;box-shadow:0 0 0 1px #0b0b0a inset}
+html.light .srow.brk b{color:#66635e}
+html.light .srplan{color:#000000}
+html.light .srplan b{color:#66635e}
+html.light .srwho{color:#474542}
+html.light .srwho b.g{color:#2a914d}
+html.light .tbc{color:#f6f5f4;background:#a27813}
+html.light .tbcline{color:#2b2a27}
+html.light .satphase.mos{color:#550bc9;border-color:rgba(85,11,201,.45);background:rgba(85,11,201,.1)}
+html.light .satphase.combat{color:#b6520a;border-color:rgba(182,82,10,.45);background:rgba(182,82,10,.1)}
+html.light select:hover{border-color:#8e8b85!important}
+html.light select option{background:#ececee;color:#0b0b0a}
+html.light .doc a{color:#000000}
+html.light .docl li{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .docl span{color:#474542}
+html.light .norec{background:rgba(172,9,9,.1);border:2px solid #b50a0a;color:#d90b0b}
+html.light .norec .nricon{color:#b50a0a}
+html.light .norec b{color:#000000}
+html.light .nrtitle{color:#bf0a0a!important}
+html.light .share{background:rgba(162,120,19,.08);border:1px solid rgba(162,120,19,.45);color:#18181b}
+html.light .shicon{background:#a27813;color:#f6f5f4}
+html.light .share b{color:#000000}
+html.light .shtitle{color:#a27813!important}
+html.light .shnote{color:#363532}
+html.light .scmusic{background:#ebeae9;border:1px solid #d0d0d5}
+html.light .scmusic .sgmain span{color:#474542}
+html.light .sgmain a{color:#000000}
+html.light .stb.open{color:#363532;border:1px dashed #8e8b85}
+html.light .cnote{background:#ebeae9;border:1px solid #d0d0d5;border-left:4px solid #550bc9}
+html.light .cnote p{color:#18181b}
+html.light .cnote b{color:#000000}
+html.light .card.apcard{background:linear-gradient(160deg,color-mix(in srgb,var(--cl,#888) 10%,#ffffff) 0%,#ffffff 60%)!important;border-color:color-mix(in srgb,var(--cl,#888) 25%,#e4e4e7)!important}
+html.light .card.apcard::before{background:var(--cl,#888)}
+html.light .apn{color:var(--cl,#666)!important;background:color-mix(in srgb,var(--cl,#888) 12%,transparent)}
+html.light .apdot{background:var(--cl)}
+html.light .venn .vl{fill:#1a1a1a}
+html.light .venn circle:last-of-type{fill:#0a0a0a}
+html.light .venn .vc{fill:#fafaf9}
+html.light img{filter:none}
+html.light .sphl{background:#fde68a;box-shadow:inset 0 -2px 0 #d97706}
+html.light .top{background:rgba(250,250,249,.86)!important;border-bottom-color:#e4e4e7!important}
+html.light .menubtn span{background:#0a0a0a}
+
+</style>
 </head>
 <body>
 
@@ -983,6 +1410,7 @@ select option{background:#111113;color:#f5f5f4}
   <a class="brand" href="#home" aria-label="Selected Works of Shakespeare, home">Selected Works <em>of Shakespeare</em></a>
   <button class="menubtn" id="menubtn" aria-expanded="false" aria-controls="nav"><span></span><span></span><span class="sr">Menu</span></button>
   <nav class="nav" id="nav" aria-label="Main"></nav>
+  <button class="themebtn" id="themebtn" type="button" aria-label="Switch to light mode" title="Light / dark mode"><svg class="ti-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg><svg class="ti-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
 </div></header>
 <main class="wrap" id="view" tabindex="-1"></main>
 <footer class="sitefoot" aria-label="Contact"><span>Contact: Chris Kelly</span><span class="dot" aria-hidden="true">·</span><a href="mailto:chris@chriskelly.it">Email me</a><span class="dot" aria-hidden="true">·</span><a href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></footer>
@@ -1323,6 +1751,13 @@ function wireEdits(root){
   });
 }
 
+/* ================= THEME ================= */
+let ACC_DARK=null;const ACC_LIGHT={"Macbeth":"#b42318","Hamlet":"#1d5fbf","A Midsummer Night's Dream":"#16794a","The Taming of the Shrew":"#9a6700","Richard III":"#6d3fc0","Richard III (Henry VI, Part 3)":"#6d3fc0","Coriolanus":"#b4530f","As You Like It":"#0f766e"};
+const isLight=()=>document.documentElement.classList.contains("light");
+function applyAcc(){if(!ACC_DARK)ACC_DARK={...PLAYACC};Object.assign(PLAYACC,isLight()?ACC_LIGHT:ACC_DARK)}
+function setTheme(t){document.documentElement.classList.toggle("light",t==="light");try{localStorage.setItem("ss_theme",t)}catch(_){}
+  const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#fafaf9":"#000000";syncThemeBtn();applyAcc();route()}
+function syncThemeBtn(){const b=$("themebtn");if(!b)return;const l=isLight();b.setAttribute("aria-label",l?"Switch to dark mode":"Switch to light mode");b.setAttribute("aria-pressed",String(l))}
 /* ================= ROUTER ================= */
 const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
 let cdTimer=null;
@@ -1991,21 +2426,21 @@ const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowni
 function songFor(id){const x=SONGS.find(z=>z[4]===id);return x?`<section class="scmusic" aria-label="Music for this piece"><div class="sgicon">${icon("note",24)}</div><div class="sgmain"><p class="ckick" style="margin:0">Music</p><b>${esc(x[1])}</b><span>${x[2]}</span></div><audio controls preload="none" src="audio/${x[0]}.mp3" aria-label="Play ${esc(x[1])}"></audio></section>`:""}
 
 const APPROACH=[
- {h:"The text and the voice",items:[
+ {h:"The text and the voice",c:"#f4c75c",cl:"#9a6700",items:[
   ["Rhythm in the text","Shakespeare wrote the music into the line. We work from the verse: the iambic pulse, the short lines, the shared lines, the caesuras. Find the rhythm and the meaning usually follows."],
   ["Resonance, not volume","Power comes from a resonant, supported voice, not from shouting. And not from the opposite either: no throwing lines away or dropping into a mumble for the sake of being 'real'. Full voice, fully meant."],
   ["One thought, one breath","Each thought gets its own breath, carried right through to the end of the line. Keep the line in its rhythm and let the words do the lifting: the meaning is already in them, so you don't need to push it on top."],
   ["Attack the verse","Come at the verse with velocity and intent. Pick up your cues, drive through the thought, land the important word. Speed with clarity, never rushing for the sake of it."],
   ["A classical approach","The work comes from the tradition of Drama Centre London: Stanislavski-based, rigorous about action and objective, and serious about the classical text."]]},
- {h:"Between the actors",items:[
+ {h:"Between the actors",c:"#8cbcff",cl:"#1d5fbf",items:[
   ["Active listening","Everything you play comes from what you have just received. Listen as if you don't know what's coming next, and let it change you."],
   ["Syncopation, synergy, harmony","A scene works like a song between two or more people: timing, overlap, call and response. We look for the moment-to-moment emotional exchange that only happens when you are playing with, not at, your partner."],
   ["Competition","Scenes are contests. Someone wants to win, and so does the other person. This is especially true of The Shrew and Richard III: two wooing scenes built on a fight for the upper hand, played at full speed and full stakes."]]},
- {h:"Inside the scene",items:[
+ {h:"Inside the scene",c:"#ff8a8a",cl:"#b42318",items:[
   ["The why never changes; the how always should","Know your objective: what you want and why. That stays fixed. How you go after it should never stop changing. Build games and tactics, try one, and when it fails, strategise and try another."],
   ["Never play the state","Don't play a mood. Be however you feel in the moment, but always know why you came into the room and why you are leaving it. If you know why you're in the room, the feeling takes care of itself."],
   ["Given circumstances and stakes","Who you are, where you are, what has just happened and what you stand to lose. The higher the stakes, the clearer the playing."]]},
- {h:"The company",items:[
+ {h:"The company",c:"#7fe0a0",cl:"#16794a",items:[
   ["Generosity","Look after the people you are on stage with. Give them something to play off, help each other, and treat this as an ensemble rather than a collection of solos."],
   ["Leave the notes to Chris","One gentle request: please leave directing to the director. If something in a partner's work is bothering you, bring it to Chris rather than giving them a note. It keeps the room safe, and it lets everyone get one clear voice to follow."]]}
 ];
@@ -2027,7 +2462,7 @@ const SPEECH=[
  ["FIRST PLAYER","I warrant your honour.","I promise, my lord."],
  ["HAMLET","Be not too tame neither, but let your own discretion be your tutor: suit the action to the word, the word to the action; with this special observance, that you o'erstep not the modesty of nature:","But don't be too timid either. Let your own judgement guide you. Match what you do to what you say, and what you say to what you do, and above all don't go beyond what's natural."],
  ["","for any thing so overdone is from the purpose of playing, whose end, both at the first and now, was and is, to hold, as 'twere, the mirror up to nature; to show virtue her own feature, scorn her own image, and the very age and body of the time his form and pressure.","Overdoing it defeats the whole point of acting, which has always been, and still is, to hold a mirror up to life: to show goodness and foolishness as they really are, and to show our own times exactly as they are."],
- ["","Now this overdone, or come tardy off, though it make the unskilful laugh, cannot but make the judicious grieve; the censure of the which one must in your allowance o'erweigh a whole theatre of others.","Overdo it, or underplay it, and you might get a laugh from people who don't know better, but the people who do know will wince. And the opinion of one of them should matter more to you than a whole theatre full of the others."],
+ ["","Now this overdone, or come tardy off, though it make the unskilful laugh, [[cannot but make the judicious grieve;]] the censure of the which one must in your allowance o'erweigh a whole theatre of others.","Overdo it, or underplay it, and you might get a laugh from people who don't know better, [[but the people who do know will wince.]] And the opinion of one of them should matter more to you than a whole theatre full of the others."],
  ["","O, there be players that I have seen play, and heard others praise, and that highly, not to speak it profanely, that, neither having the accent of Christians nor the gait of Christian, pagan, nor man, have so strutted and bellowed that I have thought some of nature's journeymen had made men and not made them well, they imitated humanity so abominably.","I've seen actors, highly praised ones too, who didn't speak or walk like any human being. They strutted and bellowed so much that I thought nature's apprentices must have made them, and botched the job, they imitated people so badly."],
  ["FIRST PLAYER","I hope we have reformed that indifferently with us, sir.","I think we've more or less fixed that in our company, sir."],
  ["HAMLET","O, reform it altogether. And let those that play your clowns speak no more than is set down for them; for there be of them that will themselves laugh, to set on some quantity of barren spectators to laugh too; though, in the mean time, some necessary question of the play be then to be considered: that's villanous, and shows a most pitiful ambition in the fool that uses it. Go, make you ready.","Fix it completely. And make your comedians say only what's written for them. Some of them laugh at their own jokes to get the dimmer part of the audience laughing too, just when something important in the play needs attention. That's unforgivable, and it shows how cheap the ambition of a clown who does it is. Go and get ready."]
@@ -2046,11 +2481,11 @@ function pSpeech(){
     <p class="clede">Before the play-within-the-play, Hamlet tells a company of actors how to act. Four hundred years later it is still the best short guide to playing Shakespeare, and it is basically what we'll be doing. Shakespeare on the left, plain modern English on the right.</p>
     <div class="sptable" role="table" aria-label="Hamlet's advice to the players, with a modern translation">
       <div class="sprow sphead" role="row"><span role="columnheader">Shakespeare</span><span role="columnheader">In modern English</span></div>
-      ${SPEECH.map(([who,o,m])=>`<div class="sprow" role="row"><div role="cell" class="spo">${who?`<b class="spwho">${who}</b>`:""}${esc(o)}</div><div role="cell" class="spm">${who?`<b class="spwho">${who}</b>`:""}${esc(m)}</div></div>`).join("")}
+      ${SPEECH.map(([who,o,m])=>{const hl=t=>esc(t).replace(/\[\[(.*?)\]\]/g,'<mark class="sphl">$1</mark>');return `<div class="sprow" role="row"><div role="cell" class="spo">${who?`<b class="spwho">${who}</b>`:""}${hl(o)}</div><div role="cell" class="spm">${who?`<b class="spwho">${who}</b>`:""}${hl(m)}</div></div>`}).join("")}
     </div>
     <h2 style="margin-top:34px">What this means for us</h2>
     <p class="clede">Each part of the speech, and where you'll see it in our show.</p>
-    <div class="apgrid">${SPEECH_US.map(([t,d,...sc])=>`<article class="card apcard"><h3>${esc(t)}</h3><p>${esc(d)}</p><p class="spsc">${sc.map(link).join("<br>")}</p></article>`).join("")}</div>
+    <div class="apgrid" style="--c:#c9a6ff;--cl:#6d3fc0">${SPEECH_US.map(([t,d,...sc])=>`<article class="card apcard"><h3>${esc(t)}</h3><p>${esc(d)}</p><p class="spsc">${sc.map(link).join("<br>")}</p></article>`).join("")}</div>
   </section>`;
 }
 function pApproach(){
@@ -2058,7 +2493,7 @@ function pApproach(){
   return `<div class="chero"><p class="ckick">A CHRIS KELLY PRODUCTION</p><h1>Directorial approach</h1>
     <p class="clede">How we'll work together in the room. None of this is a rulebook; it's the shared language for the rehearsals.</p></div>
   ${venn()}
-  ${APPROACH.map(g=>`<section class="apgroup"><h2>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}
+  ${APPROACH.map(g=>`<section class="apgroup" style="--c:${g.c};--cl:${g.cl}"><h2><span class="apdot" aria-hidden="true"></span>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}
   ${pSpeech()}`;
 }
 function pStaging(){
@@ -2187,6 +2622,7 @@ async function saveHeadshot(name,file){
 }
 
 /* ---- UX behaviours ---- */
+$("themebtn").onclick=()=>setTheme(isLight()?"dark":"light");syncThemeBtn();applyAcc();
 $("menubtn").onclick=()=>{const o=!document.body.classList.contains("menuopen");document.body.classList.toggle("menuopen",o);$("menubtn").setAttribute("aria-expanded",String(o))};
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("sheetbg").classList.contains("on"))closeSheet();document.body.classList.remove("menuopen")}});
 let _lastFocus=null;
@@ -2194,7 +2630,7 @@ new MutationObserver(()=>{const on=$("sheetbg").classList.contains("on");if(on){
 function autoMe(){if(db&&db.supa)return false;const m=myCast&&myCast();if(m){const n=PEOPLE.find(x=>ck(x)===m[0]);if(n&&CAST.includes(n)&&me!==n){me=n;try{localStorage.setItem("ss_me",n)}catch(_){}return true}}return false}
 
 /* ================= BOOT ================= */
-route();
+applyAcc();route();
 let rerenderQ=null;
 function rerender(){if(document.querySelector(".sheetbg.on"))return;if([...document.querySelectorAll("audio")].some(a=>!a.paused&&!a.ended)){clearTimeout(rerenderQ);rerenderQ=setTimeout(rerender,2000);return} clearTimeout(rerenderQ);rerenderQ=setTimeout(()=>{const y=window.scrollY;const h=(location.hash||"#home").slice(1);if(h==="booking")renderBooking();else{route();window.scrollTo(0,y)}},60)}
 (async()=>{

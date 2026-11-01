@@ -1,0 +1,11 @@
+html.light .card.apcard{background:linear-gradient(160deg,color-mix(in srgb,var(--cl,#888) 10%,#ffffff) 0%,#ffffff 60%)!important;border-color:color-mix(in srgb,var(--cl,#888) 25%,#e4e4e7)!important}
+html.light .card.apcard::before{background:var(--cl,#888)}
+html.light .apn{color:var(--cl,#666)!important;background:color-mix(in srgb,var(--cl,#888) 12%,transparent)}
+html.light .apdot{background:var(--cl)}
+html.light .venn .vl{fill:#1a1a1a}
+html.light .venn circle:last-of-type{fill:#0a0a0a}
+html.light .venn .vc{fill:#fafaf9}
+html.light img{filter:none}
+html.light .sphl{background:#fde68a;box-shadow:inset 0 -2px 0 #d97706}
+html.light .top{background:rgba(250,250,249,.86)!important;border-bottom-color:#e4e4e7!important}
+html.light .menubtn span{background:#0a0a0a}
