@@ -1278,7 +1278,7 @@ const bookable=()=>ITEMS.filter(i=>i.actors[0]!=="Whole company");
 const countFor=id=>Object.values(bookings).filter(b=>b.type==="scene"&&b.scene===id).length;
 const actorLink=a=>CAST.includes(a)?`<a class="pill" href="#cast">${esc(a)}</a>`:`<span class="pill">${esc(a)}</span>`;
 const charLink=id=>CH[id]?`<a class="pill" href="#character-${id}">${esc(CH[id].name)}</a>`:"";
-const HEADSHOT={"Chris Kelly":"headshots/chris-kelly.jpg"};let HEADS={};
+const HEADSHOT={"Chris Kelly":"headshots/chris-kelly-2.jpg"};let HEADS={};
 const headSrc=name=>HEADSHOT[name]||HEADS[name]||null;
 function loadHeads(){if(!SUPA.url)return;fetch(SUPA.url+"/rest/v1/docs?collection=eq.headshots&select=data",{headers:SUPA.key.startsWith("sb_")?{apikey:SUPA.key}:{apikey:SUPA.key,Authorization:"Bearer "+SUPA.key}}).then(r=>r.ok?r.json():[]).then(rows=>{const m={};rows.forEach(r=>{if(r.data&&r.data.name&&r.data.img)m[r.data.name]=r.data.img});HEADS=m;rerender()}).catch(()=>{})}
 function initials(n){return n.split(" ").map(w=>w[0]).join("").slice(0,2)}
