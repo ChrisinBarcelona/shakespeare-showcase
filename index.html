@@ -284,7 +284,8 @@ a.book{display:block;text-decoration:none}
 .sitefoot{max-width:1100px;margin:56px auto 0;padding:22px 20px 34px;border-top:1px solid #1f1f23;font-size:13px;color:#8a8a93;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .sitefoot a{color:#a1a1aa;text-decoration:underline;text-underline-offset:3px}.sitefoot a:hover{color:#f5f5f4}
 .sitefoot .dot{opacity:.5}
-.sitefoot .charity{flex-basis:100%;color:#d4d4d8;margin-bottom:6px}
+.sitefoot .charity{margin-left:auto;color:#d4d4d8;text-align:right}
+@media (max-width:700px){.sitefoot .charity{margin-left:0;flex-basis:100%;text-align:left;margin-top:6px}}
 .excard:hover .exico{transform:translateY(-2px) scale(1.04)}
 @media (prefers-reduced-motion:reduce){.excard:hover .exico{transform:none}}
 .callrow{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #262626;border-bottom:1px solid #262626;margin:26px 0 8px}
@@ -1416,7 +1417,7 @@ html.light .menubtn span{background:#0a0a0a}
   <button class="themebtn" id="themebtn" type="button" aria-label="Switch to light mode" title="Light / dark mode"><svg class="ti-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg><svg class="ti-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
 </div></header>
 <main class="wrap" id="view" tabindex="-1"></main>
-<footer class="sitefoot" aria-label="Contact and charity"><span class="charity">Any profits from the show go to <a href="https://www.trocaire.org/" target="_blank" rel="noopener">Trócaire</a>.</span><span>Contact: Chris Kelly</span><span class="dot" aria-hidden="true">·</span><a href="mailto:chris@chriskelly.it">Email me</a><span class="dot" aria-hidden="true">·</span><a href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></footer>
+<footer class="sitefoot" aria-label="Contact and charity"><span>Contact: Chris Kelly</span><span class="dot" aria-hidden="true">·</span><a href="mailto:chris@chriskelly.it">Email me</a><span class="dot" aria-hidden="true">·</span><a href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a><span class="charity">Any profits from the show go to <a href="https://www.savethechildren.es/colaborar-ong/emergencias-gaza-israel-afganistan-fr" target="_blank" rel="noopener">Save the Children’s Gaza emergency appeal</a>.</span></footer>
 <div class="sheetbg" id="sheetbg"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Details"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
