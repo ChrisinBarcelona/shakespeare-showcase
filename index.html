@@ -821,6 +821,34 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .costgrid figure{margin:0}
 .costgrid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:1px solid #2a2a2f;background:#141416}
 .costgrid img:hover{border-color:#f5f5f4}
+
+/* ---- staging ---- */
+.stjump{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 4px}
+.stjump button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #3a3a40;background:#111113;color:#e4e4e7;font:600 14px var(--fb);cursor:pointer}
+.stjump button:hover{border-color:#f5f5f4}
+.cost{scroll-margin-top:80px}
+.rnum.sm{width:40px;height:40px;font-size:20px;border-radius:12px}
+.sth{font-size:20px!important;margin:24px 0 10px!important}
+.strobe{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:center;background:#141416;border:1px solid #2a2a2f;border-radius:18px;padding:18px}
+@media(max-width:640px){.strobe{grid-template-columns:1fr}}
+.ssign{background:#fff;border-radius:14px;padding:16px 16px 14px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.ssign svg{width:150px;height:auto}
+.splate{width:100%;background:#ffe500;border-radius:10px;color:#0a0a0a;font:800 22px/1.1 var(--fb);text-align:center;padding:12px 8px}
+.swarn{margin:0;font:700 18px var(--fb);color:#ffe500}
+.stwhere{margin:12px 0 0;color:#d4d4d8;font-size:15px}.stwhere b{color:#fff}
+.amb{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.amb li{display:flex;gap:12px;align-items:center;background:#141416;border:1px solid #2a2a2f;border-radius:14px;padding:14px;color:#8fdccb}
+.amb b{display:block;color:#fff;font-size:16px}.amb span{display:block;color:#b8b8bd;font-size:13.5px}
+.songs{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.songs li{display:grid;grid-template-columns:auto 1fr minmax(220px,320px) auto;gap:14px;align-items:center;background:#141416;border:1px solid #2a2a2f;border-radius:14px;padding:12px 14px}
+@media(max-width:760px){.songs li{grid-template-columns:auto 1fr}.songs audio,.songs .btn{grid-column:1/-1}}
+.sgicon{width:42px;height:42px;border-radius:12px;background:#1f1f24;display:grid;place-items:center;color:#c9a6ff}
+.sgmain b{display:block;font-size:16px}.sgmain span{display:block;color:#b8b8bd;font-size:13.5px}
+.songs audio{width:100%;height:40px;color-scheme:dark}
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:14px}
+.costgrid.one{grid-template-columns:1fr;margin-top:10px}
+.costgrid.one img{aspect-ratio:4/3}
+.vfx{display:flex;gap:18px;align-items:flex-start;margin-top:12px;color:#8cbcff}
 </style>
 </head>
 <body>
@@ -1170,6 +1198,7 @@ function route(){
   wireAttend(v);wireDownloads(v);wireShelf2(v);
   v.querySelectorAll('[data-psize]').forEach(b=>b.onclick=()=>{posterSize=b.dataset.psize;route()});
   if(base==="cast")wireCast();
+  if(h==="staging")wireStaging(v);
 }
 window.addEventListener("hashchange",()=>{route();window.scrollTo(0,0)});
 
@@ -1737,7 +1766,59 @@ function pCostume(){
       <div class="costgrid">${g.imgs.map(([f,alt])=>`<figure><img src="costume/${f}.jpg" data-full="costume/${f}.jpg" data-dl="${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`).join("")}</div>
       ${notesBlock("costume-"+g.id,"Costume notes: "+g.title)}</section>`}).join("")}`;
 }
-function pStaging(){return `<h1>Staging</h1><p class="sub">The pieces between and around the scenes.</p><div class="grid explore" style="margin-top:16px">${[["transitions","Transitions & SFX","The cue sheet between every piece."],["fights","Fight choreography","Four fights, beats and safety notes."],["mosaics","Mosaics & silhouettes","Opening montage, witches' ritual, Ophelia's father, Ophelia's water."],["costume","Costume","Titania's fairies, Oberon's fairy and the witches: the looks we're going for."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}</div>`}
+const ICONS={
+ owl:'<circle cx="12" cy="13" r="7"/><circle cx="9.3" cy="11.5" r="1.8"/><circle cx="14.7" cy="11.5" r="1.8"/><path d="M6 7 7.5 4 9.5 6.5M18 7l-1.5-3-2 2.5M11 15l1 1.5 1-1.5"/>',
+ crow:'<path d="M3 13c3-1 5-4 9-4 2.5 0 4 1 5 2.5l3.5-1-2 2.8c0 3.5-3 6.2-7 6.2-3.2 0-5-1.6-6-3.5L3 13Z"/><circle cx="15.5" cy="12" r=".9"/><path d="M9 19.5 8 22M12 20v2"/>',
+ bird:'<path d="M4 15c2 0 3-3 6-3 2 0 3 1.5 3 3s-1.5 3.5-4.5 3.5S4 17 4 15Z"/><path d="M13 14l3-1M7.5 18.5 7 21"/><path d="M18 4v7.2"/><circle cx="16.6" cy="11.4" r="1.6"/><path d="M18 4l3 1.2"/>',
+ forest:'<path d="M7 3 2.5 12h3L2 18h10L8.5 12h3L7 3ZM17 6l-3.5 7h2.5L13 18h8l-3-5h2.5L17 6Z"/><path d="M7 18v3M17 18v3"/>',
+ water:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/><path d="M9.5 15a2.5 2.5 0 0 0 2.5 2.5"/>',
+ river:'<path d="M2 8c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0M2 13c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0M2 18c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0"/>',
+ projector:'<rect x="2" y="8" width="16" height="9" rx="2"/><circle cx="8" cy="12.5" r="2.6"/><path d="M18 10l4-2v9l-4-2M13 11h3M5 17v2M15 17v2"/>',
+ note:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'};
+const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
+const AMBIENT=[["owl","Owls","Night in the wood: Midsummer, the witches"],["crow","Crows & ravens","Macbeth's heath and castle"],["bird","Birdsong","Morning: Arden, the lovers wake"],["forest","Forest","The Forest of Arden, the Athenian wood"],["water","Water","Ophelia's water"],["river","River","Ophelia's drowning, running under the scene"]];
+const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning (Macbeth mosaic)"],["macbeth","Macbeth","1:32","Macbeth scenes"],["rosemary","Rosemary","1:29","Ophelia's madness"],["the-changeling-boy","The Changeling Boy","1:00","Oberon & Titania"]];
+function pStaging(){
+  const fights=ITEMS.filter(i=>i.type==="fight"),mos=ITEMS.filter(i=>i.type==="mosaic");
+  const secs=[["st-trans","Transitions"],["st-sfx","SFX"],["st-atmos","Atmos"],["st-props","Props"],["st-vfx","Visual effects"],["st-cost","Costume"]];
+  const ph=(f,alt)=>`<figure><img src="staging/${f}.jpg" data-full="staging/${f}.jpg" data-dl="${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`;
+  return `<div class="chero"><p class="ckick">Staging</p><h1>Staging</h1>
+    <p class="clede">Everything around the scenes: how we move from one piece to the next, what the audience hears and sees, and the physical things on stage. Six parts, in the order we build them.</p></div>
+  <nav class="stjump" aria-label="Staging sections">${secs.map(([id,l])=>`<button type="button" data-jumpto="${id}">${l}</button>`).join("")}</nav>
+
+  <section class="cost" id="st-trans"><div class="costhead"><span class="rnum sm">1</span><h2>Transitions</h2></div>
+    <p class="clede">How the evening flows: the cue sheet between every piece, the fights and the wordless mosaics that link the plays.</p>
+    <div class="grid explore" style="margin-top:14px">${[["transitions","Transitions cue sheet","Sound, light and set change between every piece."],["fights","Fight choreography",fights.length+" fights, beats and safety notes."],["mosaics","Mosaics & silhouettes",mos.length+" wordless pieces: "+mos.map(m=>m.title).join(", ")+"."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${esc(d)}</div></a>`).join("")}</div></section>
+
+  <section class="cost" id="st-sfx"><div class="costhead"><span class="rnum sm">2</span><h2>SFX</h2></div>
+    <p class="clede">Sound and light effects, in three parts: lighting, ambient sounds and the musical transitions.</p>
+    <h3 class="sth">Lighting</h3>
+    <div class="strobe"><div class="ssign" role="img" aria-label="Warning sign: strobe lighting in use"><svg viewBox="0 0 100 88" aria-hidden="true"><path d="M50 6 95 82H5Z" fill="#ffe500" stroke="#0a0a0a" stroke-width="8" stroke-linejoin="round"/><path d="M50 30v26" stroke="#0a0a0a" stroke-width="9" stroke-linecap="round"/><circle cx="50" cy="69" r="5.5" fill="#0a0a0a"/></svg><div class="splate">Strobe lighting in use</div></div>
+      <div class="sinfo"><p class="swarn">Warning: strobe lighting is used during the fights and the choreography.</p>
+        <p class="clede" style="margin:8px 0 0">Flashing light can affect people with photosensitive epilepsy. We'll warn the audience at the venue, on tickets and in the programme, and run it in tech so the cast knows exactly when it comes.</p>
+        <p class="stwhere"><b>Where:</b> ${fights.map(f=>esc(f.title)).join(" · ")}${mos.length?" · choreographed mosaics":""}</p></div></div>
+    <h3 class="sth">Ambient sounds</h3>
+    <ul class="amb">${AMBIENT.map(([k,t,d])=>`<li>${icon(k,30)}<div><b>${t}</b><span>${d}</span></div></li>`).join("")}</ul>
+    <h3 class="sth">Musical transitions</h3>
+    <ul class="songs">${SONGS.map(([f,t,dur,use])=>`<li><div class="sgicon">${icon("note",22)}</div><div class="sgmain"><b>${t}</b><span>For: ${esc(use)} · ${dur}</span></div><audio controls preload="none" src="audio/${f}.mp3" aria-label="Play ${esc(t)}"></audio><a class="btn sm" href="audio/${f}.mp3" download="${f}.mp3">Download</a></li>`).join("")}</ul></section>
+
+  <section class="cost" id="st-atmos"><div class="costhead"><span class="rnum sm">3</span><h2>Atmos</h2></div>
+    <p class="clede">The air on stage. A smoke machine gives us haze for the witches, the wood at night and Ophelia's water, and makes the light beams visible. To check with Teatre Gaudí before tech: smoke detectors and how long the haze hangs.</p>
+    <div class="costgrid">${ph("smoke-machine","Smoke machine with coloured light")}</div></section>
+
+  <section class="cost" id="st-props"><div class="costhead"><span class="rnum sm">4</span><h2>Props</h2></div>
+    <p class="clede">The things actors handle and the pieces that dress the stage: the physical side of the look.</p>
+    <div class="props"><div><h3 class="sth" style="margin-top:0">Rapier and dagger</h3><p class="meta">Stage-combat blades for the fights, used only with the fight choreography and safety notes.</p><div class="costgrid one">${ph("rapier-dagger","Rapier and dagger")}</div></div>
+      <div><h3 class="sth" style="margin-top:0">Foam rocks</h3><p class="meta">Light, safe rocks to sit and stand on: the heath, the wood, the Forest of Arden.</p><div class="costgrid one">${ph("foam-rocks","Foam rocks")}</div></div></div></section>
+
+  <section class="cost" id="st-vfx"><div class="costhead"><span class="rnum sm">5</span><h2>Visual effects</h2></div>
+    <div class="vfx">${icon("projector",54)}<div><p class="clede" style="margin:0">A projector for the moments that need more than light: the moon over the wood, Ophelia's father behind the scrim, water for her drowning, and the emblems between the plays.</p><p class="meta" style="margin-top:8px">Projection list and screen position to be set in tech.</p></div></div></section>
+
+  <section class="cost" id="st-cost"><div class="costhead"><span class="rnum sm">6</span><h2>Costume</h2></div>
+    <p class="clede">The looks for Titania's fairies, Oberon's fairy and the witches.</p>
+    <a class="card link" href="#costume" style="margin-top:14px"><h3>Open costume →</h3><div class="meta">Photos and notes for each group.</div></a></section>`;
+}
+function wireStaging(root){root.querySelectorAll("[data-jumpto]").forEach(b=>b.onclick=()=>{const t=document.getElementById(b.dataset.jumpto);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})})}
 
 /* ---------- Booking ---------- */
 function pBooking(){
@@ -1855,7 +1936,7 @@ function rerender(){if(document.querySelector(".sheetbg.on"))return; clearTimeou
   let list=[],i=0,back=null;
   const show=()=>{const im=list[i];$("lbimg").src=im.dataset.full;$("lbimg").alt=im.alt;$("lbcap").textContent=im.alt.replace(/ poster$/,"")+(list.length>1?`  ·  ${i+1} of ${list.length}`:"");
     $("lbdl").href=im.dataset.full;$("lbdl").setAttribute("download",im.dataset.dl||"poster.jpg");$("lbp").hidden=$("lbn").hidden=list.length<2};
-  const open=im=>{const grid=im.closest(".postergrid,.costgrid");list=grid?[...grid.querySelectorAll("img[data-full]")]:[im];i=Math.max(0,list.indexOf(im));back=im;show();box.hidden=false;document.documentElement.style.overflow="hidden";$("lbx").focus()};
+  const open=im=>{const grid=im.closest(".postergrid,.costgrid:not(.one)")||im.closest(".props");list=grid?[...grid.querySelectorAll("img[data-full]")]:[im];i=Math.max(0,list.indexOf(im));back=im;show();box.hidden=false;document.documentElement.style.overflow="hidden";$("lbx").focus()};
   const close=()=>{box.hidden=true;$("lbimg").removeAttribute("src");document.documentElement.style.overflow="";if(back)back.focus()};
   const step=d=>{i=(i+d+list.length)%list.length;show()};
   document.addEventListener("click",e=>{const im=e.target.closest&&e.target.closest("img[data-full]");if(im&&!box.contains(im)){e.preventDefault();open(im)}});
