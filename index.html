@@ -903,6 +903,12 @@ a.btn,button.btn,label.btn{display:inline-flex!important;align-items:center!impo
 .srwho{margin:8px 0 0;font-size:13.5px;color:#b8b8bd}.srwho b.g{color:#7fe0a0}
 .srbtns{display:flex;gap:8px}.srbtns .btn{min-height:46px;min-width:116px}
 @media(max-width:760px){.srow{grid-template-columns:auto 1fr}.srbtns{grid-column:1/-1}.srbtns .btn{flex:1}}
+
+.tbc{display:inline-flex;align-items:center;font:700 11.5px var(--fb);letter-spacing:.08em;color:#0a0a0a;background:#f4c75c;border-radius:6px;padding:2px 7px;vertical-align:middle}
+.tbcline{display:flex;align-items:center;gap:8px;margin:18px 0 0;color:#d4d4d8;font-size:14.5px}
+.op-when .tbc{margin-right:6px}
+.satphase.mos{color:#c9a6ff;border-color:rgba(201,166,255,.45);background:rgba(201,166,255,.1)}
+.satphase.combat{color:#ffab6e;border-color:rgba(255,171,110,.45);background:rgba(255,171,110,.1)}
 </style>
 </head>
 <body>
@@ -1018,6 +1024,9 @@ const ORDER=[
   syn:"On a blasted heath, the witches greet Macbeth as Thane of Glamis, Thane of Cawdor and king hereafter, and tell Banquo his children will be kings. Moments later, news arrives that Macbeth has been made Thane of Cawdor.",arc:"Macbeth arc: the beginning (temptation)."},
  {id:"ayl21",type:"scene",n:"2",play:"As You Like It 2.1",title:"Now, my co-mates",actors:["Aldo D'Ibaños","Teo Jansen"],chars:["duke-senior","amiens"],mins:2,
   syn:"In the Forest of Arden, the exiled Duke tells his followers that this life is sweeter than the 'painted pomp' of court: 'sweet are the uses of adversity.'",arc:"Contrast: a ruler at peace without his crown, straight after Macbeth is promised one."},
+ {id:"mos-fairy",type:"mosaic",n:"◐",play:"Mosaic",title:"The fairy dance",actors:["Elle","Jean-Baptiste Courtois","Teo Jansen","Sophie Heideker"],chars:["titania","oberon","puck","fairy"],mins:2,
+  syn:"The wood wakes. Titania's fairies and Oberon's fairy dance in from the dark, circling and teasing, until the fairy king and queen arrive. It opens the Midsummer scenes and turns the stage into the Athenian wood.",
+  ideas:"Low moonlight and haze. Fairies enter in pairs, weaving between the foam rocks; one held picture as Titania and Oberon meet, then straight into 'Ill met by moonlight'."},
  {id:"mnd21a",type:"scene",n:"3",play:"Midsummer 2.1",title:"Oberon & Titania",actors:["Jean-Baptiste Courtois","Elle","Teo Jansen","Sophie Heideker"],chars:["oberon","titania","puck","fairy"],mins:4,
   syn:"The fairy king and queen meet by moonlight and quarrel over a changeling boy. Titania describes how their feud has wrecked the seasons. Oberon swears revenge and sends Puck for the love-in-idleness flower.",arc:"Midsummer arc: the cause."},
  {id:"ham13",type:"scene",n:"4",play:"Hamlet 1.3",title:"Laertes warns Ophelia",actors:["Carlos Toca","Chrystele Alix","Adrian P. Smith"],chars:["laertes","ophelia","polonius"],mins:3,
@@ -1119,20 +1128,20 @@ const VENUES={
   bcs:{name:"Barcelona Code School",addr:"Carrer de París, 157, 08036 Barcelona",area:"Eixample",tel:"",map:"https://www.google.com/maps/search/?api=1&query=Barcelona+Code+School+Carrer+de+Par%C3%ADs+157"}
 };
 const SAT_ALL=[
- ["2026-11-07","Mosaic choreography","Movement","Workshop"],
- ["2026-11-14","Stage combat","Voice","Workshop"],
- ["2026-11-21","Stage combat","Character physicality","Workshop"],
- ["2026-11-28","Animals","Mosaic choreography","Workshop"],
- ["2026-12-05","Blocking: Macbeth","Entrances & exits","Scene work"],
- ["2026-12-12","Blocking: Hamlet","Stage combat","Scene work"],
- ["2026-12-19","Blocking: Midsummer","Mosaic choreography","Scene work"],
+ ["2026-11-07","Opening mosaic: the characters","Movement for the opening mosaic","Mosaics"],
+ ["2026-11-14","Stage combat","Stage combat","Stage combat"],
+ ["2026-11-21","The witches' ritual","The crowning","Mosaics"],
+ ["2026-11-28","The fairy dance","The fairy dance","Mosaics"],
+ ["2026-12-05","Ophelia's water","Ophelia's water · Ophelia sees her father","Mosaics"],
+ ["2026-12-12","Stage combat","Stage combat","Stage combat"],
+ ["2026-12-19","Character physicality","Animals","Workshop"],
  ["2026-12-26",null,null,"Break","No rehearsal · Christmas"],
  ["2027-01-02",null,null,"Break","No rehearsal · New Year"],
- ["2027-01-09","Blocking: Shrew · Richard III","Blocking: Coriolanus · As You Like It","Scene work"],
- ["2027-01-16","Fight call: all four fights","Transitions & SFX","Scene work"],
- ["2027-01-23","First half: stumble-through","Notes","Scene work"],
- ["2027-01-30","Second half: stumble-through","Notes","Scene work"],
- ["2027-02-06","Mosaics & transitions polish","Fight call","Scene work"],
+ ["2027-01-09","Blocking: Macbeth · Hamlet","Blocking: Midsummer","Scene work"],
+ ["2027-01-16","Blocking: Shrew · Richard III","Blocking: Coriolanus · As You Like It","Scene work"],
+ ["2027-01-23","All six mosaics, in running order","Entrances & exits","Mosaics"],
+ ["2027-01-30","Fight call: all four fights","Voice","Stage combat"],
+ ["2027-02-06","Transitions & SFX","Voice","Scene work"],
  ["2027-02-13","Full run-through 1","Notes","Run-through"],
  ["2027-02-20","Full run-through 2","Notes","Run-through"],
  ["2027-02-27","Full run-through 3","Director's notes","Run-through"]];
@@ -1288,7 +1297,7 @@ function pHome(){
       <p class="op-kick">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</p>
       <h1 class="op-title" id="optitle">Selected Works <em>of Shakespeare</em></h1>
       <div class="cd op-cd" id="cd" role="timer" aria-label="Time until curtain"><div><b id="cd-d">–</b><span>Days</span></div><div><b id="cd-h">–</b><span>Hours</span></div><div><b id="cd-m">–</b><span>Minutes</span></div><div><b id="cd-s">–</b><span>Seconds</span></div></div>
-      <p class="op-when">UNTIL CURTAIN · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
+      <p class="op-when"><span class="tbc">TBC</span> UNTIL CURTAIN · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
       <div class="op-btns"><button type="button" class="btn primary" id="tockin">Who's in? ↓</button><a class="btn" href="#shows">Performance schedule</a>${isOwner?`<button class="btn" id="setdate">Change opening date</button>`:""}</div>
     </div>
   </section>
@@ -1298,11 +1307,11 @@ function pHome(){
     <div class="flyerinfo">
       <div class="kicker">The essentials</div>
       <dl class="facts">
-        <div><dt>Shows</dt><dd>Every Thursday, Friday &amp; Saturday in March 2027 · ${SHOWS.length} performances<br><span class="meta">${VENUES.gaudi.name}, ${VENUES.gaudi.addr}</span></dd></div>
+        <div><dt>Shows <span class="tbc">TBC</span></dt><dd>Every Thursday, Friday &amp; Saturday in March 2027 · ${SHOWS.length} performances<br><span class="meta">${VENUES.gaudi.name}, ${VENUES.gaudi.addr}</span></dd></div>
         <div><dt>Show day</dt><dd>${CALL.map(([t,l])=>`<b>${t}</b> ${l}`).join(" · ")}</dd></div>
         <div><dt>Tech</dt><dd>${TECH.label} · Teatre Gaudí</dd></div>
         <div><dt>First call</dt><dd><b>Tuesday 10 November, 13:30</b> · full read-through &amp; first dramaturgy session<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
-        <div><dt>Saturday rehearsals</dt><dd>09:00–11:30 · every Saturday, 7 Nov – 27 Feb<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
+        <div><dt>Saturday rehearsals <span class="tbc">TBC</span></dt><dd>09:00–11:30 · every Saturday, 7 Nov – 27 Feb<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
         <div><dt>Dramaturgy sessions</dt><dd>Mon–Fri, 15:30–19:30 (2-hour slots, book with your scene partners)<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
       </dl>
       <div class="btns"><a class="btn primary" href="#booking">Book a rehearsal</a><a class="btn" href="#shows">Performance schedule</a></div>
@@ -1315,7 +1324,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights, mosaics and costume."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
+    ${[["scenes","Scene running order","16 scenes, 4 fights, 6 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights, mosaics and costume."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
@@ -1326,10 +1335,10 @@ function pHome(){
 }
 /* ---- shared: who am I + Saturday attendance ---- */
 function meSelect(){if(me)return `<div class="mesel youare">You're <b>${esc(me)}</b> <button type="button" class="btn sm" data-notme>Not you? Change name</button></div>`;
-  return `<p class="attendhint">Choose your name to mark attending or book. This browser will remember it.</p><div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
+  return `<p class="attendhint">Choose your name to mark attending or book.</p><div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
 function attendees(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===true).map(a=>a.actor).sort()}
 function notGoing(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===false).map(a=>a.actor).sort()}
-const phaseCls=p=>p==="Run-through"?"run":p==="Scene work"?"scene":"";
+const phaseCls=p=>p==="Run-through"?"run":p==="Scene work"?"scene":p==="Mosaics"?"mos":p==="Stage combat"?"combat":"";
 function satRow(x){const [date,a,b,ph,note]=x,d=new Date(date+"T09:00");
   const cal=`<div class="cal sm" aria-hidden="true"><span class="calm">${d.toLocaleDateString("en-GB",{month:"short"})}</span><span class="cald">${d.getDate()}</span><span class="calw">Sat</span></div>`;
   if(!a)return `<li class="srow brk">${cal}<div class="srmain"><b>${esc(note)}</b></div></li>`;
@@ -1419,7 +1428,7 @@ function pScenes(){
   const total=ITEMS.reduce((a,i)=>a+(i.mins||0),0);
   const vols=ITEMS.map((o,i)=>{const pl=itemPlay(o);const [bg,fg]=o.type==="scene"?playColors(pl):o.type==="fight"?["#120707","#e46a6a"]:["#0d0d0d","var(--acc)"];
     return vol2({href:"#scene-"+o.id,bg,fg,i,slim:o.type!=="scene",kick:o.type==="scene"?o.play:(o.type==="fight"?"Fight":"Mosaic"),title:o.title,meta:(o.type==="scene"?o.n+" · ":"")+(o.actors[0]==="Whole company"?"Company":o.actors.length+" players"),sub:"≈ "+o.mins+" min",label:o.play+": "+o.title})}).join("");
-  return folioHero(`${ITEMS.filter(i=>i.type==="scene").length} scenes · 4 fights · 4 mosaics · ≈ ${Math.round(total)} minutes`,"The Evening",`<p class="ftag">The running order on one shelf, left to right. Pick a volume to open it.</p>`)+shelf2(vols,"Running order")+`</section>
+  return folioHero(`${ITEMS.filter(i=>i.type==="scene").length} scenes · ${ITEMS.filter(i=>i.type==="fight").length} fights · ${ITEMS.filter(i=>i.type==="mosaic").length} mosaics · ≈ ${Math.round(total)} minutes`,"The Evening",`<p class="ftag">The running order on one shelf, left to right. Pick a volume to open it.</p>`)+shelf2(vols,"Running order")+`</section>
   <h2 style="margin-top:36px">Running <em>order</em></h2><p class="sub">The number on the right is how many rehearsal sessions are booked.</p><div class="rule"></div>`+
   ORDER.map(o=>o.type==="interval"?`<div class="interval">INTERVAL</div>`:
     `<a class="ro" href="#scene-${o.id}"><div class="num">${o.n}</div><div class="main"><div class="kicker">${esc(o.play)}</div><div class="ttl">${esc(o.title)}</div><div class="meta">${o.actors.map(esc).join(", ")}</div></div>${o.actors[0]==="Whole company"?"":`<div class="count ${countFor(o.id)===0?"zero":countFor(o.id)>=3?"ok":""}" title="Rehearsals booked">${countFor(o.id)}</div>`}</a>`).join("")+
@@ -1665,7 +1674,7 @@ function checkIn(){
   const you=me&&all.includes(me)?`<div class="ckyou"><div class="ckwho"><p class="ckick" style="margin:0">You're</p><h3>${esc(me)}</h3><p class="ckroles">${esc(rolesTxt(me))}</p>${stBadge(mine)}</div>
       <div class="ckbtns"><button type="button" class="btn primary" data-ck="accepted" ${mine==="accepted"?"disabled":""}>${mine==="accepted"?"✓ Accepted":"Accept role"}</button><button type="button" class="btn" data-ck="pending" ${mine!=="accepted"?"disabled":""}>Decline role</button>
       <button type="button" class="btn sm ghost" data-notme>Not you? Change name</button></div></div>`
-    :`<div class="ckyou"><div class="ckwho"><h3>Are you in the company?</h3><p class="ckroles">Find your name, then accept your part. Your browser will remember you.</p></div><div class="ckbtns"><button type="button" class="btn primary" data-pickme>Find your name</button></div></div>`;
+    :`<div class="ckyou"><div class="ckwho"><h3>Are you in the company?</h3><p class="ckroles">Find your name and accept your part. Everyone can see below who has accepted and who hasn’t yet.</p></div><div class="ckbtns"><button type="button" class="btn primary" data-pickme>Find your name</button></div></div>`;
   const chip=(n,st)=>`<li class="pchip ${st}"><button type="button" data-isme="${esc(n)}" aria-label="${esc(n)}: ${st==="accepted"?"accepted":"pending response"}. Select if this is you."><b>${esc(n)}</b><span>${esc(rolesTxt(n))}</span></button>${st!=="accepted"?`<a class="nudge" href="${nudgeLink(n)}" target="_blank" rel="noopener" aria-label="Nudge ${esc(n)} on WhatsApp">Nudge</a>`:""}</li>`;
   return `<section class="checkin" aria-labelledby="ckh"><div class="ckhead"><div><p class="ckick">Company check-in</p><h2 id="ckh">Who's in?</h2></div>
     <div class="ckprog"><p><b>${acc.length} of ${all.length}</b> accepted</p><div class="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="${all.length}" aria-valuenow="${acc.length}" aria-label="Company accepted"><i style="width:${pct}%"></i></div></div></div>
@@ -1674,7 +1683,7 @@ function checkIn(){
       ${acc.length?`<h3 class="bh"><span class="bdot ok"></span>Accepted <span class="bn">${acc.length}</span></h3><ul class="chips">${acc.map(n=>chip(n,"accepted")).join("")}</ul>`:""}</div></section>`;
 }
 function openPicker(){const crewN=CREW.map(c=>c.name);const btn=n=>`<button type="button" class="pickme" data-me="${esc(n)}"><b>${esc(n)}</b><span>${esc(rolesTxt(n)||"Company")}</span></button>`;
-  $("sheet").innerHTML=`<h3>Find your name</h3><p class="meta">Your browser will remember you.</p><span class="small" style="margin-top:12px">Actors</span><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div><span class="small" style="margin-top:14px">Crew</span><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div><div class="btns"><button class="btn" id="cx">Cancel</button></div>`;
+  $("sheet").innerHTML=`<h3>Find your name</h3><p class="meta">Your answer is saved and shown to the whole company.</p><span class="small" style="margin-top:12px">Actors</span><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div><span class="small" style="margin-top:14px">Crew</span><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div><div class="btns"><button class="btn" id="cx">Cancel</button></div>`;
   $("sheet").classList.add("wide");$("sheetbg").classList.add("on");$("cx").onclick=closeSheet;
   $("sheet").querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);closeSheet();route()})}
 function confirmMe(n){$("sheet").innerHTML=`<h3>Are you ${esc(n)}?</h3><p class="meta">${esc(rolesTxt(n))}</p><div class="btns"><button class="btn primary" id="yes">Yes, that's me</button><button class="btn" id="cx">Cancel</button></div>`;
@@ -1690,7 +1699,7 @@ function pMe(){
     const btn=n=>{const ps=PARTS.filter(p=>p.actor===n),c=CREW.find(x=>x.name===n);const sub=[...ps.map(p=>p.name),...(c?[c.role]:[])].join(", ");
       return `<button type="button" class="pickme" data-me="${esc(n)}"><b>${esc(n)}</b><span>${esc(sub||"Company")}</span></button>`};
     return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Who are you?</h1>
-      <p class="clede">Pick your name. This browser will remember you, and you can change it any time with “Not you?”.</p></header>
+      <p class="clede">Pick your name to accept your part. Your answer is saved and shown to the whole company.</p></header>
       <h2 class="ccrewh" style="margin-top:28px!important">Actors</h2><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div>
       <h2 class="ccrewh">Crew</h2><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div></div>`;
   }
@@ -1734,6 +1743,7 @@ function pShows(){
   <div class="callrow">${CALL.map(([t,l])=>`<div><b>${t}</b><span>${l}</span></div>`).join("")}</div>
   <div class="card venue"><div><span class="small">Venue</span><h3>${VENUES.gaudi.name}</h3><div class="meta">${VENUES.gaudi.addr} · ${VENUES.gaudi.area}<br>Box office ${VENUES.gaudi.tel}</div></div><a class="btn sm" href="${VENUES.gaudi.map}" target="_blank" rel="noopener">Map ↗</a></div>
   <div class="card tech"><span class="small">Tech rehearsal</span><h3>${TECH.label}</h3><div class="meta">At Teatre Gaudí. Exact call time to be confirmed.</div></div>
+  <p class="tbcline"><span class="tbc">TBC</span> Performance dates to be confirmed</p>
   ${Object.values(weeks).map((ds,i)=>`<h2 class="wk">Week ${i+1}</h2><div class="showgrid">${ds.map((d,j)=>{const x=new Date(d+"T20:00");const n=SHOWS.indexOf(d)+1;const past=x<new Date();
     return `<article class="show2 ${past?"past":""}"><div class="cal" aria-hidden="true"><span class="calm">${x.toLocaleDateString("en-GB",{month:"short"})}</span><span class="cald">${x.getDate()}</span><span class="calw">${x.toLocaleDateString("en-GB",{weekday:"short"})}</span></div>
       <div class="showinfo"><p class="ckick">Show ${n} of ${SHOWS.length}${n===1?" · Opening night":""}${n===SHOWS.length?" · Closing night":""}</p><h3>${x.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3><p class="meta">Arrive 18:00 · Curtain 20:00</p></div></article>`}).join("")}</div>`).join("")}`;
@@ -1743,15 +1753,15 @@ function pRehearsals(){
   return folioHero("Rehearsal format","Rehearsals",`<p class="ftag">Two ways we work: <em>Saturday company rehearsals, and weekday classes you book.</em></p>`)+`</section>
   ${firstCall()}
   <section class="rsec" aria-labelledby="r1">
-    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick">Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · ${SATURDAYS.length} Saturdays, 7 November – 27 February (no rehearsal 26 Dec and 2 Jan)</p></div></div>
+    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick"><span class="tbc">TBC</span> Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · ${SATURDAYS.length} Saturdays, 7 November – 27 February (no rehearsal 26 Dec and 2 Jan)</p></div></div>
     <div class="rgrid">
       <div class="rtime"><h3>The morning</h3><ol class="ttable">${SAT_TIMES.map(([t,l])=>`<li class="${/practical/.test(l)?"prac":""}"><b>${t}</b><span>${l}</span></li>`).join("")}</ol>
-        <p class="meta" style="margin:14px 0 0">Two practical hours each Saturday. November is workshops (mosaics and movement first, stage combat in weeks 2 and 3), then scene work by play, and the last three Saturdays are full run-throughs with notes, leading into tech week.</p></div>
+        <p class="meta" style="margin:14px 0 0">Two practical hours each Saturday. The early Saturdays build the mosaics (the opening, the witches, the crowning, the fairy dance, Ophelia’s water), often over both hours, with whole mornings of stage combat. Then blocking by play, voice towards the end, and three full run-throughs with notes before tech week.</p></div>
       ${mapEmbed(VENUES.albareda)}
     </div>
     <div class="ryou">${meSelect()}</div>
     ${(()=>{const months={};SAT_ALL.forEach(x=>{const m=new Date(x[0]+"T12:00").toLocaleDateString("en-GB",{month:"long",year:"numeric"});(months[m]=months[m]||[]).push(x)});
-      return `<div class="legend2"><span><i class="satphase"></i>Workshop</span><span><i class="satphase scene"></i>Scene work</span><span><i class="satphase run"></i>Run-through</span></div>`+Object.entries(months).map(([m,xs])=>`<h3 class="smonth">${m}</h3><ol class="sched">${xs.map(satRow).join("")}</ol>`).join("")})()}
+      return `<p class="tbcline"><span class="tbc">TBC</span> Saturday dates and plan to be confirmed</p><div class="legend2"><span><i class="satphase mos"></i>Mosaics</span><span><i class="satphase combat"></i>Stage combat</span><span><i class="satphase"></i>Workshop</span><span><i class="satphase scene"></i>Scene work</span><span><i class="satphase run"></i>Run-through</span></div>`+Object.entries(months).map(([m,xs])=>`<h3 class="smonth">${m}</h3><ol class="sched">${xs.map(satRow).join("")}</ol>`).join("")})()}
     <div class="satafter"><span class="ckick">Then</span> <b>Tech · ${TECH.label}</b> at Teatre Gaudí, the day before opening night.</div>
   </section>
   <section class="rsec" aria-labelledby="r2">
