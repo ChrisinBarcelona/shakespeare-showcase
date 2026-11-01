@@ -2467,9 +2467,6 @@ function pSpeech(){
   return `<section class="apgroup speech" aria-labelledby="sp-h"><p class="ckick" style="margin:0 0 6px">Hamlet 3.2 · Hamlet's advice to the players</p><h2 id="sp-h">"Speak the speech, I pray you"</h2>
     <p class="clede">Before the play-within-the-play, Hamlet tells a company of actors how to act. Four hundred years later it is still the best short guide to playing Shakespeare, and it is basically what we'll be doing. Shakespeare on the left, plain modern English on the right.</p>
     ${(()=>{const hl=t=>esc(t).replace(/\[\[(.*?)\]\]/g,'<mark class="sphl">$1</mark>');return `<div class="sptwo"><div class="spcol"><p class="spcap">Shakespeare</p><div class="spo">${SPEECH.map(x=>`<p>${hl(x[1])}</p>`).join("")}</div></div><div class="spcol"><p class="spcap">In modern English</p><div class="spm">${SPEECH.map(x=>`<p>${hl(x[2])}</p>`).join("")}</div></div></div>`})()}
-    <h2 style="margin-top:34px">What this means for us</h2>
-    <p class="clede">Each part of the speech, and where you'll see it in our show.</p>
-    <div class="apgrid" style="--c:#c9a6ff;--cl:#6d3fc0">${SPEECH_US.map(([t,d,...sc])=>`<article class="card apcard"><h3>${esc(t)}</h3><p>${esc(d)}</p><p class="spsc">${sc.map(link).join("<br>")}</p></article>`).join("")}</div>
   </section>`;
 }
 function pApproach(){
