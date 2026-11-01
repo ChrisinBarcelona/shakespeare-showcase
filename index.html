@@ -249,6 +249,9 @@ a.book{display:block;text-decoration:none}
 .pill.me{border-color:var(--paper);color:var(--paper)}
 .pill.warnpill{border-color:#5a4a20;color:var(--acc)}
 .explore{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.exico{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;margin-bottom:18px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 30%,transparent);transition:transform .2s ease}
+.excard:hover .exico{transform:translateY(-2px) scale(1.04)}
+@media (prefers-reduced-motion:reduce){.excard:hover .exico{transform:none}}
 .callrow{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #262626;border-bottom:1px solid #262626;margin:26px 0 8px}
 .callrow div{padding:18px;border-left:1px solid #262626;text-align:center}.callrow div:first-child{border-left:0}
 .callrow b{display:block;font-family:var(--fd);font-weight:400;font-size:clamp(28px,5vw,44px);color:var(--paper)}
@@ -1367,7 +1370,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights, mosaics and costume."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
+    ${[["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order.","list","#8cbcff"],["characters","Character breakdowns","Who everyone is, scene by scene.","masks","#c9a6ff"],["cast","Cast &amp; crew","Parts offered, acceptances and the crew.","users","#7fe0a0"],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School.","calcheck","#8fdccb"],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket.","megaphone","#ffab6e"],["shows","The shows","12 nights at Teatre Gaudí, and call times.","ticket","#ff8a8a"],["staging","Staging","Transitions, fights, mosaics and costume.","spot","#f4c75c"]].map(([h,t,d,ic,c])=>`<a class="card link excard" href="#${h}" style="--c:${c}"><span class="exico">${icon(ic,28)}</span><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
@@ -1942,6 +1945,13 @@ function pCostume(){
       ${notesBlock("costume-"+g.id,"Costume notes: "+g.title)}</section>`}).join("")}`;
 }
 const ICONS={
+ list:'<path d="M10 6h11M10 12h11M10 18h11"/><path d="M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>',
+ masks:'<path d="M2 2.5h11v6.5a5.5 5.5 0 0 1-11 0Z"/><path d="M5.2 6.8h.01M9.8 6.8h.01M5 10.2a2.6 2.6 0 0 0 5 0"/><path d="M13.6 9.5H22V16a5.5 5.5 0 0 1-10.2 2.9"/><path d="M15.8 13.3h.01M19.6 13.3h.01M15.4 18.2a2.4 2.4 0 0 1 4.4 0"/>',
+ users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+ calcheck:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/>',
+ megaphone:'<path d="m3 11 18-5v12L3 14v-3Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+ ticket:'<path d="M2 9a3 3 0 0 0 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 0 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 11v2M13 17v2"/>',
+ spot:'<path d="M2 3h20M3 21h18"/><path d="M4 3v18M20 3v18"/><path d="M4 3c.5 6 2.5 9.5 6.5 11M20 3c-.5 6-2.5 9.5-6.5 11"/>',
  owl:'<circle cx="12" cy="13" r="7"/><circle cx="9.3" cy="11.5" r="1.8"/><circle cx="14.7" cy="11.5" r="1.8"/><path d="M6 7 7.5 4 9.5 6.5M18 7l-1.5-3-2 2.5M11 15l1 1.5 1-1.5"/>',
  crow:'<path d="M3 13c3-1 5-4 9-4 2.5 0 4 1 5 2.5l3.5-1-2 2.8c0 3.5-3 6.2-7 6.2-3.2 0-5-1.6-6-3.5L3 13Z"/><circle cx="15.5" cy="12" r=".9"/><path d="M9 19.5 8 22M12 20v2"/>',
  bird:'<path d="M4 15c2 0 3-3 6-3 2 0 3 1.5 3 3s-1.5 3.5-4.5 3.5S4 17 4 15Z"/><path d="M13 14l3-1M7.5 18.5 7 21"/><path d="M18 4v7.2"/><circle cx="16.6" cy="11.4" r="1.6"/><path d="M18 4l3 1.2"/>',
@@ -1950,7 +1960,7 @@ const ICONS={
  river:'<path d="M2 8c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0M2 13c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0M2 18c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0"/>',
  projector:'<rect x="2" y="8" width="16" height="9" rx="2"/><circle cx="8" cy="12.5" r="2.6"/><path d="M18 10l4-2v9l-4-2M13 11h3M5 17v2M15 17v2"/>',
  note:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'};
-const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
+const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
 const AMBIENT=[["owl","Owls","Night in the wood: Midsummer, the witches"],["crow","Crows & ravens","Macbeth's heath and castle"],["bird","Birdsong","Morning: Arden, the lovers wake"],["forest","Forest","The Forest of Arden, the Athenian wood"],["water","Water","Ophelia's water"],["river","River","Ophelia's drowning, running under the scene"]];
 const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning","mos-crown"],["macbeth","Macbeth","1:32","The witches' ritual","mos-witches"],["rosemary","Rosemary","1:29","Ophelia's madness","ham45"],["the-changeling-boy","The Changeling Boy","1:00","The fairy dance","mos-fairy"]];
 function songFor(id){const x=SONGS.find(z=>z[4]===id);return x?`<section class="scmusic" aria-label="Music for this piece"><div class="sgicon">${icon("note",24)}</div><div class="sgmain"><p class="ckick" style="margin:0">Music</p><b>${esc(x[1])}</b><span>${x[2]}</span></div><audio controls preload="none" src="audio/${x[0]}.mp3" aria-label="Play ${esc(x[1])}"></audio></section>`:""}
