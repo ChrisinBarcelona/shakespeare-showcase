@@ -538,6 +538,61 @@ details.more>summary::before{color:#f5f5f4}
 .cfoot{margin-top:28px;color:#a8a8ae;font-size:14px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){.crow{transition:none}}
+
+/* ===== Company UI, site-wide ===== */
+:root{--muted:#b8b8bd;--line:#2a2a2f}
+body{font-size:16px;line-height:1.55}
+.nav a{font-size:14px!important;color:#c9c9cd!important}
+.nav a.on{color:#fff!important}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #f5f5f4!important;outline-offset:2px!important}
+/* readable labels instead of tiny spaced capitals */
+.small,.kicker,.fkick,.pfacts dt,.facts dt,.dayname,.legend,.status,.interval,.show .sday,.cd span,.callrow span,.fstats span,.ckick{font-family:var(--fb)!important;text-transform:none!important;letter-spacing:.01em!important;font-size:13px!important;font-weight:600!important;color:#b8b8bd!important}
+.meta{color:#b8b8bd!important;font-size:14px!important}
+.sub{color:#d4d4d8!important;font-size:16px!important}
+.sd{color:#b8b8bd!important}
+/* page headers: left-aligned, same scale as The Company */
+.folio .fhero{text-align:left!important;max-width:1100px;margin:0 auto;padding:24px 16px 0!important}
+.folio .fhero .sub,.folio .sub{margin-left:0!important;text-align:left!important}
+.ftitle{font-size:clamp(40px,8vw,72px)!important;line-height:1!important;margin:8px 0 12px!important;color:#f5f5f4!important}
+h1{font-size:clamp(36px,7vw,60px)!important}
+/* filter rows become chips */
+.fnav{justify-content:flex-start!important;gap:8px!important;margin-top:16px}
+.fnav button,.fnav a{font-family:var(--fb)!important;text-transform:none!important;letter-spacing:0!important;font-size:14px!important;font-weight:600!important;min-height:40px;padding:0 14px!important;border:1px solid #3a3a40!important;border-radius:999px!important;background:#111113!important;color:#e4e4e7!important;display:inline-flex;align-items:center}
+.fnav button.on,.fnav button[aria-pressed="true"]{background:#f5f5f4!important;color:#0a0a0a!important;border-color:#f5f5f4!important}
+.fnav button:hover,.fnav a:hover{border-color:#f5f5f4!important}
+/* the 3D "book" shelves become a plain grid of colour cards */
+.shelfwrap,.shelfhead + .shelfwrap{margin:20px auto 0!important;width:auto!important;max-width:1100px;padding:0 16px}
+.folio .shelfwrap{padding:0 16px}
+.shelfwrap::before,.shelfwrap::after,.shelfnav{display:none!important}
+.shelf,.shelfhead + .shelfwrap .shelf{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px;overflow:visible!important;padding:0!important;perspective:none!important}
+.book,.book.slim{width:auto!important;height:auto!important;margin:0!important;perspective:none!important;transform:none!important;animation:none!important}
+.book .bk,.book:hover .bk,.book:focus-visible .bk,.shelf.scrolling .book .bk{position:relative!important;transform:none!important;inset:auto!important}
+.book .pages{display:none!important}
+.book .cover{position:relative!important;min-height:150px;border-radius:14px;box-shadow:none!important;background-image:none!important;padding:14px!important;transition:transform .15s}
+.book:hover .cover{transform:translateY(-3px);box-shadow:0 0 0 2px #f5f5f4!important}
+.book:focus-visible{outline:3px solid #f5f5f4!important;outline-offset:3px;border-radius:14px}
+.bplay,.bwords{font-family:var(--fb)!important;text-transform:none!important;letter-spacing:0!important;font-size:12.5px!important;font-weight:600!important;opacity:.9!important}
+.bname{font-size:20px!important;margin-top:auto!important;padding-top:14px}
+.bmeta{font-size:13px!important}
+/* surfaces */
+.card{background:#111113!important;border:1px solid #2a2a2f!important;border-radius:18px!important}
+.card.link:hover{border-color:#f5f5f4!important}
+.note{background:#111113!important;border:1px solid #2a2a2f!important;border-left:4px solid #f5f5f4!important;border-radius:12px!important;color:#d4d4d8!important;font-size:14px!important}
+.note.warn{border-left-color:#ff8a8a!important}
+.btn{min-height:44px;border-color:#3a3a40!important;border-radius:12px!important;font-size:15px!important}
+.btn.sm{min-height:40px;font-size:14px!important;padding:0 14px!important}
+.btn:hover{border-color:#f5f5f4!important}
+.pill{font-size:14px!important;padding:7px 12px!important;border-color:#3a3a40!important;border-radius:999px!important}
+select,input[type=text],input[type=url],input[type=search],input[type=datetime-local],textarea{min-height:46px;background:#111113!important;border:1px solid #3a3a40!important;border-radius:12px!important;font-size:15px!important;color:#f5f5f4!important}
+.chip,.cd div,.pfacts div,.count,.sheet,.accept,.navb,.tab,.head,.slot{border-radius:12px!important}
+.slot{min-height:64px}
+.ro{padding:14px 0!important;border-color:#26262b!important}
+.ro:hover .ttl{text-decoration:underline;text-underline-offset:3px}
+.seg{border-radius:12px;overflow:hidden;border-color:#3a3a40!important}
+.seg button{min-height:40px;font-size:14px!important;font-weight:600!important;color:#d4d4d8!important}
+.seg button.on{background:#f5f5f4!important;color:#0a0a0a!important}
+details.more summary{min-height:40px;display:flex;align-items:center;cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -546,12 +601,14 @@ details.more>summary::before{color:#f5f5f4}
   background-image:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(255,255,255,.09),transparent 70%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(255,255,255,.04),transparent 70%)}
 #gate .gbox{width:100%;max-width:400px;text-align:center;animation:gin .6s cubic-bezier(.2,.7,.1,1) both}
 @keyframes gin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-#gate .gk{font-family:var(--fm);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8a8a8f}
+#gate .gk{font:600 13px var(--fb);color:#b8b8bd}
 #gate h1{font-family:var(--fd);font-weight:600;letter-spacing:-.05em;font-size:clamp(44px,11vw,64px);line-height:.95;margin:14px 0 0;color:#f5f5f4}
-#gate h1 em{font-style:normal;color:#8a8a8f;display:block}
-#gate .gsub{color:#8a8a8f;font-size:14px;margin:16px 0 32px;line-height:1.5}
+#gate h1 em{font-style:normal;color:#9a9aa0;display:block}
+#gate .gsub{color:#b8b8bd;font-size:15px;margin:16px 0 18px;line-height:1.5}
+#gate .gplays{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:0 0 28px}
+#gate .gplays span{font:600 12.5px var(--fb);color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:6px;padding:2px 8px}
 #gate .gcard{background:#0e0e10;border:1px solid #232327;border-radius:18px;padding:22px;text-align:left;box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
-#gate label{display:block;font-size:12px;font-weight:600;color:#c9c9cc;margin:0 0 6px}
+#gate label{display:block;font-size:14px;font-weight:600;color:#e4e4e7;margin:0 0 6px}
 #gate input{width:100%;background:#050505;color:#f5f5f4;border:1px solid #2c2c31;border-radius:11px;padding:13px 14px;font:500 15px var(--fb);margin-bottom:14px;transition:border-color .15s}
 #gate input:focus{outline:none;border-color:#f5f5f4}
 #gate button{width:100%;background:#f5f5f4;color:#050505;border:0;border-radius:11px;padding:14px;font:600 15px var(--fb);cursor:pointer;margin-top:4px;transition:transform .1s,opacity .15s}
@@ -559,13 +616,14 @@ details.more>summary::before{color:#f5f5f4}
 #gate .gerr{color:#f08c8c;font-size:13px;min-height:18px;margin:12px 0 0;text-align:center}
 #gate .gcard.shake{animation:gshake .35s}
 @keyframes gshake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
-#gate .gfoot{margin-top:26px;font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#5c5c61}
+#gate .gfoot{margin-top:26px;font:500 13px var(--fb);color:#8a8a90}
 </style>
 <div id="gate" role="dialog" aria-labelledby="gtitle">
   <div class="gbox">
     <div class="gk">Cast &amp; crew area</div>
     <h1 id="gtitle">Shakespeare <em>Showcase</em></h1>
     <p class="gsub">Teatre Gaudí · March 2027<br>Sign in to see scenes, scripts and rehearsals.</p>
+    <div class="gplays" aria-hidden="true"><span style="--c:#ff8a8a">Macbeth</span><span style="--c:#8cbcff">Hamlet</span><span style="--c:#7fe0a0">Midsummer</span><span style="--c:#f4c75c">Shrew</span><span style="--c:#c9a6ff">Richard III</span><span style="--c:#ffab6e">Coriolanus</span><span style="--c:#8fdccb">As You Like It</span></div>
     <div class="gcard" id="gcard">
       <label for="gateuser">Username</label>
       <input id="gateuser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
@@ -873,7 +931,7 @@ function wireEdits(root){
 }
 
 /* ================= ROUTER ================= */
-const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["scripts","Scripts"],["cast","Cast & Crew"],["characters","Characters"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
+const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["scripts","Scripts"],["cast","The Company"],["characters","Characters"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
 let cdTimer=null;
 function route(){
   const h=(location.hash||"#home").slice(1);
@@ -999,7 +1057,7 @@ function pScenes(){
   const total=ITEMS.reduce((a,i)=>a+(i.mins||0),0);
   const vols=ITEMS.map((o,i)=>{const pl=itemPlay(o);const [bg,fg]=o.type==="scene"?playColors(pl):o.type==="fight"?["#120707","#e46a6a"]:["#0d0d0d","var(--acc)"];
     return vol({href:"#scene-"+o.id,bg,fg,i,slim:o.type!=="scene",kick:o.type==="scene"?o.play:(o.type==="fight"?"⚔ Fight":"◐ "+o.play),title:o.title,meta:o.n+(o.actors[0]==="Whole company"?" · Company":" · "+o.actors.length+" players"),sub:"≈ "+o.mins+" min",label:o.play+": "+o.title})}).join("");
-  return folioHero(`${ITEMS.filter(i=>i.type==="scene").length} scenes · 4 fights · 4 mosaics · ≈ ${Math.round(total)} minutes`,"The Evening",`<p class="ftag">Read left to right: the running order, one volume per piece.</p>`)+shelf(vols,"Running order")+`</section>
+  return folioHero(`${ITEMS.filter(i=>i.type==="scene").length} scenes · 4 fights · 4 mosaics · ≈ ${Math.round(total)} minutes`,"The Evening",`<p class="ftag">The running order, one card per piece. Tap a card to open it.</p>`)+shelf(vols,"Running order")+`</section>
   <h2 style="margin-top:36px">Running <em>order</em></h2><p class="sub">The number on the right is how many rehearsal sessions are booked.</p><div class="rule"></div>`+
   ORDER.map(o=>o.type==="interval"?`<div class="interval">INTERVAL</div>`:
     `<a class="ro" href="#scene-${o.id}"><div class="num">${o.n}</div><div class="main"><div class="kicker">${esc(o.play)}</div><div class="ttl">${esc(o.title)}</div><div class="meta">${o.actors.map(esc).join(", ")}</div></div>${o.actors[0]==="Whole company"?"":`<div class="count ${countFor(o.id)===0?"zero":countFor(o.id)>=3?"ok":""}" title="Rehearsals booked">${countFor(o.id)}</div>`}</a>`).join("")+
