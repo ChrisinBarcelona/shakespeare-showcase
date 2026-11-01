@@ -308,7 +308,7 @@ def poster(p, W, H):
     if tall:
         foot.append(f'<text x="{M}" y="{by+46}" font-family="Inter" font-weight="500" font-size="{fs-4}" fill="{GREY}">shakespeareshow.actor</text>')
     foot.append(f'<line x1="{M}" y1="{limit+14}" x2="{W-M}" y2="{limit+14}" stroke="{WHITE}" stroke-opacity=".14" stroke-width="2"/>')
-    kick = "A Chris Kelly production" + ("" if h1.startswith("Selected") else " · Selected Works of Shakespeare")
+    kick = "A CHRIS KELLY PRODUCTION" + ("" if h1.startswith("Selected") else " · Selected Works of Shakespeare")
     two = h2 == "of Shakespeare"
     for k in [1, .94, .88, .82, .76, .7, .64]:
         out = []
@@ -342,7 +342,7 @@ def ticket():
          f'<g mask="url(#notch)"><rect width="{W}" height="{H}" fill="{bg}"/>',
          f'<rect x="0" y="400" width="1180" height="220" fill="{INK}"/>',
          f'<g fill="{INK}">{motif("all", 1080, 20, 380, bg, random.Random(3))}</g>',
-         f'<text x="72" y="100" font-family="Inter" font-weight="600" font-size="28" fill="{INK}" fill-opacity=".75">A Chris Kelly production</text>',
+         f'<text x="72" y="100" font-family="Inter" font-weight="600" font-size="28" fill="{INK}" fill-opacity=".75">A CHRIS KELLY PRODUCTION</text>',
          f'<text x="66" y="210" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}">Selected Works</text>',
          f'<text x="66" y="310" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}" fill-opacity=".55">of Shakespeare</text>']
     s += [f'<text x="72" y="500" font-family="Inter" font-weight="600" font-size="30" fill="{WHITE}">Teatre Gaudí · C/ Sant Antoni Maria Claret, 120</text>',

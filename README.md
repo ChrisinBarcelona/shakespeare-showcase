@@ -1,6 +1,6 @@
 # Selected Works of Shakespeare
 
-**A Chris Kelly production** · Teatre Gaudí Barcelona · Thursdays–Saturdays in March 2027 · Curtain 20:00
+**A CHRIS KELLY PRODUCTION** · Teatre Gaudí Barcelona · Thursdays–Saturdays in March 2027 · Curtain 20:00
 
 **Love · Power · Madness · Hate.** The production site for an evening of scenes from seven Shakespeare plays: the running order, the scripts, the company, Saturday rehearsals, rehearsal booking and the marketing materials.
 

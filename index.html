@@ -1173,7 +1173,7 @@ function pHome(){
   const nextSat=SATURDAYS.find(d=>new Date(d+"T11:00")>new Date())||SATURDAYS[SATURDAYS.length-1];
   return `<section class="opener" aria-labelledby="optitle">
     <div class="op-body">
-      <p class="op-kick">A Chris Kelly production · Teatre Gaudí · March 2027</p>
+      <p class="op-kick">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</p>
       <h1 class="op-title" id="optitle">Selected Works <em>of Shakespeare</em></h1>
       <div class="cd op-cd" id="cd" role="timer" aria-label="Time until curtain"><div><b id="cd-d">–</b><span>Days</span></div><div><b id="cd-h">–</b><span>Hours</span></div><div><b id="cd-m">–</b><span>Minutes</span></div><div><b id="cd-s">–</b><span>Seconds</span></div></div>
       <p class="op-when">until curtain · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
@@ -1434,7 +1434,7 @@ function pCast(){
   const shownPlays=castFilter==="All"?plays:plays.filter(pl=>pshort(pl)===castFilter);
   return `<div class="cwrap">
   <header class="chero">
-    <p class="ckick">A Chris Kelly production</p>
+    <p class="ckick">A CHRIS KELLY PRODUCTION</p>
     <h1>The Company</h1>
     <p class="clede">${CAST.length} actors play ${PARTS.length} parts across ${plays.length} plays. ${multi} actors play more than one part, so every card lists all of an actor's parts together.</p>
 
@@ -1649,7 +1649,7 @@ function pScript(k){
   <article class="script">${x.items.map(it=>it.d?`<p class="sd">${esc(it.d)}</p>`:`<div class="speech ${it.s.split(" / ").some(n=>SPEAKER_ACTOR[n])?"ours":"theirs"}${it.cut?" cut":""}"><div class="spk">${esc(it.s)}${it.cut?` <em class="cuttag">Cut</em>`:""}${it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).length?` <span>${esc(it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).join(", "))}</span>`:""}</div>${it.l.map(l=>/^\[.*\]$/.test(l)?`<p class="sd in">${esc(l.slice(1,-1))}</p>`:`<p>${esc(l)}</p>`).join("")}</div>`).join("")}</article>
   <div class="btns"><a class="btn" href="${backTo}">${backL}</a><button class="btn primary" data-dl-pdf="${k}">Download PDF</button></div>`;
 }
-function scriptText(k){const x=SCRIPTS[k];let t=`${x.play}\nAct ${x.act}, Scene ${x.scene}. ${x.title.replace(/^SCENE [IVX]+\.\s*/,"")}\nA Chris Kelly production · Selected Works of Shakespeare · Text: Moby Shakespeare (public domain)\n\n`;
+function scriptText(k){const x=SCRIPTS[k];let t=`${x.play}\nAct ${x.act}, Scene ${x.scene}. ${x.title.replace(/^SCENE [IVX]+\.\s*/,"")}\nA CHRIS KELLY PRODUCTION · Selected Works of Shakespeare · Text: Moby Shakespeare (public domain)\n\n`;
   x.items.forEach(it=>{if(it.d)t+=`    [${it.d}]\n\n`;else{const a=it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean);t+=`${it.cut?"[CUT] ":""}${it.s}${a.length?" ("+a.join(", ")+")":""}\n${it.l.map(l=>"    "+l).join("\n")}\n\n`}});return t}
 let _jspdf=null;
 function loadJsPDF(){if(_jspdf)return _jspdf;_jspdf=new Promise((res,rej)=>{const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";sc.onload=()=>res(window.jspdf.jsPDF);sc.onerror=rej;document.head.appendChild(sc)});return _jspdf}
@@ -1657,7 +1657,7 @@ async function scriptPDF(k){
   const JsPDF=await loadJsPDF();const x=SCRIPTS[k];const doc=new JsPDF({unit:"pt",format:"a4"});const W=595,H=842,M=56;let y=M;
   const clean=t=>t.replace(/[“”]/g,'"').replace(/[‘’]/g,"'").replace(/[–—]/g,"-");
   const need=h=>{if(y+h>H-M){doc.addPage();y=M}};
-  doc.setFont("times","italic");doc.setFontSize(10);doc.text("A Chris Kelly production · Selected Works of Shakespeare",M,y);y+=22;
+  doc.setFont("times","italic");doc.setFontSize(10);doc.text("A CHRIS KELLY PRODUCTION · Selected Works of Shakespeare",M,y);y+=22;
   doc.setFont("times","bold");doc.setFontSize(20);doc.text(clean(x.play),M,y,{maxWidth:W-2*M});y+=26;
   doc.setFont("times","normal");doc.setFontSize(13);doc.text(clean(`Act ${x.act}, Scene ${x.scene}. ${x.title.replace(/^SCENE [IVX]+\.\s*/,"")}`),M,y);y+=24;
   x.items.forEach(it=>{
