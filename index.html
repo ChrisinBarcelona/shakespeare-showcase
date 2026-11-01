@@ -910,9 +910,9 @@ let attendance={};
 function parseSlot(id){const[ds,t]=id.split("_");const[y,m,d]=ds.split("-").map(Number);return{date:new Date(y,m-1,d),time:t.slice(0,2)+":"+t.slice(2)}}
 
 /* ================= SUPABASE ================= */
-const SUPA={url:"",key:""};/* filled in once the Supabase project exists */
+const SUPA={url:"https://vzlfewoccbmqbcwgcflw.supabase.co",key:"sb_publishable_ThnTgwa989zMjSyUgmmD3g_CwQh0G5X"};/* filled in once the Supabase project exists */
 function supaDB(){
-  const R=SUPA.url.replace(/\/$/,"")+"/rest/v1",H={"apikey":SUPA.key,"Authorization":"Bearer "+SUPA.key,"Content-Type":"application/json"};
+  const R=SUPA.url.replace(/\/$/,"")+"/rest/v1",H={"apikey":SUPA.key,"Content-Type":"application/json",...(SUPA.key.startsWith("sb_")?{}:{"Authorization":"Bearer "+SUPA.key})};
   const enc=encodeURIComponent,L={};
   const pin=()=>{try{return localStorage.getItem("ss_dir_pin")||""}catch(_){return ""}};
   const fail=async r=>{let j={};try{j=await r.json()}catch(_){}const e={code:(r.status===401||r.status===403||j.code==="42501")?"not_allowed":r.status===409||j.code==="23505"?"exists":"http_"+r.status,message:j.message};throw e};
