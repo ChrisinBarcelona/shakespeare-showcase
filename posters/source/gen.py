@@ -1,18 +1,22 @@
-import base64, os, random, math, json
-
-F = "/home/claude/posters/fonts/"
+import base64, os, random, math, json, sys
+# Selected Works of Shakespeare: poster generator.
+# Symbols, figures and colours as before; type and placement now mirror the website
+# (Inter Tight titles, Inter text, left-aligned, two-tone headline, small labels, colour tags).
+# Usage: python3 gen.py <fonts dir> <out dir>
+F = sys.argv[1] if len(sys.argv) > 1 else "fonts/"
+OUT = sys.argv[2] if len(sys.argv) > 2 else "build"
 def ff(name, file, weight=400, style="normal"):
-    b = base64.b64encode(open(F + file, "rb").read()).decode()
+    b = base64.b64encode(open(os.path.join(F, file), "rb").read()).decode()
     return f"@font-face{{font-family:'{name}';src:url(data:font/woff2;base64,{b}) format('woff2');font-weight:{weight};font-style:{style}}}"
-
 FONTS = "".join([
-    ff("Slab", "alfa-slab-one-latin-400-normal.woff2"),
-    ff("Osw", "oswald-latin-600-normal.woff2", 600),
-    ff("Osw", "oswald-latin-400-normal.woff2", 400),
-    ff("Bod", "bodoni-moda-latin-400-italic.woff2", 400, "italic"),
-    ff("Bod", "bodoni-moda-latin-400-normal.woff2", 400),
+    ff("Tight", "inter-tight-latin-600-normal.woff2", 600),
+    ff("Inter", "inter-latin-400-normal.woff2", 400),
+    ff("Inter", "inter-latin-400-italic.woff2", 400, "italic"),
+    ff("Inter", "inter-latin-500-normal.woff2", 500),
+    ff("Inter", "inter-latin-600-normal.woff2", 600),
 ])
-
+WHITE = "#F5F5F4"
+GREY = "#9A9AA0"
 INK = "#111010"
 CREAM = "#F1E4CC"
 
@@ -207,16 +211,35 @@ FIGS = {
                                         ["crown", None, "hat", None, "veil", "helmet", "hat"][i]) for i in range(7)),
 }
 
+
+THEMES = {  # theme: (colour, plays)
+    "Love":    ("#86B566", ["Midsummer", "Shrew", "As You Like It"]),
+    "Power":   ("#9461BE", ["Macbeth", "Richard III"]),
+    "Madness": ("#7FA2BE", ["Hamlet"]),
+    "Hate":    ("#D9822B", ["Coriolanus"]),
+}
+PLAYCOL = {"Macbeth": "#D8432A", "Hamlet": "#7FA2BE", "Midsummer": "#86B566", "Shrew": "#E5A92A",
+           "Richard III": "#9461BE", "Coriolanus": "#D9822B", "As You Like It": "#B9B45A"}
+
 POSTERS = [
-    # id, play-key, bg, title lines, quote, cite, title size
-    ("macbeth", "macbeth", "#D8432A", ["MACBETH"], "Fair is foul, and foul is fair.", "Macbeth, I.i"),
-    ("hamlet", "hamlet", "#7FA2BE", ["HAMLET"], "Alas, poor Yorick!", "Hamlet, V.i"),
-    ("midsummer", "midsummer", "#86B566", ["A MIDSUMMER", "NIGHT'S DREAM"], "Lord, what fools these mortals be!", "A Midsummer Night's Dream, III.ii"),
-    ("shrew", "shrew", "#E5A92A", ["THE TAMING", "OF THE SHREW"], "If I be waspish, best beware my sting.", "The Taming of the Shrew, II.i"),
-    ("richard", "richard", "#9461BE", ["RICHARD III"], "Was ever woman in this humour wooed?", "Richard III, I.ii"),
-    ("coriolanus", "coriolanus", "#D9822B", ["CORIOLANUS"], "There is a world elsewhere.", "Coriolanus, III.iii"),
-    ("ayli", "ayli", "#B9B45A", ["AS YOU", "LIKE IT"], "Sweet are the uses of adversity.", "As You Like It, II.i"),
-    ("company", "all", "#D8432A", ["SHAKESPEARE"], "All the world's a stage.", "As You Like It, II.vii"),
+    # id, motif/figures, background, headline (white), headline (grey), tags [(label, colour)], quote, cite
+    ("love", "midsummer", "#86B566", "The Love", "of Shakespeare", [(p, PLAYCOL[p]) for p in THEMES["Love"][1]],
+     "The course of true love never did run smooth.", "A Midsummer Night's Dream, I.i"),
+    ("power", "richard", "#9461BE", "The Power", "of Shakespeare", [(p, PLAYCOL[p]) for p in THEMES["Power"][1]],
+     "Stars, hide your fires; let not light see my black and deep desires.", "Macbeth, I.iv"),
+    ("madness", "hamlet", "#7FA2BE", "The Madness", "of Shakespeare", [("Hamlet", PLAYCOL["Hamlet"]), ("Lady Macbeth", PLAYCOL["Macbeth"])],
+     "Though this be madness, yet there is method in't.", "Hamlet, II.ii"),
+    ("hate", "coriolanus", "#D9822B", "The Hate", "of Shakespeare", [("Coriolanus", PLAYCOL["Coriolanus"]), ("Richard III", PLAYCOL["Richard III"])],
+     "I do hate thee worse than a promise-breaker.", "Coriolanus, I.viii"),
+    ("company", "all", "#D8432A", "Selected Works", "of Shakespeare", [(t, c) for t, (c, _) in THEMES.items()],
+     "All the world's a stage.", "As You Like It, II.vii"),
+    ("macbeth", "macbeth", "#D8432A", "Macbeth", "The Power of Shakespeare", [("Power", THEMES["Power"][0])], "Fair is foul, and foul is fair.", "Macbeth, I.i"),
+    ("hamlet", "hamlet", "#7FA2BE", "Hamlet", "The Madness of Shakespeare", [("Madness", THEMES["Madness"][0])], "Alas, poor Yorick!", "Hamlet, V.i"),
+    ("midsummer", "midsummer", "#86B566", "A Midsummer Night's Dream", "The Love of Shakespeare", [("Love", THEMES["Love"][0])], "Lord, what fools these mortals be!", "A Midsummer Night's Dream, III.ii"),
+    ("shrew", "shrew", "#E5A92A", "The Taming of the Shrew", "The Love of Shakespeare", [("Love", THEMES["Love"][0])], "If I be waspish, best beware my sting.", "The Taming of the Shrew, II.i"),
+    ("richard", "richard", "#9461BE", "Richard III", "The Power of Shakespeare", [("Power", THEMES["Power"][0])], "Was ever woman in this humour wooed?", "Richard III, I.ii"),
+    ("coriolanus", "coriolanus", "#D9822B", "Coriolanus", "The Hate of Shakespeare", [("Hate", THEMES["Hate"][0])], "There is a world elsewhere.", "Coriolanus, III.iii"),
+    ("ayli", "ayli", "#B9B45A", "As You Like It", "The Love of Shakespeare", [("Love", THEMES["Love"][0])], "Sweet are the uses of adversity.", "As You Like It, II.i"),
 ]
 
 def grass(y, rnd, W):
@@ -229,78 +252,126 @@ def grass(y, rnd, W):
         pts.append(f"L{x:.1f},{y + rnd.uniform(0, 4):.1f}")
     return " ".join(pts) + f" L{W},{y+60} L0,{y+60} Z"
 
+def esc(t): return t.replace("&", "&amp;").replace("<", "&lt;").replace("'", "&#39;")
+
+from fontTools.ttLib import TTFont
+_FT = {}
+def measure(text, face, size, ls=0):
+    """Real advance width of text in px, from the font files."""
+    if face not in _FT:
+        file = {"Tight": "inter-tight-latin-600-normal.woff2", "Inter600": "inter-latin-600-normal.woff2",
+                "Inter500": "inter-latin-500-normal.woff2", "InterI": "inter-latin-400-italic.woff2"}[face]
+        f = TTFont(os.path.join(F, file)); _FT[face] = (f.getBestCmap(), f["hmtx"].metrics, f["head"].unitsPerEm)
+    cmap, hm, upm = _FT[face]
+    w = sum(hm[cmap.get(ord(c), cmap[ord(" ")])][0] for c in text)
+    return w * size / upm + ls * len(text)
+
+def wrap(text, size, width):
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        t = (cur + " " + w).strip()
+        if measure(t, "InterI", size) > width and cur: lines.append(cur); cur = w
+        else: cur = t
+    return lines + [cur]
+
+def tag(x, y, label, col, size):
+    w = measure(label, "Inter600", size) + size * 1.3; h = size * 1.75
+    return (f'<rect x="{x:.0f}" y="{y-h*.72:.0f}" width="{w:.0f}" height="{h:.0f}" rx="{size*.4:.0f}" fill="{col}" fill-opacity=".16" stroke="{col}" stroke-opacity=".55" stroke-width="2"/>'
+            f'<text x="{x+size*.65:.0f}" y="{y:.0f}" font-family="Inter" font-weight="600" font-size="{size}" fill="{col}">{esc(label)}</text>'), w
+
+def fit(text, cap, width):
+    s = cap
+    while measure(text, "Tight", s, -s * .045) > width and s > 20: s -= 2
+    return s
+
 def poster(p, W, H):
-    pid, key, bg, lines, quote, cite = p
+    pid, key, bg, h1, h2, tags, quote, cite = p
     rnd = random.Random(pid + str(H))
-    ground = H * (.645 if H < 1500 else .64)
     tall = H > 1500
-    figh = 150 if not tall else 175
-    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
+    ground = H * (.52 if not tall else .56)
+    figh = 130 if not tall else 170
+    M = 80; TW = W - 2 * M
+    art = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
            '<defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.2 1.05"/></filter>',
-           '<filter id="worn"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="9" result="n"/><feColorMatrix in="n" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -16 13" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>',
            f'<radialGradient id="vig" cx=".5" cy=".38" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></radialGradient></defs>',
            f'<rect width="{W}" height="{H}" fill="{bg}"/>',
            f'<g fill="{INK}">{motif(key, W/2, 0 if key not in ("hamlet","midsummer","ayli") else H*.05, ground - figh - 20 if key != "ayli" else ground+8, bg, rnd)}</g>',
            f'<g fill="{INK}">{FIGS[key](ground + 6, figh)}</g>',
            f'<path d="{grass(ground, rnd, W)}" fill="{INK}"/><rect y="{ground+40}" width="{W}" height="{H-ground}" fill="{INK}"/>',
            f'<rect width="{W}" height="{H}" fill="url(#vig)"/>']
-    # text block
-    y = ground + (78 if not tall else 120)
-    svg.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-family="Osw" font-weight="600" font-size="30" letter-spacing="6" fill="{CREAM}">A CHRIS KELLY PRODUCTION</text>')
-    longest = max(len(l) for l in lines)
-    cap = (175 if len(lines) == 1 else 112) * (1.12 if tall else 1)
-    size = min(cap, (W - 120) / (longest * .80))
-    y += size * .9 + 14
-    for l in lines:
-        svg.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-family="Slab" font-size="{size:.0f}" fill="{CREAM}" filter="url(#worn)">{l}</text>')
-        y += size * 1.0
-    y += 50 - size * 1.0 + (30 if tall else 0)
-    svg.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-family="Bod" font-style="italic" font-size="{36 if not tall else 42}" fill="{CREAM}">“{quote}”</text>')
-    y += 36
-    svg.append(f'<text x="{W/2}" y="{y}" text-anchor="middle" font-family="Osw" font-weight="400" font-size="18" letter-spacing="5" fill="{bg}">{cite.upper()}</text>')
-    by = H - (52 if not tall else 110)
+    # footer (fixed to the bottom)
+    fs = 28 if not tall else 32
+    by = H - (60 if not tall else 100)
+    foot = [f'<text x="{M}" y="{by}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Teatre Gaudí · March 2027</text>',
+            f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="500" font-size="{fs-4}" fill="{GREY}">Thu–Sat · Curtain 20:00</text>']
+    limit = by - fs - 46
     if tall:
-        svg.append(f'<text x="{W/2}" y="{by-46}" text-anchor="middle" font-family="Osw" font-weight="600" font-size="38" letter-spacing="4" fill="{CREAM}">TEATRE GAUDÍ · MARCH 2027</text>')
-        svg.append(f'<text x="{W/2}" y="{by}" text-anchor="middle" font-family="Osw" font-weight="400" font-size="26" letter-spacing="4" fill="{CREAM}" opacity=".8">THURSDAYS · FRIDAYS · SATURDAYS · CURTAIN 20:00</text>')
-    else:
-        svg.append(f'<line x1="{W/2-60}" y1="{by-44}" x2="{W/2+60}" y2="{by-44}" stroke="{CREAM}" stroke-opacity=".35"/>')
-        svg.append(f'<text x="{W/2}" y="{by}" text-anchor="middle" font-family="Osw" font-weight="600" font-size="24" letter-spacing="4" fill="{CREAM}" opacity=".9">TEATRE GAUDÍ · THU–SAT IN MARCH 2027 · CURTAIN 20:00</text>')
-    svg.append(f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".16"/>')
-    svg.append("</svg>")
-    return "".join(svg)
+        foot.append(f'<text x="{M}" y="{by+46}" font-family="Inter" font-weight="500" font-size="{fs-4}" fill="{GREY}">shakespeareshow.actor</text>')
+    foot.append(f'<line x1="{M}" y1="{limit+14}" x2="{W-M}" y2="{limit+14}" stroke="{WHITE}" stroke-opacity=".14" stroke-width="2"/>')
+    kick = "A Chris Kelly production" + ("" if h1.startswith("Selected") else " · Selected Works of Shakespeare")
+    two = h2 == "of Shakespeare"
+    for k in [1, .94, .88, .82, .76, .7, .64]:
+        out = []
+        y = ground + (84 if not tall else 120)
+        ks = 24 if not tall else 28
+        out.append(f'<text x="{M}" y="{y}" font-family="Inter" font-weight="600" font-size="{ks}" fill="{GREY}">{esc(kick)}</text>')
+        cap = (128 if not tall else 150) * k
+        if two:
+            s1 = s2 = min(fit(h1, cap, TW), fit(h2, cap, TW))
+        else:
+            s1 = fit(h1, cap, TW); s2 = fit(h2, (60 if not tall else 70) * k, TW)
+        y += s1 * .92 + 10
+        out.append(f'<text x="{M-s1*.04:.0f}" y="{y:.0f}" font-family="Tight" font-weight="600" font-size="{s1:.0f}" letter-spacing="{-s1*.045:.1f}" fill="{WHITE}">{esc(h1)}</text>')
+        y += s2 * (.98 if two else 1.12)
+        out.append(f'<text x="{M-s2*.04:.0f}" y="{y:.0f}" font-family="Tight" font-weight="600" font-size="{s2:.0f}" letter-spacing="{-s2*.045:.1f}" fill="{GREY}">{esc(h2)}</text>')
+        ts = round((24 if not tall else 28) * max(k, .85))
+        y += ts * 2.6
+        x = M
+        for label, col in tags:
+            g, w = tag(x, y, label, col, ts); out.append(g); x += w + 12
+        qs = round((32 if not tall else 38) * max(k, .8))
+        y += qs * 2.0
+        for line in wrap("“" + quote + "”", qs, TW):
+            out.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-style="italic" font-size="{qs}" fill="{WHITE}" fill-opacity=".88">{esc(line)}</text>')
+            y += qs * 1.3
+        out.append(f'<text x="{M}" y="{y-qs*.15:.0f}" font-family="Inter" font-weight="500" font-size="{round(qs*.66)}" fill="{GREY}">{esc(cite)}</text>')
+        if y < limit: break
+    return "".join(art + out + foot + [f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".12"/></svg>'])
 
 def ticket():
     W, H = 1600, 620
     bg = "#D8432A"
     s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
          '<defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.2 1.05"/></filter>',
-         '<filter id="worn"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="9" result="n"/><feColorMatrix in="n" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -16 13" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>',
          '<mask id="notch"><rect width="1600" height="620" fill="#fff"/><circle cx="1180" cy="0" r="34" fill="#000"/><circle cx="1180" cy="620" r="34" fill="#000"/></mask></defs>',
          f'<g mask="url(#notch)"><rect width="{W}" height="{H}" fill="{bg}"/>',
-         f'<rect x="0" y="420" width="1180" height="200" fill="{INK}"/>',
-         f'<g fill="{INK}">{motif("all", 1100, 20, 400, bg, random.Random(3))}</g>',
-         f'<text x="70" y="110" font-family="Osw" font-weight="600" font-size="30" letter-spacing="5" fill="{INK}">A CHRIS KELLY PRODUCTION</text>',
-         f'<text x="64" y="270" font-family="Slab" font-size="104" fill="{INK}">SHAKESPEARE</text>',
-         f'<text x="70" y="370" font-family="Bod" font-style="italic" font-size="40" fill="{INK}">“All the world\'s a stage.”</text>',
-         f'<text x="70" y="490" font-family="Osw" font-weight="600" font-size="30" letter-spacing="3" fill="{CREAM}">TEATRE GAUDÍ · C/ SANT ANTONI MARIA CLARET, 120</text>',
-         f'<text x="70" y="540" font-family="Osw" font-weight="400" font-size="26" letter-spacing="3" fill="{CREAM}" opacity=".85">DATE ________  ·  DOORS 19:30  ·  CURTAIN 20:00</text>',
+         f'<rect x="0" y="400" width="1180" height="220" fill="{INK}"/>',
+         f'<g fill="{INK}">{motif("all", 1080, 20, 380, bg, random.Random(3))}</g>',
+         f'<text x="72" y="100" font-family="Inter" font-weight="600" font-size="28" fill="{INK}" fill-opacity=".75">A Chris Kelly production</text>',
+         f'<text x="66" y="210" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}">Selected Works</text>',
+         f'<text x="66" y="310" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}" fill-opacity=".55">of Shakespeare</text>']
+    x = 72
+    for t, (c, _) in THEMES.items():
+        g, w = tag(x, 470, t, c, 26); s.append(g); x += w + 12
+    s += [f'<text x="72" y="555" font-family="Inter" font-weight="600" font-size="28" fill="{WHITE}">Teatre Gaudí · C/ Sant Antoni Maria Claret, 120</text>',
+         f'<text x="72" y="596" font-family="Inter" font-weight="500" font-size="22" fill="{GREY}">Date ________  ·  Doors 19:30  ·  Curtain 20:00</text>',
          f'<line x1="1180" y1="40" x2="1180" y2="580" stroke="{INK}" stroke-width="4" stroke-dasharray="14 12"/>',
          f'<rect x="1180" y="0" width="420" height="620" fill="{INK}"/>',
-         f'<text x="1390" y="150" text-anchor="middle" font-family="Osw" font-weight="600" font-size="34" letter-spacing="8" fill="{CREAM}">ADMIT ONE</text>',
-         f'<text x="1390" y="330" text-anchor="middle" font-family="Slab" font-size="84" fill="{bg}" filter="url(#worn)">Nº 001</text>',
-         f'<text x="1390" y="430" text-anchor="middle" font-family="Osw" font-weight="400" font-size="26" letter-spacing="4" fill="{CREAM}">ROW ___   SEAT ___</text>',
-         f'<text x="1390" y="520" text-anchor="middle" font-family="Osw" font-weight="400" font-size="22" letter-spacing="4" fill="{CREAM}" opacity=".7">MARCH 2027 · THU–SAT</text>',
-         f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".16"/></g></svg>']
+         f'<text x="1236" y="120" font-family="Inter" font-weight="600" font-size="28" fill="{GREY}">Admit one</text>',
+         f'<text x="1230" y="300" font-family="Tight" font-weight="600" font-size="120" letter-spacing="-5" fill="{bg}">Nº 001</text>',
+         f'<text x="1236" y="430" font-family="Inter" font-weight="500" font-size="28" fill="{WHITE}">Row ___   Seat ___</text>',
+         f'<text x="1236" y="520" font-family="Inter" font-weight="500" font-size="22" fill="{GREY}">March 2027 · Thu–Sat</text>',
+         f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".12"/></g></svg>']
     return "".join(s)
 
-os.makedirs("/home/claude/posters/html", exist_ok=True)
+os.makedirs(os.path.join(OUT, "html"), exist_ok=True)
 jobs = []
 for p in POSTERS:
-    for (W, H, tag) in [(1080, 1350, "ig"), (1080, 1920, "story")]:
-        name = f"{p[0]}-{tag}"
-        open(f"/home/claude/posters/html/{name}.html", "w").write(f"<!doctype html><html><head><style>{FONTS}html,body{{margin:0;background:#000}}</style></head><body>{poster(p, W, H)}</body></html>")
+    for (W, H, tag_) in [(1080, 1350, "ig"), (1080, 1920, "story")]:
+        name = f"{p[0]}-{tag_}"
+        open(os.path.join(OUT, "html", name + ".html"), "w").write(f"<!doctype html><html><head><meta charset='utf-8'><style>{FONTS}html,body{{margin:0;background:#000}}</style></head><body>{poster(p, W, H)}</body></html>")
         jobs.append([name, W, H])
-open("/home/claude/posters/html/ticket.html", "w").write(f"<!doctype html><html><head><style>{FONTS}html,body{{margin:0}}</style></head><body>{ticket()}</body></html>")
+open(os.path.join(OUT, "html", "ticket.html"), "w").write(f"<!doctype html><html><head><meta charset='utf-8'><style>{FONTS}html,body{{margin:0}}</style></head><body>{ticket()}</body></html>")
 jobs.append(["ticket", 1600, 620])
-json.dump(jobs, open("/home/claude/posters/jobs.json", "w"))
+json.dump(jobs, open(os.path.join(OUT, "jobs.json"), "w"))
 print(len(jobs))
