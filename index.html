@@ -278,6 +278,38 @@ a.book{display:block;text-decoration:none}
 .themebtn:hover{border-color:#52525b}.themebtn:focus-visible{outline:3px solid #f5f5f4;outline-offset:2px}
 .themebtn .ti-moon{display:none}html.light .themebtn .ti-sun{display:none}html.light .themebtn .ti-moon{display:block}
 @media (max-width:1240px){.themebtn{margin-left:auto;order:1}.menubtn{margin-left:8px!important;order:2}}
+.chhero{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end;margin-top:14px;padding:28px;border-radius:22px;background:var(--bg);color:var(--fg)}
+.chhero h1{margin:4px 0 10px!important;color:var(--fg)!important;font-size:clamp(40px,7vw,76px)!important;line-height:.95!important}
+.chplay{margin:0;font:600 14px var(--fb);opacity:.8}
+.chbio{margin:0;max-width:620px;font-size:17px;line-height:1.55;opacity:.92}
+.chcast{display:flex;gap:16px}
+.chactor{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:150px}
+.chactor a{color:var(--fg)!important;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.chlbl{font:600 12px var(--fb);opacity:.75;margin-top:8px}
+.chph{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;overflow:hidden;flex:none;background:color-mix(in srgb,currentColor 12%,transparent);font:600 18px var(--fd)}
+.chph img{width:100%;height:100%;object-fit:cover}
+.chph.big{width:150px;height:186px;border-radius:16px;font-size:44px;box-shadow:0 18px 30px -18px rgba(0,0,0,.7)}
+.chstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.chstat{background:#111113;border:1px solid #2a2a2f;border-radius:16px;padding:16px 18px}
+.chstat b{display:block;font:600 30px/1.05 var(--fd);letter-spacing:-.03em}
+.chstat span{display:block;margin-top:6px;font-size:13px;color:#a1a1aa}
+.chh{margin:34px 0 12px!important;font-size:26px!important}
+.chscenes{display:grid;gap:12px}
+.chsc{display:grid;grid-template-columns:48px 1fr;gap:14px;background:#111113;border:1px solid #2a2a2f;border-radius:18px;padding:16px 18px}
+.chscn{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#1c1c1f;font:600 18px var(--fd)}
+.chsck{margin:0;font-size:13px;color:#a1a1aa}
+.chsc h3{margin:2px 0 6px!important;font-size:21px!important}.chsc h3 a{color:inherit;text-decoration:none}.chsc h3 a:hover{text-decoration:underline}
+.chscw{margin:0;font-size:15px}.chscw a{color:inherit}.chscw span{color:#a1a1aa}
+.chsca{margin:6px 0 0;font-size:14px;color:#c4c4cc;font-style:italic}
+.chscbtn{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chopp{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.chop{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;background:#111113;border:1px solid #2a2a2f;color:inherit;text-decoration:none}
+.chop:hover{border-color:#52525b}.chop b{display:block;font-size:15px}.chop small{display:block;font-size:13px;color:#a1a1aa}
+.chop .chph{background:#1c1c1f}
+.chalso{display:flex;flex-wrap:wrap;gap:8px}
+.chcost .costgrid{margin-top:0}
+.chnav{display:flex;justify-content:space-between;gap:10px;margin-top:26px}.chnav .btn{flex:0 1 48%!important}
+@media (max-width:760px){.chhero{grid-template-columns:1fr;padding:22px}.chcast{flex-wrap:wrap}.chph.big{width:120px;height:150px}.chactor{width:auto}.chstats{grid-template-columns:repeat(2,1fr)}}
 .sitefoot{max-width:1100px;margin:56px auto 0;padding:22px 20px 34px;border-top:1px solid #1f1f23;font-size:13px;color:#8a8a93;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .sitefoot a{color:#a1a1aa;text-decoration:underline;text-underline-offset:3px}.sitefoot a:hover{color:#f5f5f4}
 .sitefoot .dot{opacity:.5}
@@ -1055,6 +1087,17 @@ html.light{--ink:#f8f7f6;--ink2:#fefefe;--ink3:#fcfcfc;--line:#e5e4e3;--paper:#9
 :where(html.light) .themebtn{border:1px solid #e4e3e1;background:#fefefe;color:#151513}
 :where(html.light) .themebtn:hover{border-color:#a4a4ad}
 :where(html.light) .themebtn:focus-visible{outline:3px solid #151513}
+:where(html.light) .chstat{background:#fdfdfc;border:1px solid #e2e1df}
+:where(html.light) .chstat span{color:#55555e}
+:where(html.light) .chsc{background:#fdfdfc;border:1px solid #e2e1df}
+:where(html.light) .chscn{background:#fbfbfa}
+:where(html.light) .chsck{color:#55555e}
+:where(html.light) .chscw span{color:#55555e}
+:where(html.light) .chsca{color:#34343a}
+:where(html.light) .chop{background:#fdfdfc;border:1px solid #e2e1df}
+:where(html.light) .chop:hover{border-color:#a4a4ad}
+:where(html.light) .chop small{color:#55555e}
+:where(html.light) .chop .chph{background:#fbfbfa}
 :where(html.light) .sitefoot{border-top:1px solid #fafafa;color:#6c6c75}
 :where(html.light) .sitefoot a{color:#55555e}
 :where(html.light) .sitefoot a:hover{color:#151513}
@@ -1789,7 +1832,7 @@ function pHome(){
   const nextSat=SATURDAYS.find(d=>new Date(d+"T11:00")>new Date())||SATURDAYS[SATURDAYS.length-1];
   return `<section class="opener" aria-labelledby="optitle">
     <div class="op-body">
-      <p class="op-kick">a CHRIS KELLY production · Teatre Gaudí · March 2027</p>
+      <p class="op-kick">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</p>
       <h1 class="op-title" id="optitle">Selected Works <em>of Shakespeare</em></h1>
       <div class="cd op-cd" id="cd" role="timer" aria-label="Time until curtain"><div><b id="cd-d">–</b><span>Days</span></div><div><b id="cd-h">–</b><span>Hours</span></div><div><b id="cd-m">–</b><span>Minutes</span></div><div><b id="cd-s">–</b><span>Seconds</span></div></div>
       <p class="op-when"><span class="tbc">TBC</span> UNTIL CURTAIN · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
@@ -2131,15 +2174,46 @@ function pChars(){
   return folioHero(`${CHARS.length} characters · ${plays.length} plays`,"Dramatis Personae",`<nav class="fnav">${plays.map(p=>`<a href="#characters" data-jump="${esc(ck(p))}">${esc(ABBR[p]||p)}</a>`).join("")}</nav>`)+`</section>`+
    plays.map(p=>{const [bg,fg]=playColors(p);return `<h2 class="shelfhead" id="play-${esc(ck(p))}">${esc(p)}</h2>`+shelf(CHARS.filter(c=>c.play===p).map(c=>vol({href:"#character-"+c.id,bg,fg,i:i++,kick:ABBR[p]||p,title:c.name,meta:c.actor})).join(""),p)}).join("");
 }
+const COSTUME_OF={macbeth:"macbeth",banquo:"banquo",richard:"richard",witches:"witches",fairy:"titania","oberons-fairy":"oberon",oberon:"oberon"};
+function actOf(item){const iv=ORDER.findIndex(o=>o.type==="interval");return ORDER.indexOf(item)<iv?1:2}
 function pChar(id){
   const c=CH[id];if(!c)return `<a class="back" href="#characters">← Characters</a><p>Not found.</p>`;
   const appears=ITEMS.filter(i=>i.chars.includes(id));
   const actors=c.actor.split(", ");
-  return `<a class="back" href="#characters">← Characters</a><div class="kicker">${esc(c.play)}</div><h1>${esc(c.name)}</h1>
-  <div class="card"><span class="small">Who they are</span><div class="body">${esc(c.bio)}</div></div>
-  <div class="card"><span class="small">Played by</span><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">${actors.map(a=>{const src=headSrc(a);return `<div style="width:110px"><div class="head" style="font-size:28px">${src?`<img src="${src}" data-full="${src}" alt="${esc(a)}" tabindex="0" role="button" aria-label="Open ${esc(a)}'s photo full size">`:initials(a)}</div><a href="#cast" style="display:block;margin-top:6px;font-size:13px;color:inherit">${esc(a)}</a></div>`}).join("")}</div></div>
-  <div class="card"><span class="small">Appears in</span>${appears.map(i=>`<a class="pill" href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join("")}</div>
-  ${notesBlock("char-"+id,"Character notes (for the actor)","Chris's notes on playing this character will appear here.")}`;
+  const [bg,fg]=playColors(c.play);
+  const words=PARTS.filter(p=>p.ch===id).reduce((a,p)=>a+p.words,0);
+  const mins=appears.reduce((a,i)=>a+(i.mins||0),0);
+  const acts=[...new Set(appears.map(actOf))];
+  const nSc=appears.filter(i=>i.type==="scene").length;
+  const opp=[];appears.forEach(i=>i.chars.forEach(x=>{if(x!==id&&CH[x]&&!opp.includes(x))opp.push(x)}));
+  const ph=(a,big)=>{const src=headSrc(a);return `<div class="chph${big?" big":""}">${src?`<img src="${src}" data-full="${src}" alt="${esc(a)}" tabindex="0" role="button" aria-label="Open ${esc(a)}'s photo full size">`:`<span aria-hidden="true">${esc(initials(a))}</span>`}</div>`};
+  const others=actors.map(a=>[a,PARTS.filter(p=>p.actor===a&&p.ch!==id)]).filter(x=>x[1].length);
+  const cg=COSTUME.find(g=>g.id===COSTUME_OF[id]);
+  const list=CHARS.filter(x=>x.play===c.play),k=list.findIndex(x=>x.id===id),prev=list[k-1],next=list[k+1];
+  const stat=(v,l)=>`<div class="chstat"><b>${v}</b><span>${l}</span></div>`;
+  return `<a class="back" href="#characters">← Characters</a>
+  <section class="chhero" style="--bg:${bg};--fg:${fg}">
+    <div class="chinfo"><p class="chplay">${esc(c.play)}</p><h1>${esc(c.name)}</h1><p class="chbio">${esc(c.bio)}</p></div>
+    <div class="chcast">${actors.map(a=>`<div class="chactor">${ph(a,true)}<span class="chlbl">Played by</span><a href="#cast">${esc(a)}</a></div>`).join("")}</div>
+  </section>
+  <div class="chstats">${stat(words?"≈ "+words.toLocaleString("en-GB"):"—","words spoken")}${stat(appears.length,appears.length===1?"piece":"pieces")+(nSc!==appears.length?"":"")}${stat("≈ "+Math.round(mins),"minutes on stage")}${stat(acts.length===2?"1 & 2":"Act "+(acts[0]||"–"),acts.length===2?"both acts":"of the evening")}</div>
+
+  <h2 class="chh">Scene by scene</h2>
+  <div class="chscenes">${appears.map(i=>{const with_=i.chars.filter(x=>x!==id&&CH[x]);const sk=SCRIPT_OF[i.id];
+    return `<article class="chsc"><div class="chscn">${i.type==="scene"?esc(i.n):i.type==="fight"?"⚔":'<svg viewBox="0 0 24 24" width="20" height="20" aria-label="Mosaic"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg>'}</div><div class="chscb">
+      <p class="chsck">${esc(i.play)} · Act ${actOf(i)} · ≈ ${i.mins} min</p><h3><a href="#scene-${i.id}">${esc(i.title)}</a></h3>
+      ${with_.length?`<p class="chscw">With ${with_.map(x=>`<a href="#character-${x}">${esc(CH[x].name)}</a> <span>(${esc(CH[x].actor)})</span>`).join(", ")}</p>`:`<p class="chscw">On their own</p>`}
+      ${i.arc?`<p class="chsca">${esc(i.arc)}</p>`:""}
+      <div class="chscbtn"><a class="btn sm" href="#scene-${i.id}">Open scene</a>${sk&&SCRIPTS[sk]?`<a class="btn sm" href="#script-${sk}">Read the script</a>`:""}</div></div></article>`}).join("")||`<p class="meta">Not in any piece yet.</p>`}</div>
+
+  ${opp.length?`<h2 class="chh">Plays opposite</h2><div class="chopp">${opp.map(x=>{const o=CH[x],a=o.actor.split(", ")[0];return `<a class="chop" href="#character-${x}">${ph(a)}<span><b>${esc(o.name)}</b><small>${esc(o.actor)}</small></span></a>`}).join("")}</div>`:""}
+
+  ${others.map(([a,ps])=>`<h2 class="chh">Also played by ${esc(a.split(" ")[0])}</h2><div class="chalso">${ps.map(p=>`<a class="pill" href="#character-${p.ch}">${esc(p.name)} <span class="meta">· ${esc(ABBR[CH[p.ch].play]||CH[p.ch].play)}</span></a>`).join("")}</div>`).join("")}
+
+  ${cg?`<h2 class="chh">Costume</h2><div class="card chcost"><p style="margin:0 0 12px">${esc(cg.note)}</p><div class="costgrid">${cg.imgs.map(([f,alt])=>`<figure><img src="costume/${f}.jpg" data-full="costume/${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`).join("")}</div></div>`:""}
+
+  ${notesBlock("char-"+id,"Character notes (for the actor)","Chris's notes on playing this character will appear here.")}
+  <nav class="chnav" aria-label="More characters from ${esc(c.play)}">${prev?`<a class="btn" href="#character-${prev.id}">← ${esc(prev.name)}</a>`:"<span></span>"}${next?`<a class="btn" href="#character-${next.id}">${esc(next.name)} →</a>`:"<span></span>"}</nav>`;
 }
 
 function pFights(){
@@ -2417,22 +2491,22 @@ function songFor(id){const x=SONGS.find(z=>z[4]===id);return x?`<section class="
 
 const APPROACH=[
  {h:"The text and the voice",c:"#f4c75c",cl:"#9a6700",items:[
-  ["Rhythm in the text","Shakespeare wrote the music into the line. We work from the verse: the iambic pulse, the short lines, the shared lines, the caesuras. Find the rhythm and the meaning usually follows."],
-  ["Resonance, not volume","Power comes from a resonant, supported voice, not from shouting. And not from the opposite either: no throwing lines away or dropping into a mumble for the sake of being 'real'. Full voice, fully meant."],
-  ["One thought, one breath","Each thought gets its own breath, carried right through to the end of the line. Keep the line in its rhythm and let the words do the lifting: the meaning is already in them, so you don't need to push it on top."],
-  ["Attack the verse","Come at the verse with velocity and intent. Pick up your cues, drive through the thought, land the important word. Speed with clarity, never rushing for the sake of it."],
-  ["A classical approach","The work comes from the tradition of Drama Centre London: Stanislavski-based, rigorous about action and objective, and serious about the classical text."]]},
+  ["Rhythm in the text","The music is in the verse. Find the rhythm and the meaning follows."],
+  ["Resonance, not volume","A resonant, supported voice. No shouting, no mumbling. Full voice, fully meant."],
+  ["One thought, one breath","One breath per thought, carried to the end of the line. Let the words do the lifting."],
+  ["Attack the verse","Velocity and intent. Pick up cues, drive the thought, land the key word."],
+  ["A classical approach","From the Drama Centre London tradition: Stanislavski, action and objective."]]},
  {h:"Between the actors",c:"#8cbcff",cl:"#1d5fbf",items:[
-  ["Active listening","Everything you play comes from what you have just received. Listen as if you don't know what's coming next, and let it change you."],
-  ["Syncopation, synergy, harmony","A scene works like a song between two or more people: timing, overlap, call and response. We look for the moment-to-moment emotional exchange that only happens when you are playing with, not at, your partner."],
-  ["Competition","Scenes are contests. Someone wants to win, and so does the other person. This is especially true of The Shrew and Richard III: two wooing scenes built on a fight for the upper hand, played at full speed and full stakes."]]},
+  ["Active listening","Play what you've just received. Listen, and let it change you."],
+  ["Syncopation, synergy, harmony","A scene is a song between people. Play with your partner, not at them."],
+  ["Competition","Scenes are contests, especially The Shrew and Richard III. Play to win."]]},
  {h:"Inside the scene",c:"#ff8a8a",cl:"#b42318",items:[
-  ["The why never changes; the how always should","Know your objective: what you want and why. That stays fixed. How you go after it should never stop changing. Build games and tactics, try one, and when it fails, strategise and try another."],
-  ["Never play the state","Don't play a mood. Be however you feel in the moment, but always know why you came into the room and why you are leaving it. If you know why you're in the room, the feeling takes care of itself."],
-  ["Given circumstances and stakes","Who you are, where you are, what has just happened and what you stand to lose. The higher the stakes, the clearer the playing."]]},
+  ["The why never changes; the how always should","Know your objective. Keep changing tactics until you get it."],
+  ["Never play the state","Feel what you feel, but know why you came in and why you're leaving."],
+  ["Given circumstances and stakes","Who, where, what just happened, what you could lose. Higher stakes, clearer playing."]]},
  {h:"The company",c:"#7fe0a0",cl:"#16794a",items:[
-  ["Generosity","Look after the people you are on stage with. Give them something to play off, help each other, and treat this as an ensemble rather than a collection of solos."],
-  ["Leave the notes to Chris","One gentle request: please leave directing to the director. If something in a partner's work is bothering you, bring it to Chris rather than giving them a note. It keeps the room safe, and it lets everyone get one clear voice to follow."]]}
+  ["Generosity","Look after each other on stage. An ensemble, not a set of solos."],
+  ["Leave the notes to Chris","A gentle request: if something in a partner's work bothers you, bring it to Chris rather than giving a note. One clear voice keeps the room safe."]]}
 ];
 function venn(){
   const C=[["The Director",210,150,"#f4c75c"],["The Actor",130,280,"#8cbcff"],["The Character",290,280,"#ff8a8a"]];
@@ -2466,7 +2540,7 @@ const SPEECH_US=[
 function pSpeech(){
   const link=([id,t])=>IT[id]?`<a href="#scene-${id}">${esc(IT[id].play)}: ${esc(t)}</a>`:esc(t);
   return `<section class="apgroup speech" aria-labelledby="sp-h"><p class="ckick" style="margin:0 0 6px">Hamlet 3.2 · Hamlet's advice to the players</p><h2 id="sp-h">"Speak the speech, I pray you"</h2>
-    <p class="clede">Before the play-within-the-play, Hamlet tells a company of actors how to act. Four hundred years later it is still the best short guide to playing Shakespeare, and it is basically what we'll be doing. Shakespeare on the left, plain modern English on the right.</p>
+    <p class="clede">Hamlet tells a company of actors how to act. It's still the best short guide to Shakespeare, and it's what we'll be doing.</p>
     ${(()=>{const hl=t=>esc(t).replace(/\[\[(.*?)\]\]/g,'<mark class="sphl">$1</mark>');return `<div class="sptwo"><div class="spcol"><p class="spcap">Shakespeare</p><div class="spo">${SPEECH.map(x=>`<p>${hl(x[1])}</p>`).join("")}</div></div><div class="spcol"><p class="spcap">In modern English</p><div class="spm">${SPEECH.map(x=>`<p>${hl(x[2])}</p>`).join("")}</div></div></div>`})()}
   </section>`;
 }

@@ -56,7 +56,7 @@ def fixdecls(d):
         out.append(prop.strip() + ':' + v.strip())
     return ';'.join(out)
 
-SKIP = re.compile(r'ssign|book|\.b2|bname|bmeta|bkick|\.vol\b|\.cal\b|\.cal[mdw]\b|\.cal\.sm|fccal|firstcall|\.fc[a-z]+|op-art|poster|\.ticket')
+SKIP = re.compile(r'chhero|chph\.big|chactor|chplay|chbio|chlbl|ssign|book|\.b2|bname|bmeta|bkick|\.vol\b|\.cal\b|\.cal[mdw]\b|\.cal\.sm|fccal|firstcall|\.fc[a-z]+|op-art|poster|\.ticket')
 def scope(sel):
     res = []
     for s in sel.split(','):
