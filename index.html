@@ -1923,6 +1923,9 @@ function pMarketing(){
 const COSTUME=[
   {id:"titania",title:"Titania's fairies",play:"A Midsummer Night's Dream",note:"White and ivory fabric, wrapped and draped close to the body: soft, light, a little undone. Simple jewellery.",imgs:[["titania-fairies-1","Titania's fairies: white draped and wrapped fabric"],["titania-fairies-2","Titania's fairies: white fringed wrap"]]},
   {id:"oberon",title:"Oberon's fairy",play:"A Midsummer Night's Dream",note:"Wings that catch the light, a crown of moss and flowers, dark teal and silver embroidery. Wild and theatrical. For Aldo: a faun of the wood. Curled ram's horns, a crown of leaves, wild hair and beard, a leafy wrap and furry goat legs.",imgs:[["oberon-fairy","Oberon's fairy: lit wings, moss crown, teal and silver"],["oberon-fairy-faun","Oberon's fairy (Aldo): a faun with ram's horns and a crown of leaves"]]},
+  {id:"macbeth",title:"Macbeth",play:"Macbeth",note:"For Rob. Sharp black tailoring with a blue-green tartan sash over one shoulder, pinned with a gold brooch: a soldier dressed for power. The gold grows as he rises.",imgs:[["macbeth","Macbeth: black suit, blue-green tartan sash, gold brooch"]]},
+  {id:"banquo",title:"Banquo",play:"Macbeth",note:"For Julien. Rougher, warmer cloth: dark green jacket, red-green tartan across the chest, brass buttons. Loyal and earthy beside Macbeth's polish.",imgs:[["banquo","Banquo: dark green jacket, red-green tartan sash, brass buttons"]]},
+  {id:"richard",title:"Richard III",play:"Richard III",note:"For Dario. All black, long and sweeping: a floor-length cloak over a dark suit. Volume and shadow instead of a crown.",imgs:[["richard","Richard III: floor-length black cloak over a dark suit"]]},
   {id:"witches",title:"The witches",play:"Macbeth",note:"Floor-length black velvet cloaks with deep hoods and fur trim. Faces hidden until the reveal.",imgs:[["witches","The witches: hooded black velvet cloak with fur trim"]]}];
 function pCostume(){
   return `<a class="back" href="#staging">← Staging</a><div class="chero"><p class="ckick">Staging</p><h1>Costume</h1><p class="clede">The looks we're going for, by group. Tap a photo to see it full size.</p></div>
@@ -1982,7 +1985,7 @@ function pStaging(){
     <div class="vfx">${icon("projector",54)}<div><p class="clede" style="margin:0">A projector for the moments that need more than light: the moon over the wood, Ophelia's father behind the scrim, water for her drowning, and the emblems between the plays.</p><p class="meta" style="margin-top:8px">Projection list and screen position to be set in tech.</p></div></div></section>
 
   <section class="cost" id="st-cost"><div class="costhead"><span class="rnum sm">6</span><h2>Costume</h2></div>
-    <p class="clede">Costume is symbolic: colour and fabric volume show status. Looks so far for Titania's fairies, Oberon's fairy and the witches. Costumier: open vacancy.</p>
+    <p class="clede">Costume is symbolic: colour and fabric volume show status. Looks so far for Macbeth, Banquo, Richard III, the witches, Titania's fairies and Oberon's fairy. Costumier: open vacancy.</p>
     <a class="card link" href="#costume" style="margin-top:14px"><h3>Open costume →</h3><div class="meta">Photos and notes for each group.</div></a></section>`;
 }
 function wireStaging(root){root.querySelectorAll("[data-jumpto]").forEach(b=>b.onclick=()=>{const t=document.getElementById(b.dataset.jumpto);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})})}
