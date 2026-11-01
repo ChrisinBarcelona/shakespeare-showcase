@@ -791,6 +791,26 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .topics li{font-size:14.5px;font-weight:600;border:1px solid #3a3a40;border-radius:999px;padding:7px 13px;background:#18181b;color:#f5f5f4}
 .partner{margin-top:16px;border-left:4px solid #f4c75c;background:rgba(244,199,92,.08);border-radius:12px;padding:12px 14px;color:#e4e4e7;font-size:15px}
 .partner b{color:#f4c75c}
+
+/* ---- script card on scene pages ---- */
+.scta{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;margin-top:20px;padding:24px;border-radius:22px;background:linear-gradient(135deg,#141416,#0c0c0e);border:1px solid #2a2a2f}
+.scta-book{width:170px!important;height:250px!important;flex:none}
+.scta-book .bname{font-size:22px!important}
+.scta:hover .scta-book .b2{transform:translateY(-10px) rotate(-1.5deg);box-shadow:0 30px 30px -18px #000}
+.scta-body h2{margin:2px 0 0!important;font-size:clamp(30px,4.4vw,46px)!important;line-height:1.02}
+.scta-body .clede{margin:10px 0 0;max-width:560px}
+.scta-body .btns{margin-top:18px}
+.scta-go{min-height:52px!important;padding:0 24px!important;font-size:16px!important}
+@media(max-width:620px){.scta{grid-template-columns:1fr;justify-items:start}.scta-book{width:130px!important;height:190px!important}.scta-book .bname{font-size:18px!important}.scta-body .btns .btn{flex:1}}
+/* ---- shows as calendar tiles ---- */
+.show2{display:flex;gap:16px;align-items:center;background:#111113;border:1px solid #2a2a2f;border-radius:18px;padding:14px}
+.show2.past{opacity:.45}
+.cal{flex:none;width:86px;border-radius:14px;overflow:hidden;background:#f5f5f4;color:#0a0a0a;text-align:center;box-shadow:0 10px 20px -12px #000}
+.calm{display:block;background:#D8432A;color:#fff;font:700 13px var(--fb);letter-spacing:.08em;text-transform:uppercase;padding:5px 0}
+.cald{display:block;font:600 44px/1 var(--fd);letter-spacing:-.04em;padding:8px 0 2px;font-variant-numeric:tabular-nums}
+.calw{display:block;font:600 13px var(--fb);color:#52525b;padding:0 0 8px}
+.showinfo h3{margin:2px 0 4px!important;font-size:19px!important}.showinfo .ckick{margin:0}.showinfo .meta{margin:0}
+.op-art{max-height:min(62vh,760px)!important}
 </style>
 </head>
 <body>
@@ -1113,7 +1133,7 @@ function wireEdits(root){
 }
 
 /* ================= ROUTER ================= */
-const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["scripts","Scripts"],["cast","The Company"],["characters","Characters"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
+const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
 let cdTimer=null;
 function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Signed out on this device")}
 function route(){
@@ -1181,7 +1201,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and all six Saturdays →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["scripts","Scripts","Every scene's full text, ready to download."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights and mosaics."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
+    ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights and mosaics."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
@@ -1269,6 +1289,13 @@ function pScenes(){
     `<a class="ro" href="#scene-${o.id}"><div class="num">${o.n}</div><div class="main"><div class="kicker">${esc(o.play)}</div><div class="ttl">${esc(o.title)}</div><div class="meta">${o.actors.map(esc).join(", ")}</div></div>${o.actors[0]==="Whole company"?"":`<div class="count ${countFor(o.id)===0?"zero":countFor(o.id)>=3?"ok":""}" title="Rehearsals booked">${countFor(o.id)}</div>`}</a>`).join("")+
   "";
 }
+function scriptCta(o){const k=SCRIPT_OF[o.id],pl=scriptPlay(k),[bg,fg]=playColors(pl),x=SCRIPTS[k],w=scriptWords(k).toLocaleString("en-GB");
+  return `<section class="scta" aria-labelledby="scta-h">
+    <a class="book2 scta-book" href="#script-${k}" tabindex="-1" aria-hidden="true" style="--bg:${bg};--fg:${fg}"><span class="b2"><span class="b2spine"></span><span class="b2cover"><span class="bplay">${esc(ABBR[pl]||pl)}</span><span class="bname">Act ${x.act}, Scene ${x.scene}</span><span class="bwords">≈ ${w} words</span></span><span class="b2pages"></span></span></a>
+    <div class="scta-body"><p class="ckick">The script</p><h2 id="scta-h">Read the full scene</h2>
+      <p class="clede">${esc(x.play)} · Act ${x.act}, Scene ${x.scene} · ≈ ${w} words. Our cast's lines are marked with their names; cut speeches are greyed out.</p>
+      <div class="btns"><a class="btn primary scta-go" href="#script-${k}">Read the script →</a><button type="button" class="btn" data-dl-pdf="${k}">Download PDF</button><button type="button" class="btn" data-dl-txt="${k}">Download .txt</button></div></div>
+  </section>`}
 function pScene(id){
   const o=IT[id];if(!o)return `<a class="back" href="#scenes">← Running order</a><p>Not found.</p>`;
   const idx=ITEMS.indexOf(o),prev=ITEMS[idx-1],next=ITEMS[idx+1];
@@ -1276,7 +1303,8 @@ function pScene(id){
   return `<a class="back" href="#scenes">← Running order</a>
   <div class="kicker">${o.n} · ${esc(o.play)}</div><h1>${esc(o.title)}</h1>
   <p class="sub">≈ ${o.mins} min${o.arc?" · "+esc(o.arc):""}</p>
-  <div class="card"><span class="small">What happens</span><div class="body">${esc(o.syn)}</div>${SCRIPT_OF[o.id]?`<a class="btn sm" href="#script-${SCRIPT_OF[o.id]}" style="display:inline-block;margin-top:12px">Read the full scene · ${esc(scriptLabel(SCRIPT_OF[o.id]))}</a>`:""}</div>
+  ${SCRIPT_OF[o.id]?scriptCta(o):""}
+  <div class="card"><span class="small">What happens</span><div class="body">${esc(o.syn)}</div></div>
   ${o.beats?`<div class="card"><span class="small">Suggested beats</span><div class="body notes">${esc(o.beats)}</div></div>`:""}
   ${o.ideas?`<div class="card"><span class="small">Staging ideas</span><div class="body">${esc(o.ideas)}</div></div>`:""}
   <div class="card"><span class="small">Characters</span>${o.chars.map(charLink).join("")||"<span class='meta'>Ensemble</span>"}<span class="small" style="margin-top:12px">Cast</span>${o.actors.map(actorLink).join("")}</div>
@@ -1426,7 +1454,7 @@ function pCast(){
   ${castView==="actor"
     ?`<div class="agrid">${order.map(actorCard).join("")}</div>`
     :`<div class="pgrid">${shownPlays.map(playSection).join("")}</div>`}
-  ${isOwner&&assets?`<div class="card bulk" style="margin-top:28px"><div><span class="small">Headshots</span><h3>Drop in everyone's photos at once</h3><div class="meta">Select all the files together. Each one is matched to an actor by the file name (full name, first name or surname, e.g. <b>sophie-heideker.jpg</b> or <b>Rob.png</b>).</div><div class="meta" style="margin-top:6px">${CAST.filter(n=>headSrc(n)).length} of ${CAST.length} actors have a photo.</div></div><label class="btn primary">Choose headshots<input type="file" accept="image/*" multiple id="bulkhs" hidden></label></div>`:""}
+
   <h2 class="ccrewh">The crew</h2>
   <div class="agrid">${CREW.map(crewCard).join("")}</div>
   <p class="cfoot">Word counts are from the full scene texts and will drop as cuts are made.</p>
@@ -1571,7 +1599,8 @@ function pShows(){
   <div class="card venue"><div><span class="small">Venue</span><h3>${VENUES.gaudi.name}</h3><div class="meta">${VENUES.gaudi.addr} · ${VENUES.gaudi.area}<br>Box office ${VENUES.gaudi.tel}</div></div><a class="btn sm" href="${VENUES.gaudi.map}" target="_blank" rel="noopener">Map ↗</a></div>
   <div class="card tech"><span class="small">Tech rehearsal</span><h3>${TECH.label}</h3><div class="meta">At Teatre Gaudí. Exact call time to be confirmed.</div></div>
   ${Object.values(weeks).map((ds,i)=>`<h2 class="wk">Week ${i+1}</h2><div class="showgrid">${ds.map((d,j)=>{const x=new Date(d+"T20:00");const n=SHOWS.indexOf(d)+1;const past=x<new Date();
-    return `<div class="show ${past?"past":""}"><div class="kicker">Show ${n} of ${SHOWS.length}${n===1?" · Opening":""}${n===SHOWS.length?" · Closing":""}</div><div class="sday">${x.toLocaleDateString("en-GB",{weekday:"long"})}</div><div class="sdate">${x.getDate()}</div><div class="meta">March 2027 · curtain 20:00</div></div>`}).join("")}</div>`).join("")}`;
+    return `<article class="show2 ${past?"past":""}"><div class="cal" aria-hidden="true"><span class="calm">${x.toLocaleDateString("en-GB",{month:"short"})}</span><span class="cald">${x.getDate()}</span><span class="calw">${x.toLocaleDateString("en-GB",{weekday:"short"})}</span></div>
+      <div class="showinfo"><p class="ckick">Show ${n} of ${SHOWS.length}${n===1?" · Opening night":""}${n===SHOWS.length?" · Closing night":""}</p><h3>${x.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3><p class="meta">Arrive 18:00 · Curtain 20:00</p></div></article>`}).join("")}</div>`).join("")}`;
 }
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){
@@ -1607,10 +1636,10 @@ function pScripts(){
     return `<a class="ro" href="#script-${k}"><div class="num">${items.map(i=>i.n).join(" ")}</div><div class="main"><div class="kicker">${esc(scriptLabel(k))}</div><div class="ttl">${items.map(i=>esc(i.title)).join(" / ")}</div><div class="meta">${esc(SCRIPTS[k].title.replace(/^SCENE [IVX]+\.\s*/,""))} · ≈ ${scriptWords(k).toLocaleString("en-GB")} words${un.length?` · <span style="color:var(--acc)">${un.length} uncast speaking role${un.length>1?"s":""}</span>`:""}</div></div><div class="count go">Read →</div></a>`}).join("")}`;
 }
 function pScript(k){
-  const x=SCRIPTS[k];if(!x)return `<a class="back" href="#scripts">← Scripts</a><p>Not found.</p>`;
-  const items=ITEMS.filter(i=>SCRIPT_OF[i.id]===k),un=uncast(k);
+  const x=SCRIPTS[k];if(!x)return `<a class="back" href="#scenes">← Scenes</a><p>Not found.</p>`;
+  const items=ITEMS.filter(i=>SCRIPT_OF[i.id]===k),un=uncast(k);const backTo=items[0]?`#scene-${items[0].id}`:"#scenes",backL=items[0]?`← ${esc(items[0].title)}`:"← Scenes";
   const castHere=[...new Set(x.items.filter(i=>i.s).flatMap(i=>i.s.split(" / ")).filter(n=>SPEAKER_ACTOR[n]))];
-  return `<a class="back" href="#scripts">← All scripts</a>
+  return `<a class="back" href="${backTo}">${backL}</a>
   <div class="kicker">${esc(x.play)}</div><h1>Act ${x.act}, <em>Scene ${x.scene}</em></h1>
   <p class="sub">${esc(x.title.replace(/^SCENE [IVX]+\.\s*/,""))} · ≈ ${scriptWords(k).toLocaleString("en-GB")} words${SCRIPT_NOTE[k]?" · "+esc(SCRIPT_NOTE[k]):""}</p>
   <div class="btns" style="max-width:520px"><button class="btn primary" data-dl-pdf="${k}">Download PDF</button><button class="btn" data-dl-txt="${k}">Download .txt</button></div>
@@ -1618,7 +1647,7 @@ function pScript(k){
     <span class="small" style="margin-top:12px">Our cast in this scene</span>${castHere.map(n=>`<span class="pill">${esc(n)} — ${esc(SPEAKER_ACTOR[n])}</span>`).join("")}
     ${un.length?`<span class="small" style="margin-top:12px;color:var(--acc)">Speaking roles not yet cast: cut or reassign</span>${un.map(n=>`<span class="pill warnpill">${esc(n)}</span>`).join("")}`:""}</div>
   <article class="script">${x.items.map(it=>it.d?`<p class="sd">${esc(it.d)}</p>`:`<div class="speech ${it.s.split(" / ").some(n=>SPEAKER_ACTOR[n])?"ours":"theirs"}${it.cut?" cut":""}"><div class="spk">${esc(it.s)}${it.cut?` <em class="cuttag">Cut</em>`:""}${it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).length?` <span>${esc(it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).join(", "))}</span>`:""}</div>${it.l.map(l=>/^\[.*\]$/.test(l)?`<p class="sd in">${esc(l.slice(1,-1))}</p>`:`<p>${esc(l)}</p>`).join("")}</div>`).join("")}</article>
-  <div class="btns"><a class="btn" href="#scripts">← All scripts</a><button class="btn primary" data-dl-pdf="${k}">Download PDF</button></div>`;
+  <div class="btns"><a class="btn" href="${backTo}">${backL}</a><button class="btn primary" data-dl-pdf="${k}">Download PDF</button></div>`;
 }
 function scriptText(k){const x=SCRIPTS[k];let t=`${x.play}\nAct ${x.act}, Scene ${x.scene}. ${x.title.replace(/^SCENE [IVX]+\.\s*/,"")}\nA Chris Kelly production · Selected Works of Shakespeare · Text: Moby Shakespeare (public domain)\n\n`;
   x.items.forEach(it=>{if(it.d)t+=`    [${it.d}]\n\n`;else{const a=it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean);t+=`${it.cut?"[CUT] ":""}${it.s}${a.length?" ("+a.join(", ")+")":""}\n${it.l.map(l=>"    "+l).join("\n")}\n\n`}});return t}
