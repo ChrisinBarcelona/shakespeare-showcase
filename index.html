@@ -931,7 +931,7 @@ const CREW=[
 ];
 const PROFILE={"Sophie Heideker":"https://bluebooktheatrecompany.com/sophie-heideker/","Aldo D'Ibaños":"https://aldodibanos.com","Chrystele Alix":"https://bluebooktheatrecompany.com/chrystele-alix/","Teo Jansen":"https://bluebooktheatrecompany.com/teo-jansen/","Alex Lui":"https://bluebooktheatrecompany.com/alex-liu/","Sarah Dillamore":"https://bluebooktheatrecompany.com/sarah-dillamore/","Hannah Di Bella":"https://bluebooktheatrecompany.com/hannah-dibella/","Sarah Burns":"https://bluebooktheatrecompany.com/sarah-burns/","Rob McLoughlin":"https://www.imdb.com/name/nm5345862/","Carlos Toca":"https://bluebooktheatrecompany.com/carlos-toca/","Dario Roberto":"https://bluebooktheatrecompany.com/dario-giuseppe-roberto/","Julien Paschal":"https://www.sinemalar.com/sanatci/769226/julien-paschal","Chris Kelly":"https://bluebooktheatrecompany.com/chriskelly/","Jan Zammit":"https://www.instagram.com/janzammit/","Adrian P. Smith":"https://www.instagram.com/adrian_p_smith_actor/","Kyle Scudder":"https://www.instagram.com/kyle.scudder/","Elle":"https://www.instagram.com/joella.a9/","Jean-Baptiste Courtois":"https://www.instagram.com/jean_baptiste_courtois/","Michael Strelow":"https://www.instagram.com/mishastrelow/","Jessica Kollande":"https://bluebooktheatrecompany.com/jessica-kollande/"};
 const PEOPLE=[...CAST,"Jessica Kollande","Chris Kelly"];
-function crewStatus(c){if(c.fixed)return "accepted";const d=castDocs[c.key]||{};return d[c.field||"status"]||"offered"}
+function crewStatus(c){const d=castDocs[c.key]||{};return d[c.field||"status"]||"offered"}
 const POSTER_KEYS=["love","power","madness","hate","company","macbeth","hamlet","midsummer","shrew","richard","coriolanus","ayli"];
 const IMG_FULL=Object.fromEntries([...POSTER_KEYS.flatMap(k=>[k+"-ig",k+"-story"]),"ticket"].map(n=>[n,"posters/jpg/"+n+".jpg"]));
 const IMG=Object.fromEntries(Object.keys(IMG_FULL).map(n=>[n,"posters/thumb/"+n+".jpg"]));
@@ -1270,7 +1270,7 @@ function playSection(pl){
         <span class="pt-w">${wordsTxt(p.words)}</span></li>`}).join("")}</ul></section>`;
 }
 function crewCard(c){
-  const ps=PARTS.filter(p=>p.actor===c.name),src=headSrc(c.name),st=c.fixed?null:crewStatus(c);
+  const ps=PARTS.filter(p=>p.actor===c.name),src=headSrc(c.name),st=crewStatus(c);
   const links=[[c.link,c.linkLabel],[c.link2,c.link2Label]].filter(x=>x[0]);
   return `<article class="acard" data-keys="${esc((c.name+" "+c.role).toLowerCase())}" aria-labelledby="c-${esc(c.key)}">
     <header class="ahead">
@@ -1282,7 +1282,7 @@ function crewCard(c){
     </header>
     <ul class="clist" aria-label="${esc(c.name)}'s roles">
       <li><a class="crow" href="#me" style="--c:#f5f5f4"><span class="cbar" aria-hidden="true"></span>
-        <span class="cmain"><span class="cname">${esc(c.role)}</span><span class="cmeta"><span class="ctag" style="--c:#d4d4d8">Crew</span> ${c.fixed?"Runs the company":st==="accepted"?"Role accepted":st==="declined"?"Role declined":"Accept or decline in My panel"}</span></span>
+        <span class="cmain"><span class="cname">${esc(c.role)}</span><span class="cmeta"><span class="ctag" style="--c:#d4d4d8">Crew</span> ${st==="accepted"?"Role accepted":st==="declined"?"Role declined":"Accept or decline in My panel"}</span></span>
         <span class="cgo" aria-hidden="true">→</span></a></li>
       ${ps.map(p=>partRow(p)).join("")}
     </ul>
@@ -1298,7 +1298,7 @@ function pCast(){
     <p class="ckick">A Chris Kelly production</p>
     <h1>The Company</h1>
     <p class="clede">${CAST.length} actors play ${PARTS.length} parts across ${plays.length} plays. ${multi} actors play more than one part, so every card lists all of an actor's parts together.</p>
-    <p class="csum">${(()=>{const ppl=[...CAST.map(n=>statusOf(n)),...CREW.filter(c=>!c.fixed).map(c=>crewStatus(c))];const a=ppl.filter(x=>x==="accepted").length;return `<b>${a} of ${ppl.length}</b> have accepted.`})()} <a href="#me">${me?"See or change your answer":"Find your name and accept"} →</a></p>
+    <p class="csum">${(()=>{const ppl=[...CAST.map(n=>statusOf(n)),...CREW.map(c=>crewStatus(c))];const a=ppl.filter(x=>x==="accepted").length;return `<b>${a} of ${ppl.length}</b> have accepted.`})()} <a href="#me">${me?"See or change your answer":"Find your name and accept"} →</a></p>
   </header>
   <div class="ctools" role="region" aria-label="Filter the cast">
     <div class="cview" role="group" aria-label="Show cast">
@@ -1389,8 +1389,9 @@ function pMe(){
   const name=me,d=castDocs[ck(name)]||{},st=d.status||"offered",crew=CREW.find(c=>c.name===name),ps=PARTS.filter(p=>p.actor===name);
   const notYou=`<button type="button" class="btn sm" id="notme">Not ${esc(name.split(" ")[0])}? Change name</button>`;
   let body="";
-  if(crew&&crew.fixed){
-    body=`<section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div>`
+  if(crew&&crew.fixed){const cs=crewStatus(crew);
+    body=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"Accepted":"Accept role"}</button><button class="btn" data-crew="declined" ${cs==="declined"?"disabled":""}>Decline</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div>`
       :`<p class="clede" style="margin:0 0 12px">Enter your director code to edit notes, settings and slots from this device.</p><label class="sr" for="dirpin">Director code</label><input type="password" id="dirpin" placeholder="Director code" autocomplete="off"><div class="btns"><button class="btn primary" id="unlockdir">Unlock editing</button></div>`}</section>`;
   }else{
     if(crew){const cs=crewStatus(crew);body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
@@ -1410,7 +1411,7 @@ function wireMe(){
   const ud=$("unlockdir");if(ud)ud.onclick=async()=>{const p=$("dirpin").value.trim();if(!p)return;ud.disabled=true;
     try{if(db.isDirector&&await db.isDirector(p)){localStorage.setItem("ss_dir_pin",p);isOwner=true;toast("Editing unlocked");route()}else{toast("That code isn't right");ud.disabled=false}}catch(e){toast("Couldn't check the code");ud.disabled=false}};
   const ld=$("lockdir");if(ld)ld.onclick=()=>{try{localStorage.removeItem("ss_dir_pin")}catch(_){}isOwner=false;toast("Editing locked");route()};
-  if(!me)return;const ref=db.collection("cast").doc(ck(me));
+  if(!me||!db)return;const ref=db.collection("cast").doc(ck(me));
   const save=async(patch,msg)=>{try{await ref.update({...patch,at:new Date().toISOString()});toast(msg)}catch(e){toast(e&&e.code==="not_allowed"?"That isn't allowed":"Couldn't save")}};
   document.querySelectorAll("[data-crew]").forEach(b=>b.onclick=()=>{const c=CREW.find(x=>x.name===me);save({[c.field||"status"]:b.dataset.crew},b.dataset.crew==="accepted"?"Accepted, welcome aboard!":"Declined")});
   const ac=$("acc");if(ac)ac.onclick=()=>save({status:"accepted"},"Accepted, welcome aboard!");
