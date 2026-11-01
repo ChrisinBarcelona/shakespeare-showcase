@@ -812,6 +812,15 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .showinfo h3{margin:2px 0 4px!important;font-size:19px!important}.showinfo .ckick{margin:0}.showinfo .meta{margin:0}
 .op-art{max-height:min(62vh,760px)!important}
 .op-body{padding-top:clamp(28px,6vw,72px)!important}
+
+/* ---- costume ---- */
+.cost{background:#0c0c0e;border:1px solid #26262b;border-radius:22px;padding:22px;margin-top:20px}
+.costhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.costhead h2{margin:0!important;font-size:clamp(26px,4vw,36px)!important}
+.cost .clede{margin:8px 0 0;max-width:680px}
+.costgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:16px}
+.costgrid figure{margin:0}
+.costgrid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:1px solid #2a2a2f;background:#141416}
+.costgrid img:hover{border-color:#f5f5f4}
 </style>
 </head>
 <body>
@@ -1139,7 +1148,7 @@ let cdTimer=null;
 function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Signed out on this device")}
 function route(){
   const h=(location.hash||"#home").slice(1);if(h==="signout"){signOut();return}
-  const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics"].includes(h)?"staging":h;
+  const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h;
   $("nav").innerHTML=PAGES.filter(([k])=>k!=="me").map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"Find your name"}</a>${me?`<a href="#signout" class="navout">Sign out</a>`:""}`;
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
   const lbl=(PAGES.find(([k])=>k===base)||[,"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
@@ -1148,7 +1157,7 @@ function route(){
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,staging:pStaging,fights:pFights,mosaics:pMosaics,me:pMe}[h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,staging:pStaging,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
   wireEdits(v);
   v.querySelectorAll('.shelfwrap').forEach(w=>{const sh=w.querySelector('.shelf');let t=null;
     const upd=()=>{w.querySelector('.prev').disabled=sh.scrollLeft<8;w.querySelector('.next').disabled=sh.scrollLeft+sh.clientWidth>=sh.scrollWidth-8};
@@ -1176,7 +1185,7 @@ function pHome(){
       <p class="op-kick">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</p>
       <h1 class="op-title" id="optitle">Selected Works <em>of Shakespeare</em></h1>
       <div class="cd op-cd" id="cd" role="timer" aria-label="Time until curtain"><div><b id="cd-d">–</b><span>Days</span></div><div><b id="cd-h">–</b><span>Hours</span></div><div><b id="cd-m">–</b><span>Minutes</span></div><div><b id="cd-s">–</b><span>Seconds</span></div></div>
-      <p class="op-when">until curtain · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
+      <p class="op-when">UNTIL CURTAIN · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
       <div class="op-btns"><button type="button" class="btn primary" id="tockin">Who's in? ↓</button><a class="btn" href="#shows">Performance schedule</a>${isOwner?`<button class="btn" id="setdate">Change opening date</button>`:""}</div>
     </div>
   </section>
@@ -1201,7 +1210,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and all six Saturdays →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights and mosaics."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
+    ${[["scenes","Scene running order","16 scenes, 4 fights, 5 mosaics, in order."],["characters","Character breakdowns","Who everyone is, scene by scene."],["cast","Cast &amp; crew","Parts offered, acceptances and the crew."],["booking","Rehearsal bookings","Mon–Fri 15:30–19:30 at Barcelona Code School."],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket."],["shows","The shows","12 nights at Teatre Gaudí, and call times."],["staging","Staging","Transitions, fights, mosaics and costume."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
@@ -1717,7 +1726,18 @@ function pMarketing(){
   ${notesBlock("marketing-notes","Marketing notes","Handles, ticket links and posting schedule notes go here.")}`;
 }
 /* ---------- Staging hub ---------- */
-function pStaging(){return `<h1>Staging</h1><p class="sub">The pieces between and around the scenes.</p><div class="grid explore" style="margin-top:16px">${[["transitions","Transitions & SFX","The cue sheet between every piece."],["fights","Fight choreography","Four fights, beats and safety notes."],["mosaics","Mosaics & silhouettes","Opening montage, witches' ritual, Ophelia's father, Ophelia's water."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}</div>`}
+const COSTUME=[
+  {id:"titania",title:"Titania's fairies",play:"A Midsummer Night's Dream",note:"White and ivory fabric, wrapped and draped close to the body: soft, light, a little undone. Simple jewellery.",imgs:[["titania-fairies-1","Titania's fairies: white draped and wrapped fabric"],["titania-fairies-2","Titania's fairies: white fringed wrap"]]},
+  {id:"oberon",title:"Oberon's fairy",play:"A Midsummer Night's Dream",note:"Wings that catch the light, a crown of moss and flowers, dark teal and silver embroidery. Wild and theatrical.",imgs:[["oberon-fairy","Oberon's fairy: lit wings, moss crown, teal and silver"]]},
+  {id:"witches",title:"The witches",play:"Macbeth",note:"Floor-length black velvet cloaks with deep hoods and fur trim. Faces hidden until the reveal.",imgs:[["witches","The witches: hooded black velvet cloak with fur trim"]]}];
+function pCostume(){
+  return `<a class="back" href="#staging">← Staging</a><div class="chero"><p class="ckick">Staging</p><h1>Costume</h1><p class="clede">The looks we're going for, by group. Tap a photo to see it full size.</p></div>
+  ${COSTUME.map(g=>{const pl=Object.entries(PLAYACC).find(([k])=>k===g.play);const c=pl?pl[1]:"#ddd";
+    return `<section class="cost" aria-labelledby="cost-${g.id}"><div class="costhead"><h2 id="cost-${g.id}">${esc(g.title)}</h2><span class="ctag" style="--c:${c}">${esc(ABBR[g.play]||g.play)}</span></div><p class="clede">${esc(g.note)}</p>
+      <div class="costgrid">${g.imgs.map(([f,alt])=>`<figure><img src="costume/${f}.jpg" data-full="costume/${f}.jpg" data-dl="${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`).join("")}</div>
+      ${notesBlock("costume-"+g.id,"Costume notes: "+g.title)}</section>`}).join("")}`;
+}
+function pStaging(){return `<h1>Staging</h1><p class="sub">The pieces between and around the scenes.</p><div class="grid explore" style="margin-top:16px">${[["transitions","Transitions & SFX","The cue sheet between every piece."],["fights","Fight choreography","Four fights, beats and safety notes."],["mosaics","Mosaics & silhouettes","Opening montage, witches' ritual, Ophelia's father, Ophelia's water."],["costume","Costume","Titania's fairies, Oberon's fairy and the witches: the looks we're going for."]].map(([h,t,d])=>`<a class="card link" href="#${h}"><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}</div>`}
 
 /* ---------- Booking ---------- */
 function pBooking(){
@@ -1835,7 +1855,7 @@ function rerender(){if(document.querySelector(".sheetbg.on"))return; clearTimeou
   let list=[],i=0,back=null;
   const show=()=>{const im=list[i];$("lbimg").src=im.dataset.full;$("lbimg").alt=im.alt;$("lbcap").textContent=im.alt.replace(/ poster$/,"")+(list.length>1?`  ·  ${i+1} of ${list.length}`:"");
     $("lbdl").href=im.dataset.full;$("lbdl").setAttribute("download",im.dataset.dl||"poster.jpg");$("lbp").hidden=$("lbn").hidden=list.length<2};
-  const open=im=>{const grid=im.closest(".postergrid");list=grid?[...grid.querySelectorAll("img[data-full]")]:[im];i=Math.max(0,list.indexOf(im));back=im;show();box.hidden=false;document.documentElement.style.overflow="hidden";$("lbx").focus()};
+  const open=im=>{const grid=im.closest(".postergrid,.costgrid");list=grid?[...grid.querySelectorAll("img[data-full]")]:[im];i=Math.max(0,list.indexOf(im));back=im;show();box.hidden=false;document.documentElement.style.overflow="hidden";$("lbx").focus()};
   const close=()=>{box.hidden=true;$("lbimg").removeAttribute("src");document.documentElement.style.overflow="";if(back)back.focus()};
   const step=d=>{i=(i+d+list.length)%list.length;show()};
   document.addEventListener("click",e=>{const im=e.target.closest&&e.target.closest("img[data-full]");if(im&&!box.contains(im)){e.preventDefault();open(im)}});
