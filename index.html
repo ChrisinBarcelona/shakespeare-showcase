@@ -544,6 +544,7 @@ details.more>summary::before{color:#f5f5f4}
 body{font-size:16px;line-height:1.55}
 .nav a{font-size:14px!important;color:#c9c9cd!important}
 .nav a.on{color:#fff!important}
+.nav a.navcta,.nav a.navcta.on{color:#000!important}
 a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #f5f5f4!important;outline-offset:2px!important}
 /* readable labels instead of tiny spaced capitals */
 .small,.kicker,.fkick,.pfacts dt,.facts dt,.dayname,.legend,.status,.interval,.show .sday,.cd span,.callrow span,.fstats span,.ckick{font-family:var(--fb)!important;text-transform:none!important;letter-spacing:.01em!important;font-size:13px!important;font-weight:600!important;color:#b8b8bd!important}
@@ -593,6 +594,25 @@ select,input[type=text],input[type=url],input[type=search],input[type=datetime-l
 .seg button.on{background:#f5f5f4!important;color:#0a0a0a!important}
 details.more summary{min-height:40px;display:flex;align-items:center;cursor:pointer}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- acceptance + My panel ---- */
+.stb{display:inline-flex;align-items:center;gap:4px;font:600 13px var(--fb);border-radius:999px;padding:3px 10px;border:1px solid}
+.stb.ok{color:#7fe0a0;border-color:rgba(127,224,160,.45);background:rgba(127,224,160,.1)}
+.stb.no{color:#ff8a8a;border-color:rgba(255,138,138,.45);background:rgba(255,138,138,.1)}
+.stb.wait{color:#c9c9cd;border-color:#3a3a40;background:#18181b}
+.csum{margin:14px 0 0;font-size:16px;color:#d4d4d8}.csum b{color:#fff}.csum a{color:#fff;font-weight:600;margin-left:6px}
+.pickgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:12px}
+.pickme{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;min-height:72px;padding:14px 16px;border-radius:14px;border:1px solid #2a2a2f;background:#111113;color:#f5f5f4;cursor:pointer;font:inherit}
+.pickme b{font:600 17px var(--fd)}.pickme span{font-size:13.5px;color:#b8b8bd}
+.pickme:hover{border-color:#f5f5f4;background:#18181b}
+.mecard{background:#111113;border:1px solid #2a2a2f;border-radius:18px;padding:20px;margin-top:18px}
+.mecard h2{font-size:24px!important;margin:2px 0 0!important}
+.mehead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.mehead .ckick{margin:0;font-size:13px;font-weight:600;color:#b8b8bd}
+.mebtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.mebtns .btn{flex:1;min-width:160px;min-height:48px}
+.mepieces{margin:14px 0 0;font-size:14.5px;color:#d4d4d8}.mepieces a{color:#fff}
+.mecard input[type=password]{width:100%;min-height:46px;background:#050505;border:1px solid #3a3a40;border-radius:12px;color:#f5f5f4;padding:0 14px;font:500 15px var(--fb)}
+.youare{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px}
 </style>
 </head>
 <body>
@@ -889,11 +909,36 @@ let attendance={};
 
 function parseSlot(id){const[ds,t]=id.split("_");const[y,m,d]=ds.split("-").map(Number);return{date:new Date(y,m-1,d),time:t.slice(0,2)+":"+t.slice(2)}}
 
+/* ================= SUPABASE ================= */
+const SUPA={url:"",key:""};/* filled in once the Supabase project exists */
+function supaDB(){
+  const R=SUPA.url.replace(/\/$/,"")+"/rest/v1",H={"apikey":SUPA.key,"Authorization":"Bearer "+SUPA.key,"Content-Type":"application/json"};
+  const enc=encodeURIComponent,L={};
+  const pin=()=>{try{return localStorage.getItem("ss_dir_pin")||""}catch(_){return ""}};
+  const fail=async r=>{let j={};try{j=await r.json()}catch(_){}const e={code:(r.status===401||r.status===403||j.code==="42501")?"not_allowed":r.status===409||j.code==="23505"?"exists":"http_"+r.status,message:j.message};throw e};
+  async function rows(c){const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
+  function refresh(c){const ls=L[c];if(!ls||!ls.length)return;rows(c).then(rs=>{const snap={docs:rs.map(x=>({id:x.id,exists:true,data:()=>x.data})),metadata:{fromCache:false}};ls.forEach(l=>l.cb(snap))}).catch(e=>ls.forEach(l=>l.err&&l.err(e)))}
+  async function dwrite(c,id,data,del){const r=await fetch(`${R}/rpc/director_write`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c,p_id:id,p_data:data||{},p_delete:!!del})});if(!r.ok)await fail(r)}
+  const viaDirector=()=>isOwner&&!!pin();
+  function doc(c,id){const q=`collection=eq.${enc(c)}&id=eq.${enc(id)}`;return{
+    async get(){const r=await fetch(`${R}/docs?${q}&select=data`,{headers:H});if(!r.ok)await fail(r);const j=await r.json();return{exists:!!j.length,data:()=>j.length?j[0].data:undefined}},
+    async set(data){if(viaDirector())await dwrite(c,id,data);else{const r=await fetch(`${R}/docs?on_conflict=collection,id`,{method:"POST",headers:{...H,"Prefer":"resolution=merge-duplicates,return=minimal"},body:JSON.stringify({collection:c,id,data,updated_at:new Date().toISOString()})});if(!r.ok)await fail(r)}refresh(c)},
+    async create(data){if(viaDirector()){const g=await this.get();if(g.exists)throw{code:"exists"};await dwrite(c,id,data)}else{const r=await fetch(`${R}/docs`,{method:"POST",headers:{...H,"Prefer":"return=minimal"},body:JSON.stringify({collection:c,id,data,updated_at:new Date().toISOString()})});if(!r.ok)await fail(r)}refresh(c)},
+    async update(patch){const g=await this.get();await this.set({...(g.exists?g.data():{}),...patch})},
+    async delete(){if(viaDirector())await dwrite(c,id,{},true);else{const r=await fetch(`${R}/docs?${q}`,{method:"DELETE",headers:H});if(!r.ok)await fail(r)}refresh(c)},
+    async acquire(){return{acquired:true}}}}
+  setInterval(()=>Object.keys(L).forEach(refresh),15000);
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden)Object.keys(L).forEach(refresh)});
+  return{supa:true,collection:c=>({doc:id=>doc(c,id),onSnapshot(cb,err){(L[c]=L[c]||[]).push({cb,err});refresh(c);return()=>{}}}),
+    async isDirector(p){const r=await fetch(`${R}/rpc/is_director`,{method:"POST",headers:H,body:JSON.stringify({p_pin:p})});return r.ok&&(await r.json())===true}};
+}
+let deviceId="";try{deviceId=localStorage.getItem("ss_dev")||"";if(!deviceId){deviceId="d-"+Math.random().toString(36).slice(2,10);localStorage.setItem("ss_dev",deviceId)}}catch(_){deviceId="d-"+Math.random().toString(36).slice(2,10)}
+
 /* ================= STATE ================= */
 let db=null,user=null,assets=null,myId=null,isOwner=false,canWrite=null;
 let bookings={},castDocs={},content={},loaded=false;
 let me="";try{me=localStorage.getItem("ss_me")||""}catch(e){}
-if(me&&!CAST.includes(me)&&!CREW.some(c=>c.name===me)){me="";try{localStorage.removeItem("ss_me")}catch(e){}}
+if(me&&!CAST.includes(me)&&!CREW.some(c=>c.name===me)&&!(typeof PEOPLE!=="undefined"&&PEOPLE.includes(me))){me="";try{localStorage.removeItem("ss_me")}catch(e){}}
 let selScene=null;
 const today=new Date();today.setHours(0,0,0,0);
 let week=WEEKS.findIndex(ws=>ws[ws.length-1]>=today);if(week<0)week=WEEKS.length-1;
@@ -1005,7 +1050,8 @@ function pHome(){
   ${notesBlock("home-news","Notice board","News from Chris will appear here.")}`;
 }
 /* ---- shared: who am I + Saturday attendance ---- */
-function meSelect(){return `${me?"":`<p class="attendhint">Choose your name to mark attending or book. If you've linked your login in My panel, this is filled in for you.</p>`}<div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option ${c===me?"selected":""}>${esc(c)}</option>`).join("")}</select></div>`}
+function meSelect(){if(me)return `<div class="mesel youare">You're <b>${esc(me)}</b> <button type="button" class="btn sm" data-notme>Not you? Change name</button></div>`;
+  return `<p class="attendhint">Choose your name to mark attending or book. This browser will remember it.</p><div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
 function attendees(date){return Object.values(attendance).filter(a=>a.date===date&&a.going).map(a=>a.actor).sort()}
 function satCard(date,big){
   const d=new Date(date+"T09:00"),past=new Date(date+"T11:00")<new Date();
@@ -1019,7 +1065,8 @@ function satCard(date,big){
   </div>`;
 }
 function wireAttend(root){
-  root.querySelectorAll(".mepick").forEach(sel=>sel.onchange=e=>{me=e.target.value;try{localStorage.setItem("ss_me",me)}catch(_){}route()});
+  root.querySelectorAll(".mepick").forEach(sel=>sel.onchange=e=>{setMe(e.target.value);route()});
+  root.querySelectorAll("[data-notme]").forEach(b=>b.onclick=()=>{setMe("");route()});
   root.querySelectorAll("[data-attend]").forEach(b=>b.onclick=async()=>{
     if(!db){toast("Sign in to mark attending");return}if(!me){toast("Choose your name first");return}
     const date=b.dataset.attend,ref=db.collection("attendance").doc(date+"_"+ck(me));const going=attendees(date).includes(me);
@@ -1157,7 +1204,7 @@ function actorCard(n){
     <header class="ahead">
       <div class="avatar" style="--c:${main}">${src?`<img src="${src}" alt="">`:`<span aria-hidden="true">${esc(initials(n))}</span>`}</div>
       <div class="aid"><h3 id="a-${ck(n)}">${esc(n)}</h3>
-        <p class="acount">${ps.length>1?`<b>${ps.length} parts</b> · `:""}${wordsTxt(tot)}</p>
+        <p class="acount">${ps.length>1?`<b>${ps.length} parts</b> · `:""}${wordsTxt(tot)}</p><p style="margin:6px 0 0">${stBadge(statusOf(n))}</p>
       ${PROFILE[n]?`<a class="aprof" href="${PROFILE[n]}" target="_blank" rel="noopener" aria-label="${esc(n)}'s profile (opens in a new tab)">View profile ↗</a>`:""}</div>
     </header>
     ${isOwner?`<label class="hsup2">${src?"Replace photo":"Add photo"}<input type="file" accept="image/*" data-hs="${esc(n)}" hidden></label>`:""}
@@ -1184,6 +1231,7 @@ function pCast(){
     <p class="ckick">A Chris Kelly production</p>
     <h1>The Company</h1>
     <p class="clede">${CAST.length} actors play ${PARTS.length} parts across ${plays.length} plays. ${multi} actors play more than one part, so every card lists all of an actor's parts together.</p>
+    <p class="csum">${(()=>{const ppl=[...CAST.map(n=>statusOf(n)),...CREW.filter(c=>!c.fixed).map(c=>crewStatus(c))];const a=ppl.filter(x=>x==="accepted").length;return `<b>${a} of ${ppl.length}</b> have accepted.`})()} <a href="#me">${me?"See or change your answer":"Find your name and accept"} →</a></p>
   </header>
   <div class="ctools" role="region" aria-label="Filter the cast">
     <div class="cview" role="group" aria-label="Show cast">
@@ -1201,7 +1249,7 @@ function pCast(){
     :`<div class="pgrid">${shownPlays.map(playSection).join("")}</div>`}
   ${isOwner?`<div class="card bulk" style="margin-top:28px"><div><span class="small">Headshots</span><h3>Drop in everyone's photos at once</h3><div class="meta">Select all the files together. Each one is matched to an actor by the file name (full name, first name or surname, e.g. <b>sophie-heideker.jpg</b> or <b>Rob.png</b>).</div><div class="meta" style="margin-top:6px">${CAST.filter(n=>headSrc(n)).length} of ${CAST.length} actors have a photo.</div></div><label class="btn primary">Choose headshots<input type="file" accept="image/*" multiple id="bulkhs" hidden></label></div>`:""}
   <h2 class="ccrewh">The crew</h2>
-  <div class="crewgrid2">${CREW.map(c=>`<article class="crew2"><p class="crole">${esc(c.role)}</p><h3>${esc(c.name)}</h3>${c.note?`<p class="cnote">${esc(c.note)}</p>`:""}
+  <div class="crewgrid2">${CREW.map(c=>`<article class="crew2"><p class="crole">${esc(c.role)}</p><h3>${esc(c.name)}</h3>${c.fixed?"":`<p style="margin:6px 0 0">${stBadge(crewStatus(c))}</p>`}${c.note?`<p class="cnote">${esc(c.note)}</p>`:""}
     <div class="clinks">${c.link?`<a href="${c.link}" target="_blank" rel="noopener">${esc(c.linkLabel)}</a>`:""}${c.link2?`<a href="${c.link2}" target="_blank" rel="noopener">${esc(c.link2Label)}</a>`:""}</div></article>`).join("")}</div>
   <p class="cfoot">Word counts are from the full scene texts and will drop as cuts are made.</p>
   </div>`;
@@ -1258,56 +1306,49 @@ function pMosaics(){
 }
 
 /* ---------- My panel ---------- */
-function myCast(){return Object.entries(castDocs).find(([,d])=>myId&&d.uid===myId)}
+function myCast(){if(!me)return null;const k=ck(me);return [k,castDocs[k]||{}]}
+function setMe(n){me=n||"";try{if(me)localStorage.setItem("ss_me",me);else localStorage.removeItem("ss_me")}catch(_){}if(me!=="Chris Kelly")isOwner=db&&db.supa?false:isOwner}
+function stBadge(st){return st==="accepted"?`<span class="stb ok">✓ Accepted</span>`:st==="declined"?`<span class="stb no">Declined</span>`:`<span class="stb wait">Not answered yet</span>`}
 function pMe(){
-  if(!db)return `<h1>My <em>panel</em></h1><div class="note warn">Sign in to claude.ai and open this page from the link Chris sent you.</div>`;
-  if(canWrite===false&&!isOwner)return `<h1>My <em>panel</em></h1><div class="note warn">You can view the site but not respond yet. Ask Chris to invite you by email as an Editor.</div>`;
-  const mine=myCast();
-  if(!mine){
-    const free=PEOPLE.filter(n=>!(castDocs[ck(n)]&&castDocs[ck(n)].uid));
-    return `<h1>My <em>panel</em></h1><p class="sub">First, tell us who you are. This links your login to your name in the company.</p>
-    <div class="card"><span class="small">I am</span><select id="claim">${free.map(n=>`<option>${esc(n)}</option>`).join("")}</select><div class="btns"><button class="btn primary" id="claimgo">This is me</button></div></div>
-    ${isOwner?`<div class="note">You're the owner: you can see and reset everyone's status on the Cast page.</div>`:""}`;
+  if(!db)return `<h1>My <em>panel</em></h1><div class="note warn">This page can't save answers in this view yet.</div>`;
+  if(!me){
+    const crewN=CREW.map(c=>c.name);
+    const btn=n=>{const ps=PARTS.filter(p=>p.actor===n),c=CREW.find(x=>x.name===n);const sub=[...ps.map(p=>p.name),...(c?[c.role]:[])].join(", ");
+      return `<button type="button" class="pickme" data-me="${esc(n)}"><b>${esc(n)}</b><span>${esc(sub||"Company")}</span></button>`};
+    return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Who are you?</h1>
+      <p class="clede">Pick your name. This browser will remember you, and you can change it any time with “Not you?”.</p></header>
+      <h2 class="ccrewh" style="margin-top:28px!important">Actors</h2><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div>
+      <h2 class="ccrewh">Crew</h2><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div></div>`;
   }
-  const [key,d]=mine;const name=PEOPLE.find(n=>ck(n)===key)||key;const st=d.status||"offered";
-  const crew=CREW.find(c=>c.key===key);
-  const crewCard=crew&&!crew.fixed?`<div class="card"><span class="small">Crew role offered</span><h3>${esc(crew.role)}</h3><div style="margin-top:8px">Status: <span class="status st-${crewStatus(crew)}">${crewStatus(crew)}</span></div><div class="btns"><button class="btn good" data-crew="accepted" ${crewStatus(crew)==="accepted"?"disabled":""}>Accept</button><button class="btn danger" data-crew="declined" ${crewStatus(crew)==="declined"?"disabled":""}>Decline</button></div></div>`:"";
-  if(!CAST.includes(name))return `<h1>Hello, <em>${esc(name)}</em></h1><p class="sub">${crew&&crew.fixed?"You're directing. Everything is editable from the pages themselves.":"Your offer from Chris."}</p>${crewCard}<div class="btns"><button class="btn sm" id="unlink">Not ${esc(name)}?</button></div>`;
-  return `<h1>Hello, <em>${esc(name)}</em></h1><p class="sub">Your offer from Chris.</p>${crewCard}
-  <div class="card"><span class="small">Parts offered</span>${rolesOf(name).map(c=>`<a class="pill" href="#character-${c.id}">${esc(c.name)} — ${esc(c.play)}</a>`).join("")}
-    <span class="small" style="margin-top:12px">Pieces you're in</span>${itemsOf(name).map(i=>`<a class="pill" href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join("")}
-    <div style="margin-top:12px">Status: <span class="status st-${st}">${st}</span></div>
-    <div class="btns"><button class="btn good" id="acc" ${st==="accepted"?"disabled":""}>Accept</button><button class="btn danger" id="dec" ${st==="declined"?"disabled":""}>Decline</button></div></div>
-  ${st==="accepted"?`<div class="card"><span class="small">Your profile</span>
-    <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap"><div class="head" style="width:120px;font-size:30px">${d.headshot?`<img src="/_blob/${esc(d.headshot)}" alt="">`:initials(name)}</div>
-    <div style="flex:1;min-width:200px"><span class="small">Headshot</span><input type="file" id="hs" accept="image/*">
-    <span class="small" style="margin-top:12px">IMDb link</span><input type="url" id="imdb" placeholder="https://www.imdb.com/name/…" value="${esc(d.imdb||"")}">
-    <div class="btns"><button class="btn primary" id="savep">Save profile</button></div></div></div></div>`:""}
-  <div class="btns"><a class="btn" href="#booking">Book a rehearsal</a><button class="btn sm" id="unlink">Not ${esc(name)}?</button></div>`;
+  const name=me,d=castDocs[ck(name)]||{},st=d.status||"offered",crew=CREW.find(c=>c.name===name),ps=PARTS.filter(p=>p.actor===name);
+  const notYou=`<button type="button" class="btn sm" id="notme">Not ${esc(name.split(" ")[0])}? Change name</button>`;
+  let body="";
+  if(crew&&crew.fixed){
+    body=`<section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div>`
+      :`<p class="clede" style="margin:0 0 12px">Enter your director code to edit notes, settings and slots from this device.</p><label class="sr" for="dirpin">Director code</label><input type="password" id="dirpin" placeholder="Director code" autocomplete="off"><div class="btns"><button class="btn primary" id="unlockdir">Unlock editing</button></div>`}</section>`;
+  }else{
+    if(crew){const cs=crewStatus(crew);body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"Accepted":"Accept role"}</button><button class="btn" data-crew="declined" ${cs==="declined"?"disabled":""}>Decline</button></div></section>`}
+    if(ps.length){body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your part${ps.length>1?"s":""}</p><h2>${ps.length>1?ps.length+" parts":esc(ps[0].name)}</h2></div>${stBadge(st)}</div>
+      <ul class="clist">${ps.map(p=>partRow(p)).join("")}</ul>
+      <p class="mepieces"><b>Pieces you're in:</b> ${itemsOf(name).map(i=>`<a href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join(", ")||"none yet"}</p>
+      <div class="mebtns"><button class="btn primary" id="acc" ${st==="accepted"?"disabled":""}>${st==="accepted"?"Accepted":ps.length>1?"Accept my parts":"Accept my part"}</button><button class="btn" id="dec" ${st==="declined"?"disabled":""}>Decline</button></div>
+      <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p></section>`}
+  }
+  return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Hello, ${esc(name.split(" ")[0])}</h1>
+    <div class="btns" style="margin-top:12px">${notYou}<a class="btn sm" href="#booking">Book a rehearsal</a></div></header>${body}</div>`;
 }
 function wireMe(){
-  const cg=$("claimgo");
-  if(cg)cg.onclick=async()=>{const n=$("claim").value;if(!n)return;const ref=db.collection("cast").doc(ck(n));
-    try{const l=await ref.acquire({holder:myId||"x",ttlMs:5000});if(!l.acquired){toast("Try again in a moment");return}
-      const s=await ref.get();const cur=s.exists?s.data():{};if(cur.uid&&cur.uid!==myId){toast("That name is already linked to someone");return}
-      if(s.exists)await ref.update({uid:myId});else await ref.set({uid:myId,status:"offered"});
-      me=n;try{localStorage.setItem("ss_me",n)}catch(_){};toast("Welcome, "+n)}catch(e){toast("Couldn't link: "+(e&&e.code||"error"))}};
-  const mine=myCast();if(!mine)return;const ref=db.collection("cast").doc(mine[0]);
-  document.querySelectorAll("[data-crew]").forEach(b=>b.onclick=async()=>{const c=CREW.find(x=>x.key===mine[0]);try{await ref.update({[c.field||"status"]:b.dataset.crew});toast(b.dataset.crew==="accepted"?"Accepted, welcome aboard!":"Declined")}catch(e){toast("Couldn't save")}});
-  if(!$("acc")){const u=$("unlink");if(u)u.onclick=async()=>{try{await ref.update({uid:""});toast("Unlinked")}catch(e){toast("Couldn't unlink")}};return}
-  const setSt=async st=>{try{await ref.update({status:st,at:new Date().toISOString()});toast(st==="accepted"?"Accepted, welcome aboard!":"Declined")}catch(e){toast("Couldn't save")}};
-  $("acc").onclick=()=>setSt("accepted");$("dec").onclick=()=>setSt("declined");
-  $("unlink").onclick=async()=>{try{await ref.update({uid:""});toast("Unlinked")}catch(e){toast("Couldn't unlink")}};
-  const sp=$("savep");
-  if(sp)sp.onclick=async()=>{
-    sp.disabled=true;const upd={};
-    const im=$("imdb").value.trim();if(im&&!/^https:\/\/(www\.|m\.)?imdb\.com\//i.test(im)){toast("That doesn't look like an IMDb link");sp.disabled=false;return}
-    if(im!==(mine[1].imdb||""))upd.imdb=im;
-    const f=$("hs").files[0];
-    if(f){if(!assets){toast("Uploads aren't available for your access level");sp.disabled=false;return}
-      try{const a=await assets.upload(f);upd.headshot=a.id}catch(e){toast("Upload failed: "+(e&&e.code||"error"));sp.disabled=false;return}}
-    if(!Object.keys(upd).length){toast("Nothing to save");sp.disabled=false;return}
-    try{await ref.update(upd);toast("Profile saved")}catch(e){toast("Couldn't save");sp.disabled=false}};
+  document.querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);route();window.scrollTo(0,0)});
+  const nm=$("notme");if(nm)nm.onclick=()=>{setMe("");route();window.scrollTo(0,0)};
+  const ud=$("unlockdir");if(ud)ud.onclick=async()=>{const p=$("dirpin").value.trim();if(!p)return;ud.disabled=true;
+    try{if(db.isDirector&&await db.isDirector(p)){localStorage.setItem("ss_dir_pin",p);isOwner=true;toast("Editing unlocked");route()}else{toast("That code isn't right");ud.disabled=false}}catch(e){toast("Couldn't check the code");ud.disabled=false}};
+  const ld=$("lockdir");if(ld)ld.onclick=()=>{try{localStorage.removeItem("ss_dir_pin")}catch(_){}isOwner=false;toast("Editing locked");route()};
+  if(!me)return;const ref=db.collection("cast").doc(ck(me));
+  const save=async(patch,msg)=>{try{await ref.update({...patch,at:new Date().toISOString()});toast(msg)}catch(e){toast(e&&e.code==="not_allowed"?"That isn't allowed":"Couldn't save")}};
+  document.querySelectorAll("[data-crew]").forEach(b=>b.onclick=()=>{const c=CREW.find(x=>x.name===me);save({[c.field||"status"]:b.dataset.crew},b.dataset.crew==="accepted"?"Accepted, welcome aboard!":"Declined")});
+  const ac=$("acc");if(ac)ac.onclick=()=>save({status:"accepted"},"Accepted, welcome aboard!");
+  const dc=$("dec");if(dc)dc.onclick=()=>save({status:"declined"},"Declined");
 }
 
 
@@ -1427,7 +1468,7 @@ function pBooking(){
   <div id="days"></div>`;
 }
 function wireBooking(){
-  $("mesel").onchange=e=>{me=e.target.value;selScene=null;try{localStorage.setItem("ss_me",me)}catch(_){}renderBooking()};
+  $("mesel").onchange=e=>{setMe(e.target.value);selScene=null;renderBooking()};
   $("prev").onclick=()=>{if(week>0){week--;renderBooking()}};$("next").onclick=()=>{if(week<WEEKS.length-1){week++;renderBooking()}};
   renderBooking();
 }
@@ -1451,7 +1492,7 @@ function renderBooking(){
 function openSlot(id){
   const p=parseSlot(id),b=bookings[id],when=`${fmtDay(p.date)}, ${p.time}–${endTime(p.time)}`,sh=$("sheet");
   if(b){
-    const s=b.type==="scene"?IT[b.scene]:null,canCancel=isOwner||(myId&&b.by===myId);
+    const s=b.type==="scene"?IT[b.scene]:null,canCancel=isOwner||(myId&&b.by===myId)||(!!me&&b.actor===me&&b.type==="scene");
     sh.innerHTML=`<h3>${s?esc(s.play+" — "+s.title):esc(b.label||(b.company?"Company call":"Unavailable"))}</h3><p>${when}${s?"<br>Called: "+s.actors.join(", ")+(b.actor?"<br>Booked by "+esc(b.actor):""):""}</p><div class="btns">${canCancel?`<button class="btn danger" id="cancel">${b.type==="block"?"Remove":"Cancel booking"}</button>`:""}<button class="btn" id="cx">Close</button></div>`;
     $("cx").onclick=closeSheet;
     if(canCancel)$("cancel").onclick=async()=>{try{await db.collection("bookings").doc(id).delete();toast("Removed");closeSheet()}catch(e){toast("Couldn't remove")}};
@@ -1475,8 +1516,8 @@ async function claim(id,body){
   try{const l=await ref.acquire({holder:myId||("anon-"+Math.random().toString(36).slice(2)),ttlMs:5000});
     if(!l.acquired){toast("Someone is booking this slot right now");return}
     const s=await ref.get();if(s.exists&&s.data()&&s.data().type){toast("That slot was just taken");closeSheet();return}
-    await ref.set(body);toast("Booked ✓");closeSheet();
-  }catch(e){if(e&&e.code==="invalid_argument"){canWrite=false;toast("You don't have booking access yet")}else toast("Couldn't book: "+(e&&e.code||"error"))}
+    if(ref.create)await ref.create(body);else await ref.set(body);toast("Booked ✓");closeSheet();
+  }catch(e){if(e&&e.code==="exists"){toast("That slot was just taken");closeSheet()}else if(e&&(e.code==="invalid_argument"||e.code==="not_allowed")){toast("Only Chris can do that")}else toast("Couldn't book: "+(e&&e.code||"error"))}
 }
 
 
@@ -1498,7 +1539,7 @@ $("menubtn").onclick=()=>{const o=!document.body.classList.contains("menuopen");
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("sheetbg").classList.contains("on"))closeSheet();document.body.classList.remove("menuopen")}});
 let _lastFocus=null;
 new MutationObserver(()=>{const on=$("sheetbg").classList.contains("on");if(on){_lastFocus=document.activeElement;const f=$("sheet").querySelector("button,a,select,input,textarea");if(f)setTimeout(()=>f.focus(),30)}else if(_lastFocus&&_lastFocus.focus){_lastFocus.focus();_lastFocus=null}}).observe($("sheetbg"),{attributes:true,attributeFilter:["class"]});
-function autoMe(){const m=myCast&&myCast();if(m){const n=PEOPLE.find(x=>ck(x)===m[0]);if(n&&CAST.includes(n)&&me!==n){me=n;try{localStorage.setItem("ss_me",n)}catch(_){}return true}}return false}
+function autoMe(){if(db&&db.supa)return false;const m=myCast&&myCast();if(m){const n=PEOPLE.find(x=>ck(x)===m[0]);if(n&&CAST.includes(n)&&me!==n){me=n;try{localStorage.setItem("ss_me",n)}catch(_){}return true}}return false}
 
 /* ================= BOOT ================= */
 route();
@@ -1506,10 +1547,15 @@ let rerenderQ=null;
 function rerender(){if(document.querySelector(".sheetbg.on"))return; clearTimeout(rerenderQ);rerenderQ=setTimeout(()=>{const y=window.scrollY;const h=(location.hash||"#home").slice(1);if(h==="booking")renderBooking();else{route();window.scrollTo(0,y)}},60)}
 (async()=>{
   const timer=setTimeout(()=>{if(!loaded)toast("Live data can't be reached yet")},10000);
+  if(SUPA.url&&SUPA.key){db=supaDB();myId=deviceId;canWrite=true;
+    try{const p=localStorage.getItem("ss_dir_pin");if(p&&me==="Chris Kelly")isOwner=await db.isDirector(p)}catch(_){}
+    try{assets=await window.claude.use("assets")}catch(_){assets=null}
+  }else{
   try{user=await window.claude.use("user");if(user){isOwner=!!(await user.isOwner());try{myId=await user.id()}catch(_){}
     try{const c=await user.can("data.write");canWrite=(c===null||c===undefined)?null:!!c}catch(_){}}}catch(_){}
   try{assets=await window.claude.use("assets")}catch(_){assets=null}
   try{db=await window.claude.use("db")}catch(_){db=null}
+  }
   if(!db){clearTimeout(timer);loaded=true;route();return}
   route();
   const sub=(col,setter)=>db.collection(col).onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{if(d.exists)m[d.id]=d.data()});setter(m);if(!snap.metadata.fromCache){loaded=true;clearTimeout(timer)}rerender()},err=>{clearTimeout(timer);loaded=true;toast("Some data couldn't load ("+err.code+")")});
