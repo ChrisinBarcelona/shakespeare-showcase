@@ -2491,7 +2491,7 @@ function pSpeech(){
 function pApproach(){
   let n=0;
   return `<div class="chero"><p class="ckick">A CHRIS KELLY PRODUCTION</p><h1>Directorial approach</h1>
-    <p class="clede">Be calm. Listen. Know yourself. Trust and pursue your objective. Never play a state. Fight the tears, and the audience will cry with you.</p></div>
+    <p class="clede">Be calm. Listen. Know yourself. Trust and pursue your objective. Never play a state. Fight the tears, and the audience will cry for you.</p></div>
   ${venn()}
   ${APPROACH.map(g=>`<section class="apgroup" style="--c:${g.c};--cl:${g.cl}"><h2><span class="apdot" aria-hidden="true"></span>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}
   ${pSpeech()}`;
