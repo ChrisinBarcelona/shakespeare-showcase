@@ -628,6 +628,8 @@ details.more summary{min-height:40px;display:flex;align-items:center;cursor:poin
   .nav a.navcta{margin:10px 0 0;text-align:center}
   .nav a.navout{margin:8px 0 0!important;text-align:center;padding:13px 12px!important}
 }
+
+.stb.dir{color:#0a0a0a;background:#f5f5f4;border-color:#f5f5f4}
 </style>
 </head>
 <body>
@@ -1223,7 +1225,7 @@ function actorCard(n){
         <p class="acount">${ps.length>1?`<b>${ps.length} parts</b> · `:""}${wordsTxt(tot)}</p><p style="margin:6px 0 0">${stBadge(statusOf(n))}</p>
       ${PROFILE[n]?`<a class="aprof" href="${PROFILE[n]}" target="_blank" rel="noopener" aria-label="${esc(n)}'s profile (opens in a new tab)">View profile ↗</a>`:""}</div>
     </header>
-    ${isOwner?`<label class="hsup2">${src?"Replace photo":"Add photo"}<input type="file" accept="image/*" data-hs="${esc(n)}" hidden></label>`:""}
+    ${isOwner&&assets?`<label class="hsup2">${src?"Replace photo":"Add photo"}<input type="file" accept="image/*" data-hs="${esc(n)}" hidden></label>`:""}
     <ul class="clist" aria-label="Parts played by ${esc(n)}">${inF.map(p=>partRow(p)).join("")}</ul>
     ${rest.length?`<p class="also">Also plays ${rest.map(p=>`<a href="#character-${p.ch}">${esc(p.name)}</a> <span class="alsop">(${esc(pshort(playOf(p)))})</span>`).join(", ")}</p>`:""}
   </article>`;
@@ -1236,6 +1238,25 @@ function playSection(pl){
       return `<li data-keys="${esc((p.name+" "+p.actor).toLowerCase())}"><a href="#character-${p.ch}" class="pt-char">${esc(p.name)}</a>
         <span class="pt-act"><span class="pt-name">${esc(p.actor)}</span>${other.length?`<span class="pt-also">also ${other.map(q=>esc(q.name)+" ("+esc(pshort(playOf(q)))+")").join(", ")}</span>`:""}</span>
         <span class="pt-w">${wordsTxt(p.words)}</span></li>`}).join("")}</ul></section>`;
+}
+function crewCard(c){
+  const ps=PARTS.filter(p=>p.actor===c.name),src=headSrc(c.name),st=c.fixed?null:crewStatus(c);
+  const links=[[c.link,c.linkLabel],[c.link2,c.link2Label]].filter(x=>x[0]);
+  return `<article class="acard" data-keys="${esc((c.name+" "+c.role).toLowerCase())}" aria-labelledby="c-${esc(c.key)}">
+    <header class="ahead">
+      <div class="avatar" style="--c:#f5f5f4">${src?`<img src="${src}" alt="">`:`<span aria-hidden="true">${esc(initials(c.name))}</span>`}</div>
+      <div class="aid"><h3 id="c-${esc(c.key)}">${esc(c.name)}</h3>
+        <p class="acount">${esc(c.role)}${ps.length?` · also on stage`:""}</p>
+        ${st?`<p style="margin:6px 0 0">${stBadge(st)}</p>`:""}
+        ${links.map(([u,l])=>`<a class="aprof" href="${u}" target="_blank" rel="noopener" style="margin-right:14px">${esc((l||"Profile").replace(/\s*↗$/,""))} ↗</a>`).join("")}</div>
+    </header>
+    <ul class="clist" aria-label="${esc(c.name)}'s roles">
+      <li><a class="crow" href="#me" style="--c:#f5f5f4"><span class="cbar" aria-hidden="true"></span>
+        <span class="cmain"><span class="cname">${esc(c.role)}</span><span class="cmeta"><span class="ctag" style="--c:#d4d4d8">Crew</span> ${c.fixed?"Runs the company":st==="accepted"?"Role accepted":st==="declined"?"Role declined":"Accept or decline in My panel"}</span></span>
+        <span class="cgo" aria-hidden="true">→</span></a></li>
+      ${ps.map(p=>partRow(p)).join("")}
+    </ul>
+  </article>`;
 }
 function pCast(){
   const plays=playOrder();
@@ -1263,10 +1284,9 @@ function pCast(){
   ${castView==="actor"
     ?`<div class="agrid">${order.map(actorCard).join("")}</div>`
     :`<div class="pgrid">${shownPlays.map(playSection).join("")}</div>`}
-  ${isOwner?`<div class="card bulk" style="margin-top:28px"><div><span class="small">Headshots</span><h3>Drop in everyone's photos at once</h3><div class="meta">Select all the files together. Each one is matched to an actor by the file name (full name, first name or surname, e.g. <b>sophie-heideker.jpg</b> or <b>Rob.png</b>).</div><div class="meta" style="margin-top:6px">${CAST.filter(n=>headSrc(n)).length} of ${CAST.length} actors have a photo.</div></div><label class="btn primary">Choose headshots<input type="file" accept="image/*" multiple id="bulkhs" hidden></label></div>`:""}
+  ${isOwner&&assets?`<div class="card bulk" style="margin-top:28px"><div><span class="small">Headshots</span><h3>Drop in everyone's photos at once</h3><div class="meta">Select all the files together. Each one is matched to an actor by the file name (full name, first name or surname, e.g. <b>sophie-heideker.jpg</b> or <b>Rob.png</b>).</div><div class="meta" style="margin-top:6px">${CAST.filter(n=>headSrc(n)).length} of ${CAST.length} actors have a photo.</div></div><label class="btn primary">Choose headshots<input type="file" accept="image/*" multiple id="bulkhs" hidden></label></div>`:""}
   <h2 class="ccrewh">The crew</h2>
-  <div class="crewgrid2">${CREW.map(c=>`<article class="crew2"><p class="crole">${esc(c.role)}</p><h3>${esc(c.name)}</h3>${c.fixed?"":`<p style="margin:6px 0 0">${stBadge(crewStatus(c))}</p>`}${c.note?`<p class="cnote">${esc(c.note)}</p>`:""}
-    <div class="clinks">${c.link?`<a href="${c.link}" target="_blank" rel="noopener">${esc(c.linkLabel)}</a>`:""}${c.link2?`<a href="${c.link2}" target="_blank" rel="noopener">${esc(c.link2Label)}</a>`:""}</div></article>`).join("")}</div>
+  <div class="agrid">${CREW.map(crewCard).join("")}</div>
   <p class="cfoot">Word counts are from the full scene texts and will drop as cuts are made.</p>
   </div>`;
 }
