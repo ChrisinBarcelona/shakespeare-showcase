@@ -2174,7 +2174,7 @@ function pChars(){
   return folioHero(`${CHARS.length} characters · ${plays.length} plays`,"Dramatis Personae",`<nav class="fnav">${plays.map(p=>`<a href="#characters" data-jump="${esc(ck(p))}">${esc(ABBR[p]||p)}</a>`).join("")}</nav>`)+`</section>`+
    plays.map(p=>{const [bg,fg]=playColors(p);return `<h2 class="shelfhead" id="play-${esc(ck(p))}">${esc(p)}</h2>`+shelf(CHARS.filter(c=>c.play===p).map(c=>vol({href:"#character-"+c.id,bg,fg,i:i++,kick:ABBR[p]||p,title:c.name,meta:c.actor})).join(""),p)}).join("");
 }
-const COSTUME_OF={macbeth:"macbeth",banquo:"banquo",richard:"richard",witches:"witches",fairy:"titania","oberons-fairy":"oberon",oberon:"oberon"};
+const COSTUME_OF={macbeth:"macbeth",banquo:"banquo",richard:"richard",witches:"witches",fairy:"titania","oberons-fairy":"oberon",oberon:"oberon",puck:"oberon"};
 function actOf(item){const iv=ORDER.findIndex(o=>o.type==="interval");return ORDER.indexOf(item)<iv?1:2}
 function pChar(id){
   const c=CH[id];if(!c)return `<a class="back" href="#characters">← Characters</a><p>Not found.</p>`;
