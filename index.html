@@ -1112,7 +1112,8 @@ function supaDB(){
   const pin=()=>{try{return localStorage.getItem("ss_dir_pin")||""}catch(_){return ""}};
   const fail=async r=>{let j={};try{j=await r.json()}catch(_){}const e={code:(r.status===401||r.status===403||j.code==="42501")?"not_allowed":r.status===409||j.code==="23505"?"exists":"http_"+r.status,message:j.message};throw e};
   async function rows(c){const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
-  function refresh(c){const ls=L[c];if(!ls||!ls.length)return;rows(c).then(rs=>{const snap={docs:rs.map(x=>({id:x.id,exists:true,data:()=>x.data})),metadata:{fromCache:false}};ls.forEach(l=>l.cb(snap))}).catch(e=>ls.forEach(l=>l.err&&l.err(e)))}
+  const LAST={};
+  function refresh(c){const ls=L[c];if(!ls||!ls.length)return;rows(c).then(rs=>{const sig=JSON.stringify(rs);if(LAST[c]===sig)return;LAST[c]=sig;const snap={docs:rs.map(x=>({id:x.id,exists:true,data:()=>x.data})),metadata:{fromCache:false}};ls.forEach(l=>l.cb(snap))}).catch(e=>ls.forEach(l=>l.err&&l.err(e)))}
   async function dwrite(c,id,data,del){const r=await fetch(`${R}/rpc/director_write`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c,p_id:id,p_data:data||{},p_delete:!!del})});if(!r.ok)await fail(r)}
   const viaDirector=()=>isOwner&&!!pin();
   function doc(c,id){const q=`collection=eq.${enc(c)}&id=eq.${enc(id)}`;return{
@@ -1909,7 +1910,7 @@ function autoMe(){if(db&&db.supa)return false;const m=myCast&&myCast();if(m){con
 /* ================= BOOT ================= */
 route();
 let rerenderQ=null;
-function rerender(){if(document.querySelector(".sheetbg.on"))return; clearTimeout(rerenderQ);rerenderQ=setTimeout(()=>{const y=window.scrollY;const h=(location.hash||"#home").slice(1);if(h==="booking")renderBooking();else{route();window.scrollTo(0,y)}},60)}
+function rerender(){if(document.querySelector(".sheetbg.on"))return;if([...document.querySelectorAll("audio")].some(a=>!a.paused&&!a.ended)){clearTimeout(rerenderQ);rerenderQ=setTimeout(rerender,2000);return} clearTimeout(rerenderQ);rerenderQ=setTimeout(()=>{const y=window.scrollY;const h=(location.hash||"#home").slice(1);if(h==="booking")renderBooking();else{route();window.scrollTo(0,y)}},60)}
 (async()=>{
   const timer=setTimeout(()=>{if(!loaded)toast("Live data can't be reached yet")},10000);
   if(SUPA.url&&SUPA.key){db=supaDB();myId=deviceId;canWrite=true;
