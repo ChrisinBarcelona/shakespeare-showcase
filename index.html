@@ -470,6 +470,74 @@ details.more>summary::before{color:#f5f5f4}
 .book .bk,.book .bk *{pointer-events:none}
 .book:hover,.book:focus-visible{z-index:5}
 
+
+/* ---- Cast page ---- */
+.cwrap{font-size:16px;line-height:1.5}
+.chero{padding:8px 0 4px}
+.chero .ckick{font-size:13px;font-weight:600;letter-spacing:.04em;color:#b8b8bd;margin:0 0 6px}
+.chero h1{font-size:clamp(40px,8vw,72px)!important;line-height:1;margin:0}
+.clede{max-width:640px;color:#d4d4d8;font-size:17px;margin:14px 0 0}
+.ctools{margin:24px 0 0;padding:16px;background:#0c0c0e;border:1px solid #26262b;border-radius:16px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+.cview{display:inline-flex;border:1px solid #3a3a40;border-radius:12px;padding:3px;gap:3px}
+.cview button{min-height:40px;padding:0 16px;border:0;border-radius:9px;background:none;color:#d4d4d8;font:600 14px var(--fb);cursor:pointer}
+.cview button[aria-pressed="true"]{background:#f5f5f4;color:#050505}
+.csearch input{width:100%;min-height:46px;background:#111113;border:1px solid #3a3a40;border-radius:12px;color:#f5f5f4;font:500 15px var(--fb);padding:0 14px}
+.csearch input::placeholder{color:#9a9aa0}
+@media(max-width:600px){.ctools{grid-template-columns:1fr}.cview{width:100%}.cview button{flex:1}}
+.cfilter{grid-column:1/-1;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.cfilter::-webkit-scrollbar{display:none}
+.cfilter button{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #3a3a40;background:#111113;color:#e4e4e7;font:600 14px var(--fb);cursor:pointer}
+.cfilter button:hover{border-color:var(--c)}
+.cfilter button[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#0a0a0a}
+.cfilter .fdot{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.cfilter button[aria-pressed="true"] .fdot{background:#0a0a0a}
+.cwrap button:focus-visible,.cwrap a:focus-visible,.cwrap input:focus-visible{outline:3px solid #f5f5f4;outline-offset:2px}
+.cempty{margin:28px 0;color:#d4d4d8}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:22px;align-items:start}
+.acard{background:#111113;border:1px solid #2a2a2f;border-radius:18px;padding:18px}
+.ahead{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
+.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 20%,#111);border:2px solid var(--c);color:#f5f5f4;font:700 18px var(--fd);overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.aid h3{font-size:21px!important;margin:0;line-height:1.2}
+.acount{margin:3px 0 0;color:#b8b8bd;font-size:14px}.acount b{color:#f5f5f4;font-weight:600}
+.aprof{display:inline-block;margin-top:4px;font-size:14px;font-weight:600;color:#f5f5f4;text-decoration:underline;text-underline-offset:3px;padding:4px 0}
+.aprof:hover{color:#fff;text-decoration-thickness:2px}
+.hsup2{display:inline-block;margin-top:10px;font-size:13px;color:#b8b8bd;text-decoration:underline;cursor:pointer}
+.clist{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.crow{display:grid;grid-template-columns:4px 1fr auto;gap:12px;align-items:center;min-height:60px;padding:10px 14px 10px 0;border-radius:12px;background:#18181b;text-decoration:none;color:#f5f5f4;overflow:hidden;transition:background .15s}
+.crow:hover{background:#202024}
+.cbar{align-self:stretch;background:var(--c);margin:-10px 0}
+.cmain{display:flex;flex-direction:column;gap:4px;min-width:0}
+.cname{font:600 17px var(--fd);letter-spacing:-.01em}
+.cmeta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px;color:#b8b8bd}
+.ctag{display:inline-block;font-size:12.5px;font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:6px;padding:1px 7px}
+.cgo{color:#8a8a90;font-size:18px}.crow:hover .cgo{color:#f5f5f4}
+.also{margin:12px 0 0;font-size:14px;color:#b8b8bd}.also a{color:#f5f5f4}.alsop{color:#9a9aa0}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px;margin-top:22px;align-items:start}
+@media(max-width:520px){.pgrid{grid-template-columns:1fr}}
+.pgroup{background:#111113;border:1px solid #2a2a2f;border-top:4px solid var(--c);border-radius:18px;padding:18px}
+.pgroup h3{display:flex;align-items:center;gap:10px;font-size:22px!important;margin:0 0 10px}
+.pgdot{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.pgn{margin-left:auto;font:500 14px var(--fb);color:#b8b8bd}
+.ptable{list-style:none;margin:0;padding:0}
+.ptable li{display:grid;grid-template-columns:36% 1fr 92px;gap:12px;align-items:baseline;padding:12px 0;border-top:1px solid #26262b}
+.pt-char{font:600 16px var(--fd);color:var(--c);text-decoration:none}.pt-char:hover{text-decoration:underline}
+.pt-name{display:block;color:#f5f5f4;font-weight:600}
+.pt-also{display:block;font-size:13px;color:#a8a8ae;margin-top:2px}
+.pt-w{font-size:13px;color:#a8a8ae;white-space:nowrap;text-align:right}
+@media(max-width:520px){.ptable li{grid-template-columns:1fr 92px}.pt-act{grid-column:1/-1;grid-row:2}}
+.ccrewh{margin-top:44px!important;font-size:28px!important}
+.crewgrid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px}
+.crew2{background:#111113;border:1px solid #2a2a2f;border-radius:16px;padding:18px}
+.crole{margin:0;font-size:13px;font-weight:600;color:#b8b8bd}
+.crew2 h3{font-size:20px!important;margin:4px 0 0}
+.cnote{margin:6px 0 0;color:#d4d4d8;font-size:14px}
+.clinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.clinks a{font-size:14px;font-weight:600;color:#f5f5f4;text-decoration:none;border:1px solid #3a3a40;border-radius:10px;padding:8px 12px}
+.clinks a:hover{border-color:#f5f5f4}
+.cfoot{margin-top:28px;color:#a8a8ae;font-size:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(prefers-reduced-motion:reduce){.crow{transition:none}}
 </style>
 </head>
 <body>
@@ -995,46 +1063,90 @@ const ABBR={"A Midsummer Night's Dream":"Midsummer","The Taming of the Shrew":"S
 function castCard(n,focus){
   const st=statusOf(n),d=castDocs[ck(n)]||{},src=headSrc(n);
   const ps=PARTS.filter(p=>p.actor===n);
-  const statusBtn=st==="accepted"?`<div class="accept ok">✓ Actor has accepted part${ps.length>1?"s":""}</div>`:st==="declined"?`<div class="accept no">Actor has declined</div>`:`<div class="accept wait">Actor acceptance pending</div>`;
+  const statusBtn="";
   return `<article class="card pcard" data-actor="${esc(n)}">
     ${ps.length>1?`<div class="kicker" style="margin-bottom:4px">${ps.length} parts</div>`:""}
     ${ps.map(p=>`<div class="${p.id===focus?"pfocus":""}">${partBlock(p,!!focus)}</div>`).join(`<div class="psep"></div>`)}
     <div class="actor">
       <div class="head">${src?`<img src="${src}" alt="${esc(n)}">`:initials(n)}</div>
       <div class="ainfo">${isOwner?`<label class="hsup">${src?"Replace photo":"Add photo"}<input type="file" accept="image/*" data-hs="${esc(n)}" hidden></label>`:""}<span class="small" style="margin:0">Played by</span><b>${esc(n)}</b>
-        <span class="alinks">${PROFILE[n]?`<a href="${PROFILE[n]}" target="_blank" rel="noopener">Profile ↗</a>`:""}${st==="accepted"&&d.imdb?`<a href="${esc(d.imdb)}" target="_blank" rel="noopener">IMDb ↗</a>`:""}${!PROFILE[n]&&!(st==="accepted"&&d.imdb)?`<span class="meta">No profile link yet</span>`:""}</span></div>
+        <span class="alinks">${PROFILE[n]?`<a href="${PROFILE[n]}" target="_blank" rel="noopener">Profile ↗</a>`:""}${d.imdb?`<a href="${esc(d.imdb)}" target="_blank" rel="noopener">IMDb ↗</a>`:""}${!PROFILE[n]&&!d.imdb?`<span class="meta">No profile link yet</span>`:""}</span></div>
     </div>
     ${statusBtn}
-    ${isOwner&&d.uid?`<button class="btn sm" data-reset="${ck(n)}" style="margin-top:8px">Unlink login</button>`:""}
+    
   </article>`;
 }
-let castFilter="All";
+let castFilter="All",castView="actor";
+const PLAYACC={"Macbeth":"#ff8a8a","Hamlet":"#8cbcff","A Midsummer Night's Dream":"#7fe0a0","The Taming of the Shrew":"#f4c75c","Richard III":"#c9a6ff","Richard III (Henry VI, Part 3)":"#c9a6ff","Coriolanus":"#ffab6e","As You Like It":"#8fdccb"};
+const playOf=p=>(CH[p.ch]||{}).play||"";
+const pshort=pl=>ABBR[pl]||pl;
+function playOrder(){const seen=[];ITEMS.forEach(i=>(i.chars||[]).forEach(c=>{const pl=(CH[c]||{}).play;if(pl&&PARTS.some(p=>playOf(p)===pl)&&!seen.includes(pl))seen.push(pl)}));PARTS.forEach(p=>{const pl=playOf(p);if(pl&&!seen.includes(pl))seen.push(pl)});return seen}
+function ptag(pl){return `<span class="ctag" style="--c:${PLAYACC[pl]||"#ddd"}">${esc(pshort(pl))}</span>`}
+function wordsTxt(n){return "≈ "+n.toLocaleString("en-GB")+" words"}
+function partRow(p,dim){const x=partInfo(p),pl=playOf(p);
+  return `<li><a class="crow${dim?" dim":""}" href="#character-${p.ch}" style="--c:${PLAYACC[pl]||"#ddd"}">
+    <span class="cbar" aria-hidden="true"></span>
+    <span class="cmain"><span class="cname">${esc(p.name)}</span><span class="cmeta">${ptag(pl)} ${x.spoken.length} scene${x.spoken.length===1?"":"s"} · ${wordsTxt(p.words)}</span></span>
+    <span class="cgo" aria-hidden="true">→</span></a></li>`}
+function actorCard(n){
+  const ps=PARTS.filter(p=>p.actor===n).sort((a,b)=>playOrder().indexOf(playOf(a))-playOrder().indexOf(playOf(b))||b.words-a.words);
+  const inF=castFilter==="All"?ps:ps.filter(p=>pshort(playOf(p))===castFilter);
+  if(!inF.length)return "";
+  const rest=castFilter==="All"?[]:ps.filter(p=>!inF.includes(p));
+  const tot=ps.reduce((a,p)=>a+p.words,0),src=headSrc(n),main=PLAYACC[playOf(ps[0]||{})]||"#ddd";
+  const keys=[n,...ps.map(p=>p.name)].join(" ").toLowerCase();
+  return `<article class="acard" data-keys="${esc(keys)}" aria-labelledby="a-${ck(n)}">
+    <header class="ahead">
+      <div class="avatar" style="--c:${main}">${src?`<img src="${src}" alt="">`:`<span aria-hidden="true">${esc(initials(n))}</span>`}</div>
+      <div class="aid"><h3 id="a-${ck(n)}">${esc(n)}</h3>
+        <p class="acount">${ps.length>1?`<b>${ps.length} parts</b> · `:""}${wordsTxt(tot)}</p>
+      ${PROFILE[n]?`<a class="aprof" href="${PROFILE[n]}" target="_blank" rel="noopener" aria-label="${esc(n)}'s profile (opens in a new tab)">View profile ↗</a>`:""}</div>
+    </header>
+    ${isOwner?`<label class="hsup2">${src?"Replace photo":"Add photo"}<input type="file" accept="image/*" data-hs="${esc(n)}" hidden></label>`:""}
+    <ul class="clist" aria-label="Parts played by ${esc(n)}">${inF.map(p=>partRow(p)).join("")}</ul>
+    ${rest.length?`<p class="also">Also plays ${rest.map(p=>`<a href="#character-${p.ch}">${esc(p.name)}</a> <span class="alsop">(${esc(pshort(playOf(p)))})</span>`).join(", ")}</p>`:""}
+  </article>`;
+}
+function playSection(pl){
+  const ps=PARTS.filter(p=>playOf(p)===pl).sort((a,b)=>b.words-a.words);
+  return `<section class="pgroup" style="--c:${PLAYACC[pl]||"#ddd"}" aria-labelledby="pg-${ck(pl)}">
+    <h3 id="pg-${ck(pl)}"><span class="pgdot" aria-hidden="true"></span>${esc(pl)} <span class="pgn">${ps.length} part${ps.length===1?"":"s"}</span></h3>
+    <ul class="ptable">${ps.map(p=>{const other=PARTS.filter(q=>q.actor===p.actor&&q!==p);
+      return `<li data-keys="${esc((p.name+" "+p.actor).toLowerCase())}"><a href="#character-${p.ch}" class="pt-char">${esc(p.name)}</a>
+        <span class="pt-act"><span class="pt-name">${esc(p.actor)}</span>${other.length?`<span class="pt-also">also ${other.map(q=>esc(q.name)+" ("+esc(pshort(playOf(q)))+")").join(", ")}</span>`:""}</span>
+        <span class="pt-w">${wordsTxt(p.words)}</span></li>`}).join("")}</ul></section>`;
+}
 function pCast(){
-  const plays=["All",...new Set(PARTS.map(p=>(CH[p.ch]||{}).play).map(p=>ABBR[p]||p))];
-  const shown=PARTS.filter(p=>castFilter==="All"||(ABBR[(CH[p.ch]||{}).play]||(CH[p.ch]||{}).play)===castFilter)
-    .sort((a,b)=>b.words-a.words);
-  const order=[...CAST].sort((a,b)=>PARTS.filter(p=>p.actor===b).reduce((s,p)=>s+p.words,0)-PARTS.filter(p=>p.actor===a).reduce((s,p)=>s+p.words,0));
-  return `<section class="folio">
-    <div class="fhero">
-      <div class="fkick">a CHRIS KELLY production · ${PARTS.length} parts · ${CAST.length} players · ${CREW.length} crew</div>
-      <h1 class="ftitle">The Company</h1>
-      <nav class="fnav">${plays.map(p=>`<button class="${p===castFilter?"on":""}" data-play="${esc(p)}">${esc(p)}</button>`).join("")}</nav>
+  const plays=playOrder();
+  const multi=CAST.filter(n=>PARTS.filter(p=>p.actor===n).length>1).length;
+  const order=[...CAST].filter(n=>PARTS.some(p=>p.actor===n)).sort((a,b)=>PARTS.filter(p=>p.actor===b).reduce((s,p)=>s+p.words,0)-PARTS.filter(p=>p.actor===a).reduce((s,p)=>s+p.words,0));
+  const shownPlays=castFilter==="All"?plays:plays.filter(pl=>pshort(pl)===castFilter);
+  return `<div class="cwrap">
+  <header class="chero">
+    <p class="ckick">A Chris Kelly production</p>
+    <h1>The Company</h1>
+    <p class="clede">${CAST.length} actors play ${PARTS.length} parts across ${plays.length} plays. ${multi} actors play more than one part, so every card lists all of an actor's parts together.</p>
+  </header>
+  <div class="ctools" role="region" aria-label="Filter the cast">
+    <div class="cview" role="group" aria-label="Show cast">
+      <button type="button" data-view="actor" aria-pressed="${castView==="actor"}">By actor</button>
+      <button type="button" data-view="play" aria-pressed="${castView==="play"}">By play</button>
     </div>
-    <div class="shelfwrap"><button class="shelfnav prev" aria-label="Scroll left" data-shelf="-1">‹</button><div class="shelf" id="shelf" tabindex="0" aria-label="Parts. Scroll sideways, select a volume to open the part.">
-      ${shown.map((p,i)=>{const pl=(CH[p.ch]||{}).play||"";const [bg,fg]=PLAYCOL[pl]||["#222","#eee"];const st=statusOf(p.actor);
-        return `<button class="book" style="--bg:${bg};--fg:${fg};--i:${i}" data-actor="${esc(p.actor)}" data-part="${p.id}" aria-label="${esc(p.name)}, ${esc(pl)}, played by ${esc(p.actor)}">
-          <span class="bk"><span class="cover"><span class="bplay">${esc(ABBR[pl]||pl)}</span><span class="bname">${esc(p.name.replace(", Duke of Gloucester",""))}</span><span class="bmeta">${esc(p.actor)}<i class="dot ${st}"></i></span><span class="bwords">≈ ${p.words.toLocaleString("en-GB")} words</span></span>
-          <span class="pages"></span></span></button>`}).join("")}
-    </div><button class="shelfnav next" aria-label="Scroll right" data-shelf="1">›</button></div>
-    <div class="fstats">${[["accepted","Accepted"],["offered","Pending"],["declined","Declined"]].map(([s,l])=>`<div><b>${CAST.filter(n=>statusOf(n)===s).length}</b><span>${l}</span></div>`).join("")}</div>
-  </section>
-  ${isOwner?`<div class="card bulk"><div><span class="small">Headshots</span><h3>Drop in everyone's photos at once</h3><div class="meta">Select all the files together. Each one is matched to an actor by the file name (full name, first name or surname, e.g. <b>sophie-heideker.jpg</b> or <b>Rob.png</b>). Anything that doesn't match is listed so you can assign it on the card.</div><div class="meta" style="margin-top:6px">${CAST.filter(n=>headSrc(n)).length} of ${CAST.length} actors have a photo.</div></div><label class="btn primary">Choose headshots<input type="file" accept="image/*" multiple id="bulkhs" hidden></label></div>`:""}
-  <h2 style="margin-top:36px">The <em>crew</em></h2>
-  <div class="crewgrid">${CREW.map(c=>{const st=crewStatus(c);return `<div class="card crew"><div class="kicker">${esc(c.role)}</div><h3>${esc(c.name)}</h3>${c.note?`<div class="meta">${esc(c.note)}</div>`:""}
-    ${c.fixed?"":st==="accepted"?`<div class="accept ok">✓ Has accepted</div>`:st==="declined"?`<div class="accept no">Has declined</div>`:`<div class="accept wait">Acceptance pending</div>`}
-    ${c.link?`<a class="btn sm" href="${c.link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px">${c.linkLabel}</a>`:""}${c.link2?` <a class="btn sm" href="${c.link2}" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px">${c.link2Label}</a>`:""}</div>`}).join("")}</div>
-  <h2 style="margin-top:36px">Every part, <em>by player</em></h2><p class="sub">Word counts come from the full, uncut scene texts, so they will drop once cuts are made. Actors accept their parts from <a href="#me">My panel</a>.</p>
-  <div class="partgrid">${order.map(n=>castCard(n)).join("")}</div>`;
+    <label class="csearch"><span class="sr">Search actor or character</span><input type="search" id="csearch" placeholder="Search an actor or character…" autocomplete="off"></label>
+    <div class="cfilter" role="group" aria-label="Filter by play">
+      ${["All",...plays].map(pl=>{const k=pl==="All"?"All":pshort(pl);return `<button type="button" data-play="${esc(k)}" aria-pressed="${k===castFilter}" style="--c:${PLAYACC[pl]||"#f5f5f4"}">${pl==="All"?"":`<span class="fdot" aria-hidden="true"></span>`}${esc(k)}</button>`}).join("")}
+    </div>
+  </div>
+  <p class="cempty" id="cempty" hidden>No one matches that search.</p>
+  ${castView==="actor"
+    ?`<div class="agrid">${order.map(actorCard).join("")}</div>`
+    :`<div class="pgrid">${shownPlays.map(playSection).join("")}</div>`}
+  ${isOwner?`<div class="card bulk" style="margin-top:28px"><div><span class="small">Headshots</span><h3>Drop in everyone's photos at once</h3><div class="meta">Select all the files together. Each one is matched to an actor by the file name (full name, first name or surname, e.g. <b>sophie-heideker.jpg</b> or <b>Rob.png</b>).</div><div class="meta" style="margin-top:6px">${CAST.filter(n=>headSrc(n)).length} of ${CAST.length} actors have a photo.</div></div><label class="btn primary">Choose headshots<input type="file" accept="image/*" multiple id="bulkhs" hidden></label></div>`:""}
+  <h2 class="ccrewh">The crew</h2>
+  <div class="crewgrid2">${CREW.map(c=>`<article class="crew2"><p class="crole">${esc(c.role)}</p><h3>${esc(c.name)}</h3>${c.note?`<p class="cnote">${esc(c.note)}</p>`:""}
+    <div class="clinks">${c.link?`<a href="${c.link}" target="_blank" rel="noopener">${esc(c.linkLabel)}</a>`:""}${c.link2?`<a href="${c.link2}" target="_blank" rel="noopener">${esc(c.link2Label)}</a>`:""}</div></article>`).join("")}</div>
+  <p class="cfoot">Word counts are from the full scene texts and will drop as cuts are made.</p>
+  </div>`;
 }
 function openPart(actor,part){
   $("sheet").innerHTML=`<div class="sheetcast">${castCard(actor,part)}</div><div class="btns"><button class="btn" id="cx">Close</button></div>`;
@@ -1046,9 +1158,13 @@ function wireCast(){
   const bulk=$("bulkhs");if(bulk)bulk.onchange=async()=>{const files=[...bulk.files];if(!files.length)return;const done=[],miss=[];
     for(const f of files){const n=matchActor(f.name);if(!n){miss.push(f.name);continue}toast(`Uploading ${done.length+1}/${files.length}: ${n}`);try{await saveHeadshot(n,f);done.push(n)}catch(e){miss.push(f.name+" (upload failed)")}}
     $("sheet").innerHTML=`<h3>Headshots</h3><p>${done.length} added${done.length?": "+done.map(esc).join(", "):""}.</p>${miss.length?`<p><b>Not matched:</b> ${miss.map(esc).join(", ")}. Use “Add photo” on the right card.</p>`:""}<div class="btns"><button class="btn primary" id="cx">Done</button></div>`;$("cx").onclick=closeSheet;$("sheetbg").classList.add("on");bulk.value=""};
-  document.querySelectorAll(".fnav button").forEach(b=>b.onclick=()=>{castFilter=b.dataset.play;route()});
-  document.querySelectorAll(".book").forEach(b=>b.onclick=()=>openPart(b.dataset.actor,b.dataset.part));
-  document.querySelectorAll("[data-reset]").forEach(b=>b.onclick=async()=>{try{await db.collection("cast").doc(b.dataset.reset).update({uid:""});toast("Unlinked")}catch(e){toast("Couldn't unlink")}});
+  const keep=fn=>{const y=window.scrollY;fn();route();window.scrollTo(0,y)};
+  document.querySelectorAll(".cfilter button").forEach(b=>b.onclick=()=>keep(()=>{castFilter=b.dataset.play}));
+  document.querySelectorAll(".cview button").forEach(b=>b.onclick=()=>keep(()=>{castView=b.dataset.view}));
+  const q=$("csearch");if(q){q.oninput=()=>{const t=q.value.trim().toLowerCase();let n=0;
+    document.querySelectorAll(".acard,.ptable li").forEach(el=>{const hit=!t||el.dataset.keys.includes(t);el.hidden=!hit;if(hit)n++});
+    document.querySelectorAll(".pgroup").forEach(g=>g.hidden=![...g.querySelectorAll("li")].some(li=>!li.hidden));
+    $("cempty").hidden=n>0}}
 }
 
 function pChars(){
