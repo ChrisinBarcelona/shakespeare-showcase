@@ -256,6 +256,11 @@ a.book{display:block;text-decoration:none}
 .card.exhot:hover{transform:translateY(-3px);box-shadow:0 0 0 1px #fff,0 24px 60px -12px rgba(245,245,244,.45)}
 .excta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:8px 14px;border-radius:999px;background:#0a0a0a;color:#f5f5f4;font-weight:600;font-size:14px}
 @media (prefers-reduced-motion:reduce){.exhot:hover{transform:none}}
+.venn{max-width:460px;margin:18px auto 8px;text-align:center}.venn svg{width:100%;height:auto}.venn .vl{font:600 17px "Inter Tight",Inter,sans-serif}.venn .vc{font:700 12px "Inter Tight",Inter,sans-serif;fill:#0a0a0a}.venn figcaption{margin-top:6px}
+.apgroup{margin-top:34px}.apgroup h2{margin:0 0 4px}
+.apgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.apcard{margin-top:10px!important}.apcard h3{margin:6px 0 8px}.apcard p{margin:0;line-height:1.6;color:#c4c4cc}
+.apn{font:600 13px "Inter Tight",Inter,sans-serif;color:#8a8a93;letter-spacing:.06em}
 .sitefoot{max-width:1100px;margin:56px auto 0;padding:22px 20px 34px;border-top:1px solid #1f1f23;font-size:13px;color:#8a8a93;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .sitefoot a{color:#a1a1aa;text-decoration:underline;text-underline-offset:3px}.sitefoot a:hover{color:#f5f5f4}
 .sitefoot .dot{opacity:.5}
@@ -1310,7 +1315,7 @@ function wireEdits(root){
 }
 
 /* ================= ROUTER ================= */
-const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
+const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
 let cdTimer=null;
 function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Signed out on this device")}
 function route(){
@@ -1324,7 +1329,7 @@ function route(){
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,staging:pStaging,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
   wireEdits(v);
   v.querySelectorAll('.shelfwrap').forEach(w=>{const sh=w.querySelector('.shelf');let t=null;
     const upd=()=>{w.querySelector('.prev').disabled=sh.scrollLeft<8;w.querySelector('.next').disabled=sh.scrollLeft+sh.clientWidth>=sh.scrollWidth-8};
@@ -1380,7 +1385,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["booking","Book Dramaturgy Session","Two hours with Chris, Mon–Fri 15:30–19:30 at Barcelona Code School. Bring your scene partners.","calcheck","#0a0a0a"],["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order.","list","#8cbcff"],["characters","Character breakdowns","Who everyone is, scene by scene.","masks","#c9a6ff"],["cast","Cast &amp; crew","Parts offered, acceptances and the crew.","users","#7fe0a0"],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket.","megaphone","#ffab6e"],["shows","The shows","12 nights at Teatre Gaudí, and call times.","ticket","#ff8a8a"],["staging","Staging","Transitions, fights, mosaics and costume.","spot","#f4c75c"]].map(([h,t,d,ic,c])=>`<a class="card link excard${h==="booking"?" exhot":""}" href="#${h}" style="--c:${c}"><span class="exico">${icon(ic,28)}</span><h3>${t}</h3><div class="meta">${d}</div>${h==="booking"?`<span class="excta">Book now <span aria-hidden="true">→</span></span>`:""}</a>`).join("")}
+    ${[["booking","Book Dramaturgy Session","Two hours with Chris, Mon–Fri 15:30–19:30 at Barcelona Code School. Bring your scene partners.","calcheck","#0a0a0a"],["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order.","list","#8cbcff"],["characters","Character breakdowns","Who everyone is, scene by scene.","masks","#c9a6ff"],["approach","Directorial approach","How we work in the room: text, voice, listening and the ensemble.","venn","#f4c75c"],["cast","Cast &amp; crew","Parts offered, acceptances and the crew.","users","#7fe0a0"],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket.","megaphone","#ffab6e"],["shows","The shows","12 nights at Teatre Gaudí, and call times.","ticket","#ff8a8a"],["staging","Staging","Transitions, fights, mosaics and costume.","spot","#f4c75c"]].map(([h,t,d,ic,c])=>`<a class="card link excard${h==="booking"?" exhot":""}" href="#${h}" style="--c:${c}"><span class="exico">${icon(ic,28)}</span><h3>${t}</h3><div class="meta">${d}</div>${h==="booking"?`<span class="excta">Book now <span aria-hidden="true">→</span></span>`:""}</a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
@@ -1955,6 +1960,7 @@ function pCostume(){
       ${notesBlock("costume-"+g.id,"Costume notes: "+g.title)}</section>`}).join("")}`;
 }
 const ICONS={
+ venn:'<circle cx="12" cy="8.5" r="5.5"/><circle cx="8.5" cy="14.5" r="5.5"/><circle cx="15.5" cy="14.5" r="5.5"/>',
  list:'<path d="M10 6h11M10 12h11M10 18h11"/><path d="M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>',
  masks:'<path d="M2 2.5h11v6.5a5.5 5.5 0 0 1-11 0Z"/><path d="M5.2 6.8h.01M9.8 6.8h.01M5 10.2a2.6 2.6 0 0 0 5 0"/><path d="M13.6 9.5H22V16a5.5 5.5 0 0 1-10.2 2.9"/><path d="M15.8 13.3h.01M19.6 13.3h.01M15.4 18.2a2.4 2.4 0 0 1 4.4 0"/>',
  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
@@ -1974,6 +1980,40 @@ const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}
 const AMBIENT=[["owl","Owls","Night in the wood: Midsummer, the witches"],["crow","Crows & ravens","Macbeth's heath and castle"],["bird","Birdsong","Morning: Arden, the lovers wake"],["forest","Forest","The Forest of Arden, the Athenian wood"],["water","Water","Ophelia's water"],["river","River","Ophelia's drowning, running under the scene"]];
 const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning","mos-crown"],["macbeth","Macbeth","1:32","The witches' ritual","mos-witches"],["rosemary","Rosemary","1:29","Ophelia's madness","ham45"],["the-changeling-boy","The Changeling Boy","1:00","The fairy dance","mos-fairy"]];
 function songFor(id){const x=SONGS.find(z=>z[4]===id);return x?`<section class="scmusic" aria-label="Music for this piece"><div class="sgicon">${icon("note",24)}</div><div class="sgmain"><p class="ckick" style="margin:0">Music</p><b>${esc(x[1])}</b><span>${x[2]}</span></div><audio controls preload="none" src="audio/${x[0]}.mp3" aria-label="Play ${esc(x[1])}"></audio></section>`:""}
+
+const APPROACH=[
+ {h:"The text and the voice",items:[
+  ["Rhythm in the text","Shakespeare wrote the music into the line. We work from the verse: the iambic pulse, the short lines, the shared lines, the caesuras. Find the rhythm and the meaning usually follows."],
+  ["Resonance, not volume","Power comes from a resonant, supported voice, not from shouting. And not from the opposite either: no throwing lines away or dropping into a mumble for the sake of being 'real'. Full voice, fully meant."],
+  ["A classical approach","The work comes from the tradition of Drama Centre London: Stanislavski-based, rigorous about action and objective, and serious about the classical text."]]},
+ {h:"Between the actors",items:[
+  ["Active listening","Everything you play comes from what you have just received. Listen as if you don't know what's coming next, and let it change you."],
+  ["Syncopation, synergy, harmony","A scene works like a song between two or more people: timing, overlap, call and response. We look for the moment-to-moment emotional exchange that only happens when you are playing with, not at, your partner."],
+  ["Competition","Scenes are contests. Someone wants to win, and so does the other person. This is especially true of The Shrew and Richard III: two wooing scenes built on a fight for the upper hand, played at full speed and full stakes."]]},
+ {h:"Inside the scene",items:[
+  ["The why never changes; the how always should","Know your objective: what you want and why. That stays fixed. How you go after it should never stop changing. Build games and tactics, try one, and when it fails, strategise and try another."],
+  ["Given circumstances and stakes","Who you are, where you are, what has just happened and what you stand to lose. The higher the stakes, the clearer the playing."]]},
+ {h:"The company",items:[
+  ["Generosity","Look after the people you are on stage with. Give them something to play off, help each other, and treat this as an ensemble rather than a collection of solos."],
+  ["Leave the notes to Chris","One gentle request: please leave directing to the director. If something in a partner's work is bothering you, bring it to Chris rather than giving them a note. It keeps the room safe, and it lets everyone get one clear voice to follow."]]}
+];
+function venn(){
+  const C=[["The Director",210,150,"#f4c75c"],["The Actor",130,280,"#8cbcff"],["The Character",290,280,"#ff8a8a"]];
+  return `<figure class="venn" aria-labelledby="venncap"><svg viewBox="0 30 420 380" role="img" aria-label="Venn diagram: three overlapping circles, The Director, The Actor and The Character. Where all three meet is The Performance.">
+    ${C.map(([t,x,y,c])=>`<circle cx="${x}" cy="${y}" r="118" fill="${c}" fill-opacity=".16" stroke="${c}" stroke-width="2"/>`).join("")}
+    <text x="210" y="92" text-anchor="middle" class="vl" fill="#f4c75c">The Director</text>
+    <text x="108" y="320" text-anchor="middle" class="vl" fill="#8cbcff">The Actor</text>
+    <text x="312" y="320" text-anchor="middle" class="vl" fill="#ff8a8a">The Character</text>
+    <circle cx="210" cy="238" r="50" fill="#f5f5f4"/>
+    <text x="210" y="234" text-anchor="middle" class="vc">The</text><text x="210" y="250" text-anchor="middle" class="vc">Performance</text>
+  </svg><figcaption id="venncap" class="meta">Where the director, the actor and the character meet, you get the performance.</figcaption></figure>`}
+function pApproach(){
+  let n=0;
+  return `<div class="chero"><p class="ckick">A CHRIS KELLY PRODUCTION</p><h1>Directorial approach</h1>
+    <p class="clede">How we'll work together in the room. None of this is a rulebook; it's the shared language for the rehearsals.</p></div>
+  ${venn()}
+  ${APPROACH.map(g=>`<section class="apgroup"><h2>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}`;
+}
 function pStaging(){
   const fights=ITEMS.filter(i=>i.type==="fight"),mos=ITEMS.filter(i=>i.type==="mosaic");
   const secs=[["st-trans","Transitions"],["st-sfx","SFX"],["st-atmos","Atmos"],["st-props","Props"],["st-vfx","Visual effects"],["st-cost","Costume"]];
