@@ -1047,7 +1047,6 @@ function pHome(){
   return `<section class="folio home"><div class="fhero">
     <div class="fkick">A Chris Kelly production</div>
     <h1 class="ftitle">Selected Works <em>of Shakespeare</em></h1>
-    <p class="hthemes">${themeTags()}</p>
   </div></section>
   ${checkIn()}
   <section class="folio home cdwrap"><div class="fhero">
@@ -1526,7 +1525,7 @@ function pMarketing(){
       ["Post · character spotlight","Volume cover + headshot + one line from the scene.","\"Get thee to a nunnery.\" Chrystele Alix is our Ophelia. Hamlet, Act 3 Scene 1."],
       ["Stories · countdown","Countdown sticker to opening night, poll ('Which play are you?'), quiz on quotes.","Daily in show weeks: 'Tonight 20:00 at Teatre Gaudí', with a link sticker."]]};
   const phases=[["Now – Dec","Build","Lock cast and crew, photograph headshots, collect actor handles for tagging."],["Early Jan","Tease","4 theme drops, one a week: Love, Power, Madness, Hate. No dates yet. Plant the look."],["23 Jan","Announce","Company poster + carousel of the 4 themes, ticket link live. Rehearsals start."],["Feb","Reveal","Weekly cast reveals + Saturday BTS from Albareda. Tag actors and venue."],["1–3 Mar","Push","Tech-week content, 'last tickets' Stories, press and partner reposts."],["4–27 Mar","Run","Show-night Stories at 18:00 and 19:45, audience reactions, 'final weekend' push."]];
-  return folioHero("Posters · social · ticket","Marketing",`<p class="hthemes">${themeTags()}</p><p class="sub">One look across the site, the posters and the ticket: the original emblems and colours, set in the site's type.</p>`)+`</section>
+  return folioHero("Posters · social · ticket","Marketing",`<p class="sub">One look across the site, the posters and the ticket: the original emblems and colours, set in the site's type.</p>`)+`</section>
   <h2>The <em>strategy</em></h2>
   <div class="phases">${phases.map(([w,t,d],i)=>`<div class="phase"><div class="kicker">${w}</div><h3>${i+1}. ${t}</h3><div class="meta">${d}</div></div>`).join("")}</div>
   <h2>Posters</h2><p class="sub">Every poster comes in Instagram (1080×1350) and TikTok / Stories (1080×1920) sizes.</p>

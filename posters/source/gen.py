@@ -324,13 +324,8 @@ def poster(p, W, H):
         out.append(f'<text x="{M-s1*.04:.0f}" y="{y:.0f}" font-family="Tight" font-weight="600" font-size="{s1:.0f}" letter-spacing="{-s1*.045:.1f}" fill="{WHITE}">{esc(h1)}</text>')
         y += s2 * (.98 if two else 1.12)
         out.append(f'<text x="{M-s2*.04:.0f}" y="{y:.0f}" font-family="Tight" font-weight="600" font-size="{s2:.0f}" letter-spacing="{-s2*.045:.1f}" fill="{GREY}">{esc(h2)}</text>')
-        ts = round((24 if not tall else 28) * max(k, .85))
-        y += ts * 2.6
-        x = M
-        for label, col in tags:
-            g, w = tag(x, y, label, col, ts); out.append(g); x += w + 12
         qs = round((32 if not tall else 38) * max(k, .8))
-        y += qs * 2.0
+        y += qs * 2.3
         for line in wrap("“" + quote + "”", qs, TW):
             out.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-style="italic" font-size="{qs}" fill="{WHITE}" fill-opacity=".88">{esc(line)}</text>')
             y += qs * 1.3
@@ -350,11 +345,8 @@ def ticket():
          f'<text x="72" y="100" font-family="Inter" font-weight="600" font-size="28" fill="{INK}" fill-opacity=".75">A Chris Kelly production</text>',
          f'<text x="66" y="210" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}">Selected Works</text>',
          f'<text x="66" y="310" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}" fill-opacity=".55">of Shakespeare</text>']
-    x = 72
-    for t, (c, _) in THEMES.items():
-        g, w = tag(x, 470, t, c, 26); s.append(g); x += w + 12
-    s += [f'<text x="72" y="555" font-family="Inter" font-weight="600" font-size="28" fill="{WHITE}">Teatre Gaudí · C/ Sant Antoni Maria Claret, 120</text>',
-         f'<text x="72" y="596" font-family="Inter" font-weight="500" font-size="22" fill="{GREY}">Date ________  ·  Doors 19:30  ·  Curtain 20:00</text>',
+    s += [f'<text x="72" y="500" font-family="Inter" font-weight="600" font-size="30" fill="{WHITE}">Teatre Gaudí · C/ Sant Antoni Maria Claret, 120</text>',
+         f'<text x="72" y="548" font-family="Inter" font-weight="500" font-size="24" fill="{GREY}">Date ________  ·  Doors 19:30  ·  Curtain 20:00</text>',
          f'<line x1="1180" y1="40" x2="1180" y2="580" stroke="{INK}" stroke-width="4" stroke-dasharray="14 12"/>',
          f'<rect x="1180" y="0" width="420" height="620" fill="{INK}"/>',
          f'<text x="1236" y="120" font-family="Inter" font-weight="600" font-size="28" fill="{GREY}">Admit one</text>',
