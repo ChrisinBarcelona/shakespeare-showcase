@@ -811,6 +811,7 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .calw{display:block;font:600 13px var(--fb);color:#52525b;padding:0 0 8px}
 .showinfo h3{margin:2px 0 4px!important;font-size:19px!important}.showinfo .ckick{margin:0}.showinfo .meta{margin:0}
 .op-art{max-height:min(62vh,760px)!important}
+.op-body{padding-top:clamp(28px,6vw,72px)!important}
 </style>
 </head>
 <body>
@@ -1171,7 +1172,6 @@ function pHome(){
   const zero=bookable().filter(i=>countFor(i.id)===0).length;
   const nextSat=SATURDAYS.find(d=>new Date(d+"T11:00")>new Date())||SATURDAYS[SATURDAYS.length-1];
   return `<section class="opener" aria-labelledby="optitle">
-    <picture><source media="(max-width:700px)" srcset="posters/hero/hero-tall.jpg"><img class="op-art" src="posters/hero/hero-wide.jpg" alt=""></picture>
     <div class="op-body">
       <p class="op-kick">A Chris Kelly production · Teatre Gaudí · March 2027</p>
       <h1 class="op-title" id="optitle">Selected Works <em>of Shakespeare</em></h1>
