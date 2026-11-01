@@ -261,6 +261,15 @@ a.book{display:block;text-decoration:none}
 .apgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .apcard{margin-top:10px!important}.apcard h3{margin:6px 0 8px}.apcard p{margin:0;line-height:1.6;color:#c4c4cc}
 .apn{font:600 13px "Inter Tight",Inter,sans-serif;color:#8a8a93;letter-spacing:.06em}
+.sptable{margin-top:16px;border:1px solid #2a2a2f;border-radius:16px;overflow:hidden}
+.sprow{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #1f1f23}.sprow:first-child{border-top:0}
+.sprow>*{padding:14px 18px;line-height:1.65;font-size:15px}
+.sphead{background:#111113;font:600 13px "Inter Tight",Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#a1a1aa}
+.spo{font-family:Georgia,"Times New Roman",serif;font-size:16.5px;color:#f5f5f4;border-right:1px solid #1f1f23}
+.spm{color:#c4c4cc}
+.spwho{display:block;font:600 11px "Inter Tight",Inter,sans-serif;letter-spacing:.08em;color:#f4c75c;margin-bottom:4px}
+.spsc{margin-top:12px!important;font-size:14px}.spsc a{color:#f5f5f4;text-underline-offset:3px}
+@media (max-width:700px){.sprow{grid-template-columns:1fr}.spo{border-right:0;border-bottom:1px dashed #2a2a2f}.sphead{display:none}.spm::before{content:"Modern English";display:block;font:600 11px "Inter Tight",Inter,sans-serif;letter-spacing:.08em;color:#8a8a93;margin-bottom:4px;text-transform:uppercase}.spm .spwho{display:none}}
 .sitefoot{max-width:1100px;margin:56px auto 0;padding:22px 20px 34px;border-top:1px solid #1f1f23;font-size:13px;color:#8a8a93;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .sitefoot a{color:#a1a1aa;text-decoration:underline;text-underline-offset:3px}.sitefoot a:hover{color:#f5f5f4}
 .sitefoot .dot{opacity:.5}
@@ -1985,6 +1994,8 @@ const APPROACH=[
  {h:"The text and the voice",items:[
   ["Rhythm in the text","Shakespeare wrote the music into the line. We work from the verse: the iambic pulse, the short lines, the shared lines, the caesuras. Find the rhythm and the meaning usually follows."],
   ["Resonance, not volume","Power comes from a resonant, supported voice, not from shouting. And not from the opposite either: no throwing lines away or dropping into a mumble for the sake of being 'real'. Full voice, fully meant."],
+  ["One thought, one breath","Each thought gets its own breath, carried right through to the end of the line. Keep the line in its rhythm and let the words do the lifting: the meaning is already in them, so you don't need to push it on top."],
+  ["Attack the verse","Come at the verse with velocity and intent. Pick up your cues, drive through the thought, land the important word. Speed with clarity, never rushing for the sake of it."],
   ["A classical approach","The work comes from the tradition of Drama Centre London: Stanislavski-based, rigorous about action and objective, and serious about the classical text."]]},
  {h:"Between the actors",items:[
   ["Active listening","Everything you play comes from what you have just received. Listen as if you don't know what's coming next, and let it change you."],
@@ -1992,6 +2003,7 @@ const APPROACH=[
   ["Competition","Scenes are contests. Someone wants to win, and so does the other person. This is especially true of The Shrew and Richard III: two wooing scenes built on a fight for the upper hand, played at full speed and full stakes."]]},
  {h:"Inside the scene",items:[
   ["The why never changes; the how always should","Know your objective: what you want and why. That stays fixed. How you go after it should never stop changing. Build games and tactics, try one, and when it fails, strategise and try another."],
+  ["Never play the state","Don't play a mood. Be however you feel in the moment, but always know why you came into the room and why you are leaving it. If you know why you're in the room, the feeling takes care of itself."],
   ["Given circumstances and stakes","Who you are, where you are, what has just happened and what you stand to lose. The higher the stakes, the clearer the playing."]]},
  {h:"The company",items:[
   ["Generosity","Look after the people you are on stage with. Give them something to play off, help each other, and treat this as an ensemble rather than a collection of solos."],
@@ -2007,12 +2019,47 @@ function venn(){
     <circle cx="210" cy="238" r="50" fill="#f5f5f4"/>
     <text x="210" y="234" text-anchor="middle" class="vc">The</text><text x="210" y="250" text-anchor="middle" class="vc">Performance</text>
   </svg><figcaption id="venncap" class="meta">Where the director, the actor and the character meet, you get the performance.</figcaption></figure>`}
+
+const SPEECH=[
+ ["HAMLET","Speak the speech, I pray you, as I pronounced it to you, trippingly on the tongue: but if you mouth it, as many of your players do, I had as lief the town-crier spoke my lines.","Say the speech the way I showed you, light and quick off the tongue. If you chew it and over-pronounce it, the way so many actors do, I'd rather have the town crier read it."],
+ ["","Nor do not saw the air too much with your hand, thus, but use all gently; for in the very torrent, tempest, and, as I may say, the whirlwind of passion, you must acquire and beget a temperance that may give it smoothness.","Don't wave your arms about like this. Do everything with control. Even in the middle of a storm of feeling, find a calm inside it that keeps it smooth."],
+ ["","O, it offends me to the soul to hear a robustious periwig-pated fellow tear a passion to tatters, to very rags, to split the ears of the groundlings, who for the most part are capable of nothing but inexplicable dumb-shows and noise: I would have such a fellow whipped for o'erdoing Termagant; it out-herods Herod: pray you, avoid it.","It kills me to hear some big, bewigged actor rip an emotion to shreds, yelling to deafen the cheap seats, who mostly only like mime and noise anyway. I'd have him whipped for overacting the villain. It's more over the top than the over-the-top roles themselves. Please, don't do it."],
+ ["FIRST PLAYER","I warrant your honour.","I promise, my lord."],
+ ["HAMLET","Be not too tame neither, but let your own discretion be your tutor: suit the action to the word, the word to the action; with this special observance, that you o'erstep not the modesty of nature:","But don't be too timid either. Let your own judgement guide you. Match what you do to what you say, and what you say to what you do, and above all don't go beyond what's natural."],
+ ["","for any thing so overdone is from the purpose of playing, whose end, both at the first and now, was and is, to hold, as 'twere, the mirror up to nature; to show virtue her own feature, scorn her own image, and the very age and body of the time his form and pressure.","Overdoing it defeats the whole point of acting, which has always been, and still is, to hold a mirror up to life: to show goodness and foolishness as they really are, and to show our own times exactly as they are."],
+ ["","Now this overdone, or come tardy off, though it make the unskilful laugh, cannot but make the judicious grieve; the censure of the which one must in your allowance o'erweigh a whole theatre of others.","Overdo it, or underplay it, and you might get a laugh from people who don't know better, but the people who do know will wince. And the opinion of one of them should matter more to you than a whole theatre full of the others."],
+ ["","O, there be players that I have seen play, and heard others praise, and that highly, not to speak it profanely, that, neither having the accent of Christians nor the gait of Christian, pagan, nor man, have so strutted and bellowed that I have thought some of nature's journeymen had made men and not made them well, they imitated humanity so abominably.","I've seen actors, highly praised ones too, who didn't speak or walk like any human being. They strutted and bellowed so much that I thought nature's apprentices must have made them, and botched the job, they imitated people so badly."],
+ ["FIRST PLAYER","I hope we have reformed that indifferently with us, sir.","I think we've more or less fixed that in our company, sir."],
+ ["HAMLET","O, reform it altogether. And let those that play your clowns speak no more than is set down for them; for there be of them that will themselves laugh, to set on some quantity of barren spectators to laugh too; though, in the mean time, some necessary question of the play be then to be considered: that's villanous, and shows a most pitiful ambition in the fool that uses it. Go, make you ready.","Fix it completely. And make your comedians say only what's written for them. Some of them laugh at their own jokes to get the dimmer part of the audience laughing too, just when something important in the play needs attention. That's unforgivable, and it shows how cheap the ambition of a clown who does it is. Go and get ready."]
+];
+const SPEECH_US=[
+ ["Trippingly on the tongue","Light, quick, in rhythm: one thought on one breath, attacking the verse rather than chewing it.",["shr21","Kate and Petruchio's duel of wits"],["r312","Richard and Anne's line-for-line exchanges"]],
+ ["A temperance in the whirlwind","The biggest feelings in the show need the most control. Resonance, not shouting.",["ham45","Ophelia's madness"],["mac55","'Tomorrow, and tomorrow'"]],
+ ["Don't tear a passion to tatters","Play the objective, never the state. Rage, grief and desire are what happen when you go after what you want.",["ham34","The closet scene"],["ham31","The nunnery scene"]],
+ ["Suit the action to the word","Movement comes out of the text and the intention, not on top of it. The same goes for the fights and the mosaics.",["f1","Macbeth vs Banquo"],["f3","Hamlet vs Laertes"]],
+ ["The mirror up to nature","Given circumstances and stakes: real people in real situations, even with fairies and witches in the room.",["mnd32","Puck's mistake & the lovers"],["mac13","The witches' prophecy"]],
+ ["Speak no more than is set down","Comedy comes from the situation, not from extra business or laughing at ourselves. Stay in the scene and trust the writing.",["ham51","The graveyard"],["mnd41","The lovers wake"]]
+];
+function pSpeech(){
+  const link=([id,t])=>IT[id]?`<a href="#scene-${id}">${esc(IT[id].play)}: ${esc(t)}</a>`:esc(t);
+  return `<section class="apgroup speech" aria-labelledby="sp-h"><p class="ckick" style="margin:0 0 6px">Hamlet 3.2 · Hamlet's advice to the players</p><h2 id="sp-h">"Speak the speech, I pray you"</h2>
+    <p class="clede">Before the play-within-the-play, Hamlet tells a company of actors how to act. Four hundred years later it is still the best short guide to playing Shakespeare, and it is basically what we'll be doing. Shakespeare on the left, plain modern English on the right.</p>
+    <div class="sptable" role="table" aria-label="Hamlet's advice to the players, with a modern translation">
+      <div class="sprow sphead" role="row"><span role="columnheader">Shakespeare</span><span role="columnheader">In modern English</span></div>
+      ${SPEECH.map(([who,o,m])=>`<div class="sprow" role="row"><div role="cell" class="spo">${who?`<b class="spwho">${who}</b>`:""}${esc(o)}</div><div role="cell" class="spm">${who?`<b class="spwho">${who}</b>`:""}${esc(m)}</div></div>`).join("")}
+    </div>
+    <h2 style="margin-top:34px">What this means for us</h2>
+    <p class="clede">Each part of the speech, and where you'll see it in our show.</p>
+    <div class="apgrid">${SPEECH_US.map(([t,d,...sc])=>`<article class="card apcard"><h3>${esc(t)}</h3><p>${esc(d)}</p><p class="spsc">${sc.map(link).join("<br>")}</p></article>`).join("")}</div>
+  </section>`;
+}
 function pApproach(){
   let n=0;
   return `<div class="chero"><p class="ckick">A CHRIS KELLY PRODUCTION</p><h1>Directorial approach</h1>
     <p class="clede">How we'll work together in the room. None of this is a rulebook; it's the shared language for the rehearsals.</p></div>
   ${venn()}
-  ${APPROACH.map(g=>`<section class="apgroup"><h2>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}`;
+  ${APPROACH.map(g=>`<section class="apgroup"><h2>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}
+  ${pSpeech()}`;
 }
 function pStaging(){
   const fights=ITEMS.filter(i=>i.type==="fight"),mos=ITEMS.filter(i=>i.type==="mosaic");
