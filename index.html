@@ -2137,7 +2137,7 @@ function pChar(id){
   const actors=c.actor.split(", ");
   return `<a class="back" href="#characters">← Characters</a><div class="kicker">${esc(c.play)}</div><h1>${esc(c.name)}</h1>
   <div class="card"><span class="small">Who they are</span><div class="body">${esc(c.bio)}</div></div>
-  <div class="card"><span class="small">Played by</span><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">${actors.map(a=>{const src=headSrc(a);return `<a href="#cast" style="text-decoration:none;color:inherit;width:110px"><div class="head" style="font-size:28px">${src?`<img src="${src}" alt="">`:initials(a)}</div><div style="font-size:13px">${esc(a)}</div></a>`}).join("")}</div></div>
+  <div class="card"><span class="small">Played by</span><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">${actors.map(a=>{const src=headSrc(a);return `<div style="width:110px"><div class="head" style="font-size:28px">${src?`<img src="${src}" data-full="${src}" alt="${esc(a)}" tabindex="0" role="button" aria-label="Open ${esc(a)}'s photo full size">`:initials(a)}</div><a href="#cast" style="display:block;margin-top:6px;font-size:13px;color:inherit">${esc(a)}</a></div>`}).join("")}</div></div>
   <div class="card"><span class="small">Appears in</span>${appears.map(i=>`<a class="pill" href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join("")}</div>
   ${notesBlock("char-"+id,"Character notes (for the actor)","Chris's notes on playing this character will appear here.")}`;
 }
