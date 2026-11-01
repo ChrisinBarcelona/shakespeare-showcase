@@ -935,6 +935,12 @@ select option{background:#111113;color:#f5f5f4}
 .shtitle{font:800 20px var(--fb)!important;color:#f4c75c!important;margin-bottom:4px!important}
 .shnote{margin-top:10px!important;color:#c9c9cd;font-size:14px!important}
 .share.slim{align-items:center;padding:12px 16px;margin-top:16px}.share.slim .shicon{width:34px;height:34px;font-size:18px}
+
+.scmusic{display:grid;grid-template-columns:auto 1fr minmax(240px,360px);gap:16px;align-items:center;margin-top:20px;padding:16px 18px;border-radius:18px;background:#141416;border:1px solid #2a2a2f}
+.scmusic .sgmain b{display:block;font-size:20px;margin-top:2px}.scmusic .sgmain span{color:#b8b8bd;font-size:14px}
+.scmusic audio{width:100%;height:42px;color-scheme:dark}
+@media(max-width:640px){.scmusic{grid-template-columns:auto 1fr}.scmusic audio{grid-column:1/-1}}
+.sgmain a{color:#fff}
 </style>
 </head>
 <body>
@@ -973,6 +979,7 @@ const CHARS=[
  {id:"titania",name:"Titania",play:"A Midsummer Night's Dream",actor:"Ella Arkeus",bio:"Queen of the Fairies, proud and defiant. She refuses to give up a changeling boy to Oberon, and their quarrel has thrown the seasons into disorder."},
  {id:"puck",name:"Puck",play:"A Midsummer Night's Dream",actor:"Teo Jansen",bio:"Oberon's mischievous servant, also called Robin Goodfellow. He puts the potion on the wrong Athenian and finds the result hilarious: 'Lord, what fools these mortals be!'"},
  {id:"fairy",name:"A Fairy",play:"A Midsummer Night's Dream",actor:"Sophie Heideker",bio:"One of Titania's attendants. Meeting Puck in the wood, she sings of her work for the queen, 'Over hill, over dale', and recognises him as the mischief-maker Robin Goodfellow."},
+ {id:"oberons-fairy",name:"Oberon's Fairy",play:"A Midsummer Night's Dream",actor:"Aldo D'Ibaños",bio:"Oberon's wild attendant, at Puck's side in every scene Puck is in: a mischievous faun of the wood who watches, mimics and helps the fairy king's tricks along."},
  {id:"helena",name:"Helena",play:"A Midsummer Night's Dream",actor:"Sarah Dillamore",bio:"In love with Demetrius, who scorns her. She is desperate and chases him into the woods. When both men suddenly adore her, she is sure they are mocking her."},
  {id:"hermia",name:"Hermia",play:"A Midsummer Night's Dream",actor:"Hannah Di Bella",bio:"In love with Lysander, and she elopes with him into the woods. She is small and fierce, and when the spell turns everyone against her she is ready to fight."},
  {id:"demetrius",name:"Demetrius",play:"A Midsummer Night's Dream",actor:"Kyle Scudder",bio:"Hermia's suitor, approved by her father. He is cold and cruel to Helena until the potion turns him towards her."},
@@ -1019,6 +1026,7 @@ const PARTS=[
  {id:"puck",ch:"puck",name:"Puck",actor:"Teo Jansen",words:942},
  {id:"oberon",ch:"oberon",name:"Oberon",actor:"Jean-Baptiste Courtois",words:1064},
  {id:"titania",ch:"titania",name:"Titania",actor:"Ella Arkeus",words:547},
+ {id:"oberons-fairy",ch:"oberons-fairy",name:"Oberon's Fairy",actor:"Aldo D'Ibaños",words:0},
  {id:"amiens",ch:"amiens",name:"Amiens",actor:"Teo Jansen",words:19},
  {id:"fairy",ch:"fairy",name:"A Fairy",actor:"Sophie Heideker",words:186},
  {id:"duke-senior",ch:"duke-senior",name:"Duke Senior",actor:"Aldo D'Ibaños",words:213},
@@ -1050,10 +1058,10 @@ const ORDER=[
   syn:"On a blasted heath, the witches greet Macbeth as Thane of Glamis, Thane of Cawdor and king hereafter, and tell Banquo his children will be kings. Moments later, news arrives that Macbeth has been made Thane of Cawdor.",arc:"Macbeth arc: the beginning (temptation)."},
  {id:"ayl21",type:"scene",n:"2",play:"As You Like It 2.1",title:"Now, my co-mates",actors:["Aldo D'Ibaños","Teo Jansen"],chars:["duke-senior","amiens"],mins:2,
   syn:"In the Forest of Arden, the exiled Duke tells his followers that this life is sweeter than the 'painted pomp' of court: 'sweet are the uses of adversity.'",arc:"Contrast: a ruler at peace without his crown, straight after Macbeth is promised one."},
- {id:"mos-fairy",type:"mosaic",n:"◐",play:"Mosaic",title:"The fairy dance",actors:["Ella Arkeus","Jean-Baptiste Courtois","Teo Jansen","Sophie Heideker"],chars:["titania","oberon","puck","fairy"],mins:2,
+ {id:"mos-fairy",type:"mosaic",n:"◐",play:"Mosaic",title:"The fairy dance",actors:["Ella Arkeus","Jean-Baptiste Courtois","Teo Jansen","Sophie Heideker","Aldo D'Ibaños"],chars:["titania","oberon","puck","fairy","oberons-fairy"],mins:2,
   syn:"The wood wakes. Titania's fairies and Oberon's fairy dance in from the dark, circling and teasing, until the fairy king and queen arrive. It opens the Midsummer scenes and turns the stage into the Athenian wood.",
   ideas:"Low moonlight and haze. Fairies enter in pairs, weaving between the foam rocks; one held picture as Titania and Oberon meet, then straight into 'Ill met by moonlight'."},
- {id:"mnd21a",type:"scene",n:"3",play:"Midsummer 2.1",title:"Oberon & Titania",actors:["Jean-Baptiste Courtois","Ella Arkeus","Teo Jansen","Sophie Heideker"],chars:["oberon","titania","puck","fairy"],mins:4,
+ {id:"mnd21a",type:"scene",n:"3",play:"Midsummer 2.1",title:"Oberon & Titania",actors:["Jean-Baptiste Courtois","Ella Arkeus","Teo Jansen","Sophie Heideker","Aldo D'Ibaños"],chars:["oberon","titania","puck","fairy","oberons-fairy"],mins:4,
   syn:"The fairy king and queen meet by moonlight and quarrel over a changeling boy. Titania describes how their feud has wrecked the seasons. Oberon swears revenge and sends Puck for the love-in-idleness flower.",arc:"Midsummer arc: the cause."},
  {id:"ham13",type:"scene",n:"4",play:"Hamlet 1.3",title:"Laertes warns Ophelia",actors:["Carlos Toca","Chrystele Alix","Adrian P. Smith"],chars:["laertes","ophelia","polonius"],mins:3,
   syn:"Leaving for France, Laertes warns his sister that Hamlet's love is a passing fancy and that a prince cannot choose freely. Ophelia promises to keep his advice, and teases him to follow it himself.",arc:"Ophelia arc: innocence and warning."},
@@ -1084,7 +1092,7 @@ const ORDER=[
   syn:"Anne mourns over Henry VI's coffin and curses his murderer. Richard interrupts, admits everything, offers her his sword, and wins her, to his own astonishment.",arc:"Mirror pair, B: hostile wooing as horror."},
  {id:"ham34",type:"scene",n:"11",play:"Hamlet 3.4",title:"The closet scene",actors:["Julien Paschal","Sophie Heideker","Adrian P. Smith"],chars:["hamlet","gertrude","polonius"],mins:6,
   syn:"Hamlet confronts his mother in her chamber: 'Come, come, and sit you down.' Hearing a noise behind the arras, he stabs through it, 'How now! A rat?', and kills Polonius.",arc:"Ophelia arc: her father dies (offstage to her)."},
- {id:"mnd32",type:"scene",n:"12",play:"Midsummer 3.2",title:"Puck's mistake & the lovers",actors:["Kyle Scudder","Jan Zammit","Sarah Dillamore","Hannah Di Bella","Jean-Baptiste Courtois","Teo Jansen"],chars:["oberon","puck","lysander","demetrius","helena","hermia"],mins:8,
+ {id:"mnd32",type:"scene",n:"12",play:"Midsummer 3.2",title:"Puck's mistake & the lovers",actors:["Kyle Scudder","Jan Zammit","Sarah Dillamore","Hannah Di Bella","Jean-Baptiste Courtois","Teo Jansen","Aldo D'Ibaños"],chars:["oberon","puck","lysander","demetrius","helena","hermia","oberons-fairy"],mins:8,
   syn:"Oberon discovers Puck enchanted the wrong man. Both Lysander and Demetrius now adore Helena, who thinks it's a cruel joke, and Hermia is ready to claw her eyes out. Puck finally sets it right: 'Jack shall have Jill.'",arc:"Midsummer arc: the chaos and the resolution."},
  {id:"sil",type:"mosaic",n:"◐",play:"Silhouette",title:"Ophelia sees her father",actors:["Chrystele Alix","Adrian P. Smith"],chars:["ophelia","polonius"],mins:0.5,
   syn:"A backlit, wordless image: Ophelia and the body of her father. It is played as something she imagines or fears rather than a literal discovery, since in the play she never sees him. It pulls the audience from the farce into grief.",
@@ -1474,6 +1482,7 @@ function pScene(id){
   return `<a class="back" href="#scenes">← Running order</a>
   <div class="kicker">${o.n} · ${esc(o.play)}</div><h1>${esc(o.title)}</h1>
   <p class="sub">≈ ${o.mins} min${o.arc?" · "+esc(o.arc):""}</p>
+  ${songFor(o.id)}
   ${SCRIPT_OF[o.id]?scriptCta(o):""}
   <div class="card"><span class="small">What happens</span><div class="body">${esc(o.syn)}</div></div>
   ${o.beats?`<div class="card"><span class="small">Suggested beats</span><div class="body notes">${esc(o.beats)}</div></div>`:""}
@@ -1906,7 +1915,7 @@ function pMarketing(){
 /* ---------- Staging hub ---------- */
 const COSTUME=[
   {id:"titania",title:"Titania's fairies",play:"A Midsummer Night's Dream",note:"White and ivory fabric, wrapped and draped close to the body: soft, light, a little undone. Simple jewellery.",imgs:[["titania-fairies-1","Titania's fairies: white draped and wrapped fabric"],["titania-fairies-2","Titania's fairies: white fringed wrap"]]},
-  {id:"oberon",title:"Oberon's fairy",play:"A Midsummer Night's Dream",note:"Wings that catch the light, a crown of moss and flowers, dark teal and silver embroidery. Wild and theatrical.",imgs:[["oberon-fairy","Oberon's fairy: lit wings, moss crown, teal and silver"]]},
+  {id:"oberon",title:"Oberon's fairy",play:"A Midsummer Night's Dream",note:"Wings that catch the light, a crown of moss and flowers, dark teal and silver embroidery. Wild and theatrical. For Aldo: a faun of the wood. Small curled horns, pointed ears, shaggy russet goat legs, a bare round belly and a big cheeky grin.",imgs:[["oberon-fairy","Oberon's fairy: lit wings, moss crown, teal and silver"]]},
   {id:"witches",title:"The witches",play:"Macbeth",note:"Floor-length black velvet cloaks with deep hoods and fur trim. Faces hidden until the reveal.",imgs:[["witches","The witches: hooded black velvet cloak with fur trim"]]}];
 function pCostume(){
   return `<a class="back" href="#staging">← Staging</a><div class="chero"><p class="ckick">Staging</p><h1>Costume</h1><p class="clede">The looks we're going for, by group. Tap a photo to see it full size.</p></div>
@@ -1926,7 +1935,8 @@ const ICONS={
  note:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'};
 const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
 const AMBIENT=[["owl","Owls","Night in the wood: Midsummer, the witches"],["crow","Crows & ravens","Macbeth's heath and castle"],["bird","Birdsong","Morning: Arden, the lovers wake"],["forest","Forest","The Forest of Arden, the Athenian wood"],["water","Water","Ophelia's water"],["river","River","Ophelia's drowning, running under the scene"]];
-const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning (Macbeth mosaic)"],["macbeth","Macbeth","1:32","Macbeth scenes"],["rosemary","Rosemary","1:29","Ophelia's madness"],["the-changeling-boy","The Changeling Boy","1:00","Oberon & Titania"]];
+const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning","mos-crown"],["macbeth","Macbeth","1:32","The witches' ritual","mos-witches"],["rosemary","Rosemary","1:29","Ophelia's madness","ham45"],["the-changeling-boy","The Changeling Boy","1:00","The fairy dance","mos-fairy"]];
+function songFor(id){const x=SONGS.find(z=>z[4]===id);return x?`<section class="scmusic" aria-label="Music for this piece"><div class="sgicon">${icon("note",24)}</div><div class="sgmain"><p class="ckick" style="margin:0">Music</p><b>${esc(x[1])}</b><span>${x[2]}</span></div><audio controls preload="none" src="audio/${x[0]}.mp3" aria-label="Play ${esc(x[1])}"></audio></section>`:""}
 function pStaging(){
   const fights=ITEMS.filter(i=>i.type==="fight"),mos=ITEMS.filter(i=>i.type==="mosaic");
   const secs=[["st-trans","Transitions"],["st-sfx","SFX"],["st-atmos","Atmos"],["st-props","Props"],["st-vfx","Visual effects"],["st-cost","Costume"]];
@@ -1949,7 +1959,7 @@ function pStaging(){
     <h3 class="sth">Ambient sounds</h3>
     <ul class="amb">${AMBIENT.map(([k,t,d])=>`<li>${icon(k,30)}<div><b>${t}</b><span>${d}</span></div></li>`).join("")}</ul>
     <h3 class="sth">Musical transitions</h3>
-    <ul class="songs">${SONGS.map(([f,t,dur,use])=>`<li><div class="sgicon">${icon("note",22)}</div><div class="sgmain"><b>${t}</b><span>For: ${esc(use)} · ${dur}</span></div><audio controls preload="none" src="audio/${f}.mp3" aria-label="Play ${esc(t)}"></audio><a class="btn sm" href="audio/${f}.mp3" download="${f}.mp3">Download</a></li>`).join("")}</ul></section>
+    <ul class="songs">${SONGS.map(([f,t,dur,use,id])=>`<li><div class="sgicon">${icon("note",22)}</div><div class="sgmain"><b>${t}</b><span>For: <a href="#scene-${id}">${esc(use)}</a> · ${dur}</span></div><audio controls preload="none" src="audio/${f}.mp3" aria-label="Play ${esc(t)}"></audio><a class="btn sm" href="audio/${f}.mp3" download="${f}.mp3">Download</a></li>`).join("")}</ul></section>
 
   <section class="cost" id="st-atmos"><div class="costhead"><span class="rnum sm">3</span><h2>Atmos</h2></div>
     <p class="clede">The air on stage. A smoke machine gives us haze for the witches, the wood at night and Ophelia's water, and makes the light beams visible. To check with Teatre Gaudí before tech: smoke detectors and how long the haze hangs.</p>
