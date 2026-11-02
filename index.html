@@ -2199,7 +2199,7 @@ function pHome(){
     </div>
   </section>
   <div id="checkin">${checkIn()}</div>
-  <h2>This <em>Saturday</em></h2><p class="sub">Company rehearsal at ${VENUES.albareda.name}, 09:00–11:30. Let Chris know if you're coming.</p>
+  <h2>This <em>Saturday</em></h2><p class="sub">Company rehearsal at <a href="${VENUES.albareda.map}" target="_blank" rel="noopener"><b>${VENUES.albareda.name}</b></a>, 09:00–11:30.</p>
   ${meSelect()}
   <div class="satgrid2 one">${satCard(nextSat,true)}</div>
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
@@ -2230,7 +2230,7 @@ function progressBlock(accepted,booked,zero){
   </div>`}
 /* ---- shared: who am I + Saturday attendance ---- */
 function meSelect(){if(me)return `<div class="mesel youare">You're <b>${esc(me)}</b> <button type="button" class="btn sm" data-notme>Not you? Change name</button></div>`;
-  return `<p class="attendhint">Choose your name to mark attending or book.</p><div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
+  return `<div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
 function attendees(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===true).map(a=>a.actor).sort()}
 function notGoing(date){return Object.values(attendance).filter(a=>a.date===date&&a.going===false).map(a=>a.actor).sort()}
 const phaseCls=p=>p==="Run-through"?"run":p==="Scene work"?"scene":p==="Mosaics"?"mos":p==="Stage combat"?"combat":"";
