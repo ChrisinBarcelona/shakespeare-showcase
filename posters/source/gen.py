@@ -302,8 +302,8 @@ def poster(p, W, H):
     # footer (fixed to the bottom)
     fs = 28 if not tall else 32
     by = H - (60 if not tall else 100)
-    foot = [f'<text x="{M}" y="{by}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Teatre Gaudí · March 2027</text>',
-            f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="500" font-size="{fs-4}" fill="{GREY}">Thu–Sat · Curtain 20:00</text>']
+    foot = [f'<text x="{M}" y="{by}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Opens 23 April · Shakespeare’s birthday</text>',
+            f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="500" font-size="{fs-4}" fill="{GREY}">{'Thu–Sat · 20:00' if tall else 'Thu–Sat to 15 May · 20:00'}</text>']
     limit = by - fs - 46
     if tall:
         foot.append(f'<text x="{M}" y="{by+46}" font-family="Inter" font-weight="500" font-size="{fs-4}" fill="{GREY}">shakespeareshow.actor</text>')
@@ -345,14 +345,14 @@ def ticket():
          f'<text x="72" y="100" font-family="Inter" font-weight="600" font-size="28" fill="{INK}" fill-opacity=".75">A CHRIS KELLY PRODUCTION</text>',
          f'<text x="66" y="210" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}">Selected Works</text>',
          f'<text x="66" y="310" font-family="Tight" font-weight="600" font-size="104" letter-spacing="-4.6" fill="{INK}" fill-opacity=".55">of Shakespeare</text>']
-    s += [f'<text x="72" y="500" font-family="Inter" font-weight="600" font-size="30" fill="{WHITE}">Teatre Gaudí · C/ Sant Antoni Maria Claret, 120</text>',
+    s += [f'<text x="72" y="500" font-family="Inter" font-weight="600" font-size="30" fill="{WHITE}">Barcelona · Venue to be announced</text>',
          f'<text x="72" y="548" font-family="Inter" font-weight="500" font-size="24" fill="{GREY}">Date ________  ·  Doors 19:30  ·  Curtain 20:00</text>',
          f'<line x1="1180" y1="40" x2="1180" y2="580" stroke="{INK}" stroke-width="4" stroke-dasharray="14 12"/>',
          f'<rect x="1180" y="0" width="420" height="620" fill="{INK}"/>',
          f'<text x="1236" y="120" font-family="Inter" font-weight="600" font-size="28" fill="{GREY}">Admit one</text>',
          f'<text x="1230" y="300" font-family="Tight" font-weight="600" font-size="120" letter-spacing="-5" fill="{bg}">Nº 001</text>',
          f'<text x="1236" y="430" font-family="Inter" font-weight="500" font-size="28" fill="{WHITE}">Row ___   Seat ___</text>',
-         f'<text x="1236" y="520" font-family="Inter" font-weight="500" font-size="22" fill="{GREY}">March 2027 · Thu–Sat</text>',
+         f'<text x="1236" y="520" font-family="Inter" font-weight="500" font-size="22" fill="{GREY}">23 Apr – 15 May 2027</text>',
          f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".12"/></g></svg>']
     return "".join(s)
 
@@ -384,7 +384,7 @@ def share_card():
         f'<g fill="{INK}" transform="translate({ox},0)">{FIGS["all"](ground + 6, figh)}</g>',
         f'<rect width="{W}" height="{H}" fill="url(#vig)"/>',
         f'<path d="{grass(ground, rnd, W)}" fill="{INK}"/><rect y="{ground+40}" width="{W}" height="{H-ground}" fill="{INK}"/>',
-        f'<text x="64" y="{ground+72}" font-family="Inter" font-weight="600" font-size="22" fill="{GREY}">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</text>',
+        f'<text x="64" y="{ground+72}" font-family="Inter" font-weight="600" font-size="22" fill="{GREY}">A CHRIS KELLY PRODUCTION · Opens 23 April 2027, Shakespeare’s birthday</text>',
         f'<text x="60" y="{ground+148}" font-family="Tight" font-weight="600" font-size="78" letter-spacing="-3.5" fill="{WHITE}">Selected Works <tspan fill="{GREY}">of Shakespeare</tspan></text>',
         f'<text x="64" y="{ground+196}" font-family="Inter" font-weight="500" font-size="24" fill="{WHITE}" fill-opacity=".85">Love · Power · Madness · Hate  —  Thursdays to Saturdays, curtain 20:00</text>',
         f'<rect width="{W}" height="{ground+30}" filter="url(#grain)" opacity=".12"/></svg>'])

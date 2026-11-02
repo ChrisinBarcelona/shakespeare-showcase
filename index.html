@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Selected Works of Shakespeare</title>
-<meta name="description" content="A CHRIS KELLY PRODUCTION. Love, power, madness and hate: scenes from seven of Shakespeare's plays in one evening. Teatre Gaudí Barcelona, Thursdays to Saturdays in March 2027, curtain 20:00.">
+<meta name="description" content="A CHRIS KELLY PRODUCTION. Love, power, madness and hate: scenes from seven of Shakespeare's plays in one evening. Opening night Friday 23 April 2027, Shakespeare's birthday, then Thursdays to Saturdays until 15 May in Barcelona. Curtain 20:00.">
 <meta name="theme-color" content="#000000">
 <script>(function(){try{var t=localStorage.getItem("ss_theme")||"dark";if(t==="light"){document.documentElement.classList.add("light");document.querySelector('meta[name="theme-color"]').content="#fafaf9"}}catch(e){}})()</script>
 <link rel="canonical" href="https://shakespeareshow.actor/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Selected Works of Shakespeare">
 <meta property="og:title" content="Selected Works of Shakespeare">
-<meta property="og:description" content="Love · Power · Madness · Hate. A CHRIS KELLY PRODUCTION at Teatre Gaudí Barcelona, Thursdays to Saturdays in March 2027.">
+<meta property="og:description" content="Love · Power · Madness · Hate. A CHRIS KELLY PRODUCTION. Opens 23 April 2027, Shakespeare's birthday, in Barcelona.">
 <meta property="og:url" content="https://shakespeareshow.actor/">
 <meta property="og:image" content="https://shakespeareshow.actor/posters/share.jpg">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Selected Works of Shakespeare: a garland of emblems over the company in silhouette on a red sky">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Selected Works of Shakespeare">
-<meta name="twitter:description" content="Love · Power · Madness · Hate. Teatre Gaudí Barcelona, March 2027.">
+<meta name="twitter:description" content="Love · Power · Madness · Hate. Opens 23 April 2027, Shakespeare's birthday, in Barcelona.">
 <meta name="twitter:image" content="https://shakespeareshow.actor/posters/share.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D8432A'/%3E%3Cpath d='M14 46V24l9 9 9-15 9 15 9-9v22Z' fill='%23111'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1015,6 +1015,25 @@ select option{background:#111113;color:#f5f5f4}
 .acard.vacant{border-style:dashed;background:transparent}
 .cnote{margin-top:18px;padding:16px 18px;border-radius:16px;background:#141416;border:1px solid #2a2a2f;border-left:4px solid #c9a6ff}
 .cnote p{margin:6px 0 0;font-size:16px;color:#e4e4e7;line-height:1.55}.cnote b{color:#fff}
+
+/* ---- Opening night on Shakespeare's birthday ---- */
+.bday{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin:28px 0 10px;padding:22px 24px;border-radius:20px;border:1px solid rgba(244,199,92,.5);background:linear-gradient(135deg,rgba(244,199,92,.14),rgba(244,199,92,.03) 60%)}
+.bday .bdate{width:96px;text-align:center;border:1px solid rgba(244,199,92,.65);border-radius:16px;padding:10px 6px 12px;color:#f4c75c}
+.bday .bdate span{display:block;font:600 11px var(--fb);letter-spacing:.16em;text-transform:uppercase}
+.bday .bdate b{display:block;font:600 46px/1.05 var(--fd);color:#f4c75c}
+.bday .bkick{margin:0;font:600 13px var(--fb);color:#f4c75c;letter-spacing:.02em}
+.bday h2{margin:4px 0 8px!important;font-size:clamp(22px,3vw,30px)!important;line-height:1.15}
+.bday p.btxt{margin:0;color:#d4d4d8;max-width:680px}
+.show2.bday2{border-color:rgba(244,199,92,.7);box-shadow:0 0 0 1px rgba(244,199,92,.35) inset;background:linear-gradient(135deg,rgba(244,199,92,.1),#111113 70%)}
+.show2.bday2 .ckick{color:#f4c75c}
+@media (max-width:560px){.bday{grid-template-columns:1fr;padding:18px}.bday .bdate{width:84px}}
+@media (max-width:560px){.showgrid{grid-template-columns:1fr!important}}
+.pcontact .btn{white-space:nowrap}
+/* ---- Pitch page ---- */
+.pteam{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+.pteam .card h3{margin:2px 0 4px}
+.pcontact{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px}
+.pcontact h3{margin:2px 0 4px}
 </style>
 <style id="light-theme">
 html.light{--ink:#f1eeec;--ink2:#eae6e4;--ink3:#e5e0dc;--line:#e5e0dc;--paper:#9e803f;--muted:#6f6a62;--blood:#ecd5d5;--moss:#4b5e40;--sky:#355e89}
@@ -1424,6 +1443,13 @@ html.light .ssign{border:1px solid #e4e4e7}
 html.light .splate{background:#ffe500;color:#0a0a0a}
 html.light .head{background:#f1f0ee;border:1px solid #e4e4e7}
 
+
+:where(html.light) .bday{background:linear-gradient(135deg,#fff6df,#fffdf8 60%);border-color:#e2c27a}
+:where(html.light) .bday .bdate{border-color:#cf9f3a;color:#8a5a00}
+:where(html.light) .bday .bdate b,:where(html.light) .bday .bkick{color:#8a5a00}
+:where(html.light) .bday p.btxt{color:#27272b}
+:where(html.light) .show2.bday2{background:linear-gradient(135deg,#fff6df,#ffffff 70%);border-color:#cf9f3a;box-shadow:0 0 0 1px rgba(207,159,58,.35) inset}
+:where(html.light) .show2.bday2 .ckick{color:#8a5a00}
 </style>
 </head>
 <body>
@@ -1628,7 +1654,7 @@ const TRANS={
 };
 
 /* ================= SLOTS ================= */
-const START=new Date(2026,10,2),END=new Date(2027,1,26);
+const START=new Date(2026,10,2),END=new Date(2027,3,16);
 const timesFor=d=>["15:30","17:30"];
 const pad=n=>String(n).padStart(2,"0");
 const dkey=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
@@ -1640,7 +1666,6 @@ const fmtShort=d=>d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",mo
 
 /* ================= PRODUCTION DATA ================= */
 const VENUES={
-  gaudi:{name:"Teatre Gaudí Barcelona",addr:"Carrer de Sant Antoni Maria Claret, 120, 08025 Barcelona",area:"Eixample · Sagrada Família",tel:"93 603 51 61",map:"https://www.google.com/maps/search/?api=1&query=Teatre+Gaud%C3%AD+Barcelona+Sant+Antoni+Maria+Claret+120"},
   albareda:{name:"Centre Cultural Albareda",addr:"Carrer d'Albareda, 22–24, 08004 Barcelona",area:"Poble-sec",tel:"934 433 719",map:"https://www.google.com/maps/search/?api=1&query=Centre+Cultural+Albareda+Barcelona"},
   bcs:{name:"Barcelona Code School",addr:"Carrer de París, 157, 08036 Barcelona",area:"Eixample",tel:"",map:"https://www.google.com/maps/search/?api=1&query=Barcelona+Code+School+Carrer+de+Par%C3%ADs+157"}
 };
@@ -1659,17 +1684,25 @@ const SAT_ALL=[
  ["2027-01-23","All seven mosaics, in running order","Entrances & exits","Mosaics"],
  ["2027-01-30","Fight call: all three fights","Voice","Stage combat"],
  ["2027-02-06","Transitions & SFX","Voice","Scene work"],
- ["2027-02-13","Full run-through 1","Notes","Run-through"],
- ["2027-02-20","Full run-through 2","Notes","Run-through"],
- ["2027-02-27","Full run-through 3","Director's notes","Run-through"]];
+ ["2027-02-13","Scene work: Macbeth · Hamlet","Text & verse","Scene work"],
+ ["2027-02-20","Scene work: Midsummer · Shrew · As You Like It","Voice","Scene work"],
+ ["2027-02-27","Scene work: Richard III · Coriolanus","Character physicality","Scene work"],
+ ["2027-03-06","Fight call: all three fights","Stage combat","Stage combat"],
+ ["2027-03-13","Stumble-through: first half","Notes","Scene work"],
+ ["2027-03-20","Stumble-through: second half","Notes","Scene work"],
+ ["2027-03-27",null,null,"Break","No rehearsal · Easter"],
+ ["2027-04-03","Full run-through 1","Notes","Run-through"],
+ ["2027-04-10","Full run-through 2","Notes","Run-through"],
+ ["2027-04-17","Full run-through 3","Director's notes","Run-through"]];
 const SATURDAYS=SAT_ALL.filter(x=>x[1]).map(x=>x[0]);
 const FIRST={date:"2026-11-10",time:"13:30",what:"Full read-through & first dramaturgy session"};
-const TECH={date:"2027-03-03",label:"Wed 3 March 2027 (approx.)"};
+const TECH={date:"2027-04-22",label:"Thu 22 April 2027 (approx.)"};
 const SAT_TIMES=[["09:00","Check in"],["09:15","First practical"],["10:15","Break"],["10:30","Second practical"],["11:30","Close"]];
 const SAT_PLAN=Object.fromEntries(SAT_ALL.filter(x=>x[1]).map(x=>[x[0],[x[1],x[2],x[3]]]));
 const CLASSES=["Dramaturgy","Language breakdown","Rhythm & iambic pentameter","Character objectives","Super-objectives","Tensions","Run-throughs"];
 function mapEmbed(v){return `<div class="rmap"><iframe title="Map: ${esc(v.name)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${encodeURIComponent(v.name+", "+v.addr)}&output=embed"></iframe><div class="rmapfoot"><div><b>${esc(v.name)}</b><span>${esc(v.addr)}</span></div><a class="btn sm" href="${v.map}" target="_blank" rel="noopener">Open in Google Maps ↗</a></div></div>`}
-const SHOWS=(()=>{const a=[];for(let d=1;d<=31;d++){const x=new Date(2027,2,d);if([4,5,6].includes(x.getDay()))a.push(dkey(x))}return a})();
+const SHOWS=(()=>{const a=[];for(let x=new Date(2027,3,23);x<=new Date(2027,4,15);x.setDate(x.getDate()+1)){if([4,5,6].includes(x.getDay()))a.push(dkey(x))}return a})();
+const VENUE_TBA={name:"Venue to be announced",note:"Barcelona · venue to be announced"};
 const CALL=[["18:00","Arrive"],["18:30–19:30","Warm-up"],["20:00","Curtain"]];
 const CREW=[
  {key:"chris-kelly",name:"Chris Kelly",role:"Director",fixed:true,link:"https://chriskelly.it",linkLabel:"chriskelly.it ↗",link2:"https://www.imdb.com/name/nm5854428/",link2Label:"IMDb ↗"},
@@ -1740,7 +1773,7 @@ if(me&&!CAST.includes(me)&&!CREW.some(c=>c.name===me)&&!(typeof PEOPLE!=="undefi
 let selScene=null;
 const today=new Date();today.setHours(0,0,0,0);
 let week=WEEKS.findIndex(ws=>ws[ws.length-1]>=today);if(week<0)week=WEEKS.length-1;
-const DEFAULT_SHOW="2027-03-04T20:00";
+const DEFAULT_SHOW="2027-04-23T20:00";
 
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1792,7 +1825,7 @@ function lightHex(hx){let h=hx.replace("#","");if(h.length===3)h=[...h].map(c=>c
 function lightFix(root){if(!isLight()||!root)return;root.querySelectorAll("[style*='#']").forEach(el=>{if(el.closest(".book2,.book,.bkcard,.cal,.fccal,.pcard .b2"))return;const st=el.getAttribute("style");
   const out=st.split(";").map(d=>/^\s*--(bg|fg|cl)\s*:/.test(d)?d:d.replace(/#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b/g,m=>lightHex(m))).join(";");if(out!==st)el.setAttribute("style",out)})}
 /* ================= ROUTER ================= */
-const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["me","My panel"]];
+const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["me","My panel"]];
 let cdTimer=null;
 function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Signed out on this device")}
 function route(){
@@ -1806,7 +1839,7 @@ function route(){
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
   wireEdits(v);
   v.querySelectorAll('.shelfwrap').forEach(w=>{const sh=w.querySelector('.shelf');let t=null;
     const upd=()=>{w.querySelector('.prev').disabled=sh.scrollLeft<8;w.querySelector('.next').disabled=sh.scrollLeft+sh.clientWidth>=sh.scrollWidth-8};
@@ -1824,7 +1857,7 @@ function route(){
 window.addEventListener("hashchange",()=>{route();window.scrollTo(0,0)});
 
 /* ================= PAGES ================= */
-function showDate(){const s=(content.settings&&content.settings.showDate)||DEFAULT_SHOW;return new Date(s)}
+function showDate(){const s=(content.settings&&content.settings.openingNight)||DEFAULT_SHOW;return new Date(s)}
 function pHome(){
   const accepted=CAST.filter(n=>statusOf(n)==="accepted").length;
   const booked=Object.values(bookings).filter(b=>b.type==="scene").length;
@@ -1832,24 +1865,25 @@ function pHome(){
   const nextSat=SATURDAYS.find(d=>new Date(d+"T11:00")>new Date())||SATURDAYS[SATURDAYS.length-1];
   return `<section class="opener" aria-labelledby="optitle">
     <div class="op-body">
-      <p class="op-kick">A CHRIS KELLY PRODUCTION · Teatre Gaudí · March 2027</p>
+      <p class="op-kick">A CHRIS KELLY PRODUCTION · Opens 23 April 2027 · Shakespeare’s birthday</p>
       <h1 class="op-title" id="optitle">Selected Works <em>of Shakespeare</em></h1>
       <div class="cd op-cd" id="cd" role="timer" aria-label="Time until curtain"><div><b id="cd-d">–</b><span>Days</span></div><div><b id="cd-h">–</b><span>Hours</span></div><div><b id="cd-m">–</b><span>Minutes</span></div><div><b id="cd-s">–</b><span>Seconds</span></div></div>
-      <p class="op-when"><span class="tbc">TBC</span> UNTIL CURTAIN · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Teatre Gaudí</p>
+      <p class="op-when"><span class="tbc">TBC</span> UNTIL CURTAIN · <b>${showDate().toLocaleString("en-GB",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</b> · Shakespeare’s birthday</p>
       <div class="op-btns"><button type="button" class="btn primary" id="tockin">Who's in? ↓</button><a class="btn" href="#shows">Performance schedule</a>${isOwner?`<button class="btn" id="setdate">Change opening date</button>`:""}</div>
     </div>
   </section>
+  ${bdayBand()}
   ${firstCall()}
   <section class="flyer">
     <a class="flyerimg" href="#marketing"><img src="${IMG["company-ig"]}" alt="Selected Works of Shakespeare poster: a garland of seven emblems hanging over the company in silhouette" loading="lazy"></a>
     <div class="flyerinfo">
       <div class="kicker">The essentials</div>
       <dl class="facts">
-        <div><dt>Shows <span class="tbc">TBC</span></dt><dd>Every Thursday, Friday &amp; Saturday in March 2027 · ${SHOWS.length} performances<br><span class="meta">${VENUES.gaudi.name}, ${VENUES.gaudi.addr}</span></dd></div>
+        <div><dt>Shows <span class="tbc">TBC</span></dt><dd><b>Opening night: Friday 23 April</b>, Shakespeare’s birthday. Then every Thursday, Friday &amp; Saturday to 15 May · ${SHOWS.length} performances<br><span class="meta">${VENUE_TBA.note}</span></dd></div>
         <div><dt>Show day</dt><dd>${CALL.map(([t,l])=>`<b>${t}</b> ${l}`).join(" · ")}</dd></div>
-        <div><dt>Tech</dt><dd>${TECH.label} · Teatre Gaudí</dd></div>
+        <div><dt>Tech</dt><dd>${TECH.label} · at the venue</dd></div>
         <div><dt>First call</dt><dd><b>Tuesday 10 November, 13:30</b> · full read-through &amp; first dramaturgy session<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
-        <div><dt>Saturday rehearsals <span class="tbc">TBC</span></dt><dd>09:00–11:30 · every Saturday, 7 Nov – 27 Feb<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
+        <div><dt>Saturday rehearsals <span class="tbc">TBC</span></dt><dd>09:00–11:30 · every Saturday, 7 Nov – 17 Apr<br><span class="meta">${VENUES.albareda.name}, ${VENUES.albareda.addr}</span></dd></div>
         <div><dt>Dramaturgy sessions</dt><dd>Mon–Fri, 15:30–19:30 (2-hour slots, book with your scene partners)<br><span class="meta">${VENUES.bcs.name}, ${VENUES.bcs.addr}</span></dd></div>
       </dl>
       <div class="btns"><a class="btn primary" href="#booking">Book a rehearsal</a><a class="btn" href="#shows">Performance schedule</a></div>
@@ -1862,7 +1896,7 @@ function pHome(){
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
   <h2>Everything <em>else</em></h2>
   <div class="grid explore">
-    ${[["booking","Book Dramaturgy Session","Two hours with Chris, Mon–Fri 15:30–19:30 at Barcelona Code School. Bring your scene partners.","calcheck","#0a0a0a"],["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order.","list","#8cbcff"],["characters","Character breakdowns","Who everyone is, scene by scene.","masks","#c9a6ff"],["approach","Directorial approach","How we work in the room: text, voice, listening and the ensemble.","venn","#f4c75c"],["cast","Cast &amp; crew","Parts offered, acceptances and the crew.","users","#7fe0a0"],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket.","megaphone","#ffab6e"],["shows","The shows","12 nights at Teatre Gaudí, and call times.","ticket","#ff8a8a"],["staging","Staging","Transitions, fights, mosaics and costume.","spot","#f4c75c"]].map(([h,t,d,ic,c])=>`<a class="card link excard" href="#${h}"><span class="exico">${icon(ic,28)}</span><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
+    ${[["booking","Book Dramaturgy Session","Two hours with Chris, Mon–Fri 15:30–19:30 at Barcelona Code School. Bring your scene partners.","calcheck","#0a0a0a"],["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order.","list","#8cbcff"],["characters","Character breakdowns","Who everyone is, scene by scene.","masks","#c9a6ff"],["approach","Directorial approach","How we work in the room: text, voice, listening and the ensemble.","venn","#f4c75c"],["cast","Cast &amp; crew","Parts offered, acceptances and the crew.","users","#7fe0a0"],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket.","megaphone","#ffab6e"],["shows","The shows",SHOWS.length+" nights from 23 April, Shakespeare’s birthday, and call times.","ticket","#ff8a8a"],["staging","Staging","Transitions, fights, mosaics and costume.","spot","#f4c75c"]].map(([h,t,d,ic,c])=>`<a class="card link excard" href="#${h}"><span class="exico">${icon(ic,28)}</span><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
   <div class="stats" style="margin-top:14px">
     <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
@@ -1930,9 +1964,9 @@ function wireAttend(root){
 }
 function startCountdown(){
   const sd=$("setdate");if(sd)sd.onclick=()=>{
-    const cur=(content.settings&&content.settings.showDate)||DEFAULT_SHOW;
+    const cur=(content.settings&&content.settings.openingNight)||DEFAULT_SHOW;
     $("sheet").innerHTML=`<h3>Opening night</h3><div class="field"><input type="datetime-local" id="dt" value="${cur}"></div><div class="btns"><button class="btn" id="cx">Cancel</button><button class="btn primary" id="sv">Save</button></div>`;
-    $("cx").onclick=closeSheet;$("sv").onclick=async()=>{try{await db.collection("content").doc("settings").set({showDate:$("dt").value});toast("Saved");closeSheet()}catch(e){toast("Couldn't save")}};
+    $("cx").onclick=closeSheet;$("sv").onclick=async()=>{try{await db.collection("content").doc("settings").set({openingNight:$("dt").value});toast("Saved");closeSheet()}catch(e){toast("Couldn't save")}};
     $("sheetbg").classList.add("on");
   };
   const tick=()=>{const ms=Math.max(0,showDate()-new Date());const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
@@ -2312,23 +2346,88 @@ function wireMe(){
 
 /* ---------- Shows ---------- */
 function pShows(){
-  const weeks={};SHOWS.forEach(d=>{const x=new Date(d);const wk=Math.ceil(x.getDate()/7);(weeks[wk]=weeks[wk]||[]).push(d)});
-  return folioHero(`${SHOWS.length} performances · Teatre Gaudí · March 2027`,"The Shows",`<p class="ftag">Every Thursday, Friday &amp; Saturday. <em>Curtain 20:00.</em></p>`)+`</section>
+  const weeks={};SHOWS.forEach(d=>{const x=new Date(d+"T12:00");const m=new Date(x);m.setDate(x.getDate()-((x.getDay()+6)%7));const wk="w"+dkey(m);(weeks[wk]=weeks[wk]||[]).push(d)});
+  return folioHero(`${SHOWS.length} performances · 23 April – 15 May 2027 · Barcelona`,"The Shows",`<p class="ftag">Opening night on Shakespeare’s birthday, then every Thursday, Friday &amp; Saturday. <em>Curtain 20:00.</em></p>`)+`</section>
+  ${bdayBand()}
   <div class="callrow">${CALL.map(([t,l])=>`<div><b>${t}</b><span>${l}</span></div>`).join("")}</div>
-  <div class="card venue"><div><span class="small">Venue</span><h3>${VENUES.gaudi.name}</h3><div class="meta">${VENUES.gaudi.addr} · ${VENUES.gaudi.area}<br>Box office ${VENUES.gaudi.tel}</div></div><a class="btn sm" href="${VENUES.gaudi.map}" target="_blank" rel="noopener">Map ↗</a></div>
-  <div class="card tech"><span class="small">Tech rehearsal</span><h3>${TECH.label}</h3><div class="meta">At Teatre Gaudí. Exact call time to be confirmed.</div></div>
+  <div class="card venue"><div><span class="small">Venue</span><h3>${VENUE_TBA.name}</h3><div class="meta">We're talking to Barcelona theatres now. The dates are built around opening night on 23 April.</div></div><a class="btn sm" href="#pitch">The pitch →</a></div>
+  <div class="card tech"><span class="small">Tech rehearsal</span><h3>${TECH.label}</h3><div class="meta">At the venue, the day before opening night. Exact call time to be confirmed.</div></div>
   <div class="share slim" role="note"><div class="shicon" aria-hidden="true">★</div><p><b>Share the show!</b> Post, tag away and take photos at the event. Just don't take photos of people without their consent, and make sure your photos are awesome!</p></div>
   <p class="tbcline"><span class="tbc">TBC</span> Performance dates to be confirmed</p>
   ${Object.values(weeks).map((ds,i)=>`<h2 class="wk">Week ${i+1}</h2><div class="showgrid">${ds.map((d,j)=>{const x=new Date(d+"T20:00");const n=SHOWS.indexOf(d)+1;const past=x<new Date();
-    return `<article class="show2 ${past?"past":""}"><div class="cal" aria-hidden="true"><span class="calm">${x.toLocaleDateString("en-GB",{month:"short"})}</span><span class="cald">${x.getDate()}</span><span class="calw">${x.toLocaleDateString("en-GB",{weekday:"short"})}</span></div>
-      <div class="showinfo"><p class="ckick">Show ${n} of ${SHOWS.length}${n===1?" · Opening night":""}${n===SHOWS.length?" · Closing night":""}</p><h3>${x.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3><p class="meta">Arrive 18:00 · Curtain 20:00</p></div></article>`}).join("")}</div>`).join("")}`;
+    return `<article class="show2 ${past?"past":""}${n===1?" bday2":""}"><div class="cal" aria-hidden="true"><span class="calm">${x.toLocaleDateString("en-GB",{month:"short"})}</span><span class="cald">${x.getDate()}</span><span class="calw">${x.toLocaleDateString("en-GB",{weekday:"short"})}</span></div>
+      <div class="showinfo"><p class="ckick">Show ${n} of ${SHOWS.length}${n===1?" · Opening night · Shakespeare’s birthday":""}${n===SHOWS.length?" · Closing night":""}</p><h3>${x.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3><p class="meta">Arrive 18:00 · Curtain 20:00</p></div></article>`}).join("")}</div>`).join("")}`;
+}
+/* ---------- Opening night band ---------- */
+function bdayBand(){return `<section class="bday" aria-labelledby="bdayh"><div class="bdate" aria-hidden="true"><span>Fri</span><b>23</b><span>April</span></div>
+  <div><p class="bkick">Opening night · Shakespeare’s birthday</p><h2 id="bdayh">We open on the day the world <em>celebrates Shakespeare.</em></h2>
+  <p class="btxt">23 April is kept as Shakespeare’s birthday, and it is the day he died in 1616. In Barcelona it is also Sant Jordi, when the streets fill with books and roses, and UNESCO marks it as World Book Day. Curtain up at 20:00.</p></div></section>`}
+/* ---------- Pitch (for theatres) ---------- */
+function pPitch(){
+  const total=Math.round(ITEMS.reduce((a,i)=>a+(i.mins||0),0)),cnt=t=>ITEMS.filter(i=>i.type===t).length;
+  const d0=new Date(SHOWS[0]+"T20:00"),d1=new Date(SHOWS[SHOWS.length-1]+"T20:00"),fd=d=>d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+  const mail="mailto:chris@chriskelly.it?subject="+encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027");
+  const li=(b,t)=>`<li><b>${b}</b><span>${t}</span></li>`;
+  return folioHero("For theatres and programmers","The Pitch",`<p class="ftag"><em>Selected Works of Shakespeare.</em> Love, power, madness and hate in one evening, opening on Shakespeare’s birthday.</p>`)+`</section>
+  ${bdayBand()}
+  <section class="flyer">
+    <a class="flyerimg" href="#marketing"><img src="${IMG["company-ig"]}" alt="Selected Works of Shakespeare poster: a garland of seven emblems hanging over the company in silhouette" loading="lazy"></a>
+    <div class="flyerinfo">
+      <div class="kicker">The ask</div>
+      <p class="clede" style="margin-top:8px">We’re looking for a Barcelona theatre for a four-week run of an English-language Shakespeare evening, opening on Friday 23 April 2027.</p>
+      <dl class="facts">
+        <div><dt>Dates</dt><dd><b>${fd(d0)} – ${fd(d1)} 2027</b><br><span class="meta">Every Thursday, Friday &amp; Saturday · ${SHOWS.length} performances · curtain 20:00</span></dd></div>
+        <div><dt>Running time</dt><dd>About ${total} minutes</dd></div>
+        <div><dt>Tech</dt><dd>One day: Thursday 22 April, the day before opening</dd></div>
+        <div><dt>Language</dt><dd>English, in Shakespeare’s own words</dd></div>
+        <div><dt>Company</dt><dd>${CAST.length} actors, a director and a set team</dd></div>
+        <div><dt>Terms</dt><dd>Open to a straight hire or a box-office split</dd></div>
+        <div><dt>Flexible</dt><dd>Happy to talk about a shorter run, midweek nights or nearby dates</dd></div>
+      </dl>
+      <div class="btns"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp</a></div>
+    </div>
+  </section>
+  <h2>The <em>show</em></h2>
+  <p class="clede">Scenes from seven of Shakespeare’s plays in one evening. Movement pieces we call mosaics carry the story from one play to the next, so the night plays as one journey, not a string of extracts.</p>
+  <div class="stats"><div class="stat"><b>7</b><span>Plays</span></div><div class="stat"><b>${cnt("scene")}</b><span>Scenes</span></div><div class="stat"><b>${cnt("fight")}</b><span>Fights</span></div><div class="stat"><b>${cnt("mosaic")}</b><span>Mosaics</span></div><div class="stat"><b>≈${total}</b><span>Minutes</span></div></div>
+  <ul class="docl">${li("Love","A Midsummer Night’s Dream · The Taming of the Shrew · As You Like It")}${li("Power","Macbeth · Richard III")}${li("Madness","Hamlet, and Lady Macbeth")}${li("Hate","Coriolanus, and Richard III")}</ul>
+  <a class="btn sm" href="#scenes" style="display:inline-block;margin-top:14px">See the running order →</a>
+  <h2>The <em>company</em></h2>
+  <p class="clede">An international ensemble of ${CAST.length} professional actors based in Barcelona, with screen and stage credits including Netflix, HBO, Amazon Prime, the BBC, Paramount+ and London’s West End. In rehearsal since November 2026: company rehearsals every Saturday, and text work during the week.</p>
+  <div class="pteam">
+    <div class="card"><span class="small">Director</span><h3>Chris Kelly</h3><div class="meta">Irish actor and director. MA in Classical Acting, Drama Centre London. Played Gavrilo Princip in the BBC drama 37 Days.</div></div>
+    <div class="card"><span class="small">Assistant Producer</span><h3>Jessica Kollande</h3><div class="meta">Actor and voice actor working in Barcelona and Berlin.</div></div>
+    <div class="card"><span class="small">Set Director</span><h3>Adrian P. Smith</h3><div class="meta">Also plays Polonius.</div></div>
+    <div class="card"><span class="small">Set Designer</span><h3>G Lab Barcelona</h3><div class="meta">Light, portable pieces built for a fast get-in.</div></div>
+  </div>
+  <a class="btn sm" href="#cast" style="display:inline-block;margin-top:14px">Meet the company →</a>
+  <h2>Why it will <em>sell</em></h2>
+  <ul class="docl">
+    ${li("A date the city already celebrates","23 April is Shakespeare’s birthday, Sant Jordi and World Book Day. Opening night comes with its own headline.")}
+    ${li("An audience that’s waiting","Barcelona has a large English-speaking community and very little Shakespeare performed in English.")}
+    ${li("A cast that brings people",CAST.length+" actors, each with their own friends, colleagues and followers.")}
+    ${li("A campaign ready to go","Four theme posters, seven play posters and a weekly social plan from January.")}
+    ${li("Behind-the-scenes films","A short-form documentary by Diigima Creative Studio: rehearsals, fight choreography and cast interviews for Reels and TikTok.")}
+    ${li("A good cause","Profits from the show go to Save the Children’s Gaza emergency appeal.")}
+  </ul>
+  <h2>What we <em>need</em></h2>
+  <ul class="docl">
+    ${li("Space","A stage we can adapt the staging to, and dressing room space for a company of "+CAST.length+".")}
+    ${li("Stage combat","Three fights with rapier and dagger, choreographed and rehearsed weekly, with safety notes.")}
+    ${li("Haze","A smoke machine for the witches, the wood at night and Ophelia’s water. We’ll check the smoke detectors with you.")}
+    ${li("Light and sound","A full lighting and sound cue list is already written.")}
+    ${li("Set","Light pieces only, such as foam rocks and a gurney, for a quick get-in and get-out.")}
+    ${li("Tech","One tech day before opening night.")}
+  </ul>
+  <div class="card pcontact"><div><span class="small">Let’s talk</span><h3>Chris Kelly, Director</h3><div class="meta">Posters, rehearsal footage and the full running order on request.</div></div>
+    <div class="btns" style="margin:0"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></div></div>`;
 }
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){
   return folioHero("Rehearsal format","Rehearsals",`<p class="ftag">Two ways we work: <em>Saturday company rehearsals, and weekday classes you book.</em></p>`)+`</section>
   ${firstCall()}
   <section class="rsec" aria-labelledby="r1">
-    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick"><span class="tbc">TBC</span> Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · ${SATURDAYS.length} Saturdays, 7 November – 27 February (no rehearsal 26 Dec and 2 Jan)</p></div></div>
+    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick"><span class="tbc">TBC</span> Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · ${SATURDAYS.length} Saturdays, 7 November – 17 April (no rehearsal 26 Dec, 2 Jan and 27 Mar)</p></div></div>
     <div class="rgrid">
       <div class="rtime"><h3>The morning</h3><ol class="ttable">${SAT_TIMES.map(([t,l])=>`<li class="${/practical/.test(l)?"prac":""}"><b>${t}</b><span>${l}</span></li>`).join("")}</ol>
         <p class="meta" style="margin:14px 0 0">Two practical hours each Saturday. The early Saturdays build the mosaics (the opening, the witches, the crowning, the fairy dance, Ophelia’s water), often over both hours, with whole mornings of stage combat. Then blocking by play, voice towards the end, and three full run-throughs with notes before tech week.</p></div>
@@ -2337,7 +2436,7 @@ function pRehearsals(){
     <div class="ryou">${meSelect()}</div>
     ${(()=>{const months={};SAT_ALL.forEach(x=>{const m=new Date(x[0]+"T12:00").toLocaleDateString("en-GB",{month:"long",year:"numeric"});(months[m]=months[m]||[]).push(x)});
       return `<p class="tbcline"><span class="tbc">TBC</span> Saturday dates and plan to be confirmed</p><div class="legend2"><span><i class="satphase mos"></i>Mosaics</span><span><i class="satphase combat"></i>Stage combat</span><span><i class="satphase"></i>Workshop</span><span><i class="satphase scene"></i>Scene work</span><span><i class="satphase run"></i>Run-through</span></div>`+Object.entries(months).map(([m,xs])=>`<h3 class="smonth">${m}</h3><ol class="sched">${xs.map(satRow).join("")}</ol>`).join("")})()}
-    <div class="satafter"><span class="ckick">Then</span> <b>Tech · ${TECH.label}</b> at Teatre Gaudí, the day before opening night.</div>
+    <div class="satafter"><span class="ckick">Then</span> <b>Tech · ${TECH.label}</b> at the venue, the day before opening night on Friday 23 April, Shakespeare’s birthday.</div>
   </section>
   <section class="rsec" aria-labelledby="r2">
     <div class="rhead"><span class="rnum" aria-hidden="true">2</span><div><p class="ckick">Weekday classes · optional</p><h2 id="r2">Dramaturgy sessions</h2><p class="clede">${VENUES.bcs.name}, ${VENUES.bcs.area} · Mon–Fri, 15:30–17:30 or 17:30–19:30 · first session Tuesday 10 November, 13:30</p></div></div>
@@ -2408,16 +2507,16 @@ let posterSize="ig";
 function pMarketing(){
   const posts={
     tiktok:[
-      ["The theme drop","3 sec hook: black screen, one emblem slams down on the beat, then the title card: The Power of Shakespeare.","Love. Power. Madness. Hate. Which one are you? 👑💀🌙⚔️ #Shakespeare #TeatreGaudi #BarcelonaTheatre","Series of 4, one theme a week in January. Trending percussive sound."],
-      ["Who's playing who","Actor looks into camera, freezes; cut to their volume cover (character name + play).","Meet our Hamlet. 3,000+ words. Zero pressure. 🎭 #CastReveal #EnglishTheatreBarcelona","One per actor through February. Tag the actor."],
+      ["The theme drop","3 sec hook: black screen, one emblem slams down on the beat, then the title card: The Power of Shakespeare.","Love. Power. Madness. Hate. Which one are you? 👑💀🌙⚔️ #Shakespeare #ShakespearesBirthday #BarcelonaTheatre","Series of 4, one theme a week in January. Trending percussive sound."],
+      ["Who's playing who","Actor looks into camera, freezes; cut to their volume cover (character name + play).","Meet our Hamlet. 3,000+ words. Zero pressure. 🎭 #CastReveal #EnglishTheatreBarcelona","One per actor through March. Tag the actor."],
       ["Line challenge","Two actors trade the Shrew wooing at double speed; first to stumble loses.","Kate vs Petruchio, speed round. Who wins? 🐝 #TamingOfTheShrew #TheatreTok","Duet-friendly. Invite followers to try it."],
       ["Saturday at Albareda","15-sec BTS montage: warm-up, the fight call in slow motion, notes on the floor.","Saturday mornings in Poble-sec. 6 weeks to curtain. #Rehearsal #BarcelonaArts","Post every rehearsal Saturday."]],
     insta:[
-      ["Carousel · the four themes","Company poster first, then Love, Power, Madness and Hate. Last slide: dates + ticket link in bio.","Love. Power. Madness. Hate. Selected Works of Shakespeare: one evening, Thursdays to Saturdays in March at Teatre Gaudí. 🎟️ Link in bio."],
-      ["Reel · 'The Evening'","The scenes shelf scrolling left to right, synced to music; ends on the countdown.","The running order, one volume at a time. Curtain 4 March, 20:00."],
+      ["Carousel · the four themes","Company poster first, then Love, Power, Madness and Hate. Last slide: dates + ticket link in bio.","Love. Power. Madness. Hate. Selected Works of Shakespeare: opening 23 April, Shakespeare’s birthday, in Barcelona. 🎟️ Link in bio."],
+      ["Reel · 'The Evening'","The scenes shelf scrolling left to right, synced to music; ends on the countdown.","The running order, one volume at a time. Curtain 23 April, Shakespeare’s birthday, 20:00."],
       ["Post · character spotlight","Volume cover + headshot + one line from the scene.","\"Get thee to a nunnery.\" Chrystele Alix is our Ophelia. Hamlet, Act 3 Scene 1."],
-      ["Stories · countdown","Countdown sticker to opening night, poll ('Which play are you?'), quiz on quotes.","Daily in show weeks: 'Tonight 20:00 at Teatre Gaudí', with a link sticker."]]};
-  const phases=[["Now – Dec","Build","Lock cast and crew, photograph headshots, collect actor handles for tagging."],["Early Jan","Tease","4 theme drops, one a week: Love, Power, Madness, Hate. No dates yet. Plant the look."],["23 Jan","Announce","Company poster + carousel of the 4 themes, ticket link live. Rehearsals start."],["Feb","Reveal","Weekly cast reveals + Saturday BTS from Albareda. Tag actors and venue."],["1–3 Mar","Push","Tech-week content, 'last tickets' Stories, press and partner reposts."],["4–27 Mar","Run","Show-night Stories at 18:00 and 19:45, audience reactions, 'final weekend' push."]];
+      ["Stories · countdown","Countdown sticker to opening night, poll ('Which play are you?'), quiz on quotes.","Daily in show weeks: 'Tonight 20:00', with the venue tagged, with a link sticker."]]};
+  const phases=[["Now – Dec","Build","Lock cast and crew, photograph headshots, collect actor handles for tagging."],["Early Jan","Tease","4 theme drops, one a week: Love, Power, Madness, Hate. No dates yet. Plant the look."],["Feb","Announce","Company poster + carousel of the 4 themes: opening night on Shakespeare’s birthday. Ticket link live once the venue is confirmed."],["Mar","Reveal","Weekly cast reveals + Saturday BTS from Albareda. Tag actors and venue."],["1–22 Apr","Push","Countdown to Shakespeare’s birthday and Sant Jordi, tech-week content, 'last tickets' Stories, press and partner reposts."],["23 Apr – 15 May","Run","Opening night on 23 April, show-night Stories at 18:00 and 19:45, audience reactions, 'final weekend' push."]];
   return folioHero("Posters · social · ticket","Marketing",`<p class="sub">One look across the site, the posters and the ticket: the original emblems and colours, set in the site's type.</p>`)+`</section>
   <section class="cost doc" aria-labelledby="doch"><div class="costhead"><h2 id="doch">Short-form content</h2><span class="ctag" style="--c:#c9a6ff">Documentary</span></div>
     <p class="clede">A behind-the-scenes documentary filmed by <a href="https://diigima.es/" target="_blank" rel="noopener">Diigima Creative Studio ↗</a>, a Barcelona audio-visual studio, cut into shorts for Instagram Reels and TikTok.</p>
@@ -2428,7 +2527,7 @@ function pMarketing(){
     </ul>
     <p class="meta" style="margin-top:12px">Filming is arranged with Diigima in advance; Chris will say which sessions they're at.</p>
     <div class="share" role="note"><div class="shicon" aria-hidden="true">★</div>
-      <div><p class="shtitle">Yes! Share it, often</p><p>Post, story, hashtag and tag: help us glow up the show and spread the word. Use <b>#SelectedWorksOfShakespeare</b> and <b>#ShakespeareBarcelona</b>, and tag the company, the cast and Teatre Gaudí.</p>
+      <div><p class="shtitle">Yes! Share it, often</p><p>Post, story, hashtag and tag: help us glow up the show and spread the word. Use <b>#SelectedWorksOfShakespeare</b> and <b>#ShakespeareBarcelona</b>, and tag the company, the cast and the venue.</p>
       <p class="shnote">One gentle ask: please don't post recordings of rehearsals or the performances themselves. Filming a rehearsal to practise from is fine; just keep it to yourself. Diigima's behind-the-scenes footage is the one to share.</p></div></div>
   </section>
   <h2>The <em>strategy</em></h2>
@@ -2448,7 +2547,7 @@ function pMarketing(){
   <h2>The <em>ticket</em></h2>
   <div class="card"><img src="${IMG.ticket}" data-full="${IMG_FULL.ticket}" data-dl="selected-works-of-shakespeare-ticket.jpg" alt="Ticket design" tabindex="0" role="button" aria-label="Open the ticket full size" style="width:100%;display:block" loading="lazy">
     <div class="btns"><a class="btn sm" href="${IMG_FULL.ticket}" download="selected-works-of-shakespeare-ticket.jpg">Download ticket</a></div>
-    <dl class="facts" style="margin-top:12px"><div><dt>Venue</dt><dd>${VENUES.gaudi.name} · ${VENUES.gaudi.addr}</dd></div><div><dt>Times</dt><dd>Doors 19:30 · Curtain 20:00</dd></div><div><dt>Price</dt><dd class="meta">To be confirmed</dd></div><div><dt>Sales link</dt><dd class="meta">To be confirmed (Teatre Gaudí box office ${VENUES.gaudi.tel})</dd></div></dl></div>
+    <dl class="facts" style="margin-top:12px"><div><dt>Venue</dt><dd>${VENUE_TBA.note}</dd></div><div><dt>Times</dt><dd>Doors 19:30 · Curtain 20:00</dd></div><div><dt>Price</dt><dd class="meta">To be confirmed</dd></div><div><dt>Sales link</dt><dd class="meta">To be confirmed with the venue</dd></div></dl></div>
   ${notesBlock("marketing-notes","Marketing notes","Handles, ticket links and posting schedule notes go here.")}`;
 }
 /* ---------- Staging hub ---------- */
@@ -2578,7 +2677,7 @@ function pStaging(){
     <ul class="songs">${SONGS.map(([f,t,dur,use,id])=>`<li><div class="sgicon">${icon("note",22)}</div><div class="sgmain"><b>${t}</b><span>For: <a href="#scene-${id}">${esc(use)}</a> · ${dur}</span></div><audio controls preload="none" src="audio/${f}.mp3" aria-label="Play ${esc(t)}"></audio><a class="btn sm" href="audio/${f}.mp3" download="${f}.mp3">Download</a></li>`).join("")}</ul></section>
 
   <section class="cost" id="st-atmos"><div class="costhead"><span class="rnum sm">3</span><h2>Atmos</h2></div>
-    <p class="clede">The air on stage. A smoke machine gives us haze for the witches, the wood at night and Ophelia's water, and makes the light beams visible. To check with Teatre Gaudí before tech: smoke detectors and how long the haze hangs.</p>
+    <p class="clede">The air on stage. A smoke machine gives us haze for the witches, the wood at night and Ophelia's water, and makes the light beams visible. To check with the venue before tech: smoke detectors and how long the haze hangs.</p>
     <div class="costgrid">${ph("smoke-machine","Smoke machine with coloured light")}</div></section>
 
   <section class="cost" id="st-props"><div class="costhead"><span class="rnum sm">4</span><h2>Props</h2></div>

@@ -1,8 +1,8 @@
 # Selected Works of Shakespeare
 
-**A CHRIS KELLY PRODUCTION** · Teatre Gaudí Barcelona · Thursdays–Saturdays in March 2027 · Curtain 20:00
+**A CHRIS KELLY PRODUCTION** · Barcelona, venue to be announced · Opens Friday 23 April 2027 (Shakespeare's birthday), then Thursdays–Saturdays to 15 May · Curtain 20:00
 
-**Love · Power · Madness · Hate.** The production site for an evening of scenes from seven Shakespeare plays: the running order, the scripts, the company, Saturday rehearsals, rehearsal booking and the marketing materials.
+**Love · Power · Madness · Hate.** The production site for an evening of scenes from seven Shakespeare plays: the running order, the scripts, the company, Saturday rehearsals, rehearsal booking, the marketing materials and the pitch for theatres (`#pitch`).
 
 Live at [shakespeareshow.actor](https://shakespeareshow.actor) (and chrisinbarcelona.github.io/shakespeare-showcase).
 
@@ -29,8 +29,8 @@ Themes by play: Love = Midsummer, Shrew, As You Like It · Power = Macbeth, Rich
 
 ## Key details
 
-- **Shows:** Teatre Gaudí Barcelona, Carrer de Sant Antoni Maria Claret, 120, 08025 Barcelona. Every Thursday, Friday and Saturday in March 2027 (12 performances). Arrive 18:00, warm-up 18:30–19:30, curtain 20:00. Tech on Wed 3 March (approx.).
-- **Saturday rehearsals:** Centre Cultural Albareda, Carrer d'Albareda 22–24, 08004 Barcelona. 09:00–11:00, 23 Jan – 27 Feb 2027.
+- **Shows:** Venue to be announced (Barcelona). Opening night Friday 23 April 2027, Shakespeare's birthday and Sant Jordi; then every Thursday, Friday and Saturday to Saturday 15 May (11 performances). Arrive 18:00, warm-up 18:30–19:30, curtain 20:00. Tech on Thu 22 April (approx.).
+- **Saturday rehearsals:** Centre Cultural Albareda, Carrer d'Albareda 22–24, 08004 Barcelona. 09:00–11:30, every Saturday 7 Nov 2026 – 17 Apr 2027 (breaks 26 Dec, 2 Jan, 27 Mar). Full run-throughs on 3, 10 and 17 April.
 - **Weekday sessions:** Barcelona Code School, Carrer de París 157, 08036 Barcelona. Mon–Fri 15:30–19:30.
 
 ## Saving
