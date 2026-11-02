@@ -1137,6 +1137,52 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 .ckcol a{color:inherit}
 :where(html.light) .ckey{background:#fff;border-color:#e4e3e1}
 :where(html.light) .ckcol{background:#f5f5f4}
+.vacs{margin-top:30px}
+.vacgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}
+.vaccard{background:#111113;border:1px dashed #52525b;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.vaccard h3{margin:2px 0 0;font-size:20px}
+.vaccard .meta{flex:1;margin:4px 0 10px;line-height:1.45}
+.vaccard .btn{flex:0 0 auto!important;width:auto!important;align-self:flex-start}
+.appform h3{margin:0 0 10px}
+.madlib{font-size:17px;line-height:2.2;margin:0}
+.madlib input{font:inherit;font-size:16px;padding:4px 8px;border:0;border-bottom:2px solid #a1a1aa;background:rgba(255,255,255,.06);color:inherit;border-radius:6px 6px 0 0;min-width:0}
+.madlib #ap-name{width:12em;max-width:100%}
+.madlib input{margin:0 3px}
+.madlib input:focus{outline:none;border-bottom-color:#f5f5f4;background:rgba(255,255,255,.1)}
+.appform .field input,.appform .field textarea{width:100%;box-sizing:border-box;font:inherit;font-size:15px;padding:10px 12px;border-radius:10px;border:1px solid #3f3f46;background:#0a0a0a;color:#f5f5f4}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.apnote{margin-top:10px}
+.apdone{text-align:center;padding:10px 4px}
+.apok{width:56px;height:56px;border-radius:50%;background:#16a34a;color:#fff;display:grid;place-items:center;font-size:28px;margin:4px auto 10px}
+.apdone .btns{justify-content:center}
+:where(html.light) .vaccard{background:#fff;border-color:#a1a1aa}
+:where(html.light) .madlib input{background:#f5f5f4;border-bottom-color:#71717a}
+:where(html.light) .appform .field input,:where(html.light) .appform .field textarea{background:#fff;border-color:#d4d4d8;color:#151513}
+.hww{margin-top:26px}
+.hwwgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:14px}
+.hwwcard{border-radius:18px;padding:22px;border:1px solid #27272a;background:#111113;display:flex;flex-direction:column;gap:6px}
+.hwwcard.theory{border-top:4px solid #f4c75c}.hwwcard.practice{border-top:4px solid #8cbcff}
+.hwwcard h3{margin:2px 0 0;font-size:24px}
+.hwwwhere{margin:0;color:#a1a1aa;font-size:14px}
+.hwwlede{margin:8px 0 4px;font-size:16px;line-height:1.5}
+.hwwlist{margin:4px 0 12px;padding-left:18px;display:grid;gap:4px;font-size:15px;line-height:1.45;flex:1;align-content:start}
+.hwwcard .btn{flex:0 0 auto!important;width:auto!important;align-self:flex-start}
+.hwwtrust{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.hwwtrust p{margin:0;background:#18181b;border-radius:14px;padding:16px;font-size:15px;line-height:1.55}
+.hwwmerge{margin-top:14px;border-radius:16px;padding:18px 20px;background:linear-gradient(90deg,rgba(244,199,92,.14),rgba(140,188,255,.14));border:1px solid #3f3f46}
+.hwwmerge p{margin:4px 0 0;font-size:16px;line-height:1.5}
+.belief{margin:22px 0 6px;padding:22px 24px;border-left:4px solid #f4c75c;background:#111113;border-radius:0 16px 16px 0}
+.belief p{margin:0;font-size:28px;line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.belief p em{font-style:normal;color:#f4c75c}
+.belief footer{margin-top:12px;font-size:15px;color:#c4c4cc;line-height:1.5}
+.belief footer span{display:block;margin-top:6px;font-size:13px;color:#a1a1aa}
+.belief footer span::before{content:"— "}
+:where(html.light) .hwwcard{background:#fff;border-color:#e4e3e1}
+:where(html.light) .hwwtrust p{background:#f5f5f4}
+:where(html.light) .belief{background:#fff}
+:where(html.light) .belief p em{color:#a16207}
+:where(html.light) .belief footer{color:#3d3b37}
+:where(html.light) .hwwwhere,:where(html.light) .belief footer span{color:#5c5a56}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:14px}
 .vcard{background:#111113;border:1px solid #27272a;border-radius:16px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px}
 .vcard.due{border-color:#f87171;box-shadow:0 0 0 1px #f87171 inset}
@@ -1963,7 +2009,7 @@ function supaDB(){
   const enc=encodeURIComponent,L={};
   const pin=()=>{try{return localStorage.getItem("ss_dir_pin")||""}catch(_){return ""}};
   const fail=async r=>{let j={};try{j=await r.json()}catch(_){}const e={code:(r.status===401||r.status===403||j.code==="42501")?"not_allowed":r.status===409||j.code==="23505"?"exists":"http_"+r.status,message:j.message};throw e};
-  async function rows(c){if(c==="outreach"&&pin()){const q=await fetch(`${R}/rpc/director_read`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c})});if(q.ok)return q.json()}const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
+  async function rows(c){if((c==="outreach"||c==="applications")&&pin()){const q=await fetch(`${R}/rpc/director_read`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c})});if(q.ok)return q.json()}const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
   const LAST={};
   function refresh(c){const ls=L[c];if(!ls||!ls.length)return;rows(c).then(rs=>{const sig=JSON.stringify(rs);if(LAST[c]===sig)return;LAST[c]=sig;const snap={docs:rs.map(x=>({id:x.id,exists:true,data:()=>x.data})),metadata:{fromCache:false}};ls.forEach(l=>l.cb(snap))}).catch(e=>ls.forEach(l=>l.err&&l.err(e)))}
   async function dwrite(c,id,data,del){const r=await fetch(`${R}/rpc/director_write`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c,p_id:id,p_data:data||{},p_delete:!!del})});if(!r.ok)await fail(r)}
@@ -2085,6 +2131,8 @@ function route(){
   if(base==="booking")wireBooking();
   if(base==="me")wireMe();
   if(base==="me"||base==="home")wireNotes();
+  v.querySelectorAll("[data-jumpid]").forEach(b=>b.onclick=()=>{const t=document.getElementById(b.dataset.jumpid);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})});
+  v.querySelectorAll("[data-apply]").forEach(b=>b.onclick=()=>openApply(b.dataset.apply));
   wireAttend(v);wireDownloads(v);wireShelf2(v);
   v.querySelectorAll('[data-psize]').forEach(b=>b.onclick=()=>{posterSize=b.dataset.psize;route()});
   if(base==="cast")wireCast();
@@ -2111,6 +2159,7 @@ function pHome(){
   </section>
   ${newsBlock()}
   ${homeNotesBlock()}
+  ${vacanciesBlock()}
   ${bdayBand()}
   ${firstCall()}
   <section class="flyer">
@@ -2569,7 +2618,7 @@ function pMe(){
   let body="";
   if(crew&&crew.fixed){const cs=crewStatus(crew);
     body=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
-      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div></section>${noteComposer()}<section hidden>`
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div></section>${noteComposer()}${appsBlock()}<section hidden>`
       :`<p class="clede" style="margin:0 0 12px">Enter your director code to edit notes, settings and slots from this device.</p><label class="sr" for="dirpin">Director code</label><input type="password" id="dirpin" placeholder="Director code" autocomplete="off"><div class="btns"><button class="btn primary" id="unlockdir">Unlock editing</button></div>`}</section>`;
   }else{
     if(crew){const cs=crewStatus(crew);body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
@@ -2732,6 +2781,45 @@ function renderNavUser(base){const nu=$("navuser");if(!nu)return;
   m.onkeydown=e=>{if(e.key==="Escape"){close();b.focus()}};
   if(!window.__navuserDoc){window.__navuserDoc=true;document.addEventListener("click",e=>{const mm=$("navmenu"),bb=$("navav");if(mm&&!mm.hidden&&!mm.contains(e.target)&&e.target!==bb){mm.hidden=true;bb&&bb.setAttribute("aria-expanded","false")}})}
 }
+/* ---------- Vacancies + application form ---------- */
+function vacancyList(){const roles=CHARS.filter(c=>c.actor==="Vacant").map(c=>({kind:"actor",key:"role-"+c.id,role:c.name,sub:"Actor · "+(ABBR[c.play]||c.play),note:c.bio}));
+  return roles.concat(VACANCIES.map(v=>({kind:"crew",key:"crew-"+ck(v.role),role:v.role,sub:"Crew",note:v.note})))}
+function vacanciesBlock(){const vs=vacancyList();if(!vs.length)return"";
+  return `<section class="vacs" aria-labelledby="vach"><div class="hnhead"><h2 id="vach">Open <em>vacancies</em></h2></div>
+    <p class="clede" style="margin-top:6px">Join the company. Pick a role and send Chris a time to meet at ${VENUES.bcs.name}: he gets your request by email straight away.</p>
+    <div class="vacgrid">${vs.map(v=>`<article class="vaccard"><p class="ckick">${esc(v.sub)}</p><h3>${esc(v.role)}</h3><p class="meta">${esc(v.note||"")}</p><button type="button" class="btn primary" data-apply="${esc(v.key)}">${v.kind==="actor"?"Audition for this role":"Apply for this role"}</button></article>`).join("")}</div></section>`}
+function openApply(key){const v=vacancyList().find(x=>x.key===key);if(!v)return;const actor=v.kind==="actor";
+  const today=new Date();const min=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+  $("sheet").innerHTML=`<form id="appform" class="appform" novalidate><h3>${actor?"Audition":"Apply"}: ${esc(v.role)}</h3>
+    <p class="madlib">Hi, my name is <input id="ap-name" required autocomplete="name" placeholder="your name" aria-label="Your name">.
+    ${actor?`I'd love to audition for <b>${esc(v.role)}</b>`:`I'd love to meet to discuss doing the <b>${esc(v.role)}</b> job`} at <b>${VENUES.bcs.name}</b> on
+    <input id="ap-date" type="date" min="${min}" required aria-label="Date"> at <input id="ap-time" type="time" step="900" value="16:00" required aria-label="Time">.</p>
+    <p class="meta" style="margin:6px 0 0">Weekdays 15:30–19:30 work best. Chris will confirm or suggest another time.</p>
+    <div class="field"><label for="ap-email">Your email, so Chris can reply</label><input id="ap-email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+    <div class="field"><label for="ap-phone">Phone or WhatsApp <span class="meta">(optional)</span></label><input id="ap-phone" type="tel" autocomplete="tel"></div>
+    <div class="field"><label for="ap-msg">${actor?"Anything Chris should know: experience, a link to your CV or reel":"A little about you and your work, or a portfolio link"} <span class="meta">(optional)</span></label><textarea id="ap-msg" rows="3" maxlength="1200"></textarea></div>
+    <input id="ap-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+    <div class="btns"><button type="button" class="btn" id="cx">Cancel</button><button type="submit" class="btn primary" id="ap-send">Send to Chris now</button></div>
+    <p class="meta apnote">Sending emails Chris immediately. Your details are only seen by Chris.</p></form>`;
+  $("sheet").classList.add("wide");$("cx").onclick=closeSheet;$("sheetbg").classList.add("on");setTimeout(()=>{const n=$("ap-name");if(n)n.focus()},50);
+  $("appform").onsubmit=async e=>{e.preventDefault();const g=id=>($(id).value||"").trim();
+    if(g("ap-hp")){closeSheet();return}
+    const name=g("ap-name"),date=g("ap-date"),time=g("ap-time"),email=g("ap-email");
+    if(!name){toast("Add your name");$("ap-name").focus();return}if(!date||!time){toast("Pick a date and time");return}
+    if(!/^\S+@\S+\.\S+$/.test(email)){toast("Add a valid email so Chris can reply");$("ap-email").focus();return}
+    const btn=$("ap-send");btn.disabled=true;btn.textContent="Sending…";
+    const data={kind:v.kind,role:v.role,name:name.slice(0,120),email:email.slice(0,160),phone:g("ap-phone").slice(0,60),date,time,msg:g("ap-msg").slice(0,1200),at:new Date().toISOString()};
+    const id="a-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,6);
+    try{await db.collection("applications").doc(id).create(data);
+      const dd=new Date(date+"T12:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+      $("sheet").innerHTML=`<div class="apdone"><div class="apok" aria-hidden="true">✓</div><h3>Sent to Chris</h3><p>Thanks, ${esc(name.split(" ")[0])}. Chris has your request to ${actor?"audition for":"talk about"} <b>${esc(v.role)}</b> on <b>${esc(dd)} at ${esc(time)}</b>, and will reply to <b>${esc(email)}</b>.</p><div class="btns"><button class="btn primary" id="cx">Done</button></div></div>`;$("cx").onclick=closeSheet}
+    catch(err){btn.disabled=false;btn.textContent="Send to Chris now";toast("Couldn't send. Please try again, or email chris@chriskelly.it")}};
+}
+let applications={},appSub=false;
+function ensureApps(){if(appSub||!db||!isOwner||!db.collection)return;appSub=true;db.collection("applications").onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{if(d.exists)m[d.id]=d.data()});applications=m;rerender()},()=>{})}
+function appsBlock(){ensureApps();const L=Object.entries(applications).map(([id,d])=>({id,...d})).sort((a,b)=>(b.at||"").localeCompare(a.at||""));
+  return `<section class="mecard"><h2>Applications <span class="ncount">${L.length}</span></h2>
+  ${L.length?`<div class="nlist">${L.map(a=>`<article class="ncard"><div class="ntags"><span class="ntag" style="--c:${a.kind==="actor"?"#ff8a8a":"#8cbcff"}">${esc(a.role||"")}</span></div><p class="ntext"><b>${esc(a.name||"")}</b> · ${esc(a.date?new Date(a.date+"T12:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"}):"")} at ${esc(a.time||"")}</p>${a.msg?`<p class="nmeta" style="white-space:pre-wrap;margin-bottom:6px">${esc(a.msg)}</p>`:""}<p class="nmeta"><a href="mailto:${esc(a.email||"")}?subject=${encodeURIComponent("Selected Works of Shakespeare: "+(a.role||""))}">${esc(a.email||"")}</a>${a.phone?` · <a href="tel:${esc(a.phone.replace(/[^\d+]/g,""))}">${esc(a.phone)}</a>`:""} · sent ${esc(noteWhen(a.at))}</p></article>`).join("")}</div>`:`<p class="meta">No applications yet. When someone applies from the home page, it appears here and you get an email.</p>`}</section>`}
 /* ---------- Director's notes to actors ---------- */
 const NOTE_CATS=[["voice","Voice","#8cbcff"],["physicality","Physicality","#c9a6ff"],["lines","Learn lines","#f4c75c"],["slower","Slow down","#7fe0a0"],["faster","Speed up","#ffab6e"],["connection","More connection","#ff8fb1"],["urgent","Urgent","#f87171"]];
 const NCAT=Object.fromEntries(NOTE_CATS.map(([k,l,c])=>[k,{l,c}]));
@@ -2770,11 +2858,11 @@ function noteComposer(){
     ${given.length?`<div class="nlist">${given.map(n=>noteCard(n,{showWho:true,canDelete:true})).join("")}</div>`:`<p class="meta">No notes yet. Your first note will appear here.</p>`}
   </section>`}
 function myNotesBlock(name){const ns=notesFor(name);
-  return `<section class="mecard" aria-labelledby="mynh"><h2 id="mynh">Your notes from Chris <span class="ncount">${ns.length}</span></h2>
-    ${ns.length?`<div class="nlist">${ns.map(n=>noteCard(n)).join("")}</div>`:`<p class="meta">No notes for you yet. When Chris gives you a note, it appears here.</p>`}</section>`}
+  return `<section class="mecard" aria-labelledby="mynh"><h2 id="mynh">Your director's notes <span class="ncount">${ns.length}</span></h2>
+    ${ns.length?`<div class="nlist">${ns.map(n=>noteCard(n)).join("")}</div>`:`<p class="meta">No director's notes for you yet. When Chris gives you a note, it appears here.</p>`}</section>`}
 function homeNotesBlock(){const all=allNotes();if(!all.length&&!isOwner)return"";
   const mine=me&&CAST.includes(me)?notesFor(me):null;const list=(mine||all).slice(0,mine?4:6);
-  return `<section class="hnotes" aria-labelledby="hnh"><div class="hnhead"><h2 id="hnh">${mine?"Your <em>notes</em>":"Notes from <em>Chris</em>"}</h2>
+  return `<section class="hnotes" aria-labelledby="hnh"><div class="hnhead"><h2 id="hnh">${mine?"Your director's <em>notes</em>":"Director's <em>notes</em>"}</h2>
     <a class="btn sm" href="#me">${isOwner?"Give a note":mine?"All your notes":"Find your notes"} →</a></div>
     ${list.length?`<div class="nlist">${list.map(n=>noteCard(n,{showWho:!mine})).join("")}</div>`:`<p class="meta">${mine?"No notes for you yet.":"No notes yet."}</p>`}</section>`}
 function wireNotes(){
@@ -2900,10 +2988,26 @@ function wireVenues(v){
 }
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){
-  return folioHero("Rehearsal format","Rehearsals",`<p class="ftag">Two ways we work: <em>Saturday company rehearsals, and weekday classes you book.</em></p>`)+`</section>
+  return folioHero("Rehearsal format","Rehearsals",`<p class="ftag">Theory and practice: <em>the language at the school, the movement in the rehearsal space.</em></p>`)+`</section>
+  <section class="hww" aria-labelledby="hwwh">
+    <h2 id="hwwh">How we <em>work</em></h2>
+    <div class="hwwgrid">
+      <article class="hwwcard theory"><p class="ckick">Theory · drop in, your call</p><h3>The school</h3><p class="hwwwhere">${VENUES.bcs.name} · ${VENUES.bcs.area}</p>
+        <p class="hwwlede">A round table, coffee and a relaxed pace, two hours at a time. Come when it helps you and your scene: it's entirely up to you.</p>
+        <ul class="hwwlist"><li>Connecting to the text: its meaning and its rhythm</li><li>Text practice, line by line</li><li>Getting used to scene partners you haven't worked with before</li><li>The read-throughs, starting with the first on <b>Tuesday 10 November, 13:30</b></li><li>Confirming your choices with Chris</li></ul>
+        <a class="btn sm" href="#booking">Book a session →</a></article>
+      <article class="hwwcard practice"><p class="ckick">Practice · everyone, every Saturday</p><h3>The rehearsal space</h3><p class="hwwwhere">${VENUES.albareda.name} · ${VENUES.albareda.area}</p>
+        <p class="hwwlede">Where everyone gets up and works at the top of their game. The focus is physical.</p>
+        <ul class="hwwlist"><li>Ensemble work</li><li>Choreography and stage combat</li><li>Chorus pieces and the mosaics</li><li>Blocking</li></ul>
+        <button type="button" class="btn sm" data-jumpid="r1">Saturday plan ↓</button></article>
+    </div>
+    <div class="hwwtrust"><p><b>You're trusted.</b> You're professionals, so Chris trusts you to know your lines in good time and to arrive knowing what you're doing. When that part of your performance is ready is your call. The school is there for anyone who wants to practise, refine and find the rhythm.</p>
+      <p><b>What gets directed is the choices.</b> Chris has specific choices in mind for specific actors. These are decided together, in the school and the rehearsal space: a joint creative process, because in the end it's the actors on stage.</p></div>
+    <div class="hwwmerge"><span class="ckick">Towards show time</span><p>The two become one. The rehearsal space becomes the hub, where the intimacy of the language meets the intensity of the movement.</p></div>
+  </section>
   ${firstCall()}
   <section class="rsec" aria-labelledby="r1">
-    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick"><span class="tbc">TBC</span> Company rehearsals · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · ${SATURDAYS.length} Saturdays, 7 November – 17 April (no rehearsal 26 Dec, 2 Jan and 27 Mar)</p></div></div>
+    <div class="rhead"><span class="rnum" aria-hidden="true">1</span><div><p class="ckick"><span class="tbc">TBC</span> Practice · the rehearsal space · everyone</p><h2 id="r1">Every Saturday, 09:00–11:30</h2><p class="clede">${VENUES.albareda.name}, ${VENUES.albareda.area} · ${SATURDAYS.length} Saturdays, 7 November – 17 April (no rehearsal 26 Dec, 2 Jan and 27 Mar)</p></div></div>
     <div class="rgrid">
       <div class="rtime"><h3>The morning</h3><ol class="ttable">${SAT_TIMES.map(([t,l])=>`<li class="${/practical/.test(l)?"prac":""}"><b>${t}</b><span>${l}</span></li>`).join("")}</ol>
         <p class="meta" style="margin:14px 0 0">Two practical hours each Saturday. The early Saturdays build the mosaics (the opening, the witches, the crowning, the fairy dance, Ophelia’s water), often over both hours, with whole mornings of stage combat. Then blocking by play, voice towards the end, and three full run-throughs with notes before tech week.</p></div>
@@ -2915,9 +3019,9 @@ function pRehearsals(){
     <div class="satafter"><span class="ckick">Then</span> <b>Tech · ${TECH.label}</b> at the venue, the day before opening night on Friday 23 April, Shakespeare’s birthday.</div>
   </section>
   <section class="rsec" aria-labelledby="r2">
-    <div class="rhead"><span class="rnum" aria-hidden="true">2</span><div><p class="ckick">Weekday classes · optional</p><h2 id="r2">Dramaturgy sessions</h2><p class="clede">${VENUES.bcs.name}, ${VENUES.bcs.area} · Mon–Fri, 15:30–17:30 or 17:30–19:30 · first session Tuesday 10 November, 13:30</p></div></div>
+    <div class="rhead"><span class="rnum" aria-hidden="true">2</span><div><p class="ckick">Theory · the school · drop in</p><h2 id="r2">Text sessions at the round table</h2><p class="clede">${VENUES.bcs.name}, ${VENUES.bcs.area} · Mon–Fri, 15:30–17:30 or 17:30–19:30 · first session Tuesday 10 November, 13:30</p></div></div>
     <div class="rgrid">
-      <div class="rclass"><p class="clede" style="margin:0">Two-hour sessions with Chris on the text and the work behind it. They're open: come when it helps you and your scene.</p>
+      <div class="rclass"><p class="clede" style="margin:0">Two hours with Chris, round the table with coffee: the text, its rhythm and its meaning, at a relaxed pace. Entirely your call: come when it helps you and your scene.</p>
         <ul class="topics">${CLASSES.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>
         <div class="partner"><b>Please book with your scene partners.</b> Sessions work best when everyone in the scene is in the room. Agree a time together, then one of you books it.</div>
         <div class="btns"><a class="btn primary" href="#booking">Book a session →</a></div></div>
@@ -3113,7 +3217,7 @@ function venn(){
     <text x="312" y="320" text-anchor="middle" class="vl" fill="#ff8a8a">The Character</text>
     <circle cx="210" cy="238" r="50" fill="#f5f5f4"/>
     <text x="210" y="234" text-anchor="middle" class="vc">The</text><text x="210" y="250" text-anchor="middle" class="vc">Performance</text>
-  </svg><figcaption id="venncap" class="meta">Where the director, the actor and the character meet, you get the performance.</figcaption></figure>`}
+  </svg><figcaption id="venncap" class="meta">Where the director, the actor and the character meet, you get the performance. It's a joint creative process, and in the end it's the actors on stage.</figcaption></figure>`}
 
 const SPEECH=[
  ["HAMLET","Speak the speech, I pray you, as I pronounced it to you, trippingly on the tongue: but if you mouth it, as many of your players do, I had as lief the town-crier spoke my lines.","Say the speech the way I showed you, light and quick off the tongue. If you chew it and over-pronounce it, the way so many actors do, I'd rather have the town crier read it."],
@@ -3144,6 +3248,7 @@ function pApproach(){
   let n=0;
   return `<div class="chero"><p class="ckick">A CHRIS KELLY PRODUCTION</p><h1>Directorial approach</h1>
     <p class="clede">Be calm. Listen. Know yourself. Trust and pursue your objective with ferocity. Never play a state. Fight the tears, and the audience will cry for you.</p></div>
+  <blockquote class="belief"><p>Bad directors control.<br><em>Good directors set the actor free.</em></p><footer>It's a personal belief, and what I want for every actor: to be free to do the work, and to receive the rewards of objectivity. <span>Chris Kelly</span></footer></blockquote>
   ${venn()}
   ${APPROACH.map(g=>`<section class="apgroup" style="--c:${g.c};--cl:${g.cl}"><h2><span class="apdot" aria-hidden="true"></span>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}
   ${pSpeech()}`;
