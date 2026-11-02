@@ -1087,7 +1087,40 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 :where(html.light) .pcreds span.cd,:where(html.light) .pagency{color:#424247}
 :where(html.light) .pdirimg img{border-color:#e4e3e1;box-shadow:0 30px 60px -28px rgba(0,0,0,.35)}
 @media (min-width:1241px){#themebtn{margin-left:-16px}}
+@media (min-width:1241px){#nav a{padding:8px 6px!important;font-size:13.5px!important}}
 @media (max-width:1240px){.topin{gap:10px!important}#nav{gap:0!important}#nav a{padding:9px 12px!important;min-height:44px;display:flex;align-items:center}#nav a.navcta{justify-content:center;margin-top:8px}}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:14px}
+.vcard{background:#111113;border:1px solid #27272a;border-radius:16px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px}
+.vcard.due{border-color:#f87171;box-shadow:0 0 0 1px #f87171 inset}
+.vcard.st-yes{border-color:#4ade80}.vcard.st-no,.vcard.st-skip{opacity:.55}
+.vchead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.vchead h3{margin:0;font-size:18px;line-height:1.25}
+.vstat{font:inherit;font-size:13px;padding:6px 8px;border-radius:9px;border:1px solid #3f3f46;background:#18181b;color:#f5f5f4;min-height:34px;cursor:pointer}
+.st-sent .vstat,.st-followed-up .vstat{border-color:#60a5fa;color:#bfdbfe}
+.st-replied .vstat,.st-meeting .vstat{border-color:#facc15;color:#fef08a}
+.st-yes .vstat{border-color:#4ade80;color:#bbf7d0}
+.vdue{margin:0;font-size:13px;font-weight:600;color:#fca5a5}
+.vfacts{margin:0;display:grid;gap:4px}
+.vfacts div{display:grid;grid-template-columns:70px 1fr;gap:8px;font-size:14px}
+.vfacts dt{color:#a1a1aa;font-size:12.5px;padding-top:1px}
+.vfacts dd{margin:0;overflow-wrap:anywhere}
+.vnext{margin:0;font-size:14px;background:#18181b;border-radius:10px;padding:8px 10px}
+.vnote{margin:0;font-size:13px;color:#a1a1aa;line-height:1.45}
+.vbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.vbtns .btn{flex:0 0 auto!important;width:auto!important}
+.vstats .vyes b{color:#4ade80}.vstats .vdueT b{color:#f87171}
+.vadd{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
+.vadd .btn{flex:0 0 auto!important;width:auto!important}
+#sheet .field label{display:block;font-size:12.5px;color:#a1a1aa;margin-bottom:4px}
+:where(html.light) .vcard{background:#fff;border-color:#e4e3e1}
+:where(html.light) .vcard.due{border-color:#dc2626;box-shadow:0 0 0 1px #dc2626 inset}
+:where(html.light) .vstat{background:#fff;border-color:#d4d4d8;color:#151513}
+:where(html.light) .st-sent .vstat,:where(html.light) .st-followed-up .vstat{border-color:#2563eb;color:#1d4ed8}
+:where(html.light) .st-replied .vstat,:where(html.light) .st-meeting .vstat{border-color:#ca8a04;color:#854d0e}
+:where(html.light) .st-yes .vstat{border-color:#16a34a;color:#166534}
+:where(html.light) .vnext{background:#f5f5f4}
+:where(html.light) .vdue{color:#b91c1c}
+:where(html.light) .vfacts dt,:where(html.light) .vnote,:where(html.light) #sheet .field label{color:#5c5a56}
 .vnolink{cursor:default!important}
 .vnolink .cgo{display:none!important}
 .vnolink:hover{transform:none!important}
@@ -1852,7 +1885,7 @@ function supaDB(){
   const enc=encodeURIComponent,L={};
   const pin=()=>{try{return localStorage.getItem("ss_dir_pin")||""}catch(_){return ""}};
   const fail=async r=>{let j={};try{j=await r.json()}catch(_){}const e={code:(r.status===401||r.status===403||j.code==="42501")?"not_allowed":r.status===409||j.code==="23505"?"exists":"http_"+r.status,message:j.message};throw e};
-  async function rows(c){const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
+  async function rows(c){if(c==="outreach"&&pin()){const q=await fetch(`${R}/rpc/director_read`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c})});if(q.ok)return q.json()}const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
   const LAST={};
   function refresh(c){const ls=L[c];if(!ls||!ls.length)return;rows(c).then(rs=>{const sig=JSON.stringify(rs);if(LAST[c]===sig)return;LAST[c]=sig;const snap={docs:rs.map(x=>({id:x.id,exists:true,data:()=>x.data})),metadata:{fromCache:false}};ls.forEach(l=>l.cb(snap))}).catch(e=>ls.forEach(l=>l.err&&l.err(e)))}
   async function dwrite(c,id,data,del){const r=await fetch(`${R}/rpc/director_write`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c,p_id:id,p_data:data||{},p_delete:!!del})});if(!r.ok)await fail(r)}
@@ -1943,7 +1976,7 @@ function venueTidy(v){
   v.querySelectorAll('p.sub').forEach(p=>{if(/rehearsal sessions/.test(p.textContent))p.remove()});
   v.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(/^#(scene-|character-|script-|booking|rehearsals|me|home|staging|characters|transitions|fights|mosaics|costume)/.test(h)){a.removeAttribute('href');a.classList.add('vnolink')}});
 }
-const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["me","My panel"]];
+const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["venues","Venues"],["me","My panel"]];
 let cdTimer=null;
 function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Signed out on this device")}
 function route(){
@@ -1951,7 +1984,7 @@ function route(){
   if(VENUE&&(!VENUE_PAGES.some(([k])=>k===h))){h="pitch";history.replaceState(null,"","#pitch")}
   const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h;
   if(VENUE)$("nav").innerHTML=VENUE_PAGES.map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027")}" class="navcta">Email Chris</a>`;
-  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me").map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"Find your name"}</a>${me?`<a href="#signout" class="navout">Sign out</a>`:""}`;
+  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&(k!=="venues"||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"Find your name"}</a>${me?`<a href="#signout" class="navout">Sign out</a>`:""}`;
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
   const lbl=((VENUE?VENUE_PAGES:PAGES).find(([k])=>k===base)||[,"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
   clearInterval(cdTimer);
@@ -1959,7 +1992,7 @@ function route(){
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
   wireEdits(v);
   if(VENUE)venueTidy(v);
   {const fs=document.getElementById("fullsite");if(fs)fs.hidden=!VENUE}
@@ -1974,6 +2007,7 @@ function route(){
   wireAttend(v);wireDownloads(v);wireShelf2(v);
   v.querySelectorAll('[data-psize]').forEach(b=>b.onclick=()=>{posterSize=b.dataset.psize;route()});
   if(base==="cast")wireCast();
+  if(base==="venues")wireVenues(v);
   if(h==="staging")wireStaging(v);
 }
 window.addEventListener("hashchange",()=>{route();window.scrollTo(0,0)});
@@ -2599,6 +2633,109 @@ function pPitch(){
   </ul>
   <div class="card pcontact"><img class="pcontactimg" src="headshots/chris-kelly-point.jpg" alt="Chris Kelly pointing at the camera" width="480" height="600" loading="lazy"><div class="pcontacttxt"><span class="small">Let’s talk</span><h3>Chris Kelly, Director</h3><div class="meta">Posters and the full running order now; rehearsal footage from mid-November.</div></div>
     <div class="btns" style="margin:0"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></div></div>`;
+}
+/* ---------- Venues (director only): outreach tracker ---------- */
+const OUT_STATUSES=["To send","Sent","Followed up","Replied","Meeting","Yes","No","Skip"];
+const OUT_VENUES=[
+ {k:"gaudi",n:"Teatre Gaudí",w:1,who:"Your own contact from The Dinner Party first",em:"info@teatregaudi.com",ph:"93 603 51 61",how:"Email",cap:"Two rooms",note:"You directed The Dinner Party here, so lead with that. Their website wasn't loading on 2 Nov 2026; the email is from the Barcelona city guide.",op:"I directed The Dinner Party at the Gaudí and would love to bring my next production to you."},
+ {k:"casa-montjuic",n:"Casa Montjuïc",w:1,who:"Eduardo Roehrich (hires)",em:"eduardo@casamontjuic.com",ph:"+34 667 99 21 42",how:"Email",cap:"130, black box",note:"Poble-sec. Rents flexibly for cultural events. Good size for 18 actors."},
+ {k:"bcn-studio",n:"BCN Studio",w:1,who:"Your usual contact",em:"",ph:"",how:"Email or in person",cap:"",note:"Your usual spot (a bit small, bookable). Programmes in Catalan, Spanish and English. Add the email you use."},
+ {k:"raval",n:"Teatre del Raval",w:1,who:"Pep Tosar & Evelyn Arévalo (artistic directors)",em:"",ph:"93 443 39 99",how:"Phone the box office or go in person",cap:"Main hall + Espai Damià Huguet (50)",note:"Don't use the old teatredelraval.com address: on 2 Nov 2026 that domain redirected to an unrelated spam site. Reopened May 2026 under new directors; mostly their own work plus like-minded companies."},
+ {k:"ars",n:"Sala Ars Teatre",w:1,who:"Contact form",em:"",ph:"93 653 95 66",how:"Form: salaarsteatre.com/contactans (office Mon–Fri 9–14)",url:"https://www.salaarsteatre.com/contactans/",cap:"",note:"No public email. Mostly comedy."},
+ {k:"llantiol",n:"El Llantiol",w:1,who:"Phone",em:"",ph:"93 329 90 09",how:"Phone",cap:"Small café-theatre",note:"Raval cabaret/café-theatre; may be too small for 18. Website wasn't loading on 2 Nov 2026."},
+ {k:"golems",n:"Teatre Golem's",w:1,who:"General inbox",em:"info@golems.cat",ph:"93 351 82 31",how:"Email",cap:"",note:"Gràcia. Mostly stand-up and comedy."},
+ {k:"teatreneu",n:"Teatreneu",w:1,who:"Proposals form",em:"",ph:"93 285 37 12",how:"Proposals form (attach the pitch as a PDF)",url:"https://www.teatreneu.com/ca/recepcio-de-propostes.html",cap:"Sala Xavier Fàbregas: 360",note:"Dedicated proposals form. Comedy and impro heavy."},
+ {k:"sala-or",n:"Sala Or",w:1,who:"",em:"",ph:"",how:"",cap:"",note:"Couldn't identify this venue online. Check the name, or skip it."},
+ {k:"minitea3",n:"Minitea3",w:1,who:"",em:"",ph:"",how:"",cap:"4 very small rooms",note:"Built for short pieces in tiny rooms; probably not a fit for 93 minutes and 18 actors."},
+ {k:"malda",n:"El Maldà",w:2,who:"General inbox",em:"contacte@elmalda.cat",ph:"93 164 77 78",how:"Email",cap:"",note:"Run by Els Pirates Teatre; part of 'On el teatre batega'."},
+ {k:"eixample",n:"Eixample Teatre",w:2,who:"General inbox",em:"eixampleteatre@gmail.com",ph:"93 681 61 32",how:"Email",cap:"",note:"Run by the companies Teatritus and La Paparra."},
+ {k:"atrium",n:"Sala Atrium",w:2,who:"General inbox",em:"atrium@atrium.cat",ph:"",how:"Email",cap:"90 (8.5 × 6 m stage)",note:"Curated season of contemporary text theatre."},
+ {k:"versus",n:"Sala Versus Glòries",w:2,who:"General inbox",em:"info@salaversusglories.cat",ph:"93 669 37 55",how:"Email",cap:"",note:"Run by Apunta Teatre SCCL (Ramon Godino)."},
+ {k:"gleva",n:"La Gleva",w:2,who:"General inbox",em:"lagleva@laglevateatre.com",ph:"93 200 65 43",how:"Email",cap:"",note:"The same group runs La Fàbrica Teatre (opened Sept 2025): ask about both."},
+ {k:"fenix",n:"Sala Fènix",w:2,who:"General inbox",em:"fenix@salafenix.com",ph:"93 441 34 67",how:"Email",cap:"45–50",note:"Small; runs artistic residencies. Tight for 18 actors."},
+ {k:"tantarantana",n:"Teatre Tantarantana",w:3,who:"General inbox / open calls",em:"teatre@tantarantana.com",ph:"",how:"Email, or their open calls for companies",url:"https://tantarantana.com/info-per-les-companyies/#convocatories",cap:"",note:"City-backed creation venue; works through open calls. Better for a future season."},
+ {k:"akademia",n:"Teatre Akadèmia",w:3,who:"General inbox",em:"info@teatreakademia.cat",ph:"93 495 14 47",how:"Email",cap:"About 80",note:"Programmes its own season."},
+ {k:"antic",n:"Antic Teatre",w:3,who:"General inbox",em:"anticteatre@anticteatre.com",ph:"93 315 23 54",how:"Email",cap:"",note:"Independent, experimental programming."}
+];
+const OUT_WAVES={1:["Wave 1","Send this week"],2:["Wave 2","Send a week later"],3:["Wave 3","Future seasons"]};
+let outreach={},outSub=false;
+function ensureOutreach(){if(outSub||!db||!isOwner||!db.collection)return;outSub=true;db.collection("outreach").onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{if(d.exists)m[d.id]=d.data()});outreach=m;rerender()},()=>{})}
+const oDayKey=d=>{const x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+const oToday=()=>oDayKey(new Date());
+const oAddDays=(k,n)=>{const [y,m,d]=k.split("-").map(Number);return oDayKey(new Date(y,m-1,d+n))};
+const oFmtDay=k=>{if(!k)return"";const [y,m,d]=k.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-GB",{day:"numeric",month:"short"})};
+function venueList(){const base=OUT_VENUES.map(v=>({...v,...(outreach[v.k]||{}),k:v.k,custom:false}));
+  const extra=Object.entries(outreach).filter(([k,d])=>d&&d.custom&&!OUT_VENUES.some(v=>v.k===k)).map(([k,d])=>({w:2,...d,k,custom:true}));
+  return base.concat(extra).map(v=>{const st=v.st||"To send";const last=v.fu||v.sent||"";const due=(st==="Sent"||st==="Followed up")&&last?oAddDays(last,7):"";return {...v,st,due,overdue:!!due&&due<=oToday()}})}
+function pitchMail(v){const sub="Selected Works of Shakespeare: a venue for April 2027 (opening on Shakespeare's birthday)";
+  const hi=v.who&&/\(|&/.test(v.who)?v.who.split(/\s*\(/)[0].split(/\s*&\s*/)[0].split(" ")[0]:"";
+  const body=`Dear ${hi||"team at "+v.n},\n\n${v.op?v.op+"\n\n":""}I'm Chris Kelly, an Irish director and classically trained actor based in Barcelona. I'm looking for a theatre for Selected Works of Shakespeare: an English-language evening of scenes from seven of Shakespeare's plays, opening on Friday 23 April 2027 (Shakespeare's birthday and Sant Jordi), then Thursdays to Saturdays until 15 May.\n\nIt's an ensemble of 18 professional actors, about 93 minutes, with light sets built for a fast get-in. We're open to a straight hire or a box-office split, and happy to talk about a shorter run. Contracts, invoicing and insurance go through Arms and Legs S.L.\n\nThe full pitch, with dates, the company, technical needs and why it will sell, is here: https://shakespeareshow.actor/pitch\n\nWould you have availability around those dates? I'd love to come by and talk.\n\nBest wishes,\nChris Kelly\nchris@chriskelly.it · +34 603 766 507`;
+  return `mailto:${v.em}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`}
+function followMail(v){const sub="Re: Selected Works of Shakespeare: April 2027";
+  const body=`Hi${v.who&&/\(/.test(v.who)?" "+v.who.split(" ")[0]:""},\n\nJust following up on my note about an April 2027 run of Selected Works of Shakespeare, opening on Shakespeare's birthday. The pitch is here: https://shakespeareshow.actor/pitch\n\nHappy to adapt the dates or the length of the run to what works for you. Could we have a quick call this week?\n\nBest wishes,\nChris Kelly\n+34 603 766 507`;
+  return `mailto:${v.em}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`}
+function vCard(v){
+  const stCls=v.st.toLowerCase().replace(/\s+/g,"-");
+  const tel=v.ph?`<a href="tel:${esc(v.ph.replace(/[^\d+]/g,""))}">${esc(v.ph)}</a>`:"";
+  return `<article class="vcard st-${stCls}${v.overdue?" due":""}" data-vk="${esc(v.k)}">
+    <header class="vchead"><h3>${esc(v.n)}</h3><label class="vstatw"><span class="sr">Status for ${esc(v.n)}</span><select class="vstat" data-vk="${esc(v.k)}">${OUT_STATUSES.map(s=>`<option${s===v.st?" selected":""}>${s}</option>`).join("")}</select></label></header>
+    ${v.overdue?`<p class="vdue">Follow-up due ${v.due===oToday()?"today":"since "+oFmtDay(v.due)}</p>`:""}
+    <dl class="vfacts">
+      ${v.who?`<div><dt>Contact</dt><dd>${esc(v.who)}</dd></div>`:""}
+      ${v.em?`<div><dt>Email</dt><dd><a href="mailto:${esc(v.em)}">${esc(v.em)}</a></dd></div>`:""}
+      ${tel?`<div><dt>Phone</dt><dd>${tel}</dd></div>`:""}
+      ${v.how&&v.how!=="Email"?`<div><dt>How</dt><dd>${v.url?`<a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.how)} ↗</a>`:esc(v.how)}</dd></div>`:""}
+      ${v.cap?`<div><dt>Size</dt><dd>${esc(v.cap)}</dd></div>`:""}
+      ${v.sent?`<div><dt>Sent</dt><dd>${oFmtDay(v.sent)}${v.fu?` · followed up ${oFmtDay(v.fu)}`:""}${v.due&&!v.overdue?` · follow up ${oFmtDay(v.due)}`:""}</dd></div>`:""}
+    </dl>
+    ${v.next?`<p class="vnext"><b>Next:</b> ${esc(v.next)}</p>`:""}
+    ${v.note?`<p class="vnote">${esc(v.note)}</p>`:""}
+    <div class="vbtns">
+      ${v.em?(v.overdue?`<a class="btn sm primary" href="${followMail(v)}">Email follow-up</a>`:`<a class="btn sm${v.st==="To send"?" primary":""}" href="${pitchMail(v)}">Email the pitch</a>`):""}
+      ${v.st==="To send"?`<button type="button" class="btn sm" data-vsent="${esc(v.k)}">Mark sent today</button>`:""}
+      ${v.overdue?`<button type="button" class="btn sm" data-vfu="${esc(v.k)}">Followed up today</button>`:""}
+      <button type="button" class="btn sm ghost" data-vedit="${esc(v.k)}">Edit</button>
+    </div>
+  </article>`}
+function pVenues(){
+  if(!isOwner)return folioHero("Director only","Venues",`<p class="ftag">This page is just for the director. Unlock it in <a href="#me">My panel</a> with the director code.</p>`)+`</section>`;
+  ensureOutreach();
+  const L=venueList(),cnt=s=>L.filter(v=>v.st===s).length,dueL=L.filter(v=>v.overdue);
+  const tile=(n,l,cls)=>`<div class="${cls||""}"><b>${n}</b><span>${l}</span></div>`;
+  return folioHero("Director only · not shown to venues","Venues",`<p class="ftag">Every theatre we're pitching: who to contact, where it's at, and when to follow up. Only you can see this page.</p>`)+`</section>
+  <div class="aud vstats">${tile(cnt("To send"),"to send")}${tile(cnt("Sent")+cnt("Followed up"),"waiting for a reply")}${tile(cnt("Replied")+cnt("Meeting"),"talking")}${tile(cnt("Yes"),"yes","vyes")}${tile(dueL.length,"follow-ups due",dueL.length?"vdueT":"")}</div>
+  <p class="meta" style="margin-top:10px">Link in every email: <b>shakespeareshow.actor/pitch</b>. "Email the pitch" opens your mail app with the email written; check it, then send and tap "Mark sent today". A follow-up comes due 7 days later.</p>
+  ${dueL.length?`<h2>Follow up <em>now</em></h2><div class="vgrid">${dueL.map(vCard).join("")}</div>`:""}
+  ${[1,2,3].map(w=>{const vs=L.filter(v=>(+v.w||2)===w&&!v.overdue);if(!vs.length)return"";return `<h2>${OUT_WAVES[w][0]} <em>· ${OUT_WAVES[w][1]}</em></h2><div class="vgrid">${vs.map(vCard).join("")}</div>`}).join("")}
+  <div class="vadd"><button type="button" class="btn" id="vaddbtn">+ Add a theatre</button><span class="meta">Contacts checked 2 Nov 2026 against each venue's own site or the Barcelona city guide.</span></div>`}
+async function saveVenue(k,patch){const cur=outreach[k]||{};const data={...cur,...patch,at:new Date().toISOString()};outreach={...outreach,[k]:data};try{await db.collection("outreach").doc(k).set(data);return true}catch(e){toast("Couldn't save: "+(e&&e.code||"error"));return false}}
+function editVenue(k){
+  const v=k?venueList().find(x=>x.k===k):{k:"",n:"",w:1,st:"To send",custom:true};if(!v)return;
+  const f=(id,l,val,type)=>`<div class="field"><label for="${id}">${l}</label><input id="${id}" type="${type||"text"}" value="${esc(val||"")}"></div>`;
+  $("sheet").innerHTML=`<h3>${k?esc(v.n):"Add a theatre"}</h3>
+    ${!k||v.custom?f("vn","Theatre",v.n):""}
+    ${f("vwho","Contact",v.who)}${f("vem","Email",v.em,"email")}${f("vph","Phone",v.ph)}${f("vhow","How to apply",v.how)}${f("vcap","Size",v.cap)}
+    <div class="field"><label for="vst">Status</label><select id="vst">${OUT_STATUSES.map(s=>`<option${s===v.st?" selected":""}>${s}</option>`).join("")}</select></div>
+    ${!k||v.custom?`<div class="field"><label for="vw">Wave</label><select id="vw">${[1,2,3].map(w=>`<option value="${w}"${+v.w===w?" selected":""}>${OUT_WAVES[w][0]} · ${OUT_WAVES[w][1]}</option>`).join("")}</select></div>`:""}
+    ${f("vsent","Date sent",v.sent,"date")}${f("vfu","Date followed up",v.fu,"date")}
+    <div class="field"><label for="vnext">Reply / next step</label><textarea id="vnext" rows="3">${esc(v.next||"")}</textarea></div>
+    <div class="field"><label for="vnote">Notes</label><textarea id="vnote" rows="3">${esc(v.note||"")}</textarea></div>
+    <div class="btns">${k&&v.custom?`<button class="btn ghost" id="vdel">Remove</button>`:""}<button class="btn" id="cx">Cancel</button><button class="btn primary" id="sv">Save</button></div>`;
+  $("sheet").classList.add("wide");$("cx").onclick=closeSheet;
+  $("sv").onclick=async()=>{const g=id=>{const e=$(id);return e?e.value.trim():undefined};
+    const patch={who:g("vwho"),em:g("vem"),ph:g("vph"),how:g("vhow"),cap:g("vcap"),st:g("vst"),sent:g("vsent"),fu:g("vfu"),next:g("vnext"),note:g("vnote")};
+    let key=k;if(!k){const n=g("vn");if(!n){toast("Add the theatre's name");return}key="x-"+n.toLowerCase().normalize("NFD").replace(/[^\w]+/g,"-").replace(/^-|-$/g,"").slice(0,40);patch.n=n;patch.custom=true;patch.w=+g("vw")||2}
+    else if(v.custom){patch.n=g("vn")||v.n;patch.w=+g("vw")||v.w}
+    if(await saveVenue(key,patch)){toast("Saved");closeSheet();rerender()}};
+  const del=$("vdel");if(del)del.onclick=async()=>{try{await db.collection("outreach").doc(k).delete();const o={...outreach};delete o[k];outreach=o;toast("Removed");closeSheet();rerender()}catch(e){toast("Couldn't remove")}};
+  $("sheetbg").classList.add("on");
+}
+function wireVenues(v){
+  v.querySelectorAll(".vstat").forEach(s=>s.onchange=async()=>{const k=s.dataset.vk,st=s.value,p={st};const cur=outreach[k]||{};if((st==="Sent")&&!cur.sent)p.sent=oToday();if(st==="Followed up"&&!cur.fu)p.fu=oToday();if(await saveVenue(k,p)){toast(st);rerender()}});
+  v.querySelectorAll("[data-vsent]").forEach(b=>b.onclick=async()=>{if(await saveVenue(b.dataset.vsent,{st:"Sent",sent:oToday()})){toast("Marked sent. Follow-up due in 7 days");rerender()}});
+  v.querySelectorAll("[data-vfu]").forEach(b=>b.onclick=async()=>{if(await saveVenue(b.dataset.vfu,{st:"Followed up",fu:oToday()})){toast("Followed up. Next check in 7 days");rerender()}});
+  v.querySelectorAll("[data-vedit]").forEach(b=>b.onclick=()=>editVenue(b.dataset.vedit));
+  const a=$("vaddbtn");if(a)a.onclick=()=>editVenue("");
 }
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){
