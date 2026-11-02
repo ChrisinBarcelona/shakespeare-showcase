@@ -258,6 +258,15 @@ a.book{display:block;text-decoration:none}
 .excta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:8px 14px;border-radius:999px;background:#0a0a0a;color:#f5f5f4;font-weight:600;font-size:14px}
 @media (prefers-reduced-motion:reduce){.exhot:hover{transform:none}}
 .venn{max-width:460px;margin:18px auto 8px;text-align:center}.venn svg{width:100%;height:auto}.venn .vl{font:600 17px "Inter Tight",Inter,sans-serif}.venn .vc{font:700 12px "Inter Tight",Inter,sans-serif;fill:#0a0a0a}.venn figcaption{margin-top:6px}
+.vmoment .mar{stroke:#71717a;stroke-width:2;stroke-linecap:round}
+.vmoment .mar.in{stroke:#a1a1aa;stroke-dasharray:4 5}
+.vmoment .mhp{fill:#71717a}.vmoment .mhp2{fill:#a1a1aa}
+.vmoment .vms{font:600 12px "Inter Tight",Inter,sans-serif;fill:#a1a1aa;letter-spacing:.04em;text-transform:uppercase}
+.vmoment .vmb{font:700 22px "Inter Tight",Inter,sans-serif;fill:#f5f5f4}
+:where(html.light) .vmoment .vmb{fill:#151513}
+:where(html.light) .vmoment .vms{fill:#5c5a56}
+:where(html.light) .vmoment .mar{stroke:#a1a1aa}:where(html.light) .vmoment .mhp{fill:#a1a1aa}
+
 .venn .vcs{font-size:10.5px;font-weight:600;letter-spacing:.02em;opacity:.75}
 .venn .vcb{font-size:14px}
 .apgroup{margin-top:34px}.apgroup h2{margin:0 0 4px}
@@ -3215,14 +3224,17 @@ const APPROACH=[
   ["Leave the notes to Chris","A gentle request: if something in a partner's work bothers you, bring it to Chris rather than giving a note. One clear voice keeps the room safe."]]}
 ];
 function vennMoment(){
-  const C=[["Actor 1",210,150,"#7fe0a0"],["Actor 2",130,280,"#c9a6ff"],["Actor 3",290,280,"#ffab6e"]];
-  return `<figure class="venn" aria-labelledby="venn2cap"><svg viewBox="0 30 420 380" role="img" aria-label="Venn diagram: three overlapping circles, Actor 1, Actor 2 and Actor 3. Where all three meet, active listening, is the moment.">
-    ${C.map(([t,x,y,c])=>`<circle cx="${x}" cy="${y}" r="118" fill="${c}" fill-opacity=".16" stroke="${c}" stroke-width="2"/>`).join("")}
-    <text x="210" y="92" text-anchor="middle" class="vl" fill="#7fe0a0">Actor 1</text>
-    <text x="108" y="320" text-anchor="middle" class="vl" fill="#c9a6ff">Actor 2</text>
-    <text x="312" y="320" text-anchor="middle" class="vl" fill="#ffab6e">Actor 3</text>
-    <circle cx="210" cy="238" r="54" fill="#f5f5f4"/>
-    <text x="210" y="228" text-anchor="middle" class="vc vcs">Active listening</text><text x="210" y="250" text-anchor="middle" class="vc vcb">The moment</text>
+  const N=[["Actor 1",210,70,"#7fe0a0"],["Actor 2",70,320,"#c9a6ff"],["Actor 3",350,320,"#ffab6e"]];
+  const pts=[[N[0],N[1]],[N[1],N[2]],[N[2],N[0]]];
+  const sh=(x1,y1,x2,y2,d)=>{const L=Math.hypot(x2-x1,y2-y1),ux=(x2-x1)/L,uy=(y2-y1)/L;return [x1+ux*d,y1+uy*d,x2-ux*d,y2-uy*d]};
+  const arrows=pts.map(([a,b],i)=>{const [x1,y1,x2,y2]=sh(a[1],a[2],b[1],b[2],46);const nx=-(y2-y1),ny=x2-x1,L=Math.hypot(nx,ny),o=7;const ox=nx/L*o,oy=ny/L*o;
+    return `<line x1="${x1+ox}" y1="${y1+oy}" x2="${x2+ox}" y2="${y2+oy}" class="mar" marker-end="url(#mh)"/><line x1="${x2-ox}" y1="${y2-oy}" x2="${x1-ox}" y2="${y1-oy}" class="mar" marker-end="url(#mh)"/>`}).join("");
+  const inward=N.map(([t,x,y])=>{const [x1,y1,x2,y2]=sh(x,y,210,238,52);return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="mar in" marker-end="url(#mh2)"/>`}).join("");
+  return `<figure class="venn vmoment" aria-labelledby="venn2cap"><svg viewBox="0 20 420 360" role="img" aria-label="Diagram: Actor 1, Actor 2 and Actor 3, with arrows running both ways between each pair and in towards the centre. In the centre, active listening: the moment.">
+    <defs><marker id="mh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" class="mhp"/></marker><marker id="mh2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" class="mhp2"/></marker></defs>
+    ${arrows}${inward}
+    ${N.map(([t,x,y,c])=>`<text x="${x}" y="${y+6}" text-anchor="middle" class="vl" fill="${c}">${t}</text>`).join("")}
+    <text x="210" y="230" text-anchor="middle" class="vms">Active listening</text><text x="210" y="256" text-anchor="middle" class="vmb">The moment</text>
   </svg><figcaption id="venn2cap" class="meta">Where the actors meet, listening actively to each other, you get the moment.</figcaption></figure>`}
 function venn(){
   const C=[["The Director",210,150,"#f4c75c"],["The Actor",130,280,"#8cbcff"],["The Character",290,280,"#ff8a8a"]];
@@ -3266,8 +3278,9 @@ function pApproach(){
     <p class="clede">Be calm. Listen. Know yourself. Trust and pursue your objective with ferocity. Never play a state. Fight the tears, and the audience will cry for you.</p></div>
   <blockquote class="belief"><p>Bad directors control.<br><em>Good directors set the actor free.</em></p><footer>It's a personal belief, and what I want for every actor: to be free to do the work, and to receive the rewards of objectivity. <span>Chris Kelly</span></footer></blockquote>
   ${venn()}
-  ${vennMoment()}
   ${APPROACH.map(g=>`<section class="apgroup" style="--c:${g.c};--cl:${g.cl}"><h2><span class="apdot" aria-hidden="true"></span>${esc(g.h)}</h2><div class="apgrid">${g.items.map(([t,d])=>`<article class="card apcard"><span class="apn">${String(++n).padStart(2,"0")}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join("")}</div></section>`).join("")}
+  <h2 style="margin-top:34px">The <em>moment</em></h2>
+  ${vennMoment()}
   ${pSpeech()}`;
 }
 function pStaging(){
