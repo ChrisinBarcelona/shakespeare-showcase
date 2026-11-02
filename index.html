@@ -1089,6 +1089,38 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 @media (min-width:1241px){#themebtn{margin-left:-16px}}
 @media (min-width:1241px){#nav a{padding:8px 6px!important;font-size:13.5px!important}}
 @media (max-width:1240px){.topin{gap:10px!important}#nav{gap:0!important}#nav a{padding:9px 12px!important;min-height:44px;display:flex;align-items:center}#nav a.navcta{justify-content:center;margin-top:8px}}
+.nlab{display:block;font-size:13px;font-weight:600;margin:16px 0 8px;color:#e4e4e7}
+.nlab span{font-weight:400;color:#a1a1aa}
+.ncats{display:flex;flex-wrap:wrap;gap:8px}
+.ncat{font:inherit;font-size:14px;padding:8px 14px;min-height:40px;border-radius:999px;border:1px solid color-mix(in srgb,var(--c) 45%,#3f3f46);background:transparent;color:#e4e4e7;cursor:pointer}
+.ncat[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#0a0a0a;font-weight:600}
+.nsel,.ntxt{width:100%;font:inherit;font-size:15px;padding:10px 12px;border-radius:10px;border:1px solid #3f3f46;background:#0a0a0a;color:#f5f5f4;box-sizing:border-box}
+.ntxt{resize:vertical;min-height:100px;line-height:1.5}
+.nwho{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:4px 12px}
+.nchk{display:flex;align-items:center;gap:8px;font-size:14px;min-height:34px;cursor:pointer}
+.nchk input{width:18px;height:18px;accent-color:#f5f5f4}
+.ncount{font-size:14px;font-weight:500;color:#a1a1aa;margin-left:6px;vertical-align:middle}
+.nlist{display:grid;gap:10px;margin-top:12px}
+.ncard{background:#141416;border:1px solid #27272a;border-left:3px solid #52525b;border-radius:12px;padding:12px 14px}
+.ncard.urgent{border-left-color:#f87171}
+.ntags{display:flex;flex-wrap:wrap;gap:6px}
+.ntag{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+.ntext{margin:8px 0 6px;font-size:15.5px;line-height:1.5;white-space:pre-wrap}
+.nmeta{margin:0;font-size:13px;color:#a1a1aa}
+.nmeta a{color:inherit}
+.ndel{margin-top:8px}
+.hnotes{margin-top:30px}
+.hnhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.hnhead h2{margin:0}
+.hnhead .btn{flex:0 0 auto!important;width:auto!important}
+:where(html.light) .ncard{background:#fff;border-color:#e4e3e1;border-left-color:#a1a1aa}
+:where(html.light) .ncard.urgent{border-left-color:#dc2626}
+:where(html.light) .nsel,:where(html.light) .ntxt{background:#fff;border-color:#d4d4d8;color:#151513}
+:where(html.light) .nlab{color:#151513}
+:where(html.light) .ncat{color:#151513}
+:where(html.light) .ntag{color:color-mix(in srgb,var(--c) 55%,#151513)}
+:where(html.light) .nmeta,:where(html.light) .nlab span,:where(html.light) .ncount{color:#5c5a56}
+:where(html.light) .nchk input{accent-color:#151513}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:14px}
 .vcard{background:#111113;border:1px solid #27272a;border-radius:16px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px}
 .vcard.due{border-color:#f87171;box-shadow:0 0 0 1px #f87171 inset}
@@ -1972,7 +2004,7 @@ let VENUE=false;
   else if(q.has("venue")||((location.hash||"")==="#pitch"&&!localStorage.getItem("ss_me")&&!localStorage.getItem("ss_dir_pin")))sessionStorage.setItem("ss_venue","1");
   VENUE=sessionStorage.getItem("ss_venue")==="1"}catch(_){}})();
 function venueTidy(v){
-  v.querySelectorAll('.checkin,.stb,.acard.vacant,.ro .count,.notes,.cfoot').forEach(e=>{(e.classList.contains('notes')?e.closest('.card'):e).remove()});
+  v.querySelectorAll('.checkin,.stb,.acard.vacant,.ro .count,.notes,.cfoot,.hnotes,.ncard').forEach(e=>{(e.classList.contains('notes')?e.closest('.card'):e).remove()});
   v.querySelectorAll('p.sub').forEach(p=>{if(/rehearsal sessions/.test(p.textContent))p.remove()});
   v.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(/^#(scene-|character-|script-|booking|rehearsals|me|home|staging|characters|transitions|fights|mosaics|costume)/.test(h)){a.removeAttribute('href');a.classList.add('vnolink')}});
 }
@@ -2004,6 +2036,7 @@ function route(){
   if(base==="home"){startCountdown();wireCheckIn(v);const tc=$("tockin");if(tc)tc.onclick=()=>$("checkin").scrollIntoView({behavior:"smooth",block:"start"})}
   if(base==="booking")wireBooking();
   if(base==="me")wireMe();
+  if(base==="me"||base==="home")wireNotes();
   wireAttend(v);wireDownloads(v);wireShelf2(v);
   v.querySelectorAll('[data-psize]').forEach(b=>b.onclick=()=>{posterSize=b.dataset.psize;route()});
   if(base==="cast")wireCast();
@@ -2029,6 +2062,7 @@ function pHome(){
     </div>
   </section>
   ${newsBlock()}
+  ${homeNotesBlock()}
   ${bdayBand()}
   ${firstCall()}
   <section class="flyer">
@@ -2487,7 +2521,7 @@ function pMe(){
   let body="";
   if(crew&&crew.fixed){const cs=crewStatus(crew);
     body=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
-      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div>`
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div></section>${noteComposer()}<section hidden>`
       :`<p class="clede" style="margin:0 0 12px">Enter your director code to edit notes, settings and slots from this device.</p><label class="sr" for="dirpin">Director code</label><input type="password" id="dirpin" placeholder="Director code" autocomplete="off"><div class="btns"><button class="btn primary" id="unlockdir">Unlock editing</button></div>`}</section>`;
   }else{
     if(crew){const cs=crewStatus(crew);body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
@@ -2498,6 +2532,7 @@ function pMe(){
       <div class="mebtns"><button class="btn primary" id="acc" ${st==="accepted"?"disabled":""}>${st==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" id="dec" ${st!=="accepted"?"disabled":""}>Decline role</button></div>
       <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p></section>`}
   }
+  if(CAST.includes(name))body+=myNotesBlock(name);
   return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Hello, ${esc(name.split(" ")[0])}</h1>
     <div class="btns" style="margin-top:12px">${notYou}<a class="btn sm" href="#booking">Book a rehearsal</a><a class="btn sm" href="#signout">Sign out</a></div></header>${body}</div>`;
 }
@@ -2633,6 +2668,69 @@ function pPitch(){
   </ul>
   <div class="card pcontact"><img class="pcontactimg" src="headshots/chris-kelly-point.jpg" alt="Chris Kelly pointing at the camera" width="480" height="600" loading="lazy"><div class="pcontacttxt"><span class="small">Let’s talk</span><h3>Chris Kelly, Director</h3><div class="meta">Posters and the full running order now; rehearsal footage from mid-November.</div></div>
     <div class="btns" style="margin:0"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></div></div>`;
+}
+/* ---------- Director's notes to actors ---------- */
+const NOTE_CATS=[["voice","Voice","#8cbcff"],["physicality","Physicality","#c9a6ff"],["lines","Learn lines","#f4c75c"],["slower","Slow down","#7fe0a0"],["faster","Speed up","#ffab6e"],["connection","More connection","#ff8fb1"],["urgent","Urgent","#f87171"]];
+const NCAT=Object.fromEntries(NOTE_CATS.map(([k,l,c])=>[k,{l,c}]));
+let actorNotes={};
+let draftNote={cats:[],scene:"",to:[],text:""};
+const allNotes=()=>Object.entries(actorNotes).map(([id,d])=>({id,...d})).filter(n=>n&&n.text).sort((a,b)=>(b.at||"").localeCompare(a.at||""));
+const notesFor=name=>allNotes().filter(n=>(n.to||[]).includes(name));
+const sceneActors=id=>{const it=ITEMS.find(i=>i.id===id);if(!it)return[];if(it.actors[0]==="Whole company")return CAST.slice();return it.actors.filter(a=>CAST.includes(a))};
+function noteWhen(at){if(!at)return"";const d=new Date(at),now=new Date(),days=Math.floor((now-d)/864e5);
+  return days<1&&d.getDate()===now.getDate()?"Today, "+d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}):days<7?d.toLocaleDateString("en-GB",{weekday:"long"}):d.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}
+function noteCard(n,o){o=o||{};const it=n.scene&&ITEMS.find(i=>i.id===n.scene);const urgent=(n.cats||[]).includes("urgent");
+  const who=(n.to||[]),whoTxt=who.length===CAST.length?"Whole company":who.join(", ");
+  return `<article class="ncard${urgent?" urgent":""}">
+    <div class="ntags">${(n.cats||[]).map(c=>NCAT[c]?`<span class="ntag" style="--c:${NCAT[c].c}">${esc(NCAT[c].l)}</span>`:"").join("")}</div>
+    <p class="ntext">${esc(n.text)}</p>
+    <p class="nmeta">${o.showWho?`<b>${esc(whoTxt)}</b> · `:""}${it?`<a href="#scene-${it.id}">${esc(it.n)} · ${esc(it.title)}</a> · `:"General · "}${esc(noteWhen(n.at))}</p>
+    ${o.canDelete?`<button type="button" class="btn sm ghost ndel" data-ndel="${esc(n.id)}">Delete</button>`:""}
+  </article>`}
+function noteComposer(){
+  const d=draftNote,sc=ITEMS.filter(i=>i.type==="scene"||i.type==="mosaic"||i.type==="fight");
+  const given=allNotes().slice(0,12);
+  return `<section class="mecard ncomp" aria-labelledby="ncomph"><h2 id="ncomph">Give a note</h2>
+    <p class="clede" style="margin:0 0 14px">It goes straight into the actor's My panel and the notes on the home page.</p>
+    <p class="nlab">1 · Category <span>(pick one or more)</span></p>
+    <div class="ncats" role="group" aria-label="Note category">${NOTE_CATS.map(([k,l,c])=>`<button type="button" class="ncat" data-ncat="${k}" aria-pressed="${d.cats.includes(k)}" style="--c:${c}">${esc(l)}</button>`).join("")}</div>
+    <label class="nlab" for="nscene">2 · Scene</label>
+    <select id="nscene" class="nsel"><option value="">General (no scene)</option>${sc.map(i=>`<option value="${i.id}"${i.id===d.scene?" selected":""}>${esc(i.n)} · ${esc(i.title)} (${esc(i.play)})</option>`).join("")}</select>
+    <p class="nlab">3 · Who it's for ${d.scene?`<span>(the scene's cast is ticked; change as needed)</span>`:`<span>(pick a scene to tick its cast, or choose names)</span>`}</p>
+    <div class="nwho" role="group" aria-label="Who the note is for">${CAST.map(n=>`<label class="nchk"><input type="checkbox" data-nto="${esc(n)}"${d.to.includes(n)?" checked":""}> ${esc(n)}</label>`).join("")}</div>
+    <div class="btns" style="margin:8px 0 0"><button type="button" class="btn sm ghost" id="nall">Whole company</button><button type="button" class="btn sm ghost" id="nnone">Clear</button></div>
+    <label class="nlab" for="ntext">4 · Note</label>
+    <textarea id="ntext" class="ntxt" rows="4" placeholder="e.g. Land 'Out, damned spot' on the out-breath; let the silence after it sit.">${esc(d.text)}</textarea>
+    <div class="btns"><button type="button" class="btn primary" id="nsend">Send note</button></div>
+  </section>
+  <section class="mecard"><h2>Notes you've given <span class="ncount">${allNotes().length}</span></h2>
+    ${given.length?`<div class="nlist">${given.map(n=>noteCard(n,{showWho:true,canDelete:true})).join("")}</div>`:`<p class="meta">No notes yet. Your first note will appear here.</p>`}
+  </section>`}
+function myNotesBlock(name){const ns=notesFor(name);
+  return `<section class="mecard" aria-labelledby="mynh"><h2 id="mynh">Your notes from Chris <span class="ncount">${ns.length}</span></h2>
+    ${ns.length?`<div class="nlist">${ns.map(n=>noteCard(n)).join("")}</div>`:`<p class="meta">No notes for you yet. When Chris gives you a note, it appears here.</p>`}</section>`}
+function homeNotesBlock(){const all=allNotes();if(!all.length&&!isOwner)return"";
+  const mine=me&&CAST.includes(me)?notesFor(me):null;const list=(mine||all).slice(0,mine?4:6);
+  return `<section class="hnotes" aria-labelledby="hnh"><div class="hnhead"><h2 id="hnh">${mine?"Your <em>notes</em>":"Notes from <em>Chris</em>"}</h2>
+    <a class="btn sm" href="#me">${isOwner?"Give a note":mine?"All your notes":"Find your notes"} →</a></div>
+    ${list.length?`<div class="nlist">${list.map(n=>noteCard(n,{showWho:!mine})).join("")}</div>`:`<p class="meta">${mine?"No notes for you yet.":"No notes yet."}</p>`}</section>`}
+function wireNotes(){
+  const root=$("view");if(!root)return;
+  root.querySelectorAll("[data-ndel]").forEach(b=>b.onclick=async()=>{b.disabled=true;try{await db.collection("actornotes").doc(b.dataset.ndel).delete();const o={...actorNotes};delete o[b.dataset.ndel];actorNotes=o;toast("Note deleted");route()}catch(e){toast("Couldn't delete");b.disabled=false}});
+  if(!$("nsend"))return;const d=draftNote;
+  const syncWho=()=>root.querySelectorAll("[data-nto]").forEach(c=>c.checked=d.to.includes(c.dataset.nto));
+  root.querySelectorAll("[data-ncat]").forEach(b=>b.onclick=()=>{const k=b.dataset.ncat;d.cats=d.cats.includes(k)?d.cats.filter(x=>x!==k):d.cats.concat(k);b.setAttribute("aria-pressed",d.cats.includes(k))});
+  $("nscene").onchange=e=>{d.scene=e.target.value;if(d.scene)d.to=sceneActors(d.scene);syncWho()};
+  root.querySelectorAll("[data-nto]").forEach(c=>c.onchange=()=>{const n=c.dataset.nto;d.to=c.checked?[...new Set(d.to.concat(n))]:d.to.filter(x=>x!==n)});
+  $("nall").onclick=()=>{d.to=CAST.slice();syncWho()};$("nnone").onclick=()=>{d.to=[];syncWho()};
+  $("ntext").oninput=e=>{d.text=e.target.value};
+  $("nsend").onclick=async()=>{const text=d.text.trim();
+    if(!d.cats.length){toast("Pick a category");return}if(!d.to.length){toast("Pick who the note is for");return}if(!text){toast("Write the note");return}
+    const id="n-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,6);
+    const data={cats:d.cats.slice(),scene:d.scene,to:d.to.slice(),text,at:new Date().toISOString(),by:"Chris Kelly"};
+    const btn=$("nsend");btn.disabled=true;
+    try{await db.collection("actornotes").doc(id).set(data);actorNotes={...actorNotes,[id]:data};draftNote={cats:[],scene:d.scene,to:d.to.slice(),text:""};toast("Note sent to "+(data.to.length===CAST.length?"the whole company":data.to.length===1?data.to[0]:data.to.length+" actors"));route()}
+    catch(e){toast("Couldn't send: "+(e&&e.code||"error"));btn.disabled=false}};
 }
 /* ---------- Venues (director only): outreach tracker ---------- */
 const OUT_STATUSES=["To send","Sent","Followed up","Replied","Meeting","Yes","No","Skip"];
@@ -3119,7 +3217,7 @@ function rerender(){if(document.querySelector(".sheetbg.on"))return;if([...docum
   if(!db){clearTimeout(timer);loaded=true;route();return}
   route();
   const sub=(col,setter)=>db.collection(col).onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{if(d.exists)m[d.id]=d.data()});setter(m);if(!snap.metadata.fromCache){loaded=true;clearTimeout(timer)}rerender()},err=>{clearTimeout(timer);loaded=true;toast("Some data couldn't load ("+err.code+")")});
-  sub("bookings",m=>bookings=m);sub("cast",m=>{castDocs=m;autoMe()});sub("content",m=>content=m);sub("attendance",m=>attendance=m);
+  sub("bookings",m=>bookings=m);sub("cast",m=>{castDocs=m;autoMe()});sub("content",m=>content=m);sub("attendance",m=>attendance=m);sub("actornotes",m=>actorNotes=m);
 })();
 
 /* ---- poster viewer ---- */
