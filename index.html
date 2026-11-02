@@ -1087,7 +1087,9 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 :where(html.light) .pcreds span.cd,:where(html.light) .pagency{color:#424247}
 :where(html.light) .pdirimg img{border-color:#e4e3e1;box-shadow:0 30px 60px -28px rgba(0,0,0,.35)}
 .vnolink{cursor:default!important}
+.vnolink .cgo{display:none!important}
 .vnolink:hover{transform:none!important}
+.sitefoot .legal{flex-basis:100%;order:9}
 .fullsite{flex-basis:100%;font-size:12.5px;opacity:.7;margin-bottom:6px}
 .fullsite[hidden]{display:none!important}
 .aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
@@ -1565,7 +1567,7 @@ html.light .head{background:#f1f0ee;border:1px solid #e4e4e7}
   <button class="themebtn" id="themebtn" type="button" aria-label="Switch to light mode" title="Light / dark mode"><svg class="ti-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg><svg class="ti-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
 </div></header>
 <main class="wrap" id="view" tabindex="-1"></main>
-<footer class="sitefoot" aria-label="Contact and charity"><a id="fullsite" class="fullsite" href="?full#home" hidden>In the company? Open the full site</a><span>Contact: Chris Kelly</span><span class="dot" aria-hidden="true">·</span><a href="mailto:chris@chriskelly.it">Email me</a><span class="dot" aria-hidden="true">·</span><a href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a><span class="charity">Profits from the show go to <a href="https://www.savethechildren.es/colaborar-ong/emergencias-gaza-israel-afganistan-fr" target="_blank" rel="noopener">Save the Children</a>.</span></footer>
+<footer class="sitefoot" aria-label="Contact and charity"><a id="fullsite" class="fullsite" href="?full#home" hidden>In the company? Open the full site</a><span>Contact: Chris Kelly</span><span class="dot" aria-hidden="true">·</span><a href="mailto:chris@chriskelly.it">Email me</a><span class="dot" aria-hidden="true">·</span><a href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a><span class="legal">Produced through Arms and Legs S.L., which handles contracts, invoicing and insurance.</span><span class="charity">Profits from the show go to <a href="https://www.savethechildren.es/colaborar-ong/emergencias-gaza-israel-afganistan-fr" target="_blank" rel="noopener">Save the Children</a>.</span></footer>
 <div class="sheetbg" id="sheetbg"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Details"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1935,7 +1937,7 @@ let VENUE=false;
   else if(q.has("venue")||((location.hash||"")==="#pitch"&&!localStorage.getItem("ss_me")&&!localStorage.getItem("ss_dir_pin")))sessionStorage.setItem("ss_venue","1");
   VENUE=sessionStorage.getItem("ss_venue")==="1"}catch(_){}})();
 function venueTidy(v){
-  v.querySelectorAll('.checkin,.stb,.acard.vacant,.ro .count,.notes').forEach(e=>{(e.classList.contains('notes')?e.closest('.card'):e).remove()});
+  v.querySelectorAll('.checkin,.stb,.acard.vacant,.ro .count,.notes,.cfoot').forEach(e=>{(e.classList.contains('notes')?e.closest('.card'):e).remove()});
   v.querySelectorAll('p.sub').forEach(p=>{if(/rehearsal sessions/.test(p.textContent))p.remove()});
   v.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(/^#(scene-|character-|script-|booking|rehearsals|me|home|staging|characters|transitions|fights|mosaics|costume)/.test(h)){a.removeAttribute('href');a.classList.add('vnolink')}});
 }
@@ -2276,7 +2278,7 @@ function crewCard(c){
     ${bioBlock(c.name)}
     <ul class="clist" aria-label="${esc(c.name)}'s roles">
       <li><a class="crow" href="#me" style="--c:#f5f5f4"><span class="cbar" aria-hidden="true"></span>
-        <span class="cmain"><span class="cname">${esc(c.role)}</span><span class="cmeta"><span class="ctag" style="--c:#d4d4d8">Crew</span> ${st==="accepted"?"Role accepted":st==="declined"?"Role declined":"Accept or decline in My panel"}</span></span>
+        <span class="cmain"><span class="cname">${esc(c.role)}</span><span class="cmeta"><span class="ctag" style="--c:#d4d4d8">Crew</span> ${VENUE?"":st==="accepted"?"Role accepted":st==="declined"?"Role declined":"Accept or decline in My panel"}</span></span>
         <span class="cgo" aria-hidden="true">→</span></a></li>
       ${ps.map(p=>partRow(p)).join("")}
     </ul>
@@ -2553,7 +2555,7 @@ function pPitch(){
         <div><dt>Language</dt><dd>English, in Shakespeare’s own words</dd></div>
         <div><dt>Company</dt><dd>${CAST.length} actors, a director and a set team</dd></div>
         <div><dt>Terms</dt><dd>Open to a straight hire or a box-office split</dd></div>
-        <div><dt>Contracting</dt><dd>Contracts and invoices through Arms and Legs S.L.</dd></div>
+        <div><dt>Contracting</dt><dd>Contracts, invoices and insurance through Arms and Legs S.L.</dd></div>
         <div><dt>Flexible</dt><dd>Happy to talk about a shorter run, midweek nights or nearby dates</dd></div>
       </dl>
       <div class="btns"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp</a></div>
