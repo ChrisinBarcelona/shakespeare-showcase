@@ -1735,6 +1735,10 @@ html.light .head{background:#f1f0ee;border:1px solid #e4e4e7}
 :where(html.light) .pgbar{background:#ecebe9}:where(html.light) .pgbar i{background:#2a914d}
 :where(html.light) .pg.warn .pgbar i{background:#b07d12}:where(html.light) .pg.bad .pgbar i{background:#bf0a0a}
 :where(html.light) .pg.bad .pgtop b{color:#bf0a0a}:where(html.light) .pg.warn .pgtop b{color:#8a5a00}
+/* sticky header: overflow-x:hidden on body made it a scroll container, which stopped .top sticking */
+html{overflow-x:hidden}body{overflow-x:visible}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+.top{position:sticky!important;top:0}
 </style>
 </head>
 <body>
