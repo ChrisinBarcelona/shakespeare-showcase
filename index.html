@@ -1169,6 +1169,35 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 :where(html.light) .vnext{background:#f5f5f4}
 :where(html.light) .vdue{color:#b91c1c}
 :where(html.light) .vfacts dt,:where(html.light) .vnote,:where(html.light) #sheet .field label{color:#5c5a56}
+.navuser{position:relative;flex:none;display:flex;align-items:center}
+.navlogin{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:999px;background:var(--paper);color:#000;font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap}
+.navlogin:hover{background:#fff}
+.navav{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 10px 0 4px;border-radius:999px;border:1px solid #27272a;background:#0a0a0a;color:#f5f5f4;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.navav:hover,.navav[aria-expanded="true"]{border-color:#52525b}
+.avc{width:32px;height:32px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#27272a;color:#f5f5f4;font-size:12px;font-weight:700;flex:none}
+.avc img{width:100%;height:100%;object-fit:cover;display:block}
+.avc.lg{width:44px;height:44px;font-size:15px}
+.avch{opacity:.7}
+.navmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:230px;background:#111113;border:1px solid #27272a;border-radius:14px;padding:6px;box-shadow:0 20px 50px -10px rgba(0,0,0,.8);z-index:50}
+.navmenu[hidden]{display:none}
+.nmhead{display:flex;gap:10px;align-items:center;padding:10px 10px 12px;border-bottom:1px solid #27272a;margin-bottom:6px}
+.nmhead b{display:block;font-size:14px}
+.nmhead span:not(.avc){display:block;font-size:12.5px;color:#a1a1aa;margin-top:2px}
+.navmenu a{display:block;padding:10px 12px;border-radius:9px;color:#e4e4e7;text-decoration:none;font-size:14.5px}
+.navmenu a:hover,.navmenu a:focus-visible{background:#1f1f23;outline:none}
+.navmenu a.nmout{color:#fca5a5}
+.themebtn{border-radius:50%!important}
+@media (min-width:1241px){#themebtn{margin-left:-18px!important}.navuser{margin-left:-20px}}
+@media (max-width:1240px){.navuser{order:1;margin-left:auto}#themebtn{margin-left:0!important}.avn,.avch{display:none}.navav{padding:0 4px;width:40px;justify-content:center}.navlogin{height:40px;padding:0 14px}}
+:where(html.light) .navlogin{background:#18181b;color:#fafaf9}
+:where(html.light) .navav{background:#fff;border-color:#e4e3e1;color:#151513}
+:where(html.light) .avc{background:#e4e3e1;color:#151513}
+:where(html.light) .navmenu{background:#fff;border-color:#e4e3e1;box-shadow:0 20px 50px -14px rgba(0,0,0,.25)}
+:where(html.light) .nmhead{border-bottom-color:#e4e3e1}
+:where(html.light) .navmenu a{color:#151513}
+:where(html.light) .navmenu a:hover{background:#f5f5f4}
+:where(html.light) .navmenu a.nmout{color:#b91c1c}
+:where(html.light) .nmhead span:not(.avc){color:#5c5a56}
 .vnolink{cursor:default!important}
 .vnolink .cgo{display:none!important}
 .vnolink:hover{transform:none!important}
@@ -1647,6 +1676,7 @@ html.light .head{background:#f1f0ee;border:1px solid #e4e4e7}
   <a class="brand" href="#home" aria-label="Selected Works of Shakespeare, home">Selected Works <em>of Shakespeare</em></a>
   <button class="menubtn" id="menubtn" aria-expanded="false" aria-controls="nav"><span></span><span></span><span class="sr">Menu</span></button>
   <nav class="nav" id="nav" aria-label="Main"></nav>
+  <div class="navuser" id="navuser"></div>
   <button class="themebtn" id="themebtn" type="button" aria-label="Switch to light mode" title="Light / dark mode"><svg class="ti-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg><svg class="ti-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg></button>
 </div></header>
 <main class="wrap" id="view" tabindex="-1"></main>
@@ -2026,13 +2056,15 @@ function venueTidy(v){
 }
 const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["venues","Venues"],["me","My panel"]];
 let cdTimer=null;
-function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Signed out on this device")}
+function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Logged out on this device")}
 function route(){
   let h=(location.hash||"#home").slice(1);if(h==="signout"){signOut();return}
   if(VENUE&&(!VENUE_PAGES.some(([k])=>k===h))){h="pitch";history.replaceState(null,"","#pitch")}
   const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h;
+  if(VENUE){const nu=$("navuser");if(nu)nu.innerHTML=""}
   if(VENUE)$("nav").innerHTML=VENUE_PAGES.map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027")}" class="navcta">Email Chris</a>`;
-  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&(k!=="venues"||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="#me" class="navcta ${base==="me"?"on":""}">${me?esc(me.split(" ")[0]):"Find your name"}</a>${me?`<a href="#signout" class="navout">Sign out</a>`:""}`;
+  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&(k!=="venues"||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
+  renderNavUser(base);
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
   const lbl=((VENUE?VENUE_PAGES:PAGES).find(([k])=>k===base)||[,"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
   clearInterval(cdTimer);
@@ -2503,7 +2535,7 @@ function checkIn(){
   const you=me&&all.includes(me)?`<div class="ckyou"><div class="ckwho"><p class="ckick" style="margin:0">You're</p><h3>${esc(me)}</h3><p class="ckroles">${esc(rolesTxt(me))}</p>${stBadge(mine)}</div>
       <div class="ckbtns"><button type="button" class="btn primary" data-ck="accepted" ${mine==="accepted"?"disabled":""}>${mine==="accepted"?"✓ Accepted":"Accept role"}</button><button type="button" class="btn" data-ck="pending" ${mine!=="accepted"?"disabled":""}>Decline role</button>
       <button type="button" class="btn sm ghost" data-notme>Not you? Change name</button></div></div>`
-    :`<div class="ckyou"><div class="ckwho"><h3>Are you in the company?</h3><p class="ckroles">Find your name and accept your part. Everyone can see below who has accepted and who hasn’t yet.</p></div><div class="ckbtns"><button type="button" class="btn primary" data-pickme>Find your name</button></div></div>`;
+    :`<div class="ckyou"><div class="ckwho"><h3>Are you in the company?</h3><p class="ckroles">Find your name and accept your part. Everyone can see below who has accepted and who hasn’t yet.</p></div><div class="ckbtns"><button type="button" class="btn primary" data-pickme>Log in</button></div></div>`;
   const chip=(n,st)=>`<li class="pchip ${st}"><button type="button" data-isme="${esc(n)}" aria-label="${esc(n)}: ${st==="accepted"?"accepted":"pending response"}. Select if this is you."><b>${esc(n)}</b><span>${esc(rolesTxt(n))}</span></button>${st!=="accepted"?`<a class="nudge" href="${nudgeLink(n)}" target="_blank" rel="noopener" aria-label="Nudge ${esc(n)} on WhatsApp">Nudge</a>`:""}</li>`;
   return `<section class="checkin" aria-labelledby="ckh"><div class="ckhead"><div><p class="ckick">Company check-in</p><h2 id="ckh">Who's in?</h2></div>
     <div class="ckprog"><p><b>${acc.length} of ${all.length}</b> accepted</p><div class="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="${all.length}" aria-valuenow="${acc.length}" aria-label="Company accepted"><i style="width:${pct}%"></i></div></div></div>
@@ -2512,7 +2544,7 @@ function checkIn(){
       ${acc.length?`<h3 class="bh"><span class="bdot ok"></span>Accepted <span class="bn">${acc.length}</span></h3><ul class="chips">${acc.map(n=>chip(n,"accepted")).join("")}</ul>`:""}</div></section>`;
 }
 function openPicker(){const crewN=CREW.map(c=>c.name);const btn=n=>`<button type="button" class="pickme" data-me="${esc(n)}"><b>${esc(n)}</b><span>${esc(rolesTxt(n)||"Company")}</span></button>`;
-  $("sheet").innerHTML=`<h3>Find your name</h3><p class="meta">Your answer is saved and shown to the whole company.</p><span class="small" style="margin-top:12px">Actors</span><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div><span class="small" style="margin-top:14px">Crew</span><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div><div class="btns"><button class="btn" id="cx">Cancel</button></div>`;
+  $("sheet").innerHTML=`<h3>Log in: who are you?</h3><p class="meta">Your answer is saved and shown to the whole company.</p><span class="small" style="margin-top:12px">Actors</span><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div><span class="small" style="margin-top:14px">Crew</span><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div><div class="btns"><button class="btn" id="cx">Cancel</button></div>`;
   $("sheet").classList.add("wide");$("sheetbg").classList.add("on");$("cx").onclick=closeSheet;
   $("sheet").querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);closeSheet();route()})}
 function confirmMe(n){$("sheet").innerHTML=`<h3>Are you ${esc(n)}?</h3><p class="meta">${esc(rolesTxt(n))}</p><div class="btns"><button class="btn primary" id="yes">Yes, that's me</button><button class="btn" id="cx">Cancel</button></div>`;
@@ -2527,7 +2559,7 @@ function pMe(){
     const crewN=CREW.map(c=>c.name);
     const btn=n=>{const ps=PARTS.filter(p=>p.actor===n),c=CREW.find(x=>x.name===n);const sub=[...ps.map(p=>p.name),...(c?[c.role]:[])].join(", ");
       return `<button type="button" class="pickme" data-me="${esc(n)}"><b>${esc(n)}</b><span>${esc(sub||"Company")}</span></button>`};
-    return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Who are you?</h1>
+    return `<div class="cwrap"><header class="chero"><p class="ckick">Log in</p><h1>Who are you?</h1>
       <p class="clede">Pick your name to accept your part. Your answer is saved and shown to the whole company.</p></header>
       <h2 class="ccrewh" style="margin-top:28px!important">Actors</h2><div class="pickgrid">${CAST.filter(n=>!crewN.includes(n)).map(btn).join("")}</div>
       <h2 class="ccrewh">Crew</h2><div class="pickgrid">${CREW.map(c=>btn(c.name)).join("")}</div></div>`;
@@ -2550,7 +2582,7 @@ function pMe(){
   }
   if(CAST.includes(name))body+=myNotesBlock(name);
   return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Hello, ${esc(name.split(" ")[0])}</h1>
-    <div class="btns" style="margin-top:12px">${notYou}<a class="btn sm" href="#booking">Book a rehearsal</a><a class="btn sm" href="#signout">Sign out</a></div></header>${body}</div>`;
+    <div class="btns" style="margin-top:12px">${notYou}<a class="btn sm" href="#booking">Book a rehearsal</a><a class="btn sm" href="#signout">Log out</a></div></header>${body}</div>`;
 }
 function wireMe(){
   document.querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);route();window.scrollTo(0,0)});
@@ -2684,6 +2716,21 @@ function pPitch(){
   </ul>
   <div class="card pcontact"><img class="pcontactimg" src="headshots/chris-kelly-point.jpg" alt="Chris Kelly pointing at the camera" width="480" height="600" loading="lazy"><div class="pcontacttxt"><span class="small">Let’s talk</span><h3>Chris Kelly, Director</h3><div class="meta">Posters and the full running order now; rehearsal footage from mid-November.</div></div>
     <div class="btns" style="margin:0"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></div></div>`;
+}
+/* ---- header: log in / profile menu ---- */
+function renderNavUser(base){const nu=$("navuser");if(!nu)return;
+  if(!me){nu.innerHTML=`<a class="navlogin${base==="me"?" on":""}" href="#me">Log in</a>`;return}
+  const src=headSrc(me),crew=CREW.find(c=>c.name===me),role=crew?crew.role:(PARTS.filter(p=>p.actor===me).map(p=>p.name).slice(0,2).join(", ")||"Company");
+  const av=src?`<img src="${esc(src)}" alt="" width="32" height="32">`:`<span aria-hidden="true">${esc(initials(me))}</span>`;
+  nu.innerHTML=`<button type="button" class="navav${base==="me"?" on":""}" id="navav" aria-haspopup="menu" aria-expanded="false" aria-controls="navmenu" aria-label="${esc(me)}: profile menu"><span class="avc">${av}</span><span class="avn">${esc(me.split(" ")[0])}</span><svg class="avch" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="navmenu" id="navmenu" role="menu" hidden><div class="nmhead"><span class="avc lg">${av}</span><div><b>${esc(me)}</b><span>${esc(role)}</span></div></div>
+    <a role="menuitem" href="#me">My profile</a>${isOwner?`<a role="menuitem" href="#venues">Venues</a>`:""}<a role="menuitem" href="#signout" class="nmout">Log out</a></div>`;
+  const b=$("navav"),m=$("navmenu");
+  const close=()=>{m.hidden=true;b.setAttribute("aria-expanded","false")};
+  b.onclick=e=>{e.stopPropagation();const open=m.hidden;m.hidden=!open;b.setAttribute("aria-expanded",String(open));if(open){const f=m.querySelector("a");if(f)f.focus()}};
+  m.querySelectorAll("a").forEach(a=>a.onclick=()=>close());
+  m.onkeydown=e=>{if(e.key==="Escape"){close();b.focus()}};
+  if(!window.__navuserDoc){window.__navuserDoc=true;document.addEventListener("click",e=>{const mm=$("navmenu"),bb=$("navav");if(mm&&!mm.hidden&&!mm.contains(e.target)&&e.target!==bb){mm.hidden=true;bb&&bb.setAttribute("aria-expanded","false")}})}
 }
 /* ---------- Director's notes to actors ---------- */
 const NOTE_CATS=[["voice","Voice","#8cbcff"],["physicality","Physicality","#c9a6ff"],["lines","Learn lines","#f4c75c"],["slower","Slow down","#7fe0a0"],["faster","Speed up","#ffab6e"],["connection","More connection","#ff8fb1"],["urgent","Urgent","#f87171"]];
