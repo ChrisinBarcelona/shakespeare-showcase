@@ -786,6 +786,8 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .ckbtns .btn:disabled:not(.primary),.mebtns .btn:disabled:not(.primary){opacity:.45}
 .folio.cdwrap{margin-top:0!important}.folio.cdwrap::before{display:none}
 @media(max-width:600px){.ckhead{align-items:stretch}.ckprog{flex:1 1 100%}.ckprog p{text-align:left}.ckbtns{width:100%}.ckbtns .btn:not(.sm){flex:1;min-width:0}}
+.ckbtns .ckglyph{display:none}
+@media(max-width:600px){.ckbtns{flex-wrap:nowrap;gap:10px}.ckbtns .btn.ckic{position:relative;flex:0 0 56px;width:56px;min-width:56px;height:56px;min-height:56px;padding:0;border-radius:16px;display:inline-flex;align-items:center;justify-content:center}.ckbtns .ckglyph{display:block;font-size:24px;line-height:1;font-weight:700}.ckbtns .cklbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}.ckbtns [data-notme]{margin-left:auto;flex:0 1 auto;text-align:right}}
 
 /* ---- home opener: the company poster, with the countdown ---- */
 .opener{position:relative;margin:-24px 0 0 calc(50% - 50vw);width:100vw;background:#000}
@@ -2603,7 +2605,7 @@ function checkIn(){
   const all=PEOPLE_ALL(),acc=all.filter(n=>personStatus(n)==="accepted"),pend=all.filter(n=>personStatus(n)!=="accepted"),pct=Math.round(acc.length/all.length*100);
   const mine=me&&all.includes(me)?personStatus(me):null;
   const you=me&&all.includes(me)?`<div class="ckyou"><div class="ckwho"><p class="ckick" style="margin:0">You're</p><h3>${esc(me)}</h3><p class="ckroles">${esc(rolesTxt(me))}</p>${stBadge(mine)}</div>
-      <div class="ckbtns"><button type="button" class="btn primary" data-ck="accepted" ${mine==="accepted"?"disabled":""}>${mine==="accepted"?"✓ Accepted":"Accept role"}</button><button type="button" class="btn" data-ck="pending" ${mine!=="accepted"?"disabled":""}>Decline role</button>
+      <div class="ckbtns"><button type="button" class="btn primary ckic" data-ck="accepted" ${mine==="accepted"?"disabled":""}><span class="ckglyph" aria-hidden="true">✓</span><span class="cklbl">${mine==="accepted"?"✓ Accepted":"Accept role"}</span></button><button type="button" class="btn ckic" data-ck="pending" ${mine!=="accepted"?"disabled":""}><span class="ckglyph" aria-hidden="true">✕</span><span class="cklbl">Decline role</span></button>
       <button type="button" class="btn sm ghost" data-notme>Not you? Change name</button></div></div>`
     :`<div class="ckyou"><div class="ckwho"><h3>Has Chris invited you to the company?</h3><p class="ckroles">Find your name and accept your part. Everyone can see below who has accepted and who hasn’t yet.</p></div><div class="ckbtns"><button type="button" class="btn primary" data-pickme>Log in</button></div></div>`;
   const chip=(n,st)=>`<li class="pchip ${st}"><button type="button" data-isme="${esc(n)}" aria-label="${esc(n)}: ${st==="accepted"?"accepted":"pending response"}. Select if this is you."><b>${esc(n)}</b><span>${esc(rolesTxt(n))}</span></button>${st!=="accepted"?`<a class="nudge" href="${nudgeLink(n)}" target="_blank" rel="noopener" aria-label="Nudge ${esc(n)} on WhatsApp">Nudge</a>`:""}</li>`;
@@ -2717,7 +2719,6 @@ function pitchDirector(){
         <div><dt>Film crew</dt><dd>Art department on the feature films <em>Never Grow Old</em> and <em>Zoo</em></dd></div>
       </dl>
       <div class="pdirlinks">
-        <a class="btn" href="https://www.linkedin.com/in/chriskellyux/" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a class="btn" href="https://www.imdb.com/name/nm5854428/" target="_blank" rel="noopener">IMDb ↗</a>
         <a class="btn" href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Art-T Management profile ↗</a>
       </div>
