@@ -3137,7 +3137,7 @@ function pMarketing(){
     <ul class="shrules">
       <li><span class="shk ok">Share</span><span>The posters (download them below), photos of <b>you</b>, your role, your lines learnt, the ticket link.</span></li>
       <li><span class="shk ask">Check in</span><span>Just quickly check in if people are cool with a photo!</span></li>
-      <li><span class="shk no">Hold off</span><span>Try to avoid posting recorded, unpolished scenes that are still in the works, or where people don't know they're being recorded. Just basic common courtesy really!</span></li>
+      <li><span class="shk no">Hold off</span><span>Try to avoid posting recorded, unpolished scenes that are still in the works, or where people don't know they're being recorded.</span></li>
     </ul></div></div>
   <div class="seg"><button class="${posterSize==="ig"?"on":""}" data-psize="ig">Instagram 4:5</button><button class="${posterSize==="story"?"on":""}" data-psize="story">TikTok / Stories 9:16</button></div>
   ${(()=>{const fig=(k,l,tagh)=>`<figure><img src="${IMG[k+"-"+posterSize]}" data-full="${IMG_FULL[k+"-"+posterSize]}" data-dl="${k}-${posterSize==="ig"?"instagram-1080x1350":"story-1080x1920"}.jpg" alt="${esc(l)} poster" tabindex="0" role="button" aria-label="Open ${esc(l)} poster full size" loading="lazy"><figcaption><span>${esc(l)}${tagh?`<br>${tagh}`:""}</span><a class="btn sm" href="${IMG_FULL[k+"-"+posterSize]}" download="${k}-${posterSize==="ig"?"instagram-1080x1350":"story-1080x1920"}.jpg">Download</a></figcaption></figure>`;
