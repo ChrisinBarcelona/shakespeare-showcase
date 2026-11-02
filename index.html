@@ -1014,6 +1014,12 @@ select option{background:#111113;color:#f5f5f4}
 .share p{margin:0;font-size:15px;line-height:1.55}.share b{color:#fff}
 .shtitle{font:800 20px var(--fb)!important;color:#f4c75c!important;margin-bottom:4px!important}
 .shnote{margin-top:10px!important;color:#c9c9cd;font-size:14px!important}
+.shrules{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.shrules li{display:flex;gap:10px;align-items:baseline;font-size:14.5px;line-height:1.5}
+.shk{flex:none;min-width:84px;text-align:center;font:700 11px var(--fb);letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid}
+.shk.ok{color:#7fe0a0;border-color:rgba(127,224,160,.5)}.shk.ask{color:#f4c75c;border-color:rgba(244,199,92,.55)}.shk.no{color:#ff8a80;border-color:rgba(255,138,128,.5)}
+:where(html.light) .shk.ok{color:#1d7a3e;border-color:rgba(29,122,62,.45)}:where(html.light) .shk.ask{color:#8a6410;border-color:rgba(138,100,16,.45)}:where(html.light) .shk.no{color:#b3261e;border-color:rgba(179,38,30,.45)}
+.share + .seg{margin-top:18px}
 .share.slim{align-items:center;padding:12px 16px;margin-top:16px}.share.slim .shicon{width:34px;height:34px;font-size:18px}
 
 .scmusic{display:grid;grid-template-columns:auto 1fr minmax(240px,360px);gap:16px;align-items:center;margin-top:20px;padding:16px 18px;border-radius:18px;background:#141416;border:1px solid #2a2a2f}
@@ -3120,14 +3126,18 @@ function pMarketing(){
       <li><b>Fight choreography</b><span>Stage combat calls, slowed down and close up.</span></li>
       <li><b>Cast interviews</b><span>Short pieces to camera with each actor about their part.</span></li>
     </ul>
-    <p class="meta" style="margin-top:12px">Filming is arranged with Diigima in advance; Chris will say which sessions they're at.</p>
-    <div class="share" role="note"><div class="shicon" aria-hidden="true">★</div>
-      <div><p class="shtitle">Yes! Share it, often</p><p>Post, story, hashtag and tag: help us glow up the show and spread the word. Use <b>#SelectedWorksOfShakespeare</b> and <b>#ShakespeareBarcelona</b>, and tag the company, the cast and the venue.</p>
-      <p class="shnote">One gentle ask: please don't post recordings of rehearsals or the performances themselves. Filming a rehearsal to practise from is fine; just keep it to yourself. Diigima's behind-the-scenes footage is the one to share.</p></div></div>
+    <p class="meta" style="margin-top:12px">This is the company's own film: Diigima shoots it and the company publishes it. Filming is arranged with Diigima in advance; Chris will say which sessions they're at. It's separate from what you post yourself (see Posters below).</p>
   </section>
   <h2>The <em>strategy</em></h2>
   <div class="phases">${phases.map(([w,t,d],i)=>`<div class="phase"><div class="kicker">${w}</div><h3>${i+1}. ${t}</h3><div class="meta">${d}</div></div>`).join("")}</div>
   <h2>Posters</h2><p class="sub">Every poster comes in Instagram (1080×1350) and TikTok / Stories (1080×1920) sizes.</p>
+  <div class="share" role="note" aria-labelledby="shareh"><div class="shicon" aria-hidden="true">★</div>
+    <div><p class="shtitle" id="shareh">Yes! Share it, often</p><p>This is your show too, so show it off. Post the posters, your character reveal, great photos of yourself in rehearsal or costume, your countdown and the ticket link. Story, hashtag and tag: help us glow up the show and spread the word. Use <b>#SelectedWorksOfShakespeare</b> and <b>#ShakespeareBarcelona</b>, and tag the company and the venue.</p>
+    <ul class="shrules">
+      <li><span class="shk ok">Share</span><span>The posters (download them below), photos of <b>you</b>, your role, your lines learnt, the ticket link.</span></li>
+      <li><span class="shk ask">Ask first</span><span>Before posting anyone else. Only photos they're happy with, and tag them once they've said yes.</span></li>
+      <li><span class="shk no">Don't post</span><span>Scenes from the play, or recordings of rehearsals or the performances. Filming a rehearsal to practise from is fine; just keep it to yourself.</span></li>
+    </ul></div></div>
   <div class="seg"><button class="${posterSize==="ig"?"on":""}" data-psize="ig">Instagram 4:5</button><button class="${posterSize==="story"?"on":""}" data-psize="story">TikTok / Stories 9:16</button></div>
   ${(()=>{const fig=(k,l,tagh)=>`<figure><img src="${IMG[k+"-"+posterSize]}" data-full="${IMG_FULL[k+"-"+posterSize]}" data-dl="${k}-${posterSize==="ig"?"instagram-1080x1350":"story-1080x1920"}.jpg" alt="${esc(l)} poster" tabindex="0" role="button" aria-label="Open ${esc(l)} poster full size" loading="lazy"><figcaption><span>${esc(l)}${tagh?`<br>${tagh}`:""}</span><a class="btn sm" href="${IMG_FULL[k+"-"+posterSize]}" download="${k}-${posterSize==="ig"?"instagram-1080x1350":"story-1080x1920"}.jpg">Download</a></figcaption></figure>`;
     const th=k=>{const t=THEMES.find(x=>x[0]===THEME_OF[k]);return t?`<span class="ctag" style="--c:${t[2]}">${t[1]}</span>`:""};
