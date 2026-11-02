@@ -1032,9 +1032,10 @@ select option{background:#111113;color:#f5f5f4}
 .pcontact .btns .btn{flex:0 0 auto!important;width:auto!important;min-width:0!important;padding-left:22px!important;padding-right:22px!important;white-space:nowrap}
 @media (max-width:560px){.pcontact .btns{width:100%;flex-direction:column}.pcontact .btns .btn{width:100%!important}}
 /* ---- Pitch page ---- */
-.pdir{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:32px;align-items:start;margin-top:18px}
+.pdir{display:grid;grid-template-columns:minmax(0,280px) 1fr;gap:32px;align-items:start;margin-top:18px}
 .pdirimg{margin:0;position:sticky;top:96px}
-.pdirimg img{width:100%;height:auto!important;aspect-ratio:1/1;object-fit:cover;display:block;border-radius:16px;border:1px solid #1f1f23;box-shadow:0 30px 60px -24px rgba(0,0,0,.9)}
+.pdirimg img{width:100%;height:auto!important;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;display:block;border-radius:16px;border:1px solid #1f1f23;box-shadow:0 30px 60px -24px rgba(0,0,0,.9)}
+.pdirimg figcaption a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .pdirimg figcaption{margin-top:10px;font-size:13px;color:#a1a1aa;line-height:1.45}
 .pdir h3.pdirname{font-size:30px;margin:0;line-height:1.1}
 .pdir .pdirrole{color:#a1a1aa;font-size:14px;margin-top:4px}
@@ -1051,7 +1052,7 @@ select option{background:#111113;color:#f5f5f4}
 .pagency{margin-top:14px;font-size:14px;color:#b8b8bd;line-height:1.5}
 .pagency a{color:inherit}
 @media (max-width:560px){.pcreds{grid-template-columns:1fr}}
-@media (max-width:760px){.pdir{grid-template-columns:1fr;gap:20px}.pdirimg{max-width:280px;position:static}.pdir h3.pdirname{font-size:26px}}
+@media (max-width:760px){.pdir{grid-template-columns:1fr;gap:20px}.pdirimg{max-width:240px;position:static}.pdir h3.pdirname{font-size:26px}}
 :where(html.light) .pcreds li{background:#ffffff;border-color:#e4e3e1}
 :where(html.light) .pcreds li.hl{border-color:#151513}
 :where(html.light) .pcreds .ck,:where(html.light) .pdir .pdirrole,:where(html.light) .pdirimg figcaption{color:#5c5a56}
@@ -2442,7 +2443,7 @@ function pitchDirector(){
   const cred=(k,b,t,hl)=>`<li${hl?' class="hl"':''}><span class="ck">${k}</span><b>${b}</b><span class="cd">${t}</span></li>`;
   return `<h2>The <em>director</em></h2>
   <div class="pdir">
-    <figure class="pdirimg"><img src="headshots/chris-kelly-2.jpg" alt="Chris Kelly, director of Selected Works of Shakespeare" width="600" height="600" loading="lazy"><figcaption>Represented by Art-T Management, Barcelona</figcaption></figure>
+    <figure class="pdirimg"><img src="headshots/chris-kelly-2.jpg" alt="Chris Kelly, director of Selected Works of Shakespeare" width="600" height="600" loading="lazy"><figcaption>Represented by <a href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Art-T Management</a>, Barcelona</figcaption></figure>
     <div>
       <h3 class="pdirname">Chris Kelly</h3>
       <div class="pdirrole">Director · Actor · Teacher · From Belfast, based in Barcelona</div>
@@ -2456,7 +2457,7 @@ function pitchDirector(){
         ${cred("Moscow","Boris Shchukin Theatre Institute","Two months of Stanislavski training, playing Konstantin in <em>The Seagull</em>.")}
       </ul>
       <dl class="facts">
-        <div><dt>Directing</dt><dd><b>The Dinner Party</b>, Teatre Gaudí, Barcelona<br><b>Circle Mirror Transformation</b>, Barcelona</dd></div>
+        <div><dt>Directing</dt><dd><b>The Dinner Party</b>, Teatre Gaudí, Barcelona</dd></div>
         <div><dt>Shakespeare roles</dt><dd>Macbeth in <em>Macbeth</em> (Globe Theatre Education) · Silvius in <em>As You Like It</em></dd></div>
         <div><dt>Classical roles</dt><dd>Oedipus · De Flores in <em>The Changeling</em> · Tesman in <em>Hedda Gabler</em> · Fashion in <em>The Relapse</em> · Lucky in <em>Waiting for Godot</em></dd></div>
         <div><dt>Film</dt><dd>MA in Cinematography and Film Production, University College Dublin · art department on <em>Never Grow Old</em> and <em>Zoo</em></dd></div>
@@ -2466,7 +2467,7 @@ function pitchDirector(){
         <a class="btn" href="https://www.imdb.com/name/nm5854428/" target="_blank" rel="noopener">IMDb ↗</a>
         <a class="btn" href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Art-T Management profile ↗</a>
       </div>
-      <p class="pagency"><b>Agent:</b> Art-T Management, Barcelona · <a href="mailto:booker@arttmanagement.com">booker@arttmanagement.com</a> · <a href="tel:+34639671871">+34 639 67 18 71</a></p>
+      <p class="pagency"><b>Agent:</b> <a href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Art-T Management</a>, Barcelona · <a href="mailto:booker@arttmanagement.com">booker@arttmanagement.com</a> · <a href="tel:+34639671871">+34 639 67 18 71</a></p>
     </div>
   </div>`;
 }
