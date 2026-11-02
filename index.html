@@ -1032,6 +1032,31 @@ select option{background:#111113;color:#f5f5f4}
 .pcontact .btns .btn{flex:0 0 auto!important;width:auto!important;min-width:0!important;padding-left:22px!important;padding-right:22px!important;white-space:nowrap}
 @media (max-width:560px){.pcontact .btns{width:100%;flex-direction:column}.pcontact .btns .btn{width:100%!important}}
 /* ---- Pitch page ---- */
+.pdir{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:32px;align-items:start;margin-top:18px}
+.pdirimg{margin:0;position:sticky;top:96px}
+.pdirimg img{width:100%;height:auto!important;aspect-ratio:1/1;object-fit:cover;display:block;border-radius:16px;border:1px solid #1f1f23;box-shadow:0 30px 60px -24px rgba(0,0,0,.9)}
+.pdirimg figcaption{margin-top:10px;font-size:13px;color:#a1a1aa;line-height:1.45}
+.pdir h3.pdirname{font-size:30px;margin:0;line-height:1.1}
+.pdir .pdirrole{color:#a1a1aa;font-size:14px;margin-top:4px}
+.pdir .clede{margin:14px 0 0;max-width:620px}
+.pcreds{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pcreds li{background:#141416;border:1px solid #2a2a2f;border-radius:14px;padding:14px 16px}
+.pcreds li.hl{border-color:#f5f5f4}
+.pcreds .ck{display:block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#a1a1aa}
+.pcreds b{display:block;font-size:17px;margin-top:6px;line-height:1.25}
+.pcreds span.cd{display:block;color:#b8b8bd;font-size:14px;margin-top:4px;line-height:1.45}
+.pdir .facts{margin-top:18px}
+.pdirlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.pdirlinks .btn{flex:0 0 auto!important;width:auto!important;white-space:nowrap}
+.pagency{margin-top:14px;font-size:14px;color:#b8b8bd;line-height:1.5}
+.pagency a{color:inherit}
+@media (max-width:560px){.pcreds{grid-template-columns:1fr}}
+@media (max-width:760px){.pdir{grid-template-columns:1fr;gap:20px}.pdirimg{max-width:280px;position:static}.pdir h3.pdirname{font-size:26px}}
+:where(html.light) .pcreds li{background:#ffffff;border-color:#e4e3e1}
+:where(html.light) .pcreds li.hl{border-color:#151513}
+:where(html.light) .pcreds .ck,:where(html.light) .pdir .pdirrole,:where(html.light) .pdirimg figcaption{color:#5c5a56}
+:where(html.light) .pcreds span.cd,:where(html.light) .pagency{color:#424247}
+:where(html.light) .pdirimg img{border-color:#e4e3e1;box-shadow:0 30px 60px -28px rgba(0,0,0,.35)}
 .pteam{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
 .pteam .card h3{margin:2px 0 4px}
 .pcontact{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px}
@@ -2413,6 +2438,36 @@ function bdayBand(){return `<section class="bday" aria-labelledby="bdayh"><div c
   <div><p class="bkick">Opening night · Shakespeare’s birthday</p><h2 id="bdayh">We open on the day the world <em>celebrates Shakespeare.</em></h2>
   <p class="btxt">23 April is kept as Shakespeare’s birthday, and it is the day he died in 1616. In Barcelona it is also Sant Jordi, when the streets fill with books and roses, and UNESCO marks it as World Book Day. Curtain up at 20:00.</p></div></section>`}
 /* ---------- Pitch (for theatres) ---------- */
+function pitchDirector(){
+  const cred=(k,b,t,hl)=>`<li${hl?' class="hl"':''}><span class="ck">${k}</span><b>${b}</b><span class="cd">${t}</span></li>`;
+  return `<h2>The <em>director</em></h2>
+  <div class="pdir">
+    <figure class="pdirimg"><img src="headshots/chris-kelly-2.jpg" alt="Chris Kelly, director of Selected Works of Shakespeare" width="600" height="600" loading="lazy"><figcaption>Represented by Art-T Management, Barcelona</figcaption></figure>
+    <div>
+      <h3 class="pdirname">Chris Kelly</h3>
+      <div class="pdirrole">Director · Actor · Teacher · From Belfast, based in Barcelona</div>
+      <p class="clede">A classically trained Irish actor who has spent his career with Shakespeare and the classics. He trained in European Classical Acting at Drama Centre London, did two Shakespeare summer schools at RADA, and began on stage with Ulster Theatre Company in Belfast. In Barcelona he directs, acts on stage and screen, and teaches.</p>
+      <ul class="pcreds">
+        ${cred("Training","Drama Centre London","MA in European Classical Acting, trained under Christopher Fettes.",1)}
+        ${cred("Shakespeare","RADA, London","Two Shakespeare summer schools at the Royal Academy of Dramatic Art.",1)}
+        ${cred("Stage","Ulster Theatre Company","Professional stage work with the Belfast company.",1)}
+        ${cred("Screen","37 Days · BBC","Played Gavrilo Princip in the BBC drama about the outbreak of the First World War.")}
+      </ul>
+      <dl class="facts">
+        <div><dt>Directing</dt><dd><b>The Dinner Party</b>, Teatre Gaudí, Barcelona<br><b>Circle Mirror Transformation</b>, Barcelona</dd></div>
+        <div><dt>Shakespeare roles</dt><dd>Macbeth in <em>Macbeth</em> (Globe Theatre Education) · Silvius in <em>As You Like It</em></dd></div>
+        <div><dt>Classical roles</dt><dd>Oedipus · De Flores in <em>The Changeling</em> · Tesman in <em>Hedda Gabler</em> · Fashion in <em>The Relapse</em> · Lucky in <em>Waiting for Godot</em></dd></div>
+        <div><dt>Also trained</dt><dd>Boris Shchukin Theatre Institute, Moscow: Stanislavski, playing Konstantin in <em>The Seagull</em></dd></div>
+      </dl>
+      <div class="pdirlinks">
+        <a class="btn" href="https://www.linkedin.com/in/chriskellyux/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://www.imdb.com/name/nm5854428/" target="_blank" rel="noopener">IMDb ↗</a>
+        <a class="btn" href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Art-T Management profile ↗</a>
+      </div>
+      <p class="pagency"><b>Agent:</b> Art-T Management, Barcelona · <a href="mailto:booker@arttmanagement.com">booker@arttmanagement.com</a> · <a href="tel:+34639671871">+34 639 67 18 71</a></p>
+    </div>
+  </div>`;
+}
 function pPitch(){
   const total=Math.round(ITEMS.reduce((a,i)=>a+(i.mins||0),0)),cnt=t=>ITEMS.filter(i=>i.type===t).length;
   const d0=new Date(SHOWS[0]+"T20:00"),d1=new Date(SHOWS[SHOWS.length-1]+"T20:00"),fd=d=>d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
@@ -2437,6 +2492,7 @@ function pPitch(){
       <div class="btns"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp</a></div>
     </div>
   </section>
+  ${pitchDirector()}
   <h2>The <em>show</em></h2>
   <p class="clede">Scenes from seven of Shakespeare’s plays in one evening. Movement pieces we call mosaics carry the story from one play to the next, so the night plays as one journey, not a string of extracts.</p>
   <div class="stats"><div class="stat"><b>7</b><span>Plays</span></div><div class="stat"><b>${cnt("scene")}</b><span>Scenes</span></div><div class="stat"><b>${cnt("fight")}</b><span>Fights</span></div><div class="stat"><b>${cnt("mosaic")}</b><span>Mosaics</span></div><div class="stat"><b>≈${total}</b><span>Minutes</span></div></div>
@@ -2445,7 +2501,6 @@ function pPitch(){
   <h2>The <em>company</em></h2>
   <p class="clede">An international ensemble of ${CAST.length} professional actors based in Barcelona, with screen and stage credits including Netflix, HBO, Amazon Prime, the BBC, Paramount+ and London’s West End. In rehearsal since November 2026: company rehearsals every Saturday, and text work during the week.</p>
   <div class="pteam">
-    <div class="card"><span class="small">Director</span><h3>Chris Kelly</h3><div class="meta">Irish actor and director. MA in Classical Acting, Drama Centre London. Played Gavrilo Princip in the BBC drama 37 Days.</div></div>
     <div class="card"><span class="small">Assistant Producer</span><h3>Jessica Kollande</h3><div class="meta">Actor and voice actor working in Barcelona and Berlin.</div></div>
     <div class="card"><span class="small">Set Director</span><h3>Adrian P. Smith</h3><div class="meta">Also plays Polonius.</div></div>
     <div class="card"><span class="small">Set Designer</span><h3>G Lab Barcelona</h3><div class="meta">Light, portable pieces built for a fast get-in.</div></div>
