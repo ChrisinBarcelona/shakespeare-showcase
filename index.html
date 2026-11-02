@@ -275,7 +275,7 @@ a.book{display:block;text-decoration:none}
 .apdot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c);margin-right:10px;vertical-align:middle;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
 .sphl{background:color-mix(in srgb,#f4c75c 26%,transparent);color:inherit;padding:1px 3px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone;box-shadow:inset 0 -2px 0 #f4c75c}
 .themebtn{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;border:1px solid #27272a;background:#0a0a0a;color:#f5f5f4;cursor:pointer}
-.themebtn:hover{border-color:#52525b}.themebtn:focus-visible{outline:3px solid #f5f5f4;outline-offset:2px}
+.themebtn:hover{border-color:#52525b}.themebtn:focus-visible{outline:2px solid #a1a1aa;outline-offset:2px}
 .themebtn .ti-moon{display:none}html.light .themebtn .ti-sun{display:none}html.light .themebtn .ti-moon{display:block}
 @media (max-width:1240px){.themebtn{margin-left:auto;order:1}.menubtn{margin-left:8px!important;order:2}}
 .chhero{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end;margin-top:14px;padding:28px;border-radius:22px;background:var(--bg);color:var(--fg)}
@@ -1217,7 +1217,8 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 :where(html.light) .vfacts dt,:where(html.light) .vnote,:where(html.light) #sheet .field label{color:#5c5a56}
 .navuser{position:relative;flex:none;display:flex;align-items:center}
 .navlogin{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:999px;background:var(--paper);color:#000;font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap}
-.navlogin:hover{background:#fff}
+.navlogin:hover{background:#fff;color:#000!important}
+.navlogin:focus-visible,.navav:focus-visible{outline:2px solid #a1a1aa;outline-offset:2px}
 .navav{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 10px 0 4px;border-radius:999px;border:1px solid #27272a;background:#0a0a0a;color:#f5f5f4;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
 .navav:hover,.navav[aria-expanded="true"]{border-color:#52525b}
 .avc{width:32px;height:32px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#27272a;color:#f5f5f4;font-size:12px;font-weight:700;flex:none}
@@ -1236,6 +1237,7 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 @media (min-width:1241px){#themebtn{margin-left:-18px!important}.navuser{margin-left:-20px}}
 @media (max-width:1240px){.navuser{order:1;margin-left:auto}#themebtn{margin-left:0!important}.avn,.avch{display:none}.navav{padding:0 4px;width:40px;justify-content:center}.navlogin{height:40px;padding:0 14px}}
 :where(html.light) .navlogin{background:#18181b;color:#fafaf9}
+html.light .navlogin:hover{background:#000;color:#fff!important}
 :where(html.light) .navav{background:#fff;border-color:#e4e3e1;color:#151513}
 :where(html.light) .avc{background:#e4e3e1;color:#151513}
 :where(html.light) .navmenu{background:#fff;border-color:#e4e3e1;box-shadow:0 20px 50px -14px rgba(0,0,0,.25)}
@@ -1303,14 +1305,14 @@ html.light{--ink:#f1eeec;--ink2:#eae6e4;--ink3:#e5e0dc;--line:#e5e0dc;--paper:#9
 :where(html.light) .sheetbg{background:rgba(0,0,0,.6)}
 :where(html.light) .accept.ok{background:#dee6da;border:1px solid #dee6db}
 :where(html.light) .accept.no{background:#e6dada;color:#853636;border:1px solid #e7dada}
-:where(html.light) .folio{background:#f8f7f6}
+:where(html.light) .folio{background:#ffffff}
 :where(html.light) .folio::before{background:radial-gradient(60% 50% at 50% 0%,rgba(119,95,41,.16),transparent 70%)}
 :where(html.light) .fkick{color:#847e75}
 :where(html.light) .ftitle{color:#9b7e4b}
 :where(html.light) .fnav button{color:#756f67}
 :where(html.light) .fnav button.on,:where(html.light) .fnav button:hover{color:#9b7e4b}
-:where(html.light) .shelfwrap::before{background:linear-gradient(90deg,#f8f7f6,transparent)}
-:where(html.light) .shelfwrap::after{background:linear-gradient(-90deg,#f8f7f6,transparent)}
+:where(html.light) .shelfwrap::before{background:linear-gradient(90deg,#ffffff,transparent)}
+:where(html.light) .shelfwrap::after{background:linear-gradient(-90deg,#ffffff,transparent)}
 :where(html.light) .cover{box-shadow:inset 6px 0 10px -4px rgba(0,0,0,0.203),0 18px 30px -12px rgba(0,0,0,.9);background-image:linear-gradient(90deg,rgba(20,20,20,.08),transparent 8%,transparent 92%,rgba(0,0,0,0.081)),linear-gradient(var(--bg),var(--bg))}
 :where(html.light) .dot{background:#777777}
 :where(html.light) .dot.accepted{background:#2d8c38}
@@ -1318,8 +1320,8 @@ html.light{--ink:#f1eeec;--ink2:#eae6e4;--ink3:#e5e0dc;--line:#e5e0dc;--paper:#9
 :where(html.light) .pages{background:repeating-linear-gradient(90deg,#9a7f4b 0 1px,#7c6f54 1px 2px)}
 :where(html.light) .fstats{color:#756f67}
 :where(html.light) .fstats b{color:#9b7e4b}
-html.light{--ink:#f8f7f6;--ink2:#fefefe;--ink3:#fcfcfc;--line:#e5e4e3;--paper:#9b7e4b;--muted:#756f67}
-:where(html.light) body{background:#f8f7f6}
+html.light{--ink:#ffffff;--ink2:#fefefe;--ink3:#fcfcfc;--line:#e5e4e3;--paper:#9b7e4b;--muted:#756f67}
+:where(html.light) body{background:#ffffff}
 :where(html.light) .top{background:rgba(0,0,0,.86);border-bottom:1px solid #fbfbfb}
 :where(html.light) .rule{background:#e5e4e3}
 :where(html.light) .card{background:#ffffff;border-color:#fbfafa}
@@ -1394,7 +1396,7 @@ html.light{--paper:#151513;--muted:#55555e;--line:#e4e3e1;--ink2:#fefefe;--ink3:
 :where(html.light) .nav a.navcta{color:#f8f7f6!important}
 :where(html.light) .nav a.navcta:hover{background:#141414!important}
 :where(html.light) .menubtn{border:1px solid #e4e3e1;background:#fefefe}
-@media (max-width:1100px){:where(html.light) .nav{background:#f8f7f6;border-bottom:1px solid #e4e3e1}}
+@media (max-width:1100px){:where(html.light) .nav{background:#ffffff;border-bottom:1px solid #e4e3e1}}
 :where(html.light) .card{background:#fefefe!important;border:1px solid #fafafa!important}
 :where(html.light) .card.link:hover{border-color:#d7d4d2!important;background:#fdfdfd!important}
 :where(html.light) .stat{background:#fefefe!important;border-color:#fafafa!important}
@@ -1536,7 +1538,7 @@ html.light{--muted:#424247;--line:#e2e1df}
 :where(html.light) .mecard input[type=password]{background:#f8f7f6;border:1px solid #d9d7d5;color:#151513}
 :where(html.light) .nav a.navout{color:#323236!important;border:1px solid #d9d7d5!important}
 :where(html.light) .nav a.navout:hover{color:#141414!important;border-color:#151513!important}
-@media (max-width:1240px){:where(html.light) .nav{background:#f8f7f6;border-bottom:1px solid #e4e3e1}}
+@media (max-width:1240px){:where(html.light) .nav{background:#ffffff;border-bottom:1px solid #e4e3e1}}
 :where(html.light) .stb.dir{color:#fefefe;background:#151513;border-color:#151513}
 :where(html.light) .ftitle em{color:#5f5f65}
 :where(html.light) .brand em{color:#5f5f65}
@@ -1572,7 +1574,7 @@ html.light{--muted:#424247;--line:#e2e1df}
 :where(html.light) .nudge:hover{background:rgba(162,120,19,.15)}
 :where(html.light) .full{color:#2a914d}
 :where(html.light) .ckbtns .btn.primary:disabled,:where(html.light) .mebtns .btn.primary:disabled{background:rgba(42,145,77,.14)!important;color:#2a914d!important;border-color:rgba(42,145,77,.5)!important}
-:where(html.light) .opener{background:#f8f7f6}
+:where(html.light) .opener{background:#ffffff}
 :where(html.light) .op-kick{color:#424247}
 :where(html.light) .op-title{color:#151513}
 :where(html.light) .op-title em{color:#5f5f65}
@@ -1677,7 +1679,7 @@ html.light .venn circle:last-of-type{fill:#0a0a0a}
 html.light .venn .vc{fill:#fafaf9}
 html.light img{filter:none}
 html.light .sphl{background:#fde68a;box-shadow:inset 0 -2px 0 #d97706}
-html.light .top{background:rgba(250,250,249,.86)!important;border-bottom-color:#e4e4e7!important}
+html.light .top{background:rgba(255,255,255,.9)!important;border-bottom-color:#e4e4e7!important}
 html.light .menubtn span{background:#0a0a0a}
 /* first call: a white card on the light page */
 html.light .firstcall{background:#ffffff;border:1px solid #e4e4e7;box-shadow:0 1px 2px rgba(0,0,0,.04),0 18px 40px -28px rgba(0,0,0,.25)}
