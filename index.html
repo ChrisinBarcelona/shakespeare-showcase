@@ -3136,8 +3136,8 @@ function pMarketing(){
     <div><p class="shtitle" id="shareh">Yes! Share it, often</p><p>This is your show too, so show it off. Post the posters, your character reveal, great photos of yourself in rehearsal or costume, your countdown and the ticket link. Story, hashtag and tag: help us glow up the show and spread the word. Use <b>#SelectedWorksOfShakespeare</b> and <b>#ShakespeareBarcelona</b>, and tag the company and the venue.</p>
     <ul class="shrules">
       <li><span class="shk ok">Share</span><span>The posters (download them below), photos of <b>you</b>, your role, your lines learnt, the ticket link.</span></li>
-      <li><span class="shk ask">Ask first</span><span>Before posting anyone else. Only photos they're happy with, and tag them once they've said yes.</span></li>
-      <li><span class="shk no">Don't post</span><span>Scenes from the play, or recordings of rehearsals or the performances. Filming a rehearsal to practise from is fine; just keep it to yourself.</span></li>
+      <li><span class="shk ask">Check in</span><span>Just quickly check in if people are cool with a photo!</span></li>
+      <li><span class="shk no">Hold off</span><span>Try to avoid posting recorded, unpolished scenes that are still in the works, or where people don't know they're being recorded. Just basic common courtesy really!</span></li>
     </ul></div></div>
   <div class="seg"><button class="${posterSize==="ig"?"on":""}" data-psize="ig">Instagram 4:5</button><button class="${posterSize==="story"?"on":""}" data-psize="story">TikTok / Stories 9:16</button></div>
   ${(()=>{const fig=(k,l,tagh)=>`<figure><img src="${IMG[k+"-"+posterSize]}" data-full="${IMG_FULL[k+"-"+posterSize]}" data-dl="${k}-${posterSize==="ig"?"instagram-1080x1350":"story-1080x1920"}.jpg" alt="${esc(l)} poster" tabindex="0" role="button" aria-label="Open ${esc(l)} poster full size" loading="lazy"><figcaption><span>${esc(l)}${tagh?`<br>${tagh}`:""}</span><a class="btn sm" href="${IMG_FULL[k+"-"+posterSize]}" download="${k}-${posterSize==="ig"?"instagram-1080x1350":"story-1080x1920"}.jpg">Download</a></figcaption></figure>`;
