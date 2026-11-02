@@ -1121,6 +1121,22 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 :where(html.light) .ntag{color:color-mix(in srgb,var(--c) 55%,#151513)}
 :where(html.light) .nmeta,:where(html.light) .nlab span,:where(html.light) .ncount{color:#5c5a56}
 :where(html.light) .nchk input{accent-color:#151513}
+.ckey{margin-top:22px;background:#111113;border:1px solid #27272a;border-radius:18px;padding:22px}
+.ckey h2{margin:6px 0 0}
+.ckrules{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+.ckrules li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.45}
+.ksw{flex:none;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;border:1px solid transparent;margin-top:1px;font-size:13px;color:#f9a8d4}
+.kfab{background:repeating-linear-gradient(90deg,#3f3f46 0 3px,#a1a1aa 3px 6px)}
+.ktartan{background:linear-gradient(90deg,transparent 40%,rgba(200,40,40,.85) 40% 55%,transparent 55%),linear-gradient(0deg,transparent 40%,rgba(30,90,60,.9) 40% 60%,transparent 60%),#1e3a5f}
+.ksplit{background:linear-gradient(135deg,#f5f5f4 50%,#0a0a0a 50%);border-color:#52525b}
+.kflower{background:#18181b;border-color:#3f3f46}
+.ckgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.ckcol{background:#18181b;border-radius:12px;padding:12px 14px}
+.ckt{display:flex;gap:8px;align-items:center;margin:0 0 8px;font-weight:600;font-size:14px}
+.ckcol ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:14px}
+.ckcol a{color:inherit}
+:where(html.light) .ckey{background:#fff;border-color:#e4e3e1}
+:where(html.light) .ckcol{background:#f5f5f4}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:14px}
 .vcard{background:#111113;border:1px solid #27272a;border-radius:16px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px}
 .vcard.due{border-color:#f87171;box-shadow:0 0 0 1px #f87171 inset}
@@ -2973,7 +2989,28 @@ const COSTUME=[
   {id:"witches",title:"The witches",play:"Macbeth",note:"Floor-length black velvet cloaks with deep hoods and fur trim. Faces hidden until the reveal.",imgs:[["witches","The witches: hooded black velvet cloak with fur trim"]]}];
 function pCostume(){
   return `<a class="back" href="#staging">← Staging</a><div class="chero"><p class="ckick">Staging</p><h1>Costume</h1><p class="clede">The looks we're going for, by group. Tap a photo to see it full size.</p></div>
-  <div class="cnote" role="note"><p class="ckick" style="margin:0">Costume notes</p><p>Costume will be generally <b>symbolic</b>, relying on <b>colour</b> and <b>fabric volume</b> to portray status.</p><p class="meta" style="margin-top:6px">Fabric supplied by <a href="https://madaboutfabrics.com" target="_blank" rel="noopener">madaboutfabrics.com ↗</a></p><p class="meta" style="margin-top:6px">Costumier: <span class="stb open">Open vacancy</span></p></div>
+  <section class="ckey" aria-labelledby="ckeyh">
+    <p class="ckick" style="margin:0">Costume concept</p><h2 id="ckeyh">Black, white and <em>symbol</em></h2>
+    <ul class="ckrules">
+      <li><span class="ksw" style="background:#0a0a0a;border-color:#52525b"></span><span class="ksw" style="background:#f5f5f4;border-color:#a1a1aa"></span><span><b>Everyone is in black or white.</b> The costume is symbolic, not period: colour and fabric tell the story.</span></li>
+      <li><span class="ksw kfab"></span><span><b>More fabric = higher status.</b> Volume, length and drape grow with power.</span></li>
+      <li><span class="ksw ktartan"></span><span><b>The Scottish Play</b> adds tartan.</span></li>
+      <li><span class="ksw" style="background:#f4c75c"></span><span><b>Shrew</b> adds yellow.</span></li>
+      <li><span class="ksw" style="background:#4f9a5a"></span><span><b>Oberon's fairies</b> wear green fabric.</span></li>
+      <li><span class="ksw kflower">✿</span><span><b>Fairies transcend status games:</b> less fabric, cherub-like, flowers in the hair, to show they sit outside the human realm.</span></li>
+    </ul>
+    <div class="ckgrid">
+      ${[["Black","#0a0a0a",[["hamlet","Hamlet"],["witches","The Witches","adorned in black"],["coriolanus","Coriolanus"],["gravedigger","The Gravedigger"],["richard","Richard"],["anne","Lady Anne"]]],
+         ["Black + tartan","tartan",[["macbeth","Macbeth"],["lady-macbeth","Lady Macbeth"]]],
+         ["White","#f5f5f4",[["claudius","Claudius"],["polonius","Polonius"],["gertrude","Gertrude"],["","As You Like It: the whole cast"]]],
+         ["White → black","split",[["ophelia","Ophelia","her journey into grief and madness"]]],
+         ["+ Yellow","#f4c75c",[["kate","Kate"],["petruchio","Petruchio"]]],
+         ["Fairies","#4f9a5a",[["oberons-fairy","Oberon's fairies","green fabric"],["titania","Titania's fairies"],["puck","Puck"]]]]
+        .map(([t,c,cs])=>`<div class="ckcol"><p class="ckt"><span class="ksw ${c==="tartan"?"ktartan":c==="split"?"ksplit":""}" style="${c.startsWith("#")?"background:"+c:""}${c==="#0a0a0a"?";border-color:#52525b":c==="#f5f5f4"?";border-color:#a1a1aa":""}"></span>${esc(t)}</p><ul>${cs.map(([id,n,x])=>`<li>${id&&CH[id]?`<a href="#character-${id}">${esc(n)}</a>`:esc(n)}${x?` <span class="meta">· ${esc(x)}</span>`:""}</li>`).join("")}</ul></div>`).join("")}
+    </div>
+    <p class="meta" style="margin-top:14px">Fabric supplied by <a href="https://madaboutfabrics.com" target="_blank" rel="noopener">madaboutfabrics.com ↗</a> · Costumier: <span class="stb open">Open vacancy</span></p>
+  </section>
+  <h2 style="margin-top:34px">Looks by <em>group</em></h2>
   ${COSTUME.map(g=>{const pl=Object.entries(PLAYACC).find(([k])=>k===g.play);const c=pl?pl[1]:"#ddd";
     return `<section class="cost" aria-labelledby="cost-${g.id}"><div class="costhead"><h2 id="cost-${g.id}">${esc(g.title)}</h2><span class="ctag" style="--c:${c}">${esc(ABBR[g.play]||g.play)}</span></div><p class="clede">${esc(g.note)}</p>
       <div class="costgrid">${g.imgs.map(([f,alt])=>`<figure><img src="costume/${f}.jpg" data-full="costume/${f}.jpg" data-dl="${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`).join("")}</div>
