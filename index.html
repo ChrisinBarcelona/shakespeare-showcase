@@ -1036,6 +1036,30 @@ select option{background:#111113;color:#f5f5f4}
 .pteam .card h3{margin:2px 0 4px}
 .pcontact{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px}
 .pcontact h3{margin:2px 0 4px}
+
+/* ---- Home: notice + progress ---- */
+.news{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;margin:26px 0 6px;padding:20px 22px;border-radius:20px;background:#141416;border:1px solid #2a2a2f;border-left:4px solid #8cbcff}
+.newsav{width:56px;height:56px;border-radius:50%;object-fit:cover;display:block;border:1px solid #2a2a2f}
+.newskick{margin:0 0 6px;font:600 13px var(--fb);color:#8cbcff;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.newsdot{width:8px;height:8px;border-radius:50%;background:#8cbcff;box-shadow:0 0 0 4px rgba(140,188,255,.18)}
+.newswhen{color:#b8b8bd;font-weight:500}
+.newstext{font-size:clamp(18px,2.2vw,22px);line-height:1.45;color:#f5f5f4;white-space:pre-wrap}
+.newsempty{color:#8a8a90;font-size:16px}
+.news .btn{margin-top:12px}
+.pggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}
+.pg{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:18px;background:#141416;border:1px solid #2a2a2f;color:inherit;text-decoration:none;transition:border-color .2s,transform .2s}
+.pg:hover{border-color:#4a4a52;transform:translateY(-2px)}
+.pgtop{display:flex;align-items:baseline;gap:8px}
+.pgtop b{font:600 44px/1 var(--fd);color:#f5f5f4;font-variant-numeric:tabular-nums}
+.pgof{color:#8a8a90;font-size:16px;font-weight:600}
+.pglabel{margin:0;font-weight:600;color:#f5f5f4;font-size:16px}
+.pgbar{height:8px;border-radius:99px;background:#26262b;overflow:hidden;margin:4px 0 2px}
+.pgbar i{display:block;height:100%;border-radius:99px;background:#7fe0a0}
+.pg.warn .pgbar i{background:#f4c75c}.pg.bad .pgbar i{background:#ff8a8a}
+.pg.bad .pgtop b{color:#ff8a8a}.pg.warn .pgtop b{color:#f4c75c}
+.pgline{margin:0;color:#b8b8bd;font-size:14.5px;line-height:1.45}
+.pgcta{margin-top:auto;padding-top:8px;font:600 14px var(--fb);color:#f5f5f4}
+@media (max-width:560px){.news{grid-template-columns:44px 1fr;padding:16px}.newsav{width:44px;height:44px}}
 </style>
 <style id="light-theme">
 html.light{--ink:#f1eeec;--ink2:#eae6e4;--ink3:#e5e0dc;--line:#e5e0dc;--paper:#9e803f;--muted:#6f6a62;--blood:#ecd5d5;--moss:#4b5e40;--sky:#355e89}
@@ -1452,6 +1476,15 @@ html.light .head{background:#f1f0ee;border:1px solid #e4e4e7}
 :where(html.light) .bday p.btxt{color:#27272b}
 :where(html.light) .show2.bday2{background:linear-gradient(135deg,#fff6df,#ffffff 70%);border-color:#cf9f3a;box-shadow:0 0 0 1px rgba(207,159,58,.35) inset}
 :where(html.light) .show2.bday2 .ckick{color:#8a5a00}
+
+:where(html.light) .news{background:#ffffff;border-color:#e2e1df;border-left-color:#0a56c0}
+:where(html.light) .newskick{color:#0a56c0}:where(html.light) .newsdot{background:#0a56c0;box-shadow:0 0 0 4px rgba(10,86,192,.15)}
+:where(html.light) .newswhen,:where(html.light) .pgline{color:#424247}
+:where(html.light) .newstext,:where(html.light) .pglabel,:where(html.light) .pgcta,:where(html.light) .pgtop b{color:#141414}
+:where(html.light) .pg{background:#ffffff;border-color:#e2e1df}:where(html.light) .pg:hover{border-color:#bdbbb8}
+:where(html.light) .pgbar{background:#ecebe9}:where(html.light) .pgbar i{background:#2a914d}
+:where(html.light) .pg.warn .pgbar i{background:#b07d12}:where(html.light) .pg.bad .pgbar i{background:#bf0a0a}
+:where(html.light) .pg.bad .pgtop b{color:#bf0a0a}:where(html.light) .pg.warn .pgtop b{color:#8a5a00}
 </style>
 </head>
 <body>
@@ -1874,6 +1907,7 @@ function pHome(){
       <div class="op-btns"><button type="button" class="btn primary" id="tockin">Who's in? ↓</button><a class="btn" href="#shows">Performance schedule</a>${isOwner?`<button class="btn" id="setdate">Change opening date</button>`:""}</div>
     </div>
   </section>
+  ${newsBlock()}
   ${bdayBand()}
   ${firstCall()}
   <section class="flyer">
@@ -1900,13 +1934,27 @@ function pHome(){
   <div class="grid explore">
     ${[["booking","Book Dramaturgy Session","Two hours with Chris, Mon–Fri 15:30–19:30 at Barcelona Code School. Bring your scene partners.","calcheck","#0a0a0a"],["scenes","Scene running order","16 scenes, 3 fights, 7 mosaics, in order.","list","#8cbcff"],["characters","Character breakdowns","Who everyone is, scene by scene.","masks","#c9a6ff"],["approach","Directorial approach","How we work in the room: text, voice, listening and the ensemble.","venn","#f4c75c"],["cast","Cast &amp; crew","Parts offered, acceptances and the crew.","users","#7fe0a0"],["marketing","Marketing","Posters, TikTok and Instagram posts, the ticket.","megaphone","#ffab6e"],["shows","The shows",SHOWS.length+" nights from 23 April, Shakespeare’s birthday, and call times.","ticket","#ff8a8a"],["staging","Staging","Transitions, fights, mosaics and costume.","spot","#f4c75c"]].map(([h,t,d,ic,c])=>`<a class="card link excard" href="#${h}"><span class="exico">${icon(ic,28)}</span><h3>${t}</h3><div class="meta">${d}</div></a>`).join("")}
   </div>
-  <div class="stats" style="margin-top:14px">
-    <div class="stat"><b>${accepted}/${CAST.length}</b><span>Cast accepted</span></div>
-    <div class="stat"><b>${booked}</b><span>Sessions booked</span></div>
-    <div class="stat"><b style="${zero?"color:#d58b8b":""}">${zero}</b><span>Pieces not yet rehearsed</span></div>
-  </div>
-  ${notesBlock("home-news","Notice board","News from Chris will appear here.")}`;
+  ${progressBlock(accepted,booked,zero)}
+`;
 }
+/* ---- Home: notice from Chris + where we are ---- */
+function newsBlock(){
+  const n=content["home-news"],txt=n&&n.text&&n.text.trim();
+  if(!txt&&!isOwner)return "";
+  const when=n&&n.at?new Date(n.at).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}):"";
+  return `<section class="news" aria-labelledby="newsh"><img class="newsav" src="headshots/chris-kelly-2.jpg" alt="" width="56" height="56">
+    <div class="newsbody"><p class="newskick"><span class="newsdot" aria-hidden="true"></span><span id="newsh">From Chris</span>${when?` · <span class="newswhen">${esc(when)}</span>`:""}</p>
+    <div class="newstext" id="n-home-news">${txt?esc(txt):`<span class="newsempty">No notice yet. Write one and it shows here, at the top of the home page, for the whole company.</span>`}</div>
+    ${isOwner?`<button class="btn sm" data-edit="home-news" data-label="Notice from Chris">${txt?"Edit notice":"Write a notice"}</button>`:""}</div></section>`}
+function progressBlock(accepted,booked,zero){
+  const total=bookable().length,done=total-zero,pend=CAST.length-accepted,pct=(a,b)=>b?Math.round(a/b*100):0;
+  const card=(cls,big,of,label,bar,line,href,cta)=>`<a class="pg ${cls}" href="${href}"><div class="pgtop"><b>${big}</b>${of?`<span class="pgof">${of}</span>`:""}</div><p class="pglabel">${label}</p>${bar==null?"":`<div class="pgbar" role="img" aria-label="${bar}% done"><i style="width:${bar}%"></i></div>`}<p class="pgline">${line}</p><span class="pgcta">${cta} →</span></a>`;
+  return `<h2>Where <em>we are</em></h2><p class="sub">The company at a glance. Each card opens the page where you can act on it.</p>
+  <div class="pggrid">
+    ${card(pend?"warn":"ok",accepted,"of "+CAST.length,"Cast have accepted their parts",pct(accepted,CAST.length),pend?`${pend} still to accept. Pick your name and accept your part.`:"Everyone has accepted. Thank you!","#cast","See who’s in")}
+    ${card(booked?"ok":"",booked,"","Dramaturgy sessions booked",null,"Two hours with Chris on your scene, Mon–Fri at Barcelona Code School. Bring your scene partners.","#booking","Book a session")}
+    ${card(zero?"bad":"ok",done,"of "+total,"Scenes, fights &amp; mosaics rehearsed",pct(done,total),zero?`${zero} haven’t had a session yet. Book one for your piece.`:"Every piece has had at least one session.","#booking","See which ones")}
+  </div>`}
 /* ---- shared: who am I + Saturday attendance ---- */
 function meSelect(){if(me)return `<div class="mesel youare">You're <b>${esc(me)}</b> <button type="button" class="btn sm" data-notme>Not you? Change name</button></div>`;
   return `<p class="attendhint">Choose your name to mark attending or book.</p><div class="mesel"><span class="small" style="margin:0">I am</span><select class="mepick" aria-label="Your name"><option value="">Choose your name…</option>${CAST.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>`}
