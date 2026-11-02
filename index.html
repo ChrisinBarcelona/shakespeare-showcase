@@ -3304,7 +3304,6 @@ function pStaging(){
   const secs=[["st-trans","Transitions"],["st-sfx","SFX"],["st-atmos","Atmos"],["st-props","Props"],["st-vfx","Visual effects"],["st-cost","Costume"]];
   const ph=(f,alt)=>`<figure><img src="staging/${f}.jpg" data-full="staging/${f}.jpg" data-dl="${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`;
   return `<div class="chero"><p class="ckick">Staging</p><h1>Staging</h1>
-    <p class="clede">Everything around the scenes: how we move from one piece to the next, what the audience hears and sees, and the physical things on stage. Six parts, in the order we build them.</p>
     <p class="clede">Most of the cast never exchange a word. Of the 153 possible pairs of actors, 98 never speak to each other or share a scene. The only time everyone is on stage together is the opening mosaic, which is wordless and uses the whole company.</p></div>
   <nav class="stjump" aria-label="Staging sections">${secs.map(([id,l])=>`<button type="button" data-jumpto="${id}">${l}</button>`).join("")}</nav>
 
