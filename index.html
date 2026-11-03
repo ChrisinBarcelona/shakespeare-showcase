@@ -946,6 +946,11 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .songs audio{width:100%;height:40px;color-scheme:dark}
 .props{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:14px}
 .costgrid.one{grid-template-columns:1fr;margin-top:10px}
+.langbtn{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:9px 16px;border-radius:999px;border:1px solid #3f3f46;background:#18181b;color:#f5f5f4;font:600 14px/1 inherit;font-family:inherit;cursor:pointer}
+.langbtn:hover{border-color:#f5f5f4}
+.langbtn .flag{display:block;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+:where(html.light) .langbtn{background:#fff;color:#151513;border-color:#d6d3d1}
+:where(html.light) .langbtn:hover{border-color:#151513}
 .costgrid.pgal{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
 .costgrid.pgal figcaption{font-size:13px;line-height:1.35;color:#a1a1aa;margin-top:6px}
 :where(html.light) .costgrid.pgal figcaption{color:#57534e}
@@ -2123,6 +2128,11 @@ function lightFix(root){if(!isLight()||!root)return;root.querySelectorAll("[styl
 /* ---- Venue view: theatres arriving through the pitch link see only the public pages ---- */
 const VENUE_PAGES=[["pitch","The Pitch"],["shows","Dates"],["scenes","The Evening"],["cast","The Company"],["approach","Approach"],["marketing","Posters"]];
 let VENUE=false;
+let LANG="en";try{LANG=localStorage.getItem("ss_lang")==="ca"?"ca":"en"}catch(_){}
+const VENUE_PAGES_CA={pitch:"La proposta",shows:"Dates",scenes:"La vetllada",cast:"La companyia",approach:"Enfocament",marketing:"Cartells"};
+const SENYERA=`<svg class="flag" viewBox="0 0 27 18" width="22" height="15" aria-hidden="true"><rect width="27" height="18" fill="#FCDD09"/><g fill="#DA121A"><rect y="2" width="27" height="2"/><rect y="6" width="27" height="2"/><rect y="10" width="27" height="2"/><rect y="14" width="27" height="2"/></g></svg>`;
+function langBtn(){return LANG==="ca"?`<button type="button" class="langbtn" data-setlang="en" lang="en">Switch to English</button>`:`<button type="button" class="langbtn" data-setlang="ca">${SENYERA}<span>Switch to Catalan</span></button>`}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-setlang]");if(!b)return;LANG=b.dataset.setlang;try{localStorage.setItem("ss_lang",LANG)}catch(_){}document.documentElement.lang=LANG;route();window.scrollTo(0,0)});
 (function(){try{const q=new URLSearchParams(location.search);
   if(q.has("full"))sessionStorage.removeItem("ss_venue");
   else if(q.has("venue")||((location.hash||"")==="#pitch"&&!localStorage.getItem("ss_me")&&!localStorage.getItem("ss_dir_pin")))sessionStorage.setItem("ss_venue","1");
@@ -2140,7 +2150,7 @@ function route(){
   if(VENUE&&(!VENUE_PAGES.some(([k])=>k===h))){h="pitch";history.replaceState(null,"","#pitch")}
   const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h;
   if(VENUE){const nu=$("navuser");if(nu)nu.innerHTML=""}
-  if(VENUE)$("nav").innerHTML=VENUE_PAGES.map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("")+`<a href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027")}" class="navcta">Email Chris</a>`;
+  if(VENUE)$("nav").innerHTML=VENUE_PAGES.map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${LANG==="ca"?VENUE_PAGES_CA[k]:l}</a>`).join("")+`<a href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027")}" class="navcta">${LANG==="ca"?"Escriu a Chris":"Email Chris"}</a>`;
   else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&(k!=="venues"||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
   renderNavUser(base);
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
@@ -2758,11 +2768,12 @@ function pitchLook(){
   </div>`;
 }
 function pPitch(){
+  if(LANG==="ca")return pPitchCA();
   const total=Math.round(ITEMS.reduce((a,i)=>a+(i.mins||0),0)),cnt=t=>ITEMS.filter(i=>i.type===t).length;
   const d0=new Date(SHOWS[0]+"T20:00"),d1=new Date(SHOWS[SHOWS.length-1]+"T20:00"),fd=d=>d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
   const mail="mailto:chris@chriskelly.it?subject="+encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027");
   const li=(b,t)=>`<li><b>${b}</b><span>${t}</span></li>`;
-  return folioHero("For theatres and programmers","The Pitch",`<p class="ftag"><em>Selected Works of Shakespeare.</em> Love, power, madness and hate in one evening, opening on Shakespeare’s birthday.</p>`)+`</section>
+  return folioHero("For theatres and programmers","The Pitch",`<p class="ftag"><em>Selected Works of Shakespeare.</em> Love, power, madness and hate in one evening, opening on Shakespeare’s birthday.</p>${langBtn()}`)+`</section>
   ${bdayBand()}
   <section class="flyer">
     <a class="flyerimg" href="#marketing"><img src="${IMG["company-ig"]}" alt="Selected Works of Shakespeare poster: a garland of seven emblems hanging over the company in silhouette" loading="lazy"></a>
@@ -2819,6 +2830,132 @@ function pPitch(){
   </ul>
   <div class="card pcontact"><img class="pcontactimg" src="headshots/chris-kelly-point.jpg" alt="Chris Kelly pointing at the camera" width="480" height="600" loading="lazy"><div class="pcontacttxt"><span class="small">Let’s talk</span><h3>Chris Kelly, Director</h3><div class="meta">Posters and the full running order now; rehearsal footage from mid-November.</div></div>
     <div class="btns" style="margin:0"><a class="btn primary" href="${mail}">Email Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></div></div>`;
+}
+function bdayBandCA(){return `<section class="bday" aria-labelledby="bdayh"><div class="bdate" aria-hidden="true"><span>Dv.</span><b>23</b><span>abril</span></div>
+  <div><p class="bkick">Nit d’estrena · Aniversari de Shakespeare</p><h2 id="bdayh">Estrenem el dia que el món <em>celebra Shakespeare.</em></h2>
+  <p class="btxt">El 23 d’abril se celebra l’aniversari de Shakespeare, i és també el dia que va morir, el 1616. A Barcelona és Sant Jordi, quan els carrers s’omplen de llibres i roses, i la UNESCO el celebra com a Dia Mundial del Llibre. Funció a les 20:00.</p></div></section>`}
+/* ---------- Pitch in Catalan ---------- */
+function pitchDirectorCA(){
+  const cred=(k,b,t,hl)=>`<li${hl?' class="hl"':''}><span class="ck">${k}</span><b>${b}</b><span class="cd">${t}</span></li>`;
+  return `<h2>El <em>director</em></h2>
+  <div class="pdir">
+    <div class="pdirside">
+      <figure class="pdirimg"><img src="headshots/chris-kelly-red.jpg" alt="Chris Kelly, director de Selected Works of Shakespeare" width="800" height="1000" loading="lazy"><figcaption>Representat per <a href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Art-T Management</a>, Barcelona</figcaption></figure>
+      <figure class="pdircover"><img src="headshots/37-days-bbc.jpg" alt="Portada del DVD de 37 Days de la BBC, amb Chris Kelly com a Gavrilo Princip disparant una pistola" width="560" height="792" loading="lazy"><figcaption>Com a Gavrilo Princip a <em>37 Days</em>, BBC, 2014</figcaption></figure>
+    </div>
+    <div>
+      <h3 class="pdirname">Chris Kelly</h3>
+      <div class="pdirrole">Director · Actor · Professor · De Belfast, establert a Barcelona</div>
+      <p class="clede">Actor irlandès de formació clàssica que ha dedicat la seva carrera a Shakespeare i als clàssics. Va fer el màster en Interpretació Clàssica Europea al Drama Centre London, dos estius a la Shakespeare Summer School de la RADA i tres setmanes al seu curs de comèdia jacobina i de la Restauració, i ha treballat als escenaris amb l’Ulster Theatre Company de Belfast. A Barcelona dirigeix, actua en teatre i en pantalla, i fa classes.</p>
+      <ul class="pcreds">
+        ${cred("Teatre","Ulster Theatre Company","Treball professional als escenaris amb la companyia de Belfast.",1)}
+        ${cred("Shakespeare","Macbeth","Va interpretar el paper protagonista per a Globe Theatre Education.",1)}
+        ${cred("Direcció","The Dinner Party","Dirigida al Teatre Gaudí de Barcelona.",1)}
+        ${cred("Pantalla","37 Days · BBC, 2014","Gavrilo Princip, l’assassí el tret del qual va desencadenar la Primera Guerra Mundial, a la sèrie docudrama de la BBC de Justin Hardy.",1)}
+      </ul>
+      <h4 class="pedh">Estudis i formació</h4>
+      <ul class="pedu">
+        <li><span class="plogo dark"><img src="logos/ual.svg" alt="University of the Arts London" width="40" height="18"></span><div><b>Màster en Interpretació Clàssica Europea</b><span class="pwhere">Drama Centre London, University of the Arts London · 2010–11</span><span class="pnote">Format amb Christopher Fettes. Va incloure treball al Shakespeare’s Globe de Londres i dos mesos a l’Institut de Teatre Borís Xúkin de Moscou, interpretant Konstantín a <em>La gavina</em>.</span></div></li>
+        <li><span class="plogo light"><img src="logos/rada.svg" alt="RADA" width="44" height="10"></span><div><b>Royal Academy of Dramatic Art (RADA)</b><span class="pwhere">Londres</span><span class="pnote"><b class="pin">Shakespeare Summer School</b>, dos estius: Shakespeare assajat en companyia amb un director professional, a més de veu, sonets, combat escènic, clown i interpretació física.</span><span class="pnote"><b class="pin">Comèdia jacobina i de la Restauració</b>, tres setmanes.</span></div></li>
+        <li><span class="plogo img"><img src="https://www.ucd.ie/t4media/apple-touch-icon.png?v=0.0.2" alt="University College Dublin" width="52" height="52" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg');this.parentNode.textContent='UCD'"></span><div><b>Màster en Cinematografia i Producció de Cinema i Vídeo</b><span class="pwhere">University College Dublin · 2008–09</span><span class="pnote">Amb treball als Ardmore Studios, Bray.</span></div></li>
+        <li><span class="plogo img"><img src="https://www.mmu.ac.uk/themes/custom/mmu/favicons/apple-touch-icon.png" alt="Manchester Metropolitan University" width="52" height="52" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg');this.parentNode.textContent='MMU'"></span><div><b>Grau en Literatura Anglesa (britànica i de la Commonwealth)</b><span class="pwhere">Manchester Metropolitan University · 2004–07</span><span class="pnote">Treball final comparant la literatura irlandesa i la russa.</span></div></li>
+      </ul>
+      <dl class="facts">
+        <div><dt>Altres papers</dt><dd>Silvius a <em>As You Like It</em> · Èdip · De Flores a <em>The Changeling</em> · Tesman a <em>Hedda Gabler</em> · Fashion a <em>The Relapse</em> · Lucky a <em>Esperant Godot</em></dd></div>
+        <div><dt>Equip de cinema</dt><dd>Departament d’art als llargmetratges <em>Never Grow Old</em> i <em>Zoo</em></dd></div>
+      </dl>
+      <div class="pdirlinks">
+        <a class="btn" href="https://www.imdb.com/name/nm5854428/" target="_blank" rel="noopener">IMDb ↗</a>
+        <a class="btn" href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Perfil a Art-T Management ↗</a>
+      </div>
+      <p class="pagency"><b>Agència:</b> <a href="https://arttmanagement.com/portfolio/christopher-kelly/" target="_blank" rel="noopener">Art-T Management</a>, Barcelona · <a href="mailto:booker@arttmanagement.com">booker@arttmanagement.com</a> · <a href="tel:+34639671871">+34 639 67 18 71</a></p>
+    </div>
+  </div>`;
+}
+function pitchLookCA(){
+  const fig=(d,f,alt,cap)=>`<figure><img src="${d}/${f}.jpg" data-full="${d}/${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Obre la foto a mida completa: ${esc(alt)}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
+  return `<h2>La <em>imatge</em></h2>
+  <p class="clede">El vestuari és simbòlic, no d’època. Tothom va de negre o de blanc, i el color i la tela expliquen la història: com més tela, més poder. Cada obra hi afegeix un segell: tartà per a Macbeth, groc per a La feréstega domada, verd per a les fades d’Oberon. Les fades són les que porten menys roba, amb flors als cabells, perquè viuen fora del món humà.</p>
+  <h3 class="sth">Referències de vestuari</h3>
+  <div class="costgrid pgal">
+    ${fig("costume","macbeth","Macbeth: vestit negre, banda de tartà blau i verd, fermall daurat","Macbeth · sastreria negra, tartà, un daurat que creix a mesura que puja")}
+    ${fig("costume","banquo","Banquo: jaqueta verd fosc, banda de tartà vermell i verd","Banquo · teixits més rústics i càlids")}
+    ${fig("costume","richard","Ricard III: capa negra fins a terra sobre un vestit fosc","Ricard III · volum i ombra en lloc d’una corona")}
+    ${fig("costume","witches","Les bruixes: capa de vellut negre amb caputxa","Les bruixes · vellut amb caputxa, rostres amagats")}
+    ${fig("costume","titania-fairies-1","Les fades de Titània: teixit blanc drapejat","Les fades de Titània · blanc, drapejat, una mica desfet")}
+    ${fig("costume","oberon-fairy","Fada d’Oberon: ales il·luminades, corona de molsa","Les fades d’Oberon · ales que capten la llum")}
+  </div>
+  <h3 class="sth">Posada en escena</h3>
+  <p class="clede">Un escenari obert, modelat amb llum, boira i unes poques peces lleugeres. Unes peces de moviment que anomenem mosaics ens porten d’una obra a la següent.</p>
+  <div class="costgrid pgal">
+    ${fig("staging","foam-rocks","Roques d’escuma","Roques d’escuma · l’erm, el bosc i Arden")}
+    ${fig("staging","stretcher","Llitera de lona","Una llitera · el cos de Banquo es converteix en el taüt d’Eduard")}
+    ${fig("staging","rapier-dagger","Espasa ropera i daga","Espasa ropera i daga · tres combats coreografiats")}
+    ${fig("staging","smoke-machine","Màquina de fum amb llum de colors","Boira · les bruixes, el bosc de nit, l’aigua d’Ofèlia")}
+  </div>`;
+}
+function pPitchCA(){
+  const total=Math.round(ITEMS.reduce((a,i)=>a+(i.mins||0),0)),cnt=t=>ITEMS.filter(i=>i.type===t).length;
+  const d0=new Date(SHOWS[0]+"T20:00"),d1=new Date(SHOWS[SHOWS.length-1]+"T20:00"),fd=d=>d.toLocaleDateString("ca-ES",{weekday:"long",day:"numeric",month:"long"});
+  const mail="mailto:chris@chriskelly.it?subject="+encodeURIComponent("Selected Works of Shakespeare: un teatre per a l’abril de 2027");
+  const li=(b,t)=>`<li><b>${b}</b><span>${t}</span></li>`;
+  return folioHero("Per a teatres i programadors","La proposta",`<p class="ftag"><em>Selected Works of Shakespeare.</em> Amor, poder, bogeria i odi en una sola vetllada, que s’estrena el dia de l’aniversari de Shakespeare.</p>${langBtn()}`)+`</section>
+  ${bdayBandCA()}
+  <section class="flyer">
+    <a class="flyerimg" href="#marketing"><img src="${IMG["company-ig"]}" alt="Cartell de Selected Works of Shakespeare: una garlanda de set emblemes sobre la silueta de la companyia" loading="lazy"></a>
+    <div class="flyerinfo">
+      <div class="kicker">El que busquem</div>
+      <p class="clede" style="margin-top:8px">Busquem un teatre a Barcelona per a quatre setmanes de funcions d’una vetllada de Shakespeare en anglès, amb estrena el divendres 23 d’abril de 2027.</p>
+      <dl class="facts">
+        <div><dt>Dates</dt><dd><b>${fd(d0)} – ${fd(d1)} de 2027</b><br><span class="meta">Cada dijous, divendres i dissabte · ${SHOWS.length} funcions · a les 20:00</span></dd></div>
+        <div><dt>Durada</dt><dd>Uns ${total} minuts</dd></div>
+        <div><dt>Muntatge tècnic</dt><dd>Un dia: dijous 22 d’abril, la vigília de l’estrena</dd></div>
+        <div><dt>Idioma</dt><dd>Anglès, amb les paraules del mateix Shakespeare</dd></div>
+        <div><dt>Companyia</dt><dd>${CAST.length} intèrprets, un director i un equip d’escenografia</dd></div>
+        <div><dt>Condicions</dt><dd>Oberts a un lloguer o a un repartiment de taquilla</dd></div>
+        <div><dt>Contractació</dt><dd>Contractes i facturació directament amb Chris Kelly; assegurança a través d’Arms and Legs S.L.</dd></div>
+        <div><dt>Flexibilitat</dt><dd>Podem parlar d’una temporada més curta, de funcions entre setmana o de dates properes</dd></div>
+      </dl>
+      <div class="btns"><a class="btn primary" href="${mail}">Escriu a Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp</a></div>
+    </div>
+  </section>
+  ${pitchDirectorCA()}
+  <h2>L’<em>espectacle</em></h2>
+  <p class="clede">Escenes de set obres de Shakespeare en una sola vetllada. Unes peces de moviment que anomenem mosaics porten la història d’una obra a la següent, de manera que la nit es viu com un sol viatge i no com una sèrie de fragments.</p>
+  <div class="stats"><div class="stat"><b>7</b><span>Obres</span></div><div class="stat"><b>${cnt("scene")}</b><span>Escenes</span></div><div class="stat"><b>${cnt("fight")}</b><span>Combats</span></div><div class="stat"><b>${cnt("mosaic")}</b><span>Mosaics</span></div><div class="stat"><b>≈${total}</b><span>Minuts</span></div></div>
+  <ul class="docl">${li("Amor","El somni d’una nit d’estiu · La feréstega domada · Al vostre gust")}${li("Poder","Macbeth · Ricard III")}${li("Bogeria","Hamlet i Lady Macbeth")}${li("Odi","Coriolà i Ricard III")}</ul>
+  <a class="btn sm" href="#scenes" style="display:inline-block;margin-top:14px">Vegeu l’ordre de les escenes →</a>
+  <h2>La <em>companyia</em></h2>
+  <p class="clede">Un elenc internacional de ${CAST.length} intèrprets professionals establerts a Barcelona, amb experiència en pantalla i escenari que inclou Netflix, HBO, Amazon Prime, la BBC, Paramount+ i el West End de Londres. Assajant des del novembre de 2026: assajos de companyia cada dissabte i treball de text entre setmana.</p>
+  <div class="pteam">
+    <div class="card"><span class="small">Ajudant de producció</span><h3>Jessica Kollande</h3><div class="meta">Actriu i actriu de veu que treballa a Barcelona i Berlín.</div></div>
+    <div class="card"><span class="small">Director d’escenografia</span><h3>Adrian P. Smith</h3><div class="meta">També interpreta Poloni.</div></div>
+    <div class="card"><span class="small">Disseny d’escenografia</span><h3>G Lab Barcelona</h3><div class="meta">Peces lleugeres i portàtils pensades per a un muntatge ràpid.</div></div>
+  </div>
+  <a class="btn sm" href="#cast" style="display:inline-block;margin-top:14px">Coneix la companyia →</a>
+  ${pitchLookCA()}
+  <h2>Per què <em>vendrà</em></h2>
+  <p class="clede">Un repartiment de taquilla compromet les vostres millors dates de cap de setmana, així que us expliquem d’on surt el primer públic.</p>
+  <div class="aud"><div><b>${CAST.length}</b><span>intèrprets, cadascun amb els seus amics, companys i seguidors</span></div><div><b>×&nbsp;10</b><span>convidats cadascun durant la temporada</span></div><div><b>${CAST.length*10}</b><span>entrades abans de cap publicitat</span></div><div><b>${SHOWS.length}</b><span>funcions per repartir-les</span></div></div>
+  <p class="meta" style="margin-top:10px">El preu de l’entrada i l’aforament els fixarem amb vosaltres, i planificarem la venda per omplir la sala.</p>
+  <ul class="docl">
+    ${li("Una data que la ciutat ja celebra","El 23 d’abril és l’aniversari de Shakespeare, Sant Jordi i el Dia Mundial del Llibre. L’estrena ja porta el titular incorporat.")}
+    ${li("Un públic que espera","Barcelona té una gran comunitat de parla anglesa i molt poc Shakespeare representat en anglès.")}
+    ${li("Una campanya a punt","Quatre cartells temàtics, set cartells d’obra i un pla setmanal a les xarxes a partir del gener.")}
+    ${li("Vídeos entre bastidors","Un documental en format curt de Diigima Creative Studio: assajos, coreografia de combat i entrevistes a l’elenc per a Reels i TikTok.")}
+    ${li("Una bona causa","Els beneficis de l’espectacle van a la crida d’emergència per Gaza de Save the Children.")}
+  </ul>
+  <h2>Què <em>necessitem</em></h2>
+  <ul class="docl">
+    ${li("Espai","Un escenari on puguem adaptar la posada en escena, i camerinos per a una companyia de "+CAST.length+".")}
+    ${li("Combat escènic","Tres combats amb espasa ropera i daga, coreografiats i assajats cada setmana, amb notes de seguretat.")}
+    ${li("Boira","Una màquina de fum per a les bruixes, el bosc de nit i l’aigua d’Ofèlia. Revisarem els detectors de fum amb vosaltres.")}
+    ${li("Llum i so","Ja tenim escrita tota la llista d’efectes de llum i so.")}
+    ${li("Escenografia","Només peces lleugeres, com roques d’escuma i una llitera, per muntar i desmuntar ràpidament.")}
+    ${li("Tècnica","Un dia de muntatge tècnic abans de l’estrena.")}
+  </ul>
+  <div class="card pcontact"><img class="pcontactimg" src="headshots/chris-kelly-point.jpg" alt="Chris Kelly assenyalant la càmera" width="480" height="600" loading="lazy"><div class="pcontacttxt"><span class="small">Parlem</span><h3>Chris Kelly, director</h3><div class="meta">Cartells i l’ordre complet de les escenes ja disponibles; imatges d’assaig a partir de mitjan novembre.</div></div>
+    <div class="btns" style="margin:0"><a class="btn primary" href="${mail}">Escriu a Chris</a><a class="btn" href="https://wa.me/34603766507" target="_blank" rel="noopener">WhatsApp +34 603 766 507</a></div></div>`;
 }
 /* ---- header: log in / profile menu ---- */
 function renderNavUser(base){const nu=$("navuser");if(!nu)return;
