@@ -2822,6 +2822,7 @@ function pPitch(){
 }
 /* ---- header: log in / profile menu ---- */
 function renderNavUser(base){const nu=$("navuser");if(!nu)return;
+  if(VENUE){nu.innerHTML="";return}
   if(!me){nu.innerHTML=`<a class="navlogin${base==="me"?" on":""}" href="#me">Log in</a>`;return}
   const src=headSrc(me),crew=CREW.find(c=>c.name===me),role=crew?crew.role:(PARTS.filter(p=>p.actor===me).map(p=>p.name).slice(0,2).join(", ")||"Company");
   const av=src?`<img src="${esc(src)}" alt="" width="32" height="32">`:`<span aria-hidden="true">${esc(initials(me))}</span>`;
