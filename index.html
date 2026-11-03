@@ -707,6 +707,11 @@ details.more summary{min-height:40px;display:flex;align-items:center;cursor:poin
 .mehead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
 .mehead .ckick{margin:0;font-size:13px;font-weight:600;color:#b8b8bd}
 .mebtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.mebtns .btn{flex:1;min-width:160px;min-height:48px}
+.mybk{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.mybk li{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #2a2a2f;border-radius:12px;padding:12px 14px}
+.mybk .bkw{font-weight:700}.mybk .bkm{font-size:14px;opacity:.8;margin-top:2px}
+.mybk .bkby{font-size:13px;opacity:.65;margin-top:4px}
+.mybk .btn{flex:none;min-height:40px}
 .mepieces{margin:14px 0 0;font-size:14.5px;color:#d4d4d8}.mepieces a{color:#fff}
 .mecard input[type=password]{width:100%;min-height:46px;background:#050505;border:1px solid #3a3a40;border-radius:12px;color:#f5f5f4;padding:0 14px;font:500 15px var(--fb)}
 .youare{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px}
@@ -1559,6 +1564,7 @@ html.light{--muted:#424247;--line:#e2e1df}
 :where(html.light) .pickme span{color:#424247}
 :where(html.light) .pickme:hover{border-color:#151513;background:#fcfbfb}
 :where(html.light) .mecard{background:#fdfdfc;border:1px solid #e2e1df}
+:where(html.light) .mybk li{border-color:#e2e1df}
 :where(html.light) .mehead .ckick{color:#424247}
 :where(html.light) .mepieces{color:#27272b}
 :where(html.light) .mepieces a{color:#141414}
@@ -2644,6 +2650,21 @@ function wireCheckIn(root){
   root.querySelectorAll("[data-pickme]").forEach(b=>b.onclick=openPicker);
   root.querySelectorAll("[data-isme]").forEach(b=>b.onclick=()=>{if(b.dataset.isme===me)return;confirmMe(b.dataset.isme)});
   root.querySelectorAll("[data-ck]").forEach(b=>b.onclick=async()=>{b.disabled=true;await setPersonStatus(me,b.dataset.ck)})}
+/* My bookings: upcoming sessions the actor booked or is called to */
+function slotEnd(id){const p=parseSlot(id),[h,m]=endTime(p.time).split(":").map(Number);const e=new Date(p.date);e.setHours(h,m,0,0);return e}
+function myBookings(n){return Object.entries(bookings).filter(([id,b])=>b&&b.type==="scene"&&(b.actor===n||(IT[b.scene]&&IT[b.scene].actors.includes(n)))&&slotEnd(id)>new Date()).sort(([a],[b])=>a<b?-1:1)}
+function canCancelBk(b){return isOwner||(myId&&b.by===myId)||(!!me&&b.actor===me)}
+function myBookingsBlock(n){const list=myBookings(n);
+  return `<section class="mecard" id="mybookings"><div class="mehead"><div><p class="ckick">My bookings</p><h2>${list.length?list.length+" upcoming session"+(list.length>1?"s":""):"No sessions booked"}</h2></div><a class="btn sm" href="#booking">Book a session</a></div>
+  ${list.length?`<ul class="mybk">${list.map(([id,b])=>{const p=parseSlot(id),s=IT[b.scene];
+    return `<li><div><div class="bkw">${fmtDay(p.date)}, ${p.time}–${endTime(p.time)}</div><div class="bkm">${s?esc(s.play+" — "+s.title):"Scene"}${b.focus?" · "+esc(b.focus):""}</div><div class="bkby">${b.actor===n?"Booked by you":"Booked by "+esc(b.actor||"a scene partner")}${s?" · Called: "+esc(s.actors.filter(a=>a!=="Vacant").join(", ")):""} · ${esc(VENUES.bcs.name)}</div></div>${canCancelBk(b)?`<button type="button" class="btn sm danger" data-cbk="${id}">Cancel session</button>`:""}</li>`}).join("")}</ul>`
+  :`<p class="clede" style="margin:10px 0 0">When you book a dramaturgy session, it shows here and you can cancel it.</p>`}</section>`}
+function askCancelBk(id){const b=bookings[id];if(!b)return;const p=parseSlot(id),s=IT[b.scene];
+  $("sheet").innerHTML=`<h3>Cancel this session?</h3><p>${fmtDay(p.date)}, ${p.time}–${endTime(p.time)}${s?"<br>"+esc(s.play+" — "+s.title):""}${s&&s.actors.filter(a=>a!==me&&a!=="Vacant").length?"<br>Let your scene partners know: "+esc(s.actors.filter(a=>a!==me&&a!=="Vacant").join(", ")):""}</p><div class="btns"><button class="btn" id="cx">Keep it</button><button class="btn danger" id="cbkgo">Cancel session</button></div>`;
+  $("sheetbg").classList.add("on");$("cx").onclick=closeSheet;
+  $("cbkgo").onclick=async()=>{$("cbkgo").disabled=true;try{await db.collection("bookings").doc(id).delete();notifyCancel(id,b);toast("Session cancelled");closeSheet();route()}catch(e){toast("Couldn't cancel");$("cbkgo").disabled=false}}}
+function notifyCancel(id,b){try{const p=parseSlot(id),sc=IT[b.scene],when=p.date.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})+", "+p.time+"–"+endTime(p.time);
+  fetch("https://formsubmit.co/ajax/chris@chriskelly.it",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Cancelled dramaturgy session: "+(me||b.actor)+", "+when,_template:"table",_captcha:"false","Cancelled by":me||"","Originally booked by":b.actor||"","When":when,"Scene":sc?(sc.play+": "+sc.title):(b.scene||""),"Cancelled at":new Date().toLocaleString("en-GB"),"Site":"https://shakespeareshow.actor/#booking"})}).catch(()=>{})}catch(e){}}
 function pMe(){
   if(!db)return `<h1>My <em>panel</em></h1><div class="note warn">This page can't save answers in this view yet.</div>`;
   if(!me){
@@ -2671,9 +2692,9 @@ function pMe(){
       <div class="mebtns"><button class="btn primary" id="acc" ${st==="accepted"?"disabled":""}>${st==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" id="dec" ${st!=="accepted"?"disabled":""}>Decline role</button></div>
       <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p></section>`}
   }
-  if(CAST.includes(name))body+=myNotesBlock(name);
+  if(CAST.includes(name))body+=myBookingsBlock(name)+myNotesBlock(name);
   return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Hello, ${esc(name.split(" ")[0])}</h1>
-    <div class="btns" style="margin-top:12px">${notYou}<a class="btn sm" href="#booking">Book a rehearsal</a><a class="btn sm" href="#signout">Log out</a></div></header>${body}</div>`;
+    <div class="btns" style="margin-top:12px">${notYou}${CAST.includes(name)?`<button type="button" class="btn sm" id="jumpbk">My bookings</button>`:""}<a class="btn sm" href="#signout">Log out</a></div></header>${body}</div>`;
 }
 function wireMe(){
   document.querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);route();window.scrollTo(0,0)});
@@ -2681,6 +2702,8 @@ function wireMe(){
   const ud=$("unlockdir");if(ud)ud.onclick=async()=>{const p=$("dirpin").value.trim();if(!p)return;ud.disabled=true;
     try{if(db.isDirector&&await db.isDirector(p)){localStorage.setItem("ss_dir_pin",p);isOwner=true;toast("Editing unlocked");route()}else{toast("That code isn't right");ud.disabled=false}}catch(e){toast("Couldn't check the code");ud.disabled=false}};
   const ld=$("lockdir");if(ld)ld.onclick=()=>{try{localStorage.removeItem("ss_dir_pin")}catch(_){}isOwner=false;toast("Editing locked");route()};
+  const jb=$("jumpbk");if(jb)jb.onclick=()=>$("mybookings").scrollIntoView({behavior:"smooth",block:"start"});
+  document.querySelectorAll("[data-cbk]").forEach(b=>b.onclick=()=>askCancelBk(b.dataset.cbk));
   if(!me||!db)return;const ref=db.collection("cast").doc(ck(me));
   const save=async(patch,msg)=>{try{await ref.update({...patch,at:new Date().toISOString()});toast(msg)}catch(e){toast(e&&e.code==="not_allowed"?"That isn't allowed":"Couldn't save")}};
   document.querySelectorAll("[data-crew]").forEach(b=>b.onclick=()=>{const c=CREW.find(x=>x.name===me);save({[c.field||"status"]:b.dataset.crew},b.dataset.crew==="accepted"?"Accepted, welcome aboard!":"Set back to pending")});
@@ -3547,7 +3570,7 @@ function openSlot(id){
     const s=b.type==="scene"?IT[b.scene]:null,canCancel=isOwner||(myId&&b.by===myId)||(!!me&&b.actor===me&&b.type==="scene");
     sh.innerHTML=`<h3>${s?esc(s.play+" — "+s.title):esc(b.label||(b.company?"Company call":"Unavailable"))}</h3><p>${when}${s?"<br>Called: "+s.actors.join(", ")+(b.focus?"<br>Focus: "+esc(b.focus):"")+(b.actor?"<br>Booked by "+esc(b.actor):""):""}</p><div class="btns">${canCancel?`<button class="btn danger" id="cancel">${b.type==="block"?"Remove":"Cancel booking"}</button>`:""}<button class="btn" id="cx">Close</button></div>`;
     $("cx").onclick=closeSheet;
-    if(canCancel)$("cancel").onclick=async()=>{try{await db.collection("bookings").doc(id).delete();toast("Removed");closeSheet()}catch(e){toast("Couldn't remove")}};
+    if(canCancel)$("cancel").onclick=async()=>{try{await db.collection("bookings").doc(id).delete();if(b.type==="scene")notifyCancel(id,b);toast("Removed");closeSheet()}catch(e){toast("Couldn't remove")}};
   }else{
     const opts=me?bookable().filter(i=>i.actors.includes(me)):bookable();
     sh.innerHTML=`<h3>Book this session</h3><p>${when} with Chris</p>
