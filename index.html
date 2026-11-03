@@ -713,8 +713,14 @@ details.more summary{min-height:40px;display:flex;align-items:center;cursor:poin
 .mybk .bkby{font-size:13px;opacity:.65;margin-top:4px}
 .mybk .btn{flex:none;min-height:40px}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-#sheet .tags label,.tags label{display:inline-flex;align-items:center;gap:6px;border:1px solid #3a3a40;border-radius:999px;padding:6px 12px;font-size:14px;color:inherit;cursor:pointer;margin:0}
-.tags input{accent-color:var(--acc);width:16px!important;height:16px!important;min-height:0!important;margin:0!important;padding:0!important;flex:none;align-self:center}
+#sheet .field .tags label,#sheet .tags label,.tags label{display:inline-flex!important;flex-direction:row!important;margin:0!important;align-items:center;gap:8px;border:1px solid #3a3a40;border-radius:999px;padding:6px 12px;font-size:14px;color:inherit;cursor:pointer;margin:0}
+.tags input{-webkit-appearance:none;appearance:none;width:18px!important;height:18px!important;min-height:0!important;min-width:0!important;margin:0!important;padding:0!important;flex:none;align-self:center;border:1.5px solid #71717a!important;border-radius:5px!important;background:transparent!important;display:grid;place-items:center;cursor:pointer;outline:none!important;box-shadow:none!important;position:static!important}
+.tags input:checked{background:var(--paper,#f5f5f4) center/12px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.6 9.6 3.6' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;border-color:var(--paper,#f5f5f4)!important}
+.tags label:has(input:checked){border-color:#a1a1aa}
+html .tags input:focus,html .tags input:focus-visible{outline:none!important;box-shadow:none!important}
+.tags label:has(input:focus-visible){outline:2px solid var(--paper,#f5f5f4);outline-offset:2px}
+:where(html.light) .tags input{border-color:#a8a29e!important}
+:where(html.light) .tags input:checked{background-color:#151513!important;border-color:#151513!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.6 9.6 3.6' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important}
 .tagnote{font-size:13px;opacity:.7;margin:6px 0 0}
 .mehs{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .mehs .hsimg{width:96px;height:96px;border-radius:50%;overflow:hidden;background:#26262b;display:grid;place-items:center;font-size:28px;font-weight:700;flex:none}
@@ -2701,14 +2707,18 @@ function pMe(){
   const notYou=`<button type="button" class="btn sm" id="notme">Not ${esc(name.split(" ")[0])}? Change name</button>`;
   let body="";
   if(crew&&crew.fixed){const cs=crewStatus(crew);
-    body=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your role</p><h2>${esc(crew.role)}</h2></div></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div></section>${noteComposer()}${appsBlock()}<section hidden>`
+    body=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div></section>${noteComposer()}${appsBlock()}<section hidden>`
       :`<p class="clede" style="margin:0 0 12px">Enter your director code to edit notes, settings and slots from this device.</p><label class="sr" for="dirpin">Director code</label><input type="password" id="dirpin" placeholder="Director code" autocomplete="off"><div class="btns"><button class="btn primary" id="unlockdir">Unlock editing</button></div>`}</section>`;
   }else{
-    if(crew){body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div></div></section>`}
-    if(ps.length){body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your part${ps.length>1?"s":""}</p><h2>${ps.length>1?ps.length+" parts":esc(ps[0].name)}</h2></div></div>
+    if(crew){const cs=crewStatus(crew);body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section>`}
+    if(ps.length){body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your part${ps.length>1?"s":""}</p><h2>${ps.length>1?ps.length+" parts":esc(ps[0].name)}</h2></div>${stBadge(st)}</div>
       <ul class="clist">${ps.map(p=>partRow(p)).join("")}</ul>
       <p class="mepieces"><b>Pieces you're in:</b> ${itemsOf(name).map(i=>`<a href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join(", ")||"none yet"}</p>
-</section>`}
+
+      <div class="mebtns"><button class="btn primary" id="acc" ${st==="accepted"?"disabled":""}>${st==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" id="dec" ${st!=="accepted"?"disabled":""}>Decline role</button></div>
+      <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p></section>`}
   }
   body=myHeadshotBlock(name)+body;
   if(CAST.includes(name))body+=myBookingsBlock(name)+myNotesBlock(name);
