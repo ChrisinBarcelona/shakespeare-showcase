@@ -946,6 +946,9 @@ img[data-full]:focus-visible{outline:3px solid #f5f5f4;outline-offset:3px}
 .songs audio{width:100%;height:40px;color-scheme:dark}
 .props{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:14px}
 .costgrid.one{grid-template-columns:1fr;margin-top:10px}
+.costgrid.pgal{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.costgrid.pgal figcaption{font-size:13px;line-height:1.35;color:#a1a1aa;margin-top:6px}
+:where(html.light) .costgrid.pgal figcaption{color:#57534e}
 .costgrid.one img{aspect-ratio:4/3}
 .vfx{display:flex;gap:18px;align-items:flex-start;margin-top:12px;color:#8cbcff}
 
@@ -2732,6 +2735,28 @@ function pitchDirector(){
     </div>
   </div>`;
 }
+function pitchLook(){
+  const fig=(d,f,alt,cap)=>`<figure><img src="${d}/${f}.jpg" data-full="${d}/${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
+  return `<h2>The <em>look</em></h2>
+  <p class="clede">Costume is symbolic, not period. Everyone is in black or white, and colour and fabric tell the story: the more fabric, the more power. Each play adds one signature: tartan for Macbeth, yellow for the Shrew, green for Oberon's fairies. The fairies wear least of all, with flowers in their hair, because they sit outside the human world.</p>
+  <h3 class="sth">Costume references</h3>
+  <div class="costgrid pgal">
+    ${fig("costume","macbeth","Macbeth: black suit, blue-green tartan sash, gold brooch","Macbeth · black tailoring, tartan, gold that grows as he rises")}
+    ${fig("costume","banquo","Banquo: dark green jacket, red-green tartan sash","Banquo · rougher, warmer cloth")}
+    ${fig("costume","richard","Richard III: floor-length black cloak over a dark suit","Richard III · volume and shadow instead of a crown")}
+    ${fig("costume","witches","The witches: hooded black velvet cloak","The witches · hooded velvet, faces hidden")}
+    ${fig("costume","titania-fairies-1","Titania's fairies: white draped fabric","Titania's fairies · white, draped, a little undone")}
+    ${fig("costume","oberon-fairy","Oberon's fairy: lit wings, moss crown","Oberon's fairies · wings that catch the light")}
+  </div>
+  <h3 class="sth">Staging</h3>
+  <p class="clede">An open stage, shaped by light, haze and a few light pieces. Movement pieces we call mosaics carry us from one play to the next.</p>
+  <div class="costgrid pgal">
+    ${fig("staging","foam-rocks","Foam rocks","Foam rocks · the heath, the wood and Arden")}
+    ${fig("staging","stretcher","Canvas stretcher","A stretcher · Banquo's body becomes Edward's coffin")}
+    ${fig("staging","rapier-dagger","Rapier and dagger","Rapier and dagger · three choreographed fights")}
+    ${fig("staging","smoke-machine","Smoke machine with coloured light","Haze · the witches, the wood at night, Ophelia's water")}
+  </div>`;
+}
 function pPitch(){
   const total=Math.round(ITEMS.reduce((a,i)=>a+(i.mins||0),0)),cnt=t=>ITEMS.filter(i=>i.type===t).length;
   const d0=new Date(SHOWS[0]+"T20:00"),d1=new Date(SHOWS[SHOWS.length-1]+"T20:00"),fd=d=>d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
@@ -2771,6 +2796,7 @@ function pPitch(){
     <div class="card"><span class="small">Set Designer</span><h3>G Lab Barcelona</h3><div class="meta">Light, portable pieces built for a fast get-in.</div></div>
   </div>
   <a class="btn sm" href="#cast" style="display:inline-block;margin-top:14px">Meet the company →</a>
+  ${pitchLook()}
   <h2>Why it will <em>sell</em></h2>
   <p class="clede">A split puts your best weekend slots on the line, so here’s where the first audience comes from.</p>
   <div class="aud"><div><b>${CAST.length}</b><span>actors, each with their own friends, colleagues and followers</span></div><div><b>×&nbsp;10</b><span>guests each across the run</span></div><div><b>${CAST.length*10}</b><span>tickets before any advertising</span></div><div><b>${SHOWS.length}</b><span>performances to spread them over</span></div></div>
