@@ -2154,7 +2154,7 @@ function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem
 function route(){
   let h=(location.hash||"#home").slice(1);if(h==="signout"){signOut();return}
   if(VENUE&&(!VENUE_PAGES.some(([k])=>k===h))){h="pitch";history.replaceState(null,"","#pitch")}
-  const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h;
+  const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h==="mybookings"?"me":h;
   if(VENUE){const nu=$("navuser");if(nu)nu.innerHTML=""}
   if(VENUE)$("nav").innerHTML=VENUE_PAGES.map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${LANG==="ca"?VENUE_PAGES_CA[k]:l}</a>`).join("")+`<a href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027")}" class="navcta">${LANG==="ca"?"Escriu a Chris":"Email Chris"}</a>`;
   else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&(k!=="venues"||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
@@ -2166,7 +2166,7 @@ function route(){
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h==="mybookings"?"me":h]||pHome)();
   wireEdits(v);
   if(VENUE)venueTidy(v);
   {const fs=document.getElementById("fullsite");if(fs)fs.hidden=!VENUE}
@@ -2187,7 +2187,8 @@ function route(){
   if(base==="venues")wireVenues(v);
   if(h==="staging")wireStaging(v);
 }
-window.addEventListener("hashchange",()=>{route();window.scrollTo(0,0)});
+function jumpBookings(){if(location.hash!=="#mybookings")return false;const el=$("mybookings");if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),60);return !!el}
+window.addEventListener("hashchange",()=>{route();if(!jumpBookings())window.scrollTo(0,0)});
 
 /* ================= PAGES ================= */
 function showDate(){const s=(content.settings&&content.settings.openingNight)||DEFAULT_SHOW;return new Date(s)}
@@ -2702,7 +2703,7 @@ function wireMe(){
   const ud=$("unlockdir");if(ud)ud.onclick=async()=>{const p=$("dirpin").value.trim();if(!p)return;ud.disabled=true;
     try{if(db.isDirector&&await db.isDirector(p)){localStorage.setItem("ss_dir_pin",p);isOwner=true;toast("Editing unlocked");route()}else{toast("That code isn't right");ud.disabled=false}}catch(e){toast("Couldn't check the code");ud.disabled=false}};
   const ld=$("lockdir");if(ld)ld.onclick=()=>{try{localStorage.removeItem("ss_dir_pin")}catch(_){}isOwner=false;toast("Editing locked");route()};
-  const jb=$("jumpbk");if(jb)jb.onclick=()=>$("mybookings").scrollIntoView({behavior:"smooth",block:"start"});
+  const jb=$("jumpbk");if(jb)jb.onclick=()=>{if(location.hash==="#mybookings")jumpBookings();else location.hash="#mybookings"};
   document.querySelectorAll("[data-cbk]").forEach(b=>b.onclick=()=>askCancelBk(b.dataset.cbk));
   if(!me||!db)return;const ref=db.collection("cast").doc(ck(me));
   const save=async(patch,msg)=>{try{await ref.update({...patch,at:new Date().toISOString()});toast(msg)}catch(e){toast(e&&e.code==="not_allowed"?"That isn't allowed":"Couldn't save")}};
@@ -2988,7 +2989,7 @@ function renderNavUser(base){const nu=$("navuser");if(!nu)return;
   const av=src?`<img src="${esc(src)}" alt="" width="32" height="32">`:`<span aria-hidden="true">${esc(initials(me))}</span>`;
   nu.innerHTML=`<button type="button" class="navav${base==="me"?" on":""}" id="navav" aria-haspopup="menu" aria-expanded="false" aria-controls="navmenu" aria-label="${esc(me)}: profile menu"><span class="avc">${av}</span><span class="avn">${esc(me.split(" ")[0])}</span><svg class="avch" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
   <div class="navmenu" id="navmenu" role="menu" hidden><div class="nmhead"><span class="avc lg">${av}</span><div><b>${esc(me)}</b><span>${esc(role)}</span></div></div>
-    <a role="menuitem" href="#me">My profile</a>${isOwner?`<a role="menuitem" href="#venues">Venues</a>`:""}<a role="menuitem" href="#signout" class="nmout">Log out</a></div>`;
+    <a role="menuitem" href="#me">My profile</a>${CAST.includes(me)?`<a role="menuitem" href="#mybookings">My bookings</a>`:""}${isOwner?`<a role="menuitem" href="#venues">Venues</a>`:""}<a role="menuitem" href="#signout" class="nmout">Log out</a></div>`;
   const b=$("navav"),m=$("navmenu");
   const close=()=>{m.hidden=true;b.setAttribute("aria-expanded","false")};
   b.onclick=e=>{e.stopPropagation();const open=m.hidden;m.hidden=!open;b.setAttribute("aria-expanded",String(open));if(open){const f=m.querySelector("a");if(f)f.focus()}};
