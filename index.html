@@ -708,6 +708,7 @@ details.more summary{min-height:40px;display:flex;align-items:center;cursor:poin
 .mehead .ckick{margin:0;font-size:13px;font-weight:600;color:#b8b8bd}
 .mebtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.mebtns .btn{flex:1;min-width:160px;min-height:48px}
 .mybk{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.relrow{margin-top:18px;padding-top:14px;border-top:1px solid #2a2a2f}.relrow .small{margin:0 0 8px;color:#a1a1aa}.relrow .btns{margin-top:0}.relnote{margin-top:12px;color:#d58b8b}#sheet .relok{margin:14px 0 6px}
 .mybk li{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #2a2a2f;border-radius:12px;padding:12px 14px}
 .mybk .bkw{font-weight:700}.mybk .bkm{font-size:14px;opacity:.8;margin-top:2px}
 .mybk .bkby{font-size:13px;opacity:.65;margin-top:4px}
@@ -1578,7 +1579,7 @@ html.light{--muted:#424247;--line:#e2e1df}
 :where(html.light) .pickme span{color:#424247}
 :where(html.light) .pickme:hover{border-color:#151513;background:#fcfbfb}
 :where(html.light) .mecard{background:#fdfdfc;border:1px solid #e2e1df}
-:where(html.light) .mybk li{border-color:#e2e1df}
+:where(html.light) .mybk li{border-color:#e2e1df}:where(html.light) .relrow{border-top-color:#e2e1df}:where(html.light) .relrow .small{color:#5c5a56}:where(html.light) .relnote{color:#853636}
 :where(html.light) .tags label{border-color:#d9d7d5}
 :where(html.light) .mehs .hsimg{background:#ecebe9}
 :where(html.light) .mehead .ckick{color:#424247}
@@ -2055,6 +2056,23 @@ const SCRIPT_ORDER=(()=>{const seen=new Set(),a=[];ITEMS.forEach(i=>{const k=SCR
 function scriptPlay(k){const p=SCRIPTS[k].play;return p.includes("Macbeth")?"Macbeth":p.includes("Hamlet")?"Hamlet":p.includes("Midsummer")?"A Midsummer Night's Dream":p.includes("Shrew")?"The Taming of the Shrew":p.includes("Richard")?"Richard III":p.includes("Coriolanus")?"Coriolanus":"As You Like It"}
 const ROMANS=["","I","II","III","IV","V"];
 function scriptLabel(k){const x=SCRIPTS[k];return `${ABBR[scriptPlay(k)]||scriptPlay(k)} · Act ${x.act}, Scene ${x.scene}`}
+/* ---------- Declined parts: an actor gives up a part and it becomes Vacant everywhere ---------- */
+const PART_SPEAKERS={macbeth:["MACBETH"],aufidius:["AUFIDIUS"],banquo:["BANQUO"],hamlet:["HAMLET"],"lady-macbeth":["LADY MACBETH"],"witch-1":["First Witch"],kate:["KATHARINA"],hermia:["HERMIA","HERNIA"],ophelia:["OPHELIA"],"witch-2":["Second Witch"],laertes:["LAERTES"],gertrude:["QUEEN GERTRUDE"],claudius:["KING CLAUDIUS"],coriolanus:["CORIOLANUS"],"witch-3":["Third Witch"],seyton:["SEYTON"],helena:["HELENA"],anne:["LADY ANNE"],polonius:["LORD POLONIUS"],horatio:["HORATIO"],demetrius:["DEMETRIUS"],lysander:["LYSANDER"],petruchio:["PETRUCHIO"],richard:["GLOUCESTER"],gravedigger:["First Clown"],puck:["PUCK"],oberon:["OBERON"],titania:["TITANIA"],amiens:["AMIENS"],fairy:["Fairy","MUSTARDSEED"],"duke-senior":["DUKE SENIOR"]};
+const ORIG_CAST={parts:PARTS.map(p=>p.actor),chars:CHARS.map(c=>c.actor),items:ORDER.map(o=>o.actors?[...o.actors]:null),speak:{...SPEAKER_ACTOR}};
+let releases={};
+function applyReleases(){
+  PARTS.forEach((p,i)=>p.actor=ORIG_CAST.parts[i]);CHARS.forEach((c,i)=>c.actor=ORIG_CAST.chars[i]);
+  ORDER.forEach((o,i)=>{if(ORIG_CAST.items[i])o.actors=[...ORIG_CAST.items[i]]});Object.assign(SPEAKER_ACTOR,ORIG_CAST.speak);
+  const gone=PARTS.filter((p,i)=>{const r=releases[p.id];return r&&r.actor===ORIG_CAST.parts[i]&&p.actor!=="Vacant"});
+  if(!gone.length)return;
+  const was=new Map(gone.map(p=>[p,p.actor]));
+  gone.forEach(p=>{p.actor="Vacant";(PART_SPEAKERS[p.id]||[]).forEach(k=>{if(k in SPEAKER_ACTOR)SPEAKER_ACTOR[k]="Vacant"})});
+  CHARS.forEach(c=>{const ps=PARTS.filter(p=>p.ch===c.id);if(ps.length)c.actor=ps.map(p=>p.actor).join(", ")});
+  ORDER.forEach(o=>{if(!o.actors)return;const chars=o.chars||[];
+    gone.forEach(g=>{const x=was.get(g);if(!chars.includes(g.ch))return;
+      if(PARTS.some(p=>p.actor===x&&chars.includes(p.ch)))return;/* still plays someone else in this piece */
+      const j=o.actors.indexOf(x);if(j>=0)o.actors[j]="Vacant"})});
+}
 function uncast(k){const set=new Set();SCRIPTS[k].items.forEach(it=>{if(it.s)it.s.split(" / ").forEach(n=>{if(!SPEAKER_ACTOR[n]&&!/^(ALL|All|Danes|GENTLEMEN)$/.test(n))set.add(n)})});return [...set]}
 function scriptWords(k){let n=0;SCRIPTS[k].items.forEach(it=>{if(it.l&&!it.cut)it.l.forEach(l=>{n+=l.replace(/\[.*?\]/g,"").split(/\s+/).filter(Boolean).length})});return n}
 let attendance={};
@@ -2708,7 +2726,7 @@ function pMe(){
   let body="";
   if(crew&&crew.fixed){const cs=crewStatus(crew);
     body=`<section class="mecard"><div class="mehead"><div><p class="ckick">Your role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
-      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div></section>${noteComposer()}${appsBlock()}<section hidden>`
+      <div class="mebtns"><button class="btn primary" data-crew="accepted" ${cs==="accepted"?"disabled":""}>${cs==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" data-crew="pending" ${cs!=="accepted"?"disabled":""}>Decline role</button></div></section><section class="mecard"><h2>Director tools</h2>${isOwner?`<p class="clede" style="margin:0">Editing is unlocked on this device: notes, settings and blocking slots.</p><div class="btns"><button class="btn sm" id="lockdir">Lock editing on this device</button></div></section>${releasesBlock()}${noteComposer()}${appsBlock()}<section hidden>`
       :`<p class="clede" style="margin:0 0 12px">Enter your director code to edit notes, settings and slots from this device.</p><label class="sr" for="dirpin">Director code</label><input type="password" id="dirpin" placeholder="Director code" autocomplete="off"><div class="btns"><button class="btn primary" id="unlockdir">Unlock editing</button></div>`}</section>`;
   }else{
     if(crew){const cs=crewStatus(crew);body+=`<section class="mecard"><div class="mehead"><div><p class="ckick">Crew role</p><h2>${esc(crew.role)}</h2></div>${stBadge(cs)}</div>
@@ -2718,13 +2736,39 @@ function pMe(){
       <p class="mepieces"><b>Pieces you're in:</b> ${itemsOf(name).map(i=>`<a href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join(", ")||"none yet"}</p>
 
       <div class="mebtns"><button class="btn primary" id="acc" ${st==="accepted"?"disabled":""}>${st==="accepted"?"✓ Accepted":"Accept role"}</button><button class="btn" id="dec" ${st!=="accepted"?"disabled":""}>Decline role</button></div>
-      <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p></section>`}
+      <p class="cfoot" style="margin-top:12px">Your answer shows on The Company page for everyone.</p>
+      <div class="relrow"><p class="small">Can't do a part any more? You can give it up here. It becomes vacant and is added to the vacancies list.</p><div class="btns">${ps.map(p=>`<button type="button" class="btn sm" data-rel="${esc(p.id)}">Decline ${esc(p.name)}</button>`).join("")}</div></div>${myReleasedNote(name)}</section>`}
+    else if(myReleasedNote(name)){body+=`<section class="mecard">${myReleasedNote(name)}</section>`}
   }
   body=myHeadshotBlock(name)+body;
   if(CAST.includes(name))body+=myBookingsBlock(name)+myNotesBlock(name);
   return `<div class="cwrap"><header class="chero"><p class="ckick">My panel</p><h1>Hello, ${esc(name.split(" ")[0])}</h1>
     <div class="btns" style="margin-top:12px">${notYou}${CAST.includes(name)?`<button type="button" class="btn sm" id="jumpbk">My bookings</button>`:""}<a class="btn sm" href="#signout">Log out</a></div></header>${body}</div>`;
 }
+function myReleasedNote(n){const rs=Object.values(releases).filter(r=>r&&r.actor===n);
+  return rs.length?`<p class="cfoot relnote">You gave up ${esc(rs.map(r=>r.name).join(", "))}. If that was a mistake, talk to Chris.</p>`:""}
+function releasesBlock(){const rs=Object.entries(releases).filter(([,r])=>r&&r.actor);
+  return `<section class="mecard"><h2>Declined parts</h2>${rs.length?`<p class="clede" style="margin:0 0 12px">These parts were given up by the actor and now show as vacant. Restore puts the actor back in the part everywhere on the site.</p><ul class="mybk">${rs.map(([id,r])=>`<li><div><b>${esc(r.name||id)}</b><div class="meta">Declined by ${esc(r.actor)}${r.at?" · "+new Date(r.at).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):""}</div></div><button type="button" class="btn sm" data-restore="${esc(id)}">Restore to ${esc(r.actor.split(" ")[0])}</button></li>`).join("")}</ul>`:`<p class="clede" style="margin:0">No one has declined a part.</p>`}</section>`}
+function askRelease(id){const p=PARTS.find(x=>x.id===id);if(!p||p.actor!==me)return;
+  const others=PARTS.filter(x=>x.actor===me&&x.id!==id),pieces=ITEMS.filter(i=>(i.chars||[]).includes(p.ch)&&(i.actors||[]).includes(me));
+  $("sheet").innerHTML=`<h3>Decline ${esc(p.name)}?</h3>
+    <p><b>This can't be undone.</b> ${esc(p.name)} becomes vacant straight away, is added to the vacancies list, and Chris is told by email.</p>
+    <p>${others.length?"You keep "+esc(others.map(x=>x.name).join(", "))+".":"This is your only part."}${pieces.length?" Any upcoming dramaturgy sessions you booked for "+esc(pieces.map(i=>i.title).join(" and "))+" will be cancelled.":""}</p>
+    <div class="tags relok"><label><input type="checkbox" id="relok"> I understand this is permanent</label></div>
+    <div class="btns"><button class="btn" id="cx">Keep my part</button><button class="btn danger" id="relgo" disabled>Decline part</button></div>`;
+  $("sheetbg").classList.add("on");$("cx").onclick=closeSheet;$("relok").onchange=e=>{$("relgo").disabled=!e.target.checked};
+  $("relgo").onclick=async()=>{$("relgo").disabled=true;
+    try{const rec={part:id,name:p.name,actor:me,at:new Date().toISOString(),dev:deviceId};
+      await db.collection("releases").doc(id).create(rec);
+      releases={...releases,[id]:rec};applyReleases();await tidyBookingsAfterRelease(rec.actor);notifyRelease(p,rec.actor);
+      closeSheet();toast(p.name+" is now vacant");route()}
+    catch(e){toast(e&&e.code==="exists"?"That part has already been declined":e&&e.code==="not_allowed"?"That isn't allowed":"Couldn't save. Try again");$("relgo").disabled=false}}}
+async function tidyBookingsAfterRelease(x){const now=new Date();
+  for(const [id,b] of Object.entries(bookings)){const s=b&&IT[b.scene];if(!s||b.type!=="scene"||slotEnd(id)<now||s.actors.includes(x))continue;
+    try{if(b.actor===x){await db.collection("bookings").doc(id).delete();notifyCancel(id,b)}
+      else if(Array.isArray(b.with)&&b.with.includes(x))await db.collection("bookings").doc(id).update({with:b.with.filter(a=>a!==x)})}catch(_){}}}
+function notifyRelease(p,actor){try{const still=PARTS.filter(x=>x.actor===actor).map(x=>x.name);
+  fetch("https://formsubmit.co/ajax/chris@chriskelly.it",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"Part declined: "+actor+" gives up "+p.name,_template:"table",_captcha:"false","Actor":actor,"Part given up":p.name,"Play":playOf(p),"Still plays":still.join(", ")||"No parts left","When":new Date().toLocaleString("en-GB"),"To undo":"Log in as Chris on the site, unlock editing, then use Restore under Declined parts","Site":"https://shakespeareshow.actor/#me"})}).catch(()=>{})}catch(e){}}
 function wireMe(){
   document.querySelectorAll("[data-me]").forEach(b=>b.onclick=()=>{setMe(b.dataset.me);route();window.scrollTo(0,0)});
   const nm=$("notme");if(nm)nm.onclick=()=>{setMe("");route();window.scrollTo(0,0)};
@@ -2736,6 +2780,9 @@ function wireMe(){
   document.querySelectorAll("[data-ebk]").forEach(b=>b.onclick=()=>openSlot(b.dataset.ebk));
   document.querySelectorAll("[data-obk]").forEach(x=>x.onclick=()=>{const id=x.dataset.obk,b=bookings[id];if(b)setComing(id,comingOf(b).filter(a=>a!==me&&a!==b.actor),"You're off this session")});
   const hf=$("hsfile");if(hf)hf.onchange=async()=>{const f=hf.files[0];if(!f)return;toast("Uploading your headshot…");try{await saveMyHeadshot(me,f);toast("Headshot updated ✓");route()}catch(e){toast(e&&e.code==="not_allowed"?"Photo uploads aren't switched on yet. Ask Chris.":e&&e.code==="bad_image"?"Couldn't read that image. Try a JPG or PNG.":"Upload failed")}hf.value=""};
+  document.querySelectorAll("[data-rel]").forEach(b=>b.onclick=()=>askRelease(b.dataset.rel));
+  document.querySelectorAll("[data-restore]").forEach(b=>b.onclick=async()=>{const id=b.dataset.restore,r=releases[id];b.disabled=true;
+    try{await db.collection("releases").doc(id).delete();const n={...releases};delete n[id];releases=n;applyReleases();toast((r&&r.name||"Part")+" restored to "+(r&&r.actor||"the actor"));route()}catch(e){toast(e&&e.code==="not_allowed"?"Unlock editing first":"Couldn't restore");b.disabled=false}});
   if(!me||!db)return;const ref=db.collection("cast").doc(ck(me));
   const save=async(patch,msg)=>{try{await ref.update({...patch,at:new Date().toISOString()});toast(msg)}catch(e){toast(e&&e.code==="not_allowed"?"That isn't allowed":"Couldn't save")}};
   document.querySelectorAll("[data-crew]").forEach(b=>b.onclick=()=>{const c=CREW.find(x=>x.name===me);save({[c.field||"status"]:b.dataset.crew},b.dataset.crew==="accepted"?"Accepted, welcome aboard!":"Set back to pending")});
@@ -3682,7 +3729,7 @@ function rerender(){if(document.querySelector(".sheetbg.on"))return;if([...docum
   if(!db){clearTimeout(timer);loaded=true;route();return}
   route();
   const sub=(col,setter)=>db.collection(col).onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{if(d.exists)m[d.id]=d.data()});setter(m);if(!snap.metadata.fromCache){loaded=true;clearTimeout(timer)}rerender()},err=>{clearTimeout(timer);loaded=true;toast("Some data couldn't load ("+err.code+")")});
-  sub("bookings",m=>bookings=m);sub("cast",m=>{castDocs=m;autoMe()});sub("content",m=>content=m);sub("attendance",m=>attendance=m);sub("actornotes",m=>actorNotes=m);
+  sub("bookings",m=>bookings=m);sub("cast",m=>{castDocs=m;autoMe()});sub("releases",m=>{releases=m;applyReleases()});sub("content",m=>content=m);sub("attendance",m=>attendance=m);sub("actornotes",m=>actorNotes=m);
 })();
 
 /* ---- poster viewer ---- */
