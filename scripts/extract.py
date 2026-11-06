@@ -66,6 +66,14 @@ CUTS = [('ham31', 'To be or not to be'),
         ('rom53', 'Go with me'), ('rom53', 'I dare not'), ('rom53', 'Stay then'), ('rom53', 'As I did sleep'),
         ('rom53', 'Lead boy')]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
+# Line-level cuts inside a speech: (scene, first words cut, last words cut). The cut lines stay
+# visible, marked Cut, and the rest of the speech carries on.
+LINE_CUTS = [
+    ('mnd21', 'Thorough flood, thorough fire;', 'Our queen and all her elves come here anon.'),
+    ('mnd21', 'She never had so sweet a changeling.', 'Creep into acorn cups and hide them there.'),
+    ('mnd21', 'Are not you he\nThat frights', 'and they shall have good luck.'),
+    ('mnd21', 'I jest to Oberon and make him smile', 'A merrier hour was never wasted there.'),
+]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 
@@ -161,6 +169,21 @@ for k, (f, a, s, loc, start, end) in WANT.items():
             text = '\n'.join(it['l'])
             head, tail = text.split(keep, 1)
             items[j:j + 1] = [dict(it, l=head.strip().split('\n'), cut=True), {'s': it['s'], 'l': (keep + tail).split('\n'), 'n': None}]
+    for ck, start, end in LINE_CUTS:
+        if ck == k:
+            j = next(j for j, it in enumerate(items) if it.get('l') and start in '\n'.join(it['l']))
+            it = items[j]
+            text = '\n'.join(it['l'])
+            a = text.index(start)
+            b = text.index(end, a) + len(end)
+            head, mid, tail = text[:a].strip(), text[a:b].strip(), text[b:].strip()
+            parts = []
+            if head:
+                parts.append(dict(it, l=head.split('\n')))
+            parts.append({'s': it['s'], 'l': mid.split('\n'), 'n': None if head else it.get('n'), 'cut': True})
+            if tail:
+                parts.append({'s': it['s'], 'l': tail.split('\n'), 'n': None})
+            items[j:j + 1] = parts
     for ck, words in CUTS:
         if ck == k:
             hit = [it for it in items if it.get('l') and it['l'][0].replace(',', '').startswith(words)]
