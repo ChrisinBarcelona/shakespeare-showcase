@@ -3385,8 +3385,11 @@ function pScript(k){
     <span class="small" style="margin-top:12px">Our cast in this scene</span>${castHere.map(n=>`<span class="pill">${esc(n)} — ${esc(SPEAKER_ACTOR[n])}</span>`).join("")}
     ${un.length?`<span class="small" style="margin-top:12px;color:var(--acc)">Speaking roles not yet cast: cut or reassign</span>${un.map(n=>`<span class="pill warnpill">${esc(n)}</span>`).join("")}`:""}</div>
   <article class="script">${x.items.map(it=>it.d?`<p class="sd">${esc(it.d)}</p>`:`<div class="speech ${it.s.split(" / ").some(n=>SPEAKER_ACTOR[n])?"ours":"theirs"}${it.cut?" cut":""}"><div class="spk">${esc(it.s)}${it.cut?` <em class="cuttag">Cut</em>`:""}${it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).length?` <span>${esc(it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).join(", "))}</span>`:""}</div>${it.l.map(l=>/^\[.*\]$/.test(l)?`<p class="sd in">${esc(l.slice(1,-1))}</p>`:`<p>${esc(l)}</p>`).join("")}</div>`).join("")}</article>
-  <div class="btns"><a class="btn" href="${backTo}">${backL}</a><button class="btn primary" data-dl-pdf="${k}">Download PDF</button></div>`;
+  <div class="btns"><a class="btn" href="${backTo}">${backL}</a><button class="btn primary" data-dl-pdf="${k}">Download PDF</button>${scriptNext(k)}</div>`;
 }
+// Next script in running order, so you can read straight through the show
+function scriptNext(k){const j=SCRIPT_ORDER.indexOf(k),nk=SCRIPT_ORDER[j+1];if(!nk)return `<a class="btn" href="#scenes">All scenes →</a>`;
+  const ni=ITEMS.find(i=>SCRIPT_OF[i.id]===nk);return `<a class="btn" href="#script-${nk}">Next: ${esc(ni?ni.title:SCRIPTS[nk].play)} →</a>`}
 function scriptText(k){const x=SCRIPTS[k];let t=`${x.play}\nAct ${x.act}, Scene ${x.scene}. ${x.title.replace(/^SCENE [IVX]+\.\s*/,"")}\nA CHRIS KELLY PRODUCTION · Selected Works of Shakespeare\nText: The Folger Shakespeare, ed. Barbara Mowat and Paul Werstine (Folger Shakespeare Library, CC BY-NC). Folger lines ${x.first}–${x.last}. ${x.url}\n\n`;
   x.items.forEach(it=>{if(it.d)t+=`    [${it.d}]\n\n`;else{const a=it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean);t+=`${it.cut?"[CUT] ":""}${it.s}${a.length?" ("+a.join(", ")+")":""}\n${it.l.map(l=>"    "+l).join("\n")}\n\n`}});return t}
 let _jspdf=null;
