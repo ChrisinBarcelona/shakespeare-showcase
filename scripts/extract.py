@@ -47,9 +47,15 @@ WANT = {
     # Our cut: Benvolio's "Good morrow, cousin" (1.1.163) to the end of the scene (1.1.247)
     'rom11': ('romeo-and-juliet', 1, 1, 'Verona. A public place.', '1.1.163', None),
     'rom13': ('romeo-and-juliet', 1, 3, "A room in Capulet's house.", None, None),
+    # Our cut: Mercutio's "Nay, gentle Romeo" (1.4.13) to Benvolio's "Strike, drum" (1.4.121), with Chris's internal cuts below
+    'rom14': ('romeo-and-juliet', 1, 4, 'A street.', '1.4.13', None),
 }
 # Speeches flagged as cut in our version: (id, first words of the speech)
-CUTS = [('ham31', 'To be or not to be')]
+CUTS = [('ham31', 'To be or not to be'),
+        ('rom14', 'And to sink in it'), ('rom14', 'Is love a tender thing'), ('rom14', 'If love be rough with you'),
+        ('rom14', 'Come knock and enter'), ('rom14', 'A torch for me')]
+# Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
+SPLITS = [('rom14', 'Tut', 'Come, we burn daylight')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 
 
@@ -137,6 +143,13 @@ for k, (f, a, s, loc, start, end) in WANT.items():
                 continue
             items.append({'s': sp, 'l': lines, 'n': first})
             final = last
+    for ck, words, keep in SPLITS:
+        if ck == k:
+            j = next(j for j, it in enumerate(items) if it.get('l') and it['l'][0].startswith(words))
+            it = items[j]
+            text = '\n'.join(it['l'])
+            head, tail = text.split(keep, 1)
+            items[j:j + 1] = [dict(it, l=head.strip().split('\n'), cut=True), {'s': it['s'], 'l': (keep + tail).split('\n'), 'n': None}]
     for ck, words in CUTS:
         if ck == k:
             hit = [it for it in items if it.get('l') and it['l'][0].replace(',', '').startswith(words)]
