@@ -46,6 +46,7 @@ WANT = {
     'ayl21': ('as-you-like-it', 2, 1, 'The Forest of Arden.', None, None),
     # Our cut: Benvolio's "Good morrow, cousin" (1.1.163) to the end of the scene (1.1.247)
     'rom11': ('romeo-and-juliet', 1, 1, 'Verona. A public place.', '1.1.163', None),
+    'rom13': ('romeo-and-juliet', 1, 3, "A room in Capulet's house.", None, None),
 }
 # Speeches flagged as cut in our version: (id, first words of the speech)
 CUTS = [('ham31', 'To be or not to be')]
