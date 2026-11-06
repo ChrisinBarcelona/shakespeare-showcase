@@ -2,7 +2,7 @@
 
 **A CHRIS KELLY PRODUCTION** · Barcelona, venue to be announced · Opens Friday 23 April 2027 (Shakespeare's birthday), then Thursdays–Saturdays to 15 May · Curtain 20:00
 
-**Love · Power · Madness · Hate.** The production site for an evening of scenes from seven Shakespeare plays: the running order, the scripts, the company, Saturday rehearsals, rehearsal booking, the marketing materials and the pitch for theatres (`#pitch`).
+**Love · Power · Madness · Hate.** The production site for an evening of scenes from eight Shakespeare plays: the running order, the scripts, the company, Saturday rehearsals, rehearsal booking, the marketing materials and the pitch for theatres (`#pitch`).
 
 Live at [shakespeareshow.actor](https://shakespeareshow.actor) (and chrisinbarcelona.github.io/shakespeare-showcase).
 
@@ -13,7 +13,7 @@ Live at [shakespeareshow.actor](https://shakespeareshow.actor) (and chrisinbarce
 | Official title (tickets, venue listing, press, programme) | **Selected Works of Shakespeare** |
 | Campaign titles (posters, social) | **The Love / The Power / The Madness / The Hate of Shakespeare** |
 
-Themes by play: Love = Midsummer, Shrew, As You Like It · Power = Macbeth, Richard III · Madness = Hamlet (and Lady Macbeth) · Hate = Coriolanus (and Richard III).
+Themes by play: Love = Midsummer, Shrew, As You Like It, Romeo and Juliet · Power = Macbeth, Richard III · Madness = Hamlet (and Lady Macbeth) · Hate = Coriolanus (and Richard III).
 
 ## What's here
 
@@ -24,8 +24,8 @@ Themes by play: Love = Midsummer, Shrew, As You Like It · Power = Macbeth, Rich
 | `posters/thumb/` | Small versions used on the site's Marketing page. |
 | `posters/source/` | The poster generator (`gen.py`) and renderer (`shoot.js`, Playwright). Same emblems and colours as before; type and layout match the website (Inter Tight / Inter, left-aligned two-tone titles, colour tags). Run: `python3 gen.py <fonts dir> build && node shoot.js build`. Fonts: Inter and Inter Tight from @fontsource. |
 | `supabase/setup.sql` | Database tables, access rules and activity log (the director code is set privately). |
-| `scripts/scenes.json` | Full text of every scene used, taken from the public-domain Moby Shakespeare (via okfn/shakespeare-material). |
-| `scripts/extract.py` | The script that extracts those scenes. |
+| `scripts/scenes.json` | Text of every scene used, from **The Folger Shakespeare** (Folger Shakespeare Library, ed. Mowat & Werstine, CC BY-NC), our text of record. Each scene carries its Folger line range and a link to the scene on folger.edu. |
+| `scripts/extract.py` | Extracts those scenes from the Folger TEI files (as packaged by DraCor: `git clone https://github.com/dracor-org/shakedracor`, then `python3 extract.py shakedracor/tei scenes.json`). Excerpts (Hamlet 3.1, Romeo and Juliet 1.1) and cut speeches are set at the top of the file. |
 
 ## Key details
 
