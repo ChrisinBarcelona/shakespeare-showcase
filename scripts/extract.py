@@ -49,6 +49,8 @@ WANT = {
     'rom13': ('romeo-and-juliet', 1, 3, "A room in Capulet's house.", None, None),
     # Our cut: Mercutio's "Nay, gentle Romeo" (1.4.13) to Benvolio's "Strike, drum" (1.4.121), with Chris's internal cuts below
     'rom14': ('romeo-and-juliet', 1, 4, 'A street.', '1.4.13', None),
+    # The balcony scene ("O Romeo, Romeo, wherefore art thou Romeo?"), whole scene for now
+    'rom22': ('romeo-and-juliet', 2, 2, "Capulet's orchard.", None, None),
 }
 # Speeches flagged as cut in our version: (id, first words of the speech)
 CUTS = [('ham31', 'To be or not to be'),
