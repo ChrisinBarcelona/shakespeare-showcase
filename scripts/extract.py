@@ -27,7 +27,7 @@ PLAY = {
 WANT = {
     'mac13': ('macbeth', 1, 3, 'A heath near Forres.', None, None),
     'mac32': ('macbeth', 3, 2, 'The palace.', None, None),
-    'mac41': ('macbeth', 4, 1, 'A cavern. In the middle, a boiling cauldron.', None, None),
+    'mac11': ('macbeth', 1, 1, 'An open place.', None, None),
     'mac55': ('macbeth', 5, 5, 'Dunsinane. Within the castle.', None, None),
     'ham13': ('hamlet', 1, 3, "A room in Polonius' house.", None, None),
     # Our cut: "To be or not to be" (3.1.64) to the end of Ophelia's "O, what a noble mind" (3.1.174)
