@@ -51,13 +51,20 @@ WANT = {
     'rom14': ('romeo-and-juliet', 1, 4, 'A street.', '1.4.13', None),
     # The balcony scene ("O Romeo, Romeo, wherefore art thou Romeo?"), whole scene for now
     'rom22': ('romeo-and-juliet', 2, 2, "Capulet's orchard.", None, None),
+    # Our cut: the tomb, from Romeo's "How oft when men are at the point of death" (5.3.88)
+    # to Juliet's death (5.3.175); Friar Lawrence's scene with Balthasar is marked cut
+    'rom53': ('romeo-and-juliet', 5, 3, 'A churchyard; in it a monument belonging to the Capulets.', '5.3.74', '5.3.175.1'),
 }
 # Speeches flagged as cut in our version: (id, first words of the speech)
 CUTS = [('ham31', 'To be or not to be'),
         ('rom14', 'And to sink in it'), ('rom14', 'Is love a tender thing'), ('rom14', 'If love be rough with you'),
-        ('rom14', 'Come knock and enter'), ('rom14', 'A torch for me')]
+        ('rom14', 'Come knock and enter'), ('rom14', 'A torch for me'),
+        ('rom53', 'Saint Francis'), ('rom53', 'Here’s one'), ('rom53', 'Bliss be upon you'), ('rom53', 'It doth so'),
+        ('rom53', 'Who is it'), ('rom53', 'Romeo.'), ('rom53', 'How long hath'), ('rom53', 'Full half'),
+        ('rom53', 'Go with me'), ('rom53', 'I dare not'), ('rom53', 'Stay then'), ('rom53', 'As I did sleep'),
+        ('rom53', 'Lead boy')]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
-SPLITS = [('rom14', 'Tut', 'Come, we burn daylight')]
+SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 
 
