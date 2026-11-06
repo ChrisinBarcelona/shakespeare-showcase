@@ -50,6 +50,8 @@ WANT = {
     # Our cut: Mercutio's "Nay, gentle Romeo" (1.4.13) to Benvolio's "Strike, drum" (1.4.121), with Chris's internal cuts below
     'rom14': ('romeo-and-juliet', 1, 4, 'A street.', '1.4.13', None),
     # The balcony scene ("O Romeo, Romeo, wherefore art thou Romeo?"), whole scene for now
+    # Source for the party mosaic: the shared sonnet and the kiss (1.5.104 to 1.5.122)
+    'rom15': ('romeo-and-juliet', 1, 5, "A hall in Capulet's house.", '1.5.104', '1.5.122'),
     'rom22': ('romeo-and-juliet', 2, 2, "Capulet's orchard.", None, None),
     # Our cut: the tomb, from Romeo's "How oft when men are at the point of death" (5.3.88)
     # to Juliet's death (5.3.175); Friar Lawrence's scene with Balthasar is marked cut
