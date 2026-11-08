@@ -100,6 +100,8 @@ LINE_CUTS = [
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
+# Everything from the speech beginning with these words to the end of the scene is cut
+RANGE_FROM = [('shr21', 'Now, Signior Petruchio')]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 
@@ -216,6 +218,13 @@ for k, (f, a, s, loc, start, end) in WANT.items():
                 it['cut'] = True
                 if it.get('l') and it['l'][0].startswith(last):
                     break
+    for ck, first in RANGE_FROM:
+        if ck == k:
+            on = False
+            for it in items:
+                on = on or bool(it.get('l') and it['l'][0].startswith(first))
+                if on:
+                    it['cut'] = True
     for ck, words in CUTS:
         if ck == k:
             hit = [it for it in items if it.get('l') and it['l'][0].replace(',', '').startswith(words)]
