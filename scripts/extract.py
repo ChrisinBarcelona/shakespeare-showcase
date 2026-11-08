@@ -74,7 +74,8 @@ CUTS = [('ham31', 'To be or not to be'),
 # visible, marked Cut, and the rest of the speech carries on.
 LINE_CUTS = [
     ('mnd21', 'Swifter than the moon’s sphere.', 'Our queen and all her elves come here anon.'),
-    ('mnd21', 'She never had so sweet a changeling.', 'Creep into acorn cups and hide them there.'),
+    ('mnd21', 'She never had so sweet a changeling.', 'Crowns him with flowers and makes him all her joy.'),
+    ('mnd21', 'But they do square, that all their elves for fear', 'Creep into acorn cups and hide them there.'),
     ('mnd21', 'Are not you he\nThat frights', 'and they shall have good luck.'),
     ('mnd21', 'I jest to Oberon and make him smile', 'A merrier hour was never wasted there.'),
 ]
