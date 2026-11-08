@@ -78,6 +78,16 @@ LINE_CUTS = [
     ('mnd21', 'But they do square, that all their elves for fear', 'Creep into acorn cups and hide them there.'),
     ('mnd21', 'Are not you he\nThat frights', 'and they shall have good luck.'),
     ('mnd21', 'I jest to Oberon and make him smile', 'A merrier hour was never wasted there.'),
+    ('mnd21', 'Why art thou here,', 'To give their bed joy and prosperity?'),
+    ('mnd21', 'Didst not thou lead him through the glimmering night', 'With Ariadne and Antiopa?'),
+    ('mnd21', 'By pavèd fountain or by rushy brook,', 'To dance our ringlets to the whistling wind,'),
+    ('mnd21', 'Therefore the winds, piping to us in vain,', 'For lack of tread, are undistinguishable.'),
+    ('mnd21', 'Why should Titania cross her Oberon?', 'Why should Titania cross her Oberon?'),
+    ('mnd21', 'And in the spicèd Indian air by night', 'As from a voyage, rich with merchandise.'),
+    ('mnd21', 'If you will patiently dance in our round', 'If not, shun me, and I will spare your haunts.'),
+    ('mnd21', 'Having once this juice,', 'And I will overhear their conference.'),
+    ('mnd21', 'I know a bank where the wild thyme blows,', 'Take thou some of it, and seek through this grove.'),
+    ('mnd21', 'Effect it with some care, that he may prove', 'And look thou meet me ere the first cock crow.'),
 ]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
