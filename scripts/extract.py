@@ -73,6 +73,8 @@ CUTS = [('ham31', 'To be or not to be'),
 # Line-level cuts inside a speech: (scene, first words cut, last words cut). The cut lines stay
 # visible, marked Cut, and the rest of the speech carries on.
 LINE_CUTS = [
+    ('ham34', 'Take thy fortune.', 'To Queen.'),
+    ('ham34', 'There’s letters sealed;', 'prating knave.—'),
     ('mac32', 'Naught’s had, all’s spent,', 'Than by destruction dwell in doubtful joy.'),
     ('r312', 'Set down, set down your honorable load,', '[They set down the bier.]'),
     ('r312', 'Lo, in these windows that let forth thy life', 'I pour the helpless balm of my poor eyes.'),
@@ -104,9 +106,10 @@ LINE_CUTS = [
     ('mnd21', 'Effect it with some care, that he may prove', 'And look thou meet me ere the first cock crow.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
-RANGE_CUTS = [('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
-# Everything from the speech beginning with these words to the end of the scene is cut
-RANGE_FROM = [('shr21', 'Now, Signior Petruchio')]
+RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
+# Everything from the speech beginning with these words to the end of the scene (or up to and including the
+# speech beginning with the optional third entry) is cut
+RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio')]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 
@@ -221,15 +224,17 @@ for k, (f, a, s, loc, start, end) in WANT.items():
         if ck == k:
             for it in items:
                 it['cut'] = True
-                if it.get('l') and it['l'][0].startswith(last):
+                if (it.get('l') and it['l'][0].startswith(last)) or (it.get('d') or '').startswith(last):
                     break
-    for ck, first in RANGE_FROM:
+    for ck, first, *upto in RANGE_FROM:
         if ck == k:
             on = False
             for it in items:
                 on = on or bool(it.get('l') and it['l'][0].startswith(first))
                 if on:
                     it['cut'] = True
+                    if upto and it.get('l') and it['l'][0].startswith(upto[0]):
+                        break
     for ck, words in CUTS:
         if ck == k:
             hit = [it for it in items if it.get('l') and it['l'][0].replace(',', '').startswith(words)]
