@@ -73,6 +73,7 @@ CUTS = [('ham31', 'To be or not to be'),
 # Line-level cuts inside a speech: (scene, first words cut, last words cut). The cut lines stay
 # visible, marked Cut, and the rest of the speech carries on.
 LINE_CUTS = [
+    ('cor45', 'Here I clip', 'Worthy Martius,'),
     ('mac13', 'and, when he reads', 'And poured them down before him.'),
     ('mac13', 'Only to herald thee into his sight,', 'Not pay thee.'),
     ('mac13', 'In which addition, hail, most worthy thane,', 'For it is thine.'),
@@ -96,6 +97,8 @@ LINE_CUTS = [
     ('mnd21', 'I know a bank where the wild thyme blows,', 'Take thou some of it, and seek through this grove.'),
     ('mnd21', 'Effect it with some care, that he may prove', 'And look thou meet me ere the first cock crow.'),
 ]
+# Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
+RANGE_CUTS = [('cor45', 'I know thee not. Thy name?')]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 
@@ -206,6 +209,12 @@ for k, (f, a, s, loc, start, end) in WANT.items():
             if tail:
                 parts.append({'s': it['s'], 'l': tail.split('\n'), 'n': None})
             items[j:j + 1] = parts
+    for ck, last in RANGE_CUTS:
+        if ck == k:
+            for it in items:
+                it['cut'] = True
+                if it.get('l') and it['l'][0].startswith(last):
+                    break
     for ck, words in CUTS:
         if ck == k:
             hit = [it for it in items if it.get('l') and it['l'][0].replace(',', '').startswith(words)]
