@@ -64,7 +64,11 @@ CUTS = [('ham31', 'To be or not to be'),
         ('rom53', 'Saint Francis'), ('rom53', 'Here’s one'), ('rom53', 'Bliss be upon you'), ('rom53', 'It doth so'),
         ('rom53', 'Who is it'), ('rom53', 'Romeo.'), ('rom53', 'How long hath'), ('rom53', 'Full half'),
         ('rom53', 'Go with me'), ('rom53', 'I dare not'), ('rom53', 'Stay then'), ('rom53', 'As I did sleep'),
-        ('rom53', 'Lead boy')]
+        ('rom53', 'Lead boy'),
+        # As You Like It 2.1: only "Now, my co-mates" and Amiens's reply are played
+        ('ayl21', 'Come shall we go'), ('ayl21', 'Indeed my lord'), ('ayl21', 'But what said Jaques'),
+        ('ayl21', 'O yes'), ('ayl21', 'And did you leave him'), ('ayl21', 'We did my lord'),
+        ('ayl21', 'Show me the place'), ('ayl21', 'I’ll bring you')]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
 # Line-level cuts inside a speech: (scene, first words cut, last words cut). The cut lines stay
 # visible, marked Cut, and the rest of the speech carries on.
