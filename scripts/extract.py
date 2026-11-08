@@ -73,6 +73,9 @@ CUTS = [('ham31', 'To be or not to be'),
 # Line-level cuts inside a speech: (scene, first words cut, last words cut). The cut lines stay
 # visible, marked Cut, and the rest of the speech carries on.
 LINE_CUTS = [
+    ('mac13', 'and, when he reads', 'And poured them down before him.'),
+    ('mac13', 'Only to herald thee into his sight,', 'Not pay thee.'),
+    ('mac13', 'In which addition, hail, most worthy thane,', 'For it is thine.'),
     ('ham13', 'Marry, well bethought.', 'As it behooves my daughter and your honor.'),
     ('ham13', 'These blazes, daughter,', 'Than may be given you.'),
     ('mnd21', 'Swifter than the moon’s sphere.', 'Our queen and all her elves come here anon.'),
