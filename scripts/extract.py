@@ -87,7 +87,7 @@ LINE_CUTS = [
     ('mnd21', 'Why should Titania cross her Oberon?', 'Why should Titania cross her Oberon?'),
     ('mnd21', 'And in the spicèd Indian air by night', 'As from a voyage, rich with merchandise.'),
     ('mnd21', 'If not, shun me, and I will spare your haunts.', 'If not, shun me, and I will spare your haunts.'),
-    ('mnd21', 'Having once this juice,', 'And I will overhear their conference.'),
+    ('mnd21', 'The next thing then she, waking, looks upon', '( As I can take it with another herb),'),
     ('mnd21', 'I know a bank where the wild thyme blows,', 'Take thou some of it, and seek through this grove.'),
     ('mnd21', 'Effect it with some care, that he may prove', 'And look thou meet me ere the first cock crow.'),
 ]
