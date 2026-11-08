@@ -83,6 +83,7 @@ LINE_CUTS = [
     ('mnd21', 'By pavèd fountain or by rushy brook,', 'To dance our ringlets to the whistling wind,'),
     ('mnd21', 'Therefore the winds, piping to us in vain,', 'For lack of tread, are undistinguishable.'),
     ('mnd21', 'The human mortals want their winter here.', 'And thorough this distemperature we see'),
+    ('mnd21', 'As it should pierce a hundred thousand hearts.', 'In maiden meditation, fancy-free.'),
     ('mnd21', 'Why should Titania cross her Oberon?', 'Why should Titania cross her Oberon?'),
     ('mnd21', 'And in the spicèd Indian air by night', 'As from a voyage, rich with merchandise.'),
     ('mnd21', 'If not, shun me, and I will spare your haunts.', 'If not, shun me, and I will spare your haunts.'),
