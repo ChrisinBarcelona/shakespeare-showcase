@@ -73,6 +73,7 @@ CUTS = [('ham31', 'To be or not to be'),
 # Line-level cuts inside a speech: (scene, first words cut, last words cut). The cut lines stay
 # visible, marked Cut, and the rest of the speech carries on.
 LINE_CUTS = [
+    ('mac32', 'Naught’s had, all’s spent,', 'Than by destruction dwell in doubtful joy.'),
     ('r312', 'Set down, set down your honorable load,', '[They set down the bier.]'),
     ('r312', 'Lo, in these windows that let forth thy life', 'I pour the helpless balm of my poor eyes.'),
     ('r312', 'Cursèd the blood that let this blood from hence.', 'Than I am made by my young lord and thee.—'),
