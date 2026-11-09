@@ -114,6 +114,9 @@ LINE_CUTS = [
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
     # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
     ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
+    # Hamlet 5.2: his parody of Osric's euphuism goes, leaving only "a soul of great article"
+    ('ham52', 'Sir, his definement suffers no perdition in', 'verity of extolment,'),
+    ('ham52', 'and his infusion of such dearth and rareness', 'nothing more.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
