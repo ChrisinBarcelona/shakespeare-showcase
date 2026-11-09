@@ -49,9 +49,9 @@ WANT = {
     'rom13': ('romeo-and-juliet', 1, 3, "A room in Capulet's house.", None, None),
     # Our cut: Mercutio's "Nay, gentle Romeo" (1.4.13) to Benvolio's "Strike, drum" (1.4.121), with Chris's internal cuts below
     'rom14': ('romeo-and-juliet', 1, 4, 'A street.', '1.4.13', None),
-    # The balcony scene ("O Romeo, Romeo, wherefore art thou Romeo?"), whole scene for now
     # Source for the party mosaic: the shared sonnet and the kiss (1.5.104 to 1.5.122)
     'rom15': ('romeo-and-juliet', 1, 5, "A hall in Capulet's house.", '1.5.104', '1.5.122'),
+    # The balcony scene: only Juliet's "Ay me" and "O Romeo, Romeo, wherefore art thou Romeo?" are played (see KEEP_ONLY)
     'rom22': ('romeo-and-juliet', 2, 2, "Capulet's orchard.", None, None),
     # Our cut: the tomb, from Romeo's "How oft when men are at the point of death" (5.3.88)
     # to Juliet's death (5.3.175); Friar Lawrence's scene with Balthasar is marked cut
@@ -68,7 +68,11 @@ CUTS = [('ham31', 'To be or not to be'),
         # As You Like It 2.1: only "Now, my co-mates" and Amiens's reply are played
         ('ayl21', 'Come shall we go'), ('ayl21', 'Indeed my lord'), ('ayl21', 'But what said Jaques'),
         ('ayl21', 'O yes'), ('ayl21', 'And did you leave him'), ('ayl21', 'We did my lord'),
-        ('ayl21', 'Show me the place'), ('ayl21', 'I’ll bring you')]
+        ('ayl21', 'Show me the place'), ('ayl21', 'I’ll bring you'),
+        # Midsummer 3.2: the Titania/Bottom report and "Then fate o'errules" are cut
+        ('mnd32', 'I wonder if Titania'), ('mnd32', 'My mistress with a monster'), ('mnd32', 'Then fate o’errules')]
+# Scenes where everything is cut except the speeches beginning with these words
+KEEP_ONLY = [('rom22', ['Ay me', 'O Romeo, Romeo'])]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
 # Line-level cuts inside a speech: (scene, first words cut, last words cut). The cut lines stay
 # visible, marked Cut, and the rest of the speech carries on.
@@ -104,6 +108,7 @@ LINE_CUTS = [
     ('mnd21', 'The next thing then she, waking, looks upon', '( As I can take it with another herb),'),
     ('mnd21', 'I know a bank where the wild thyme blows,', 'Take thou some of it, and seek through this grove.'),
     ('mnd21', 'Effect it with some care, that he may prove', 'And look thou meet me ere the first cock crow.'),
+    ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
@@ -240,6 +245,11 @@ for k, (f, a, s, loc, start, end) in WANT.items():
             hit = [it for it in items if it.get('l') and it['l'][0].replace(',', '').startswith(words)]
             assert hit, (k, words)
             hit[0]['cut'] = True
+    for ck, keep in KEEP_ONLY:
+        if ck == k:
+            for it in items:
+                if not (it.get('l') and any(it['l'][0].startswith(w) for w in keep)):
+                    it['cut'] = True
     nums = [it['n'] for it in items if it.get('n')]
     out[k] = {
         'play': PLAY[f], 'act': a, 'scene': s, 'title': f'SCENE {ROMAN[s]}.  {loc}',
