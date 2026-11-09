@@ -73,9 +73,7 @@ CUTS = [('ham31', 'To be or not to be'),
         # opening speech is split instead of cut whole, so his greeting to Puck is kept (see SPLITS)
         ('mnd32', 'My mistress with a monster'), ('mnd32', 'Then fate o’errules'),
         # Hamlet 3.4: the exit couplet goes; the scene now ends on the Queen's "No more!"
-        ('ham34', 'Come sir to draw toward an end'),
-        # Romeo 1.5: Tybalt's "'tis a shame" goes with Capulet's "Content thee" (see RANGE_FROM)
-        ('rom15', 'Why uncle ’tis a shame')]
+        ('ham34', 'Come sir to draw toward an end')]
 # Scenes where everything is cut except the speeches beginning with these words
 KEEP_ONLY = [('rom22', ['Ay me', 'O Romeo, Romeo'])]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
@@ -129,18 +127,9 @@ LINE_CUTS = [
     # Hamlet 5.2: his parody of Osric's euphuism goes, leaving only "a soul of great article"
     ('ham52', 'Sir, his definement suffers no perdition in', 'verity of extolment,'),
     ('ham52', 'and his infusion of such dearth and rareness', 'nothing more.'),
-    # Romeo 1.5: Romeo keeps the torches and the cheek of night, then jumps to the closing couplet: the
-    # Ethiop jewel, the snowy dove and the measure all go
-    ('rom15', 'As a rich jewel in an Ethiop’s ear—', 'And, touching hers, make blessèd my rude hand.'),
-    # Capulet's rebuke keeps only "What, goodman boy?" and "cock-a-hoop"
-    ('rom15', 'He shall be endured.', 'He shall be endured.'),
-    ('rom15', 'I say he shall. Go to.', 'You’ll make a mutiny among my guests,'),
-    ('rom15', 'Go to, go to.', 'Go to, go to.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
-RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]'),
-              # Romeo 1.5: the servingmen's opening goes; we start on Capulet's entrance
-              ('rom15', 'They move aside.')]
+RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
 # Everything from the speech beginning with these words to the end of the scene (or up to and including the
 # speech beginning with the optional third entry) is cut
 RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio'),
@@ -149,12 +138,6 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               # Romeo 1.1: everything from "Soft, I will go along." to the end — all the Rosaline
               # talk and Benvolio's cure — is cut; "They exit." stays
               ('rom11', 'Soft, I will go along.', 'I’ll pay that doctrine or else die in debt.'),
-              # Romeo 1.5: Tybalt's objection stays; Capulet's "Content thee, gentle coz" and the
-              # back-and-forth after it go, so Capulet answers Tybalt with the rebukes only
-              ('rom15', 'Why, how now, kinsman?', 'It fits when such a villain is a guest.'),
-              # Romeo 1.5: everything from the shared sonnet to the end is cut — no kiss, no Nurse,
-              # no "My only love sprung from my only hate". The scene ends on Tybalt's exit; "They exit." stays
-              ('rom15', '[, taking Juliet’s hand]', 'Anon, anon.'),
               # Hamlet 1.3: Polonius' precepts and the leave-taking go; he enters and stays silent
               # until "What is 't, Ophelia, he hath said to you?"
               ('ham13', 'Yet here, Laertes?', 'The time invests you.')]
