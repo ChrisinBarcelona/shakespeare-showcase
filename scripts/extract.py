@@ -112,12 +112,16 @@ LINE_CUTS = [
     ('mnd21', 'I know a bank where the wild thyme blows,', 'Take thou some of it, and seek through this grove.'),
     ('mnd21', 'Effect it with some care, that he may prove', 'And look thou meet me ere the first cock crow.'),
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
+    # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
+    ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
 # Everything from the speech beginning with these words to the end of the scene (or up to and including the
 # speech beginning with the optional third entry) is cut
-RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio')]
+RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio'),
+              # Macbeth 5.5: the Birnam Wood report and "Ring the alarum bell" are cut; "They exit." stays
+              ('mac55', 'Gracious my lord', 'If thou speak’st false,')]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death'),
           ('mnd32', 'I wonder if Titania', 'How now, mad spirit?')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
