@@ -114,6 +114,8 @@ LINE_CUTS = [
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
     # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
     ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
+    # Romeo 1.4: Queen Mab keeps her coach and the hag; the gallop through sleepers' dreams goes
+    ('rom14', 'Her chariot is an empty hazelnut,', 'And sleeps again.'),
     # Romeo 1.1: the oxymoron catalogue goes; one oxymoron is left, "Still-waking sleep". The scene
     # then ends on "a preserving sweet." — "Farewell, my coz." goes with the Rosaline talk (RANGE_FROM)
     ('rom11', 'Where shall we dine?', 'Feather of lead, bright smoke, cold fire, sick health,'),
