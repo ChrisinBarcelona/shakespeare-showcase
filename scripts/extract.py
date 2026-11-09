@@ -114,6 +114,8 @@ LINE_CUTS = [
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
     # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
     ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
+    # Romeo 1.1: the oxymoron catalogue goes; one oxymoron is left, "Still-waking sleep"
+    ('rom11', 'Where shall we dine?', 'Feather of lead, bright smoke, cold fire, sick health,'),
     # Hamlet 1.3: Laertes' "double blessing" couplet goes with Polonius' precepts (see RANGE_FROM),
     # and nobody announces the entrance either: Laertes stops on "I stay too long."
     ('ham13', 'A double blessing is a double grace.', 'Occasion smiles upon a second leave.'),
