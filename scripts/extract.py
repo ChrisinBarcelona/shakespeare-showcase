@@ -114,8 +114,10 @@ LINE_CUTS = [
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
     # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
     ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
-    # Hamlet 1.3: Laertes' "double blessing" couplet goes with Polonius' precepts (see RANGE_FROM)
+    # Hamlet 1.3: Laertes' "double blessing" couplet goes with Polonius' precepts (see RANGE_FROM),
+    # and nobody announces the entrance either: Laertes stops on "I stay too long."
     ('ham13', 'A double blessing is a double grace.', 'Occasion smiles upon a second leave.'),
+    ('ham13', 'But here my father comes.', 'But here my father comes.'),
     # Hamlet 5.2: his parody of Osric's euphuism goes, leaving only "a soul of great article"
     ('ham52', 'Sir, his definement suffers no perdition in', 'verity of extolment,'),
     ('ham52', 'and his infusion of such dearth and rareness', 'nothing more.'),
