@@ -114,8 +114,10 @@ LINE_CUTS = [
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
     # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
     ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
-    # Romeo 1.1: the oxymoron catalogue goes; one oxymoron is left, "Still-waking sleep"
+    # Romeo 1.1: the oxymoron catalogue goes; one oxymoron is left, "Still-waking sleep". The scene
+    # then ends on "a preserving sweet." — "Farewell, my coz." goes with the Rosaline talk (RANGE_FROM)
     ('rom11', 'Where shall we dine?', 'Feather of lead, bright smoke, cold fire, sick health,'),
+    ('rom11', 'Farewell, my coz.', 'Farewell, my coz.'),
     # Hamlet 1.3: Laertes' "double blessing" couplet goes with Polonius' precepts (see RANGE_FROM),
     # and nobody announces the entrance either: Laertes stops on "I stay too long."
     ('ham13', 'A double blessing is a double grace.', 'Occasion smiles upon a second leave.'),
@@ -131,6 +133,9 @@ RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know t
 RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio'),
               # Macbeth 5.5: the Birnam Wood report and "Ring the alarum bell" are cut; "They exit." stays
               ('mac55', 'Gracious my lord', 'If thou speak’st false,'),
+              # Romeo 1.1: everything from "Soft, I will go along." to the end — all the Rosaline
+              # talk and Benvolio's cure — is cut; "They exit." stays
+              ('rom11', 'Soft, I will go along.', 'I’ll pay that doctrine or else die in debt.'),
               # Hamlet 1.3: Polonius' precepts and the leave-taking go; he enters and stays silent
               # until "What is 't, Ophelia, he hath said to you?"
               ('ham13', 'Yet here, Laertes?', 'The time invests you.')]
