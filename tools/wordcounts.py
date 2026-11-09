@@ -3,8 +3,9 @@
 Basis: words still spoken on stage — live (uncut) lines in the scripts behind the
 `type:"scene"` items of the running order, resolved through SCRIPT_OF. Mosaics and
 fights are excluded (they are danced, fought or whispered, not spoken), and stage
-directions in [brackets] inside a speech do not count. Chorus lines spoken by more
-than one part ("ALL" for the three witches) count for each of them.
+directions in [brackets] inside a speech do not count. Which speaker labels belong to
+which part is read from PART_SPEAKERS in index.html, so there is one such map on the
+site, not two; a part with no labels there (Oberon's Fairy) stays at nothing.
 
 Usage: python3 tools/wordcounts.py [--write]
 Without --write it only prints what would change.
@@ -14,30 +15,15 @@ import json, re, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 HTML = ROOT / 'index.html'
 
-# part id -> the speaker labels in the Folger text that part speaks
-SPEAKERS = {
-    'macbeth': ['MACBETH'], 'banquo': ['BANQUO'], 'lady-macbeth': ['LADY MACBETH'],
-    'seyton': ['SEYTON'],
-    'witch-1': ['FIRST WITCH', 'ALL'], 'witch-2': ['SECOND WITCH', 'ALL'],
-    'witch-3': ['THIRD WITCH', 'ALL'],
-    'hamlet': ['HAMLET'], 'horatio': ['HORATIO'], 'ophelia': ['OPHELIA'],
-    'laertes': ['LAERTES'], 'polonius': ['POLONIUS'],
-    'gertrude': ['QUEEN'], 'claudius': ['KING'],
-    'gravedigger': ['GRAVEDIGGER'], 'other-gravemaker': ['OTHER'],
-    'oberon': ['OBERON'], 'titania': ['TITANIA'], 'puck': ['ROBIN'],
-    'oberons-fairy': ['FAIRY'], 'fairy': ['MUSTARDSEED'],
-    'hermia': ['HERMIA'], 'helena': ['HELENA'],
-    'lysander': ['LYSANDER'], 'demetrius': ['DEMETRIUS'],
-    'kate': ['KATHERINE'], 'petruchio': ['PETRUCHIO'],
-    'richard': ['RICHARD'], 'anne': ['ANNE'],
-    'coriolanus': ['CORIOLANUS'], 'aufidius': ['AUFIDIUS'],
-    'duke-senior': ['DUKE SENIOR'], 'amiens': ['AMIENS'],
-    'romeo': ['ROMEO'], 'juliet': ['JULIET'], 'benvolio': ['BENVOLIO'],
-    'mercutio': ['MERCUTIO'], 'nurse': ['NURSE'], 'lady-capulet': ['LADY CAPULET'],
-    'capulet': ['CAPULET'], 'tybalt': ['TYBALT'], 'friar-lawrence': ['FRIAR LAWRENCE'],
-}
-
 WORD = re.compile(r"[A-Za-z’'-]+")
+
+
+def part_speakers(html):
+    """part id -> speaker labels, read from the page's own PART_SPEAKERS map."""
+    i = html.index('const PART_SPEAKERS=')
+    raw = html[i:html.index('};', i) + 1]
+    return {pid.strip('"'): re.findall(r'"([^"]+)"', labels)
+            for pid, labels in re.findall(r'("?[\w-]+"?):\[([^\]]*)\]', raw)}
 
 
 def main():
@@ -68,13 +54,14 @@ def main():
 
     parts = re.findall(r'\{id:"([^"]+)",ch:"[^"]*",name:"[^"]*",actor:"[^"]*",words:(\d+)\}',
                        html[html.index('const PARTS=['):html.index('const ORDER=[')])
-    unmapped = [pid for pid, _ in parts if pid not in SPEAKERS]
+    speakers = part_speakers(html)
+    unmapped = [pid for pid, _ in parts if pid not in speakers]
     if unmapped:
-        sys.exit('no speaker labels mapped for: ' + ', '.join(unmapped))
+        print('not in PART_SPEAKERS, counted as nothing: ' + ', '.join(unmapped))
 
     changed = 0
     for pid, old in parts:
-        new = sum(spoken.get(label, 0) for label in SPEAKERS[pid])
+        new = sum(spoken.get(label, 0) for label in speakers.get(pid, []))
         if new != int(old):
             changed += 1
             print(f'{pid:18} {old:>5} -> {new:>5}')
