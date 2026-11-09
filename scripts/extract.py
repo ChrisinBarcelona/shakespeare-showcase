@@ -69,8 +69,11 @@ CUTS = [('ham31', 'To be or not to be'),
         ('ayl21', 'Come shall we go'), ('ayl21', 'Indeed my lord'), ('ayl21', 'But what said Jaques'),
         ('ayl21', 'O yes'), ('ayl21', 'And did you leave him'), ('ayl21', 'We did my lord'),
         ('ayl21', 'Show me the place'), ('ayl21', 'I’ll bring you'),
-        # Midsummer 3.2: the Titania/Bottom report and "Then fate o'errules" are cut
-        ('mnd32', 'I wonder if Titania'), ('mnd32', 'My mistress with a monster'), ('mnd32', 'Then fate o’errules')]
+        # Midsummer 3.2: the Titania/Bottom report and "Then fate o'errules" are cut. Oberon's
+        # opening speech is split instead of cut whole, so his greeting to Puck is kept (see SPLITS)
+        ('mnd32', 'My mistress with a monster'), ('mnd32', 'Then fate o’errules'),
+        # Hamlet 3.4: the exit couplet goes; the scene now ends on the Queen's "No more!"
+        ('ham34', 'Come sir to draw toward an end')]
 # Scenes where everything is cut except the speeches beginning with these words
 KEEP_ONLY = [('rom22', ['Ay me', 'O Romeo, Romeo'])]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
@@ -115,7 +118,8 @@ RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know t
 # Everything from the speech beginning with these words to the end of the scene (or up to and including the
 # speech beginning with the optional third entry) is cut
 RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio')]
-SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death')]
+SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death'),
+          ('mnd32', 'I wonder if Titania', 'How now, mad spirit?')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 
 
