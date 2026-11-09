@@ -114,6 +114,8 @@ LINE_CUTS = [
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
     # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
     ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
+    # Hamlet 1.3: Laertes' "double blessing" couplet goes with Polonius' precepts (see RANGE_FROM)
+    ('ham13', 'A double blessing is a double grace.', 'Occasion smiles upon a second leave.'),
     # Hamlet 5.2: his parody of Osric's euphuism goes, leaving only "a soul of great article"
     ('ham52', 'Sir, his definement suffers no perdition in', 'verity of extolment,'),
     ('ham52', 'and his infusion of such dearth and rareness', 'nothing more.'),
@@ -124,7 +126,10 @@ RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know t
 # speech beginning with the optional third entry) is cut
 RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio'),
               # Macbeth 5.5: the Birnam Wood report and "Ring the alarum bell" are cut; "They exit." stays
-              ('mac55', 'Gracious my lord', 'If thou speak’st false,')]
+              ('mac55', 'Gracious my lord', 'If thou speak’st false,'),
+              # Hamlet 1.3: Polonius' precepts and the leave-taking go; he enters and stays silent
+              # until "What is 't, Ophelia, he hath said to you?"
+              ('ham13', 'Yet here, Laertes?', 'The time invests you.')]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death'),
           ('mnd32', 'I wonder if Titania', 'How now, mad spirit?')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
