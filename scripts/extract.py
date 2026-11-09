@@ -74,9 +74,8 @@ CUTS = [('ham31', 'To be or not to be'),
         ('mnd32', 'My mistress with a monster'), ('mnd32', 'Then fate o’errules'),
         # Hamlet 3.4: the exit couplet goes; the scene now ends on the Queen's "No more!"
         ('ham34', 'Come sir to draw toward an end'),
-        # Romeo 1.5: Romeo never asks who she is, and Tybalt's "'tis a shame" goes with the rest
-        # of his objection (see RANGE_FROM) — Capulet's rebukes answer a silent Tybalt
-        ('rom15', '[ to a Servingman]'), ('rom15', 'I know not sir.'), ('rom15', 'Why uncle ’tis a shame')]
+        # Romeo 1.5: Tybalt's "'tis a shame" goes with Capulet's "Content thee" (see RANGE_FROM)
+        ('rom15', 'Why uncle ’tis a shame')]
 # Scenes where everything is cut except the speeches beginning with these words
 KEEP_ONLY = [('rom22', ['Ay me', 'O Romeo, Romeo'])]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
@@ -130,11 +129,7 @@ LINE_CUTS = [
     # Hamlet 5.2: his parody of Osric's euphuism goes, leaving only "a soul of great article"
     ('ham52', 'Sir, his definement suffers no perdition in', 'verity of extolment,'),
     ('ham52', 'and his infusion of such dearth and rareness', 'nothing more.'),
-    # Romeo 1.5: Capulet's first "Welcome, gentlemen" and the call for the musicians go — the
-    # dance starts on "And foot it, girls."
-    ('rom15', 'Welcome, gentlemen.', 'Welcome, gentlemen.'),
-    ('rom15', 'You are welcome, gentlemen.— Come, musicians, play.', 'A hall, a hall, give room!—'),
-    # Romeo keeps the torches and the cheek of night, then jumps to the closing couplet: the
+    # Romeo 1.5: Romeo keeps the torches and the cheek of night, then jumps to the closing couplet: the
     # Ethiop jewel, the snowy dove and the measure all go
     ('rom15', 'As a rich jewel in an Ethiop’s ear—', 'And, touching hers, make blessèd my rude hand.'),
     # Capulet's rebuke keeps only "What, goodman boy?" and "cock-a-hoop"
@@ -154,9 +149,9 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               # Romeo 1.1: everything from "Soft, I will go along." to the end — all the Rosaline
               # talk and Benvolio's cure — is cut; "They exit." stays
               ('rom11', 'Soft, I will go along.', 'I’ll pay that doctrine or else die in debt.'),
-              # Romeo 1.5: Tybalt's whole objection and Capulet's "Content thee, gentle coz" go —
-              # Tybalt is provoked by hearing Romeo's voice and plays it in silence
-              ('rom15', 'This, by his voice', 'It fits when such a villain is a guest.'),
+              # Romeo 1.5: Tybalt's objection stays; Capulet's "Content thee, gentle coz" and the
+              # back-and-forth after it go, so Capulet answers Tybalt with the rebukes only
+              ('rom15', 'Why, how now, kinsman?', 'It fits when such a villain is a guest.'),
               # Romeo 1.5: everything from the shared sonnet to the end is cut — no kiss, no Nurse,
               # no "My only love sprung from my only hate". The scene ends on Tybalt's exit; "They exit." stays
               ('rom15', '[, taking Juliet’s hand]', 'Anon, anon.'),
