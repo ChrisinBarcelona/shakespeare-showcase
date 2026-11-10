@@ -2112,7 +2112,12 @@ function applyReleases(){
       if(PARTS.some(p=>p.actor===x&&chars.includes(p.ch)))return;/* still plays someone else in this piece */
       const j=o.actors.indexOf(x);if(j>=0)o.actors[j]="Vacant"})});
 }
-function uncast(k){const set=new Set();SCRIPTS[k].items.forEach(it=>{if(it.s)it.s.split(" / ").forEach(n=>{if(!SPEAKER_ACTOR[n]&&!/^(ALL|BOTH)$|\band\b/i.test(n))set.add(n)})});return [...set]}
+/* A speaker label that stands for a group, not a castable character */
+const GROUPY=n=>/^(ALL|BOTH)$|\band\b/i.test(n);
+/* Characters with at least one uncut line in this scene. A character whose every line is cut
+   is out of the scene: grey, no label, no vacancy, not in the cast list. */
+function playing(k){const set=new Set();SCRIPTS[k].items.forEach(it=>{if(it.s&&!it.cut)it.s.split(" / ").forEach(n=>{if(!GROUPY(n))set.add(n)})});return set}
+function uncast(k){return [...playing(k)].filter(n=>!SPEAKER_ACTOR[n])}
 function scriptWords(k){let n=0;SCRIPTS[k].items.forEach(it=>{if(it.l&&!it.cut)it.l.forEach(l=>{n+=l.replace(/\[.*?\]/g,"").split(/\s+/).filter(Boolean).length})});return n}
 let attendance={};
 
@@ -3379,7 +3384,7 @@ function pScripts(){
 function pScript(k){
   const x=SCRIPTS[k];if(!x)return `<a class="back" href="#scenes">← Scenes</a><p>Not found.</p>`;
   const items=ITEMS.filter(i=>SCRIPT_OF[i.id]===k),un=uncast(k);const backTo=items[0]?`#scene-${items[0].id}`:"#scenes",backL=items[0]?`← ${esc(items[0].title)}`:"← Scenes";
-  const castHere=[...new Set(x.items.filter(i=>i.s).flatMap(i=>i.s.split(" / ")).filter(n=>SPEAKER_ACTOR[n]))];
+  const live=playing(k),castHere=[...live].filter(n=>SPEAKER_ACTOR[n]);
   return `<a class="back" href="${backTo}">${backL}</a>
   <div class="kicker">${esc(x.play)}</div><h1>Act ${x.act}, <em>Scene ${x.scene}</em></h1>
   <p class="sub">${esc(x.title.replace(/^SCENE [IVX]+\.\s*/,""))} · ≈ ${scriptWords(k).toLocaleString("en-GB")} words · Folger lines ${esc(x.first)}–${esc(x.last)}${SCRIPT_NOTE[k]?" · "+esc(SCRIPT_NOTE[k]):""}</p>
@@ -3387,7 +3392,11 @@ function pScript(k){
   <div class="card"><span class="small">Used for</span>${items.map(i=>`<a class="pill" href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join("")}
     <span class="small" style="margin-top:12px">Our cast in this scene</span>${castHere.map(n=>`<span class="pill">${esc(n)} — ${esc(SPEAKER_ACTOR[n])}</span>`).join("")}
     ${un.length?`<span class="small" style="margin-top:12px;color:var(--acc)">Speaking roles not yet cast: cut or reassign</span>${un.map(n=>`<span class="pill warnpill">${esc(n)}</span>`).join("")}`:""}</div>
-  <article class="script">${x.items.map(it=>it.d?`<p class="sd${it.cut?" cut":""}">${esc(it.d)}</p>`:`<div class="speech ${it.s.split(" / ").some(n=>SPEAKER_ACTOR[n])?"ours":"theirs"}${it.cut?" cut":""}"><div class="spk">${esc(it.s)}${it.cut?` <em class="cuttag">Cut</em>`:""}${it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).length?` <span>${esc(it.s.split(" / ").map(n=>SPEAKER_ACTOR[n]).filter(Boolean).join(", "))}</span>`:""}</div>${it.l.map(l=>/^\[.*\]$/.test(l)?`<p class="sd in">${esc(l.slice(1,-1))}</p>`:`<p>${esc(l)}</p>`).join("")}</div>`).join("")}</article>
+  <article class="script">${x.items.map(it=>{
+    if(it.d)return `<p class="sd${it.cut?" cut":""}">${esc(it.d)}</p>`;
+    /* label: the actor, or Vacant for anyone actually in the scene; nothing for a fully cut part */
+    const who=it.s.split(" / ").filter(n=>live.has(n)).map(n=>SPEAKER_ACTOR[n]||"Vacant");
+    return `<div class="speech ours${it.cut?" cut":""}"><div class="spk">${esc(it.s)}${it.cut?` <em class="cuttag">Cut</em>`:""}${who.length?` <span>${esc(who.join(", "))}</span>`:""}</div>${it.l.map(l=>/^\[.*\]$/.test(l)?`<p class="sd in">${esc(l.slice(1,-1))}</p>`:`<p>${esc(l)}</p>`).join("")}</div>`}).join("")}</article>
   <div class="btns"><a class="btn" href="${backTo}">${backL}</a><button class="btn primary" data-dl-pdf="${k}">Download PDF</button>${scriptNext(k)}</div>`;
 }
 // Next script in running order, so you can read straight through the show
