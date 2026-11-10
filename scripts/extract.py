@@ -148,6 +148,14 @@ LINE_CUTS = [
     # within cut she has nothing to answer: the scene ends on "The strangers all are gone."
     ('rom15', '[, returning]', '[, returning]'),
     ('rom15', 'Anon, anon.', 'Anon, anon.'),
+    # Romeo 5.3: the death speech starts on "O my love, my wife" — the lightning-before-death goes
+    ('rom53', 'How oft when men are at the point of death', 'Call this a light’ning?—'),
+    # Romeo 5.3: Friar Lawrence is silent in the tomb. Both his speeches go, and with them
+    # Juliet's "O comfortable friar," and her answer to him, so she wakes to "where is my lord?"
+    ('rom53', '[, moving toward the tomb]', 'The lady stirs.'),
+    ('rom53', 'O comfortable friar,', 'O comfortable friar,'),
+    ('rom53', 'I hear some noise.', 'I dare no longer stay.'),
+    ('rom53', 'Go, get thee hence, for I will not away.', '[He exits.]'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
