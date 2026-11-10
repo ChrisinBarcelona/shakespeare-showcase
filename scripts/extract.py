@@ -55,7 +55,8 @@ WANT = {
     'rom22': ('romeo-and-juliet', 2, 2, "Capulet's orchard.", None, None),
     # Our cut: the tomb, from Romeo's "How oft when men are at the point of death" (5.3.88)
     # to Juliet's death (5.3.175); Friar Lawrence's scene with Balthasar is marked cut
-    'rom53': ('romeo-and-juliet', 5, 3, 'A churchyard; in it a monument belonging to the Capulets.', '5.3.74', '5.3.175.1'),
+    # 5.3 entire, for reference: the Paris half and everything after Juliet's death are cut
+    'rom53': ('romeo-and-juliet', 5, 3, 'A churchyard; in it a monument belonging to the Capulets.', None, None),
 }
 # Speeches flagged as cut in our version: (id, first words of the speech)
 CUTS = [('ham31', 'To be or not to be'),
@@ -171,7 +172,8 @@ LINE_CUTS = [
     ('rom53', 'Go, get thee hence, for I will not away.', '[He exits.]'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
-RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
+RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]'),
+              ('rom53', 'He dies.')]
 # Everything from the speech beginning with these words to the end of the scene (or up to and including the
 # speech beginning with the optional third entry) is cut
 RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio'),
@@ -197,7 +199,9 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               ('rom15', 'What’s this? What’s this?', 'One calls within “ Juliet.”'),
               # Hamlet 1.3: Polonius' precepts and the leave-taking go; he enters and stays silent
               # until "What is 't, Ophelia, he hath said to you?"
-              ('ham13', 'Yet here, Laertes?', 'The time invests you.')]
+              ('ham13', 'Yet here, Laertes?', 'The time invests you.'),
+              # Romeo 5.3: the watch, the Prince and the Friar's recap are reference only
+              ('rom53', 'This is the place, there where the torch doth burn.')]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death'),
           ('mnd32', 'I wonder if Titania', 'How now, mad spirit?')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
