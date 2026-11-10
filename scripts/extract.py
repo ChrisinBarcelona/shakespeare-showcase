@@ -132,6 +132,16 @@ LINE_CUTS = [
     # Romeo 1.5: the music and the dance start the feast, then we go straight to Romeo —
     # the housekeeping and the thirty-years reminiscing with the Cousin go (see RANGE_FROM)
     ('rom15', 'A hall, a hall, give room!— And foot it, girls.—', 'Were in a mask?'),
+    # Romeo 1.5: Romeo keeps the torches and the cheek of night, then the closing couplet —
+    # the Ethiop jewel, the snowy dove and the measure go
+    ('rom15', 'As a rich jewel in an Ethiop’s ear—', 'And, touching hers, make blessèd my rude hand.'),
+    # Romeo 1.5: Capulet stops at "Take no note of him" — the instruction to put on a fair presence goes
+    ('rom15', 'It is my will, the which if thou respect,', 'An ill-beseeming semblance for a feast.'),
+    # Romeo 1.5: "He shall be endured" runs straight into "I say he shall"; the cock-a-hoop line goes
+    ('rom15', 'What, goodman boy?', 'What, goodman boy?'),
+    ('rom15', 'You will set cock-a-hoop, you’ll be the man!', 'You will set cock-a-hoop, you’ll be the man!'),
+    # Romeo 1.5: the saucy-boy scolding goes; Capulet answers Tybalt with "Be quiet, or—"
+    ('rom15', 'Go to, go to.', 'Well said, my hearts.— You are a princox, go.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
@@ -145,6 +155,8 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               ('rom11', 'Soft, I will go along.', 'I’ll pay that doctrine or else die in debt.'),
               # Romeo 1.5: Capulet and his cousin on their dancing days — cut with the housekeeping above
               ('rom15', 'By ’r Lady, thirty years.', 'Will you tell me that?'),
+              # Romeo 1.5: the servingmen's Potpan opening goes; the two stage directions stay
+              ('rom15', 'Where’s Potpan that he helps not', 'We cannot be here and there too.'),
               # Hamlet 1.3: Polonius' precepts and the leave-taking go; he enters and stays silent
               # until "What is 't, Ophelia, he hath said to you?"
               ('ham13', 'Yet here, Laertes?', 'The time invests you.')]
