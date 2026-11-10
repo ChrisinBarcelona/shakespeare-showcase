@@ -73,7 +73,10 @@ CUTS = [('ham31', 'To be or not to be'),
         # opening speech is split instead of cut whole, so his greeting to Puck is kept (see SPLITS)
         ('mnd32', 'My mistress with a monster'), ('mnd32', 'Then fate o’errules'),
         # Hamlet 3.4: the exit couplet goes; the scene now ends on the Queen's "No more!"
-        ('ham34', 'Come sir to draw toward an end')]
+        ('ham34', 'Come sir to draw toward an end'),
+        # Romeo 1.3: Lady Capulet's "A fortnight and odd days" and the Nurse's laughing encore
+        ('rom13', 'A fortnight and odd days.'), ('rom13', 'Enough of this. I pray thee hold thy peace.'),
+        ('rom13', 'Yes madam yet I cannot choose but laugh'), ('rom13', 'And stint thou too I pray thee nurse say I.')]
 # Scenes where everything is cut except the speeches beginning with these words
 KEEP_ONLY = [('rom22', ['Ay me', 'O Romeo, Romeo'])]
 # Speeches where only the end is kept: (id, first words of the speech, text the kept part starts with)
@@ -114,6 +117,16 @@ LINE_CUTS = [
     ('mnd32', 'This falls out better than I could devise.', 'This falls out better than I could devise.'),
     # Macbeth 5.5 ends on "Signifying nothing."; the Messenger's entrance goes with the report
     ('mac55', '[Enter a Messenger.]', 'Thou com’st to use thy tongue: thy story quickly.'),
+    # Romeo 1.3: the Nurse's toddler story goes, and with it the Lammastide count-up. She keeps
+    # the Susan lines and "Thou wast the prettiest babe"; the Servingman keeps his first half-line
+    ('rom13', 'Now, by my maidenhead at twelve year old,', 'I bade her come.—'),
+    ('rom13', '( and yet, to my teen', 'be it spoken, I have but four)'),
+    ('rom13', 'How long is it now to Lammastide?', 'How long is it now to Lammastide?'),
+    ('rom13', 'Even or odd, of all days in the year,', 'Even or odd, of all days in the year,'),
+    ('rom13', 'That shall she. Marry, I remember it well.', 'And, pretty fool, it stinted and said “ Ay.”'),
+    ('rom13', 'Peace. I have done. God mark thee to his grace,', 'Peace. I have done. God mark thee to his grace,'),
+    ('rom13', 'The fish lives in the sea, and ’tis much pride', 'That in gold clasps locks in the golden story.'),
+    ('rom13', 'you called, my young lady asked for, the', 'follow straight.'),
     # Romeo 1.4: Queen Mab keeps her coach and the hag; the gallop through sleepers' dreams goes
     ('rom14', 'Her chariot is an empty hazelnut,', 'And sleeps again.'),
     # Romeo 1.1: the oxymoron catalogue goes; one oxymoron is left, "Still-waking sleep". The scene
