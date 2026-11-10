@@ -163,6 +163,9 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               ('rom15', 'By ’r Lady, thirty years.', 'Will you tell me that?'),
               # Romeo 1.5: the servingmen's Potpan opening goes; the two stage directions stay
               ('rom15', 'Where’s Potpan that he helps not', 'We cannot be here and there too.'),
+              # Coriolanus 4.5: the servingmen's post-mortem goes, so the scene ends on Aufidius
+              # welcoming Coriolanus. That takes all three servingmen out of the show.
+              ('cor45', 'Here’s a strange alteration!', 'In, in, in, in!'),
               # Romeo 1.5: Capulet's banquet farewell goes
               ('rom15', 'Nay, gentlemen, prepare not to be gone.', 'Nay, gentlemen, prepare not to be gone.'),
               # Romeo 1.5: Juliet asks once and the Nurse answers with Romeo's name — Tiberio,
