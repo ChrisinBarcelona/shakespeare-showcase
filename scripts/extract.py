@@ -142,6 +142,8 @@ LINE_CUTS = [
     ('rom15', 'You will set cock-a-hoop, you’ll be the man!', 'You will set cock-a-hoop, you’ll be the man!'),
     # Romeo 1.5: the saucy-boy scolding goes; Capulet answers Tybalt with "Be quiet, or—"
     ('rom15', 'Go to, go to.', 'Well said, my hearts.— You are a princox, go.'),
+    # Romeo 1.5: Tybalt withdraws on the threat alone — the patience-perforce couplet goes
+    ('rom15', 'Patience perforce with willful choler meeting', 'Makes my flesh tremble in their different greeting.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
