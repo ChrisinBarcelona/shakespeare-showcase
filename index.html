@@ -1338,6 +1338,28 @@ html.light .navlogin:hover{background:#000;color:#fff!important}
 .pgline{margin:0;color:#b8b8bd;font-size:14.5px;line-height:1.45}
 .pgcta{margin-top:auto;padding-top:8px;font:600 14px var(--fb);color:#f5f5f4}
 @media (max-width:560px){.news{grid-template-columns:44px 1fr;padding:16px}.newsav{width:44px;height:44px}}
+
+/* ---------- Play by play (#plays): the running order sorted into its eight plays.
+   Tinted from PLAYCOL like the Characters page, but as plain rows — deliberately not books. ---------- */
+.pbwrap{display:grid;gap:18px;margin-top:20px}
+.pbl{border:1px solid #26262b;border-radius:14px;overflow:hidden;background:#0c0c0d}
+.pbhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:15px 18px;background:var(--bg);color:var(--fg)}
+.pbname{font-family:var(--fd);font-size:25px;font-weight:400;margin:0;line-height:1.1}
+.pbmeta{margin-left:auto;font:600 13px var(--fb);letter-spacing:.02em;opacity:.8}
+.pbrow{display:flex;gap:14px;align-items:baseline;padding:13px 18px;border-top:1px solid #1c1c1f;text-decoration:none;color:inherit}
+.pbrow:hover{background:#121214}
+.pbrow:hover .pbt{text-decoration:underline;text-underline-offset:3px}
+.pbnum{flex:none;width:34px;text-align:center;font-family:var(--fd);font-size:19px;color:var(--pc)}
+.pbt{flex:1;font-family:var(--fd);font-size:19px;color:#f5f5f4}
+.pbkind{font:600 11.5px var(--fb);letter-spacing:.08em;text-transform:uppercase;color:#8a8a90}
+.pbmin{flex:none;font:600 13px var(--fb);color:#8a8a90;font-variant-numeric:tabular-nums}
+.pbint{padding:8px 18px;border-top:1px solid #1c1c1f;font:600 11.5px var(--fb);letter-spacing:.16em;text-transform:uppercase;color:#8a8a90;text-align:center}
+.pbcta{display:flex;align-items:center;gap:16px;margin-top:30px;padding:18px 20px;border:1px solid #26262b;border-radius:14px;text-decoration:none;color:inherit;transition:border-color .2s,background .15s}
+.pbcta:hover{border-color:#4a4a52;background:#0c0c0d}
+.pbcta b{display:block;font-family:var(--fd);font-size:21px;font-weight:400;color:#f5f5f4}
+.pbcta i{display:block;font-style:normal;color:#b8b8bd;font-size:14.5px;margin-top:3px}
+.pbcta .pbgo{margin-left:auto;font-size:20px;color:#8a8a90}
+@media (max-width:560px){.pbkind{display:none}.pbrow{padding:12px 14px;gap:10px}.pbhead{padding:14px}.pbname{font-size:22px}.pbmeta{margin-left:0;width:100%}}
 </style>
 <style id="light-theme">
 html.light{--ink:#f1eeec;--ink2:#eae6e4;--ink3:#e5e0dc;--line:#e5e0dc;--paper:#9e803f;--muted:#6f6a62;--blood:#ecd5d5;--moss:#4b5e40;--sky:#355e89}
@@ -2267,13 +2289,13 @@ function route(){
   else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&(k!=="venues"||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
   renderNavUser(base);
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
-  const lbl=((VENUE?VENUE_PAGES:PAGES).find(([k])=>k===base)||[,"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
+  const lbl=((VENUE?VENUE_PAGES:PAGES).find(([k])=>k===base)||[,base==="plays"?"Play by play":"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
   clearInterval(cdTimer);
   const v=$("view");
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h==="mybookings"?"me":h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,plays:pPlays,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h==="mybookings"?"me":h]||pHome)();
   wireEdits(v);
   if(VENUE)venueTidy(v);
   {const fs=document.getElementById("fullsite");if(fs)fs.hidden=!VENUE}
@@ -2454,6 +2476,37 @@ function wireShelf2(root){root.querySelectorAll(".shelf2wrap").forEach(w=>{const
   sh.addEventListener("keydown",e=>{if(e.target!==sh)return;if(e.key==="ArrowRight"){sh.scrollBy({left:200,behavior:"smooth"});e.preventDefault()}if(e.key==="ArrowLeft"){sh.scrollBy({left:-200,behavior:"smooth"});e.preventDefault()}})})}
 function folioHero(kick,title,extra){return `<section class="folio"><div class="fhero"><div class="fkick">${kick}</div><h1 class="ftitle">${title}</h1>${extra||""}</div>`}
 
+/* ---------- Play by play: the evening sorted into its eight plays ---------- */
+function hexLum(c){const n=parseInt(c.slice(1),16);return .2126*(n>>16&255)/255+.7152*(n>>8&255)/255+.0722*(n&255)/255}
+function playAccent(pl){const [bg,fg]=playColors(pl);return hexLum(bg)>=hexLum(fg)?bg:fg}
+function pPlays(){
+  const iv=ORDER.findIndex(o=>o.type==="interval");
+  const groups=[];
+  ORDER.forEach((o,idx)=>{
+    if(o.type==="interval")return;
+    const pl=itemPlay(o);if(!pl)return;
+    let g=groups.find(x=>x.play===pl);if(!g){g={play:pl,items:[]};groups.push(g)}
+    g.items.push({o,idx});
+  });
+  const blocks=groups.map(g=>{
+    const [bg,fg]=playColors(g.play);
+    const mins=g.items.reduce((a,x)=>a+(x.o.mins||0),0);
+    const nSc=g.items.filter(x=>x.o.type==="scene").length;
+    const rows=g.items.map((x,i)=>{
+      const prev=g.items[i-1];
+      const gap=prev&&prev.idx<iv&&x.idx>iv?`<div class="pbint">Interval</div>`:"";
+      const kind=x.o.type==="scene"?x.o.play:(x.o.type==="fight"?"Fight":"Mosaic");
+      return gap+`<a class="pbrow" href="#scene-${x.o.id}"><span class="pbnum">${esc(x.o.n)}</span><span class="pbt">${esc(x.o.title)}</span><span class="pbkind">${esc(kind)}</span><span class="pbmin">≈ ${x.o.mins} min</span></a>`;
+    }).join("");
+    return `<article class="pbl" style="--bg:${bg};--fg:${fg};--pc:${playAccent(g.play)}">
+      <header class="pbhead"><h3 class="pbname">${esc(g.play)}</h3><span class="pbmeta">${g.items.length} piece${g.items.length===1?"":"s"} · ${nSc} scene${nSc===1?"":"s"} · ≈ ${Math.round(mins)} min</span></header>${rows}</article>`;
+  }).join("");
+  return folioHero(`${groups.length} plays · ≈ ${Math.round(ORDER.reduce((a,o)=>a+(o.mins||0),0))} minutes`,"Play by Play",
+    `<p class="ftag">The running order taken apart and sorted by play, so each thread can be read on its own.</p>`)+`</section>
+  <h2 style="margin-top:36px">Individual plays <em>in order</em></h2>
+  <p class="sub">Eight threads cut from one evening, each in the order we tell it. The number is the piece's place in the running order: ◐ a mosaic, ⚔ a fight. The company's opening mosaic belongs to all eight and is not listed here.</p><div class="rule"></div>
+  <div class="pbwrap">${blocks}</div>`;
+}
 function pScenes(){
   const total=ITEMS.reduce((a,i)=>a+(i.mins||0),0);
   const vols=ITEMS.map((o,i)=>{const pl=itemPlay(o);const [bg,fg]=o.type==="scene"?playColors(pl):o.type==="fight"?["#120707","#e46a6a"]:["#0d0d0d","#f5f5f4"];
@@ -2462,7 +2515,7 @@ function pScenes(){
   <h2 style="margin-top:36px">Running <em>order</em></h2><p class="sub">The number on the right is how many rehearsal sessions are booked.</p><div class="rule"></div>`+
   ORDER.map(o=>o.type==="interval"?`<div class="interval">INTERVAL</div>`:
     `<a class="ro" href="#scene-${o.id}"><div class="num">${o.n}</div><div class="main"><div class="kicker">${esc(o.play)}</div><div class="ttl">${esc(o.title)}</div><div class="meta">${o.actors.map(esc).join(", ")}</div></div>${o.actors[0]==="Whole company"?"":`<div class="count ${countFor(o.id)===0?"zero":countFor(o.id)>=3?"ok":""}" title="Rehearsals booked">${countFor(o.id)}</div>`}</a>`).join("")+
-  "";
+  `<a class="pbcta" href="#plays"><span><b>Play by play</b><i>The same evening sorted into its eight plays, each thread in the order we tell it.</i></span><span class="pbgo" aria-hidden="true">→</span></a>`;
 }
 function scriptCta(o){const k=SCRIPT_OF[o.id],pl=scriptPlay(k),[bg,fg]=playColors(pl),x=SCRIPTS[k],w=scriptWords(k).toLocaleString("en-GB");
   return `<section class="scta" aria-labelledby="scta-h">
