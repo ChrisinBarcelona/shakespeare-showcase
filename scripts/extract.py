@@ -144,6 +144,10 @@ LINE_CUTS = [
     ('rom15', 'Go to, go to.', 'Well said, my hearts.— You are a princox, go.'),
     # Romeo 1.5: Tybalt withdraws on the threat alone — the patience-perforce couplet goes
     ('rom15', 'Patience perforce with willful choler meeting', 'Makes my flesh tremble in their different greeting.'),
+    # Romeo 1.5: the Nurse is never sent off, so she is not "returning", and with the call from
+    # within cut she has nothing to answer: the scene ends on "The strangers all are gone."
+    ('rom15', '[, returning]', '[, returning]'),
+    ('rom15', 'Anon, anon.', 'Anon, anon.'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
