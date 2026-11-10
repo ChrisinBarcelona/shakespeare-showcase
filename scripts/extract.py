@@ -159,6 +159,14 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               ('rom15', 'By ’r Lady, thirty years.', 'Will you tell me that?'),
               # Romeo 1.5: the servingmen's Potpan opening goes; the two stage directions stay
               ('rom15', 'Where’s Potpan that he helps not', 'We cannot be here and there too.'),
+              # Romeo 1.5: Capulet's banquet farewell goes
+              ('rom15', 'Nay, gentlemen, prepare not to be gone.', 'Nay, gentlemen, prepare not to be gone.'),
+              # Romeo 1.5: Juliet asks once and the Nurse answers with Romeo's name — Tiberio,
+              # Petruchio and "go ask his name" go
+              ('rom15', 'The son and heir of old Tiberio.', 'Go ask his name. The Nurse goes. If he be marrièd,'),
+              # Romeo 1.5: the scene ends on "a loathèd enemy" into the Nurse's "Anon, anon" —
+              # the rhyme and the call from within go
+              ('rom15', 'What’s this? What’s this?', 'One calls within “ Juliet.”'),
               # Hamlet 1.3: Polonius' precepts and the leave-taking go; he enters and stays silent
               # until "What is 't, Ophelia, he hath said to you?"
               ('ham13', 'Yet here, Laertes?', 'The time invests you.')]
@@ -286,7 +294,10 @@ for k, (f, a, s, loc, start, end) in WANT.items():
                 on = on or bool(it.get('l') and it['l'][0].startswith(first))
                 if on:
                     it['cut'] = True
-                    if upto and it.get('l') and it['l'][0].startswith(upto[0]):
+                    # the end marker can be a stage direction as well as a line, so a range can
+                    # close on something like "One calls within 'Juliet.'"
+                    if upto and ((it.get('l') and it['l'][0].startswith(upto[0]))
+                                 or (it.get('d') or '').startswith(upto[0])):
                         break
     for ck, words in CUTS:
         if ck == k:
