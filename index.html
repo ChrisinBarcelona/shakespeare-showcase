@@ -1816,7 +1816,8 @@ const CHARS=[
  {id:"ross",name:"Ross",play:"Macbeth",actor:"Vacant",bio:"A Scottish thane and the play's messenger of bad news. He brings Macbeth the title of Cawdor without knowing what it will unlock."},
  {id:"angus",name:"Angus",play:"Macbeth",actor:"Vacant",bio:"A Scottish thane who rides with Ross to greet Macbeth on the heath, and later watches the man he helped crown come apart."},
  {id:"macbeth-servant",name:"Macbeth's Servant",play:"Macbeth",actor:"Vacant",bio:"The servant who fetches Banquo for Lady Macbeth, and so sets the murder in motion without knowing it."},
- {id:"gentleman",name:"Gentleman",play:"Richard III",actor:"Vacant",bio:"A court attendant. In Hamlet he warns the Queen that Ophelia must be seen; in Richard III he halts Anne's funeral procession for Richard."},
+ {id:"gentleman-hamlet",name:"Gentleman",play:"Hamlet",actor:"Vacant",bio:"A court attendant who warns the Queen that Ophelia must be seen, because her distracted talk is moving people to dangerous conclusions."},
+ {id:"gentleman-richard",name:"Gentleman",play:"Richard III",actor:"Vacant",bio:"An attendant on Anne at Henry VI's funeral. He stands the procession down when Richard blocks its path, and is overruled."},
  {id:"osric",name:"Osric",play:"Hamlet",actor:"Vacant",bio:"An affected young courtier sent to propose the fencing match. Hamlet mocks his manner mercilessly, then accepts the wager that kills him."},
  {id:"fortinbras",name:"Fortinbras",play:"Hamlet",actor:"Vacant",bio:"Prince of Norway. He arrives at the end with an army and finds the Danish court dead on the floor, and takes the kingdom."},
  {id:"ambassador",name:"English Ambassador",play:"Hamlet",actor:"Vacant",bio:"Arrives from England with the news that Rosencrantz and Guildenstern are dead, to a room that has stopped caring."},
@@ -1893,7 +1894,8 @@ const PARTS=[
  {id:"ross",ch:"ross",name:"Ross",actor:"Vacant",words:29},
  {id:"angus",ch:"angus",name:"Angus",actor:"Vacant",words:69},
  {id:"macbeth-servant",ch:"macbeth-servant",name:"Macbeth's Servant",actor:"Vacant",words:9},
- {id:"gentleman",ch:"gentleman",name:"Gentleman",actor:"Vacant",words:112},
+ {id:"gentleman-hamlet",ch:"gentleman-hamlet",name:"Gentleman (Hamlet)",actor:"Vacant",words:99},
+ {id:"gentleman-richard",ch:"gentleman-richard",name:"Gentleman (Richard III)",actor:"Vacant",words:13},
  {id:"osric",ch:"osric",name:"Osric",actor:"Vacant",words:359},
  {id:"fortinbras",ch:"fortinbras",name:"Fortinbras",actor:"Vacant",words:134},
  {id:"ambassador",ch:"ambassador",name:"English Ambassador",actor:"Vacant",words:40},
@@ -2107,7 +2109,7 @@ const SCRIPTS={"mac13": {"play": "Macbeth", "act": 1, "scene": 3, "title": "SCEN
 const SCRIPT_OF={"mos-witches":"mac11","mac13":"mac13","rom13":"rom13","rom11":"rom11","rom14":"rom14","rom15":"rom15","rom22":"rom22","rom53":"rom53","ayl21":"ayl21","mnd21a":"mnd21","ham13":"ham13","mnd21b":"mnd21","cor45":"cor45","ham31":"ham31","mac32":"mac32","shr21":"shr21","r312":"r312","ham34":"ham34","mnd32":"mnd32","ham45":"ham45","mos-water":"ham47","ham51":"ham51","f3":"ham52","mac55":"mac55","mnd41":"mnd41"};
 const SCRIPT_NOTE={rom15:"Source for the party mosaic: Romeo and Juliet's shared sonnet and the kiss.",mac11:"Source for the witches' ritual: the opening scene of the play, performed as a ritual.",ham47:"Source for Ophelia's water: Gertrude's 'There is a willow' speech.",ham52:"Source for the Hamlet vs Laertes duel.",mnd21:"Covers two pieces: Oberon & Titania, and Helena & Demetrius.",mnd41:"Our cut runs from the hunting horns to the lovers' exit. Theseus, Hippolyta and Egeus are not cast yet: double them or trim their lines.",ham31:"Our cut: from 'To be or not to be' (marked cut) to the end of Ophelia's 'O, what a noble mind'.",rom14:"Our cut: from Mercutio's 'Nay, gentle Romeo' to Benvolio's 'Strike, drum' (the end of the scene). Speeches marked Cut are Chris's internal cuts.",rom53:"Our cut: from Romeo's 'How oft when men are at the point of death' to Juliet's death. Paris is cut, so the scene opens on Romeo alone in the tomb; the Friar's exchange with Balthasar is marked Cut.",rom22:"The whole balcony scene for now, from 'He jests at scars' to Romeo's exit. The Nurse only calls from offstage ('Madam!').",rom11:"Our cut: from Benvolio's 'Good morrow, cousin' to the end of the scene."};
 /* Speaker labels as printed in the Folger Shakespeare */
-const SPEAKER_ACTOR={"MACBETH":"Rob McLoughlin","GENTLEMAN":"Vacant","ROSS":"Vacant","ANGUS":"Vacant","BANQUO":"Julien Paschal","FIRST WITCH":"Hannah Di Bella","SECOND WITCH":"Vacant","THIRD WITCH":"Sarah Dillamore","LADY MACBETH":"Vacant","SEYTON":"Chrystele Alix",
+const SPEAKER_ACTOR={"MACBETH":"Rob McLoughlin","ham45:GENTLEMAN":"Vacant","r312:GENTLEMAN":"Vacant","ROSS":"Vacant","ANGUS":"Vacant","BANQUO":"Julien Paschal","FIRST WITCH":"Hannah Di Bella","SECOND WITCH":"Vacant","THIRD WITCH":"Sarah Dillamore","LADY MACBETH":"Vacant","SEYTON":"Chrystele Alix",
  "HAMLET":"Julien Paschal","OPHELIA":"Chrystele Alix","LAERTES":"Carlos Toca","QUEEN":"Vacant","KING":"Alex Lui","POLONIUS":"Adrian P. Smith","HORATIO":"Michael Strelow","GRAVEDIGGER":"Dario Roberto","OTHER":"Teo Jansen",
  "OBERON":"Jean-Baptiste Courtois","TITANIA":"Ella Arkeus","ROBIN":"Teo Jansen","HELENA":"Sarah Dillamore","HERMIA":"Hannah Di Bella","DEMETRIUS":"Jan Zammit","LYSANDER":"Kyle Scudder",
  "KATHERINE":"Sarah Dillamore","PETRUCHIO":"Jan Zammit","RICHARD":"Dario Roberto","ANNE":"Sarah Burns","CORIOLANUS":"Alex Lui","AUFIDIUS":"Rob McLoughlin","DUKE SENIOR":"Aldo D'Ibaños","AMIENS":"Teo Jansen","FAIRY":"Sophie Heideker","MUSTARDSEED":"Sophie Heideker",
@@ -2119,7 +2121,7 @@ function scriptPlay(k){const p=SCRIPTS[k].play;return p.includes("Macbeth")?"Mac
 const ROMANS=["","I","II","III","IV","V"];
 function scriptLabel(k){const x=SCRIPTS[k];return `${ABBR[scriptPlay(k)]||scriptPlay(k)} · Act ${x.act}, Scene ${x.scene}`}
 /* ---------- Declined parts: an actor gives up a part and it becomes Vacant everywhere ---------- */
-const PART_SPEAKERS={macbeth:["MACBETH"],aufidius:["AUFIDIUS"],banquo:["BANQUO"],hamlet:["HAMLET"],"lady-macbeth":["LADY MACBETH"],"witch-1":["FIRST WITCH"],kate:["KATHERINE"],hermia:["HERMIA"],ophelia:["OPHELIA"],"witch-2":["SECOND WITCH"],laertes:["LAERTES"],gertrude:["QUEEN"],claudius:["KING"],coriolanus:["CORIOLANUS"],"witch-3":["THIRD WITCH"],seyton:["SEYTON"],helena:["HELENA"],anne:["ANNE"],polonius:["POLONIUS"],horatio:["HORATIO"],demetrius:["DEMETRIUS"],lysander:["LYSANDER"],petruchio:["PETRUCHIO"],richard:["RICHARD"],gravedigger:["GRAVEDIGGER"],"other-gravemaker":["OTHER"],puck:["ROBIN"],oberon:["OBERON"],titania:["TITANIA"],amiens:["AMIENS"],fairy:["FAIRY","MUSTARDSEED"],"duke-senior":["DUKE SENIOR"],romeo:["ROMEO"],benvolio:["BENVOLIO"],juliet:["JULIET"],"lady-capulet":["LADY CAPULET"],nurse:["NURSE"],mercutio:["MERCUTIO"],"friar-lawrence":["FRIAR LAWRENCE"],capulet:["CAPULET"],tybalt:["TYBALT"],"oberons-fairy":["FAIRY"],"ross":["ROSS"],"angus":["ANGUS"],"macbeth-servant":["SERVANT"],"gentleman":["GENTLEMAN"],"osric":["OSRIC"],"fortinbras":["FORTINBRAS"],"ambassador":["AMBASSADOR"],"ham-lord":["LORD"],"cor-servingman-1":["FIRST SERVINGMAN"],"cor-servingman-2":["SECOND SERVINGMAN"],"cor-servingman-3":["THIRD SERVINGMAN"],"rom-servingman":["SERVINGMAN"]};
+const PART_SPEAKERS={macbeth:["MACBETH"],aufidius:["AUFIDIUS"],banquo:["BANQUO"],hamlet:["HAMLET"],"lady-macbeth":["LADY MACBETH"],"witch-1":["FIRST WITCH"],kate:["KATHERINE"],hermia:["HERMIA"],ophelia:["OPHELIA"],"witch-2":["SECOND WITCH"],laertes:["LAERTES"],gertrude:["QUEEN"],claudius:["KING"],coriolanus:["CORIOLANUS"],"witch-3":["THIRD WITCH"],seyton:["SEYTON"],helena:["HELENA"],anne:["ANNE"],polonius:["POLONIUS"],horatio:["HORATIO"],demetrius:["DEMETRIUS"],lysander:["LYSANDER"],petruchio:["PETRUCHIO"],richard:["RICHARD"],gravedigger:["GRAVEDIGGER"],"other-gravemaker":["OTHER"],puck:["ROBIN"],oberon:["OBERON"],titania:["TITANIA"],amiens:["AMIENS"],fairy:["FAIRY","MUSTARDSEED"],"duke-senior":["DUKE SENIOR"],romeo:["ROMEO"],benvolio:["BENVOLIO"],juliet:["JULIET"],"lady-capulet":["LADY CAPULET"],nurse:["NURSE"],mercutio:["MERCUTIO"],"friar-lawrence":["FRIAR LAWRENCE"],capulet:["CAPULET"],tybalt:["TYBALT"],"oberons-fairy":["FAIRY"],"ross":["ROSS"],"angus":["ANGUS"],"macbeth-servant":["SERVANT"],"gentleman-hamlet":["ham45:GENTLEMAN"],"gentleman-richard":["r312:GENTLEMAN"],"osric":["OSRIC"],"fortinbras":["FORTINBRAS"],"ambassador":["AMBASSADOR"],"ham-lord":["LORD"],"cor-servingman-1":["FIRST SERVINGMAN"],"cor-servingman-2":["SECOND SERVINGMAN"],"cor-servingman-3":["THIRD SERVINGMAN"],"rom-servingman":["SERVINGMAN"]};
 const ORIG_CAST={parts:PARTS.map(p=>p.actor),chars:CHARS.map(c=>c.actor),items:ORDER.map(o=>o.actors?[...o.actors]:null),speak:{...SPEAKER_ACTOR}};
 let releases={};
 function applyReleases(){
@@ -2140,7 +2142,10 @@ const GROUPY=n=>/^(ALL|BOTH)$|\band\b/i.test(n);
 /* Characters with at least one uncut line in this scene. A character whose every line is cut
    is out of the scene: grey, no label, no vacancy, not in the cast list. */
 function playing(k){const set=new Set();SCRIPTS[k].items.forEach(it=>{if(it.s&&!it.cut)it.s.split(" / ").forEach(n=>{if(!GROUPY(n))set.add(n)})});return set}
-function uncast(k){return [...playing(k)].filter(n=>!SPEAKER_ACTOR[n])}
+/* A speaker label can mean different parts in different plays (GENTLEMAN is in both
+   Hamlet 4.5 and Richard III 3.12), so a scene-scoped key wins over the bare label. */
+const actorOf=(k,n)=>SPEAKER_ACTOR[k+":"+n]||SPEAKER_ACTOR[n];
+function uncast(k){return [...playing(k)].filter(n=>!actorOf(k,n))}
 function scriptWords(k){let n=0;SCRIPTS[k].items.forEach(it=>{if(it.l&&!it.cut)it.l.forEach(l=>{n+=l.replace(/\[.*?\]/g,"").split(/\s+/).filter(Boolean).length})});return n}
 let attendance={};
 
@@ -3407,18 +3412,18 @@ function pScripts(){
 function pScript(k){
   const x=SCRIPTS[k];if(!x)return `<a class="back" href="#scenes">← Scenes</a><p>Not found.</p>`;
   const items=ITEMS.filter(i=>SCRIPT_OF[i.id]===k),un=uncast(k);const backTo=items[0]?`#scene-${items[0].id}`:"#scenes",backL=items[0]?`← ${esc(items[0].title)}`:"← Scenes";
-  const live=playing(k),castHere=[...live].filter(n=>SPEAKER_ACTOR[n]);
+  const live=playing(k),castHere=[...live].filter(n=>actorOf(k,n));
   return `<a class="back" href="${backTo}">${backL}</a>
   <div class="kicker">${esc(x.play)}</div><h1>Act ${x.act}, <em>Scene ${x.scene}</em></h1>
   <p class="sub">${esc(x.title.replace(/^SCENE [IVX]+\.\s*/,""))} · ≈ ${scriptWords(k).toLocaleString("en-GB")} words · Folger lines ${esc(x.first)}–${esc(x.last)}${SCRIPT_NOTE[k]?" · "+esc(SCRIPT_NOTE[k]):""}</p>
   <div class="btns" style="max-width:720px"><button class="btn primary" data-dl-pdf="${k}">Download PDF</button><button class="btn" data-dl-txt="${k}">Download .txt</button><a class="btn" href="${esc(x.url)}" target="_blank" rel="noopener">Read it at the Folger ↗</a></div>
   <div class="card"><span class="small">Used for</span>${items.map(i=>`<a class="pill" href="#scene-${i.id}">${i.n} · ${esc(i.title)}</a>`).join("")}
-    <span class="small" style="margin-top:12px">Our cast in this scene</span>${castHere.map(n=>`<span class="pill">${esc(n)} — ${esc(SPEAKER_ACTOR[n])}</span>`).join("")}
+    <span class="small" style="margin-top:12px">Our cast in this scene</span>${castHere.map(n=>`<span class="pill">${esc(n)} — ${esc(actorOf(k,n))}</span>`).join("")}
     ${un.length?`<span class="small" style="margin-top:12px;color:var(--acc)">Speaking roles not yet cast: cut or reassign</span>${un.map(n=>`<span class="pill warnpill">${esc(n)}</span>`).join("")}`:""}</div>
   <article class="script">${x.items.map(it=>{
     if(it.d)return `<p class="sd${it.cut?" cut":""}">${esc(it.d)}</p>`;
     /* label: the actor, or Vacant for anyone actually in the scene; nothing for a fully cut part */
-    const who=it.s.split(" / ").filter(n=>live.has(n)).map(n=>SPEAKER_ACTOR[n]||"Vacant");
+    const who=it.s.split(" / ").filter(n=>live.has(n)).map(n=>actorOf(k,n)||"Vacant");
     return `<div class="speech ours${it.cut?" cut":""}"><div class="spk">${esc(it.s)}${it.cut?` <em class="cuttag">Cut</em>`:""}${who.length?` <span>${esc(who.join(", "))}</span>`:""}</div>${it.l.map(l=>/^\[.*\]$/.test(l)?`<p class="sd in">${esc(l.slice(1,-1))}</p>`:`<p>${esc(l)}</p>`).join("")}</div>`}).join("")}</article>
   <div class="btns"><a class="btn" href="${backTo}">${backL}</a><button class="btn primary" data-dl-pdf="${k}">Download PDF</button>${scriptNext(k)}</div>`;
 }
