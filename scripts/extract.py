@@ -161,11 +161,11 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               ('rom11', 'Soft, I will go along.', 'I’ll pay that doctrine or else die in debt.'),
               # Romeo 1.5: Capulet and his cousin on their dancing days — cut with the housekeeping above
               ('rom15', 'By ’r Lady, thirty years.', 'Will you tell me that?'),
-              # Romeo 1.5: the servingmen's Potpan opening goes; the two stage directions stay
-              ('rom15', 'Where’s Potpan that he helps not', 'We cannot be here and there too.'),
+              # Romeo 1.5: the servingmen's Potpan opening goes, napkins and all
+              ('rom15', 'Servingmen come forth with napkins.', 'They move aside.'),
               # Coriolanus 4.5: the servingmen's post-mortem goes, so the scene ends on Aufidius
               # welcoming Coriolanus. That takes all three servingmen out of the show.
-              ('cor45', 'Here’s a strange alteration!', 'In, in, in, in!'),
+              ('cor45', 'Two of the Servingmen come forward.', 'In, in, in, in!'),
               # Romeo 1.5: Capulet's banquet farewell goes
               ('rom15', 'Nay, gentlemen, prepare not to be gone.', 'Nay, gentlemen, prepare not to be gone.'),
               # Romeo 1.5: Juliet asks once and the Nurse answers with Romeo's name — Tiberio,
@@ -298,7 +298,8 @@ for k, (f, a, s, loc, start, end) in WANT.items():
         if ck == k:
             on = False
             for it in items:
-                on = on or bool(it.get('l') and it['l'][0].startswith(first))
+                # a range can open on a stage direction as well as a line
+                on = on or bool(it.get('l') and it['l'][0].startswith(first)) or (it.get('d') or '').startswith(first)
                 if on:
                     it['cut'] = True
                     # the end marker can be a stage direction as well as a line, so a range can
