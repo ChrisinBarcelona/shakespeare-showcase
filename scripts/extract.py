@@ -127,9 +127,8 @@ LINE_CUTS = [
     # Hamlet 5.2: his parody of Osric's euphuism goes, leaving only "a soul of great article"
     ('ham52', 'Sir, his definement suffers no perdition in', 'verity of extolment,'),
     ('ham52', 'and his infusion of such dearth and rareness', 'nothing more.'),
-    # Romeo 1.5: Capulet welcomes them and goes straight to the musicians — the corns, the
-    # visor and "'tis gone, 'tis gone, 'tis gone" all go
-    ('rom15', 'Ladies that have their toes', '’Tis gone, ’tis gone, ’tis gone.'),
+    # Romeo 1.5: the corns and the walk-a-bout go; Capulet keeps the visor and "'tis gone"
+    ('rom15', 'Ladies that have their toes', 'Am I come near you now?—'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
