@@ -129,6 +129,9 @@ LINE_CUTS = [
     ('ham52', 'and his infusion of such dearth and rareness', 'nothing more.'),
     # Romeo 1.5: the corns and the walk-a-bout go; Capulet keeps the visor and "'tis gone"
     ('rom15', 'Ladies that have their toes', 'Am I come near you now?—'),
+    # Romeo 1.5: the music and the dance start the feast, then we go straight to Romeo —
+    # the housekeeping and the thirty-years reminiscing with the Cousin go (see RANGE_FROM)
+    ('rom15', 'A hall, a hall, give room!— And foot it, girls.—', 'Were in a mask?'),
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]')]
@@ -140,6 +143,8 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               # Romeo 1.1: everything from "Soft, I will go along." to the end — all the Rosaline
               # talk and Benvolio's cure — is cut; "They exit." stays
               ('rom11', 'Soft, I will go along.', 'I’ll pay that doctrine or else die in debt.'),
+              # Romeo 1.5: Capulet and his cousin on their dancing days — cut with the housekeeping above
+              ('rom15', 'By ’r Lady, thirty years.', 'Will you tell me that?'),
               # Hamlet 1.3: Polonius' precepts and the leave-taking go; he enters and stays silent
               # until "What is 't, Ophelia, he hath said to you?"
               ('ham13', 'Yet here, Laertes?', 'The time invests you.')]
