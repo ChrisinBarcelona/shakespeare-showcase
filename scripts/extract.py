@@ -38,6 +38,9 @@ WANT = {
     'ham51': ('hamlet', 5, 1, 'A churchyard.', None, None),
     'ham52': ('hamlet', 5, 2, 'A hall in the castle.', None, None),
     'mnd21': ('a-midsummer-nights-dream', 2, 1, 'A wood near Athens.', None, None),
+    # Puck anoints the wrong man. The Titania bower that opens the scene is cut with the
+    # rest of the enchantment plot (see RANGE_CUTS), so it starts on Lysander and Hermia lost
+    'mnd22': ('a-midsummer-nights-dream', 2, 2, 'Another part of the wood.', None, None),
     'mnd32': ('a-midsummer-nights-dream', 3, 2, 'Another part of the wood.', None, None),
     'mnd41': ('a-midsummer-nights-dream', 4, 1, 'The same. Lysander, Demetrius, Helena and Hermia lying asleep.', None, None),
     'shr21': ('the-taming-of-the-shrew', 2, 1, "Padua. A room in Baptista's house.", None, None),
@@ -173,7 +176,10 @@ LINE_CUTS = [
 ]
 # Everything from the start of the scene to the speech beginning with these words, stage directions included, is cut
 RANGE_CUTS = [('ham34', 'Polonius hides behind the arras.'), ('cor45', 'I know thee not. Thy name?'), ('shr21', '[, to Hortensio as Litio]'),
-              ('rom53', 'He dies.')]
+              ('rom53', 'He dies.'),
+              # Midsummer 2.2: Titania's bower, the fairy song and Oberon charming her eyes go
+              # with the enchantment plot. The scene opens on Lysander and Hermia lost in the wood.
+              ('mnd22', 'He exits.')]
 # Everything from the speech beginning with these words to the end of the scene (or up to and including the
 # speech beginning with the optional third entry) is cut
 RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters sealed;'), ('shr21', 'Now, Signior Petruchio'),
