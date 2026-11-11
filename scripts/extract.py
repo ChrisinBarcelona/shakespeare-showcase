@@ -208,6 +208,9 @@ RANGE_FROM = [('ham34', 'A king of shreds and patches', 'There’s letters seale
               ('ham13', 'Yet here, Laertes?', 'The time invests you.'),
               # Romeo 5.3: the watch, the Prince and the Friar's recap are reference only
               ('rom53', 'This is the place, there where the torch doth burn.')]
+# Speeches sung rather than spoken: (id, first words of the speech). Marked "sung" on the
+# script, shown in pink with a note icon
+SUNG = [('mnd22', 'Through the forest have I gone,')]
 SPLITS = [('rom14', 'Tut', 'Come, we burn daylight'), ('rom53', 'In faith, I will', 'How oft when men are at the point of death'),
           ('mnd32', 'I wonder if Titania', 'How now, mad spirit?')]
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
@@ -348,6 +351,11 @@ for k, (f, a, s, loc, start, end) in WANT.items():
             for it in items:
                 if not (it.get('l') and any(it['l'][0].startswith(w) for w in keep)):
                     it['cut'] = True
+    for ck, words in SUNG:
+        if ck == k:
+            hit = [it for it in items if it.get('l') and it['l'][0].startswith(words)]
+            assert hit, (k, words)
+            hit[0]['sung'] = True
     nums = [it['n'] for it in items if it.get('n')]
     out[k] = {
         'play': PLAY[f], 'act': a, 'scene': s, 'title': f'SCENE {ROMAN[s]}.  {loc}',
