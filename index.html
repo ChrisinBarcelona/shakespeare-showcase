@@ -1063,6 +1063,23 @@ select option{background:#111113;color:#f5f5f4}
 .scmusic .sgmain b{display:block;font-size:20px;margin-top:2px}.scmusic .sgmain span{color:#b8b8bd;font-size:14px}
 .scmusic audio{width:100%;height:42px;color-scheme:dark}
 @media(max-width:640px){.scmusic{grid-template-columns:auto 1fr}.scmusic audio{grid-column:1/-1}}
+.scbd{position:relative;margin-top:20px;padding:18px 18px 20px;border-radius:18px;background:#141416;border:1px solid #2a2a2f;overflow:hidden}
+.scbd-head{display:flex;align-items:center;gap:14px;position:relative;z-index:2}
+.scbd-lamp{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#1d1d21;border:1px solid #33333a;color:#f5e6b8;box-shadow:0 0 22px rgba(245,230,184,.16)}
+.scbd-head b{display:block;font-size:20px;margin-top:2px}
+.scbd-head span.src{color:#b8b8bd;font-size:14px}
+.scbd-cone{position:absolute;left:34px;top:62px;width:260px;height:120px;z-index:1;pointer-events:none;
+  background:linear-gradient(170deg,rgba(245,230,184,.16),rgba(245,230,184,0) 72%);
+  clip-path:polygon(0 0,14% 0,100% 86%,100% 100%,0 34%);filter:blur(1px)}
+.scbd-screen{position:relative;z-index:2;margin-top:16px;border-radius:10px;overflow:hidden;background:#000;
+  border:1px solid #3a3a42;box-shadow:0 0 0 6px #101012,0 22px 60px rgba(0,0,0,.6),0 0 70px rgba(245,230,184,.07)}
+.scbd-screen .r{position:relative;width:100%;aspect-ratio:16/9}
+.scbd-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.scbd-note{position:relative;z-index:2;margin:14px 2px 0;color:#b8b8bd;font-size:14px;line-height:1.55}
+.scbd-note b{color:#ededf0}
+.scbd-foot{position:relative;z-index:2;margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.scbd-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b8b8bd;border:1px solid #33333a;border-radius:999px;padding:4px 10px}
+@media(max-width:640px){.scbd-cone{display:none}}
 .sgmain a{color:#fff}
 
 .stb.open{color:#c9c9cd;border:1px dashed #71717a;background:transparent}
@@ -1795,6 +1812,13 @@ html.light{--muted:#424247;--line:#e2e1df}
 :where(html.light) :where(html.light) .shk.no{color:#f0d3d1;border-color:rgba(240,211,209,.45)}
 :where(html.light) .scmusic{background:#fcfcfc;border:1px solid #e2e1df}
 :where(html.light) .scmusic .sgmain span{color:#424247}
+:where(html.light) .scbd{background:#fcfcfc;border:1px solid #e2e1df}
+:where(html.light) .scbd-lamp{background:#f3f1ec;border:1px solid #e2e1df;color:#8a6d1f;box-shadow:0 0 18px rgba(138,109,31,.12)}
+:where(html.light) .scbd-head span.src,:where(html.light) .scbd-note{color:#424247}
+:where(html.light) .scbd-note b{color:#1a1a1c}
+:where(html.light) .scbd-cone{background:linear-gradient(170deg,rgba(138,109,31,.12),rgba(138,109,31,0) 72%)}
+:where(html.light) .scbd-screen{border:1px solid #d8d6d1;box-shadow:0 0 0 6px #efede8,0 18px 44px rgba(0,0,0,.14)}
+:where(html.light) .scbd-tag{color:#424247;border:1px solid #d8d6d1}
 :where(html.light) .sgmain a{color:#141414}
 :where(html.light) .stb.open{color:#323236;border:1px dashed #85858e}
 :where(html.light) .cnote{background:#fcfcfc;border:1px solid #e2e1df;border-left:4px solid #550bc9}
@@ -2753,6 +2777,7 @@ function pScene(id){
   <div class="kicker">${o.n} · ${esc(o.play)}</div><h1>${esc(o.title)}</h1>
   <p class="sub">≈ ${o.mins} min${o.arc?" · "+esc(o.arc):""}</p>
   ${songFor(o.id)}
+  ${backdropFor(o.id)}
   ${SCRIPT_OF[o.id]?scriptCta(o):""}
   <div class="card"><span class="small">What happens</span><div class="body">${esc(o.syn)}</div></div>
   ${aboutScene(o)}
@@ -3843,6 +3868,18 @@ const ICONS={
 const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
 const AMBIENT=[["owl","Owls","Night in the wood: Midsummer, the witches"],["crow","Crows & ravens","Macbeth's heath and castle"],["bird","Birdsong","Morning: Arden, the lovers wake"],["forest","Forest","The Forest of Arden, the Athenian wood"],["water","Water","Ophelia's water"],["river","River","Ophelia's drowning, running under the scene"]];
 const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning","mos-crown"],["macbeth","Macbeth","1:32","The witches' ritual","mos-witches"],["rosemary","Rosemary","1:29","Ophelia's madness","ham45"],["the-changeling-boy","The Changeling Boy","1:00","The fairy dance","mos-fairy"]];
+const BACKDROPS={rom11:{yt:"Hs950SOy_70",title:"Dawn on the water",src:"Real ocean sunrise, 4K \u00b7 2 hours",
+  note:"<b>This is projected, not decorated.</b> The stage is bare. This footage fills the back wall, floor to grid, behind the actors \u2014 so Benvolio finds Romeo at first light, on the edge of an ocean that keeps moving for the whole scene. It runs silent: the score carries the sound. Nothing is cued to a line, nothing cuts; it simply continues, which is why it reads as weather rather than as video. The actors play in front of it in near-silhouette.",
+  tags:["Back wall, floor to grid","Plays silent","Continuous \u2014 no cues","Actors in silhouette"]}};
+function backdropFor(id){const b=BACKDROPS[id];if(!b)return "";
+  return `<section class="scbd" aria-label="Projected backdrop for this scene">
+    <div class="scbd-cone" aria-hidden="true"></div>
+    <div class="scbd-head"><div class="scbd-lamp">${icon("projector",24)}</div>
+      <div><p class="ckick" style="margin:0">Projected backdrop</p><b>${esc(b.title)}</b><span class="src">${esc(b.src)}</span></div></div>
+    <div class="scbd-screen"><div class="r"><iframe src="https://www.youtube-nocookie.com/embed/${esc(b.yt)}?rel=0&amp;modestbranding=1&amp;playsinline=1" title="${esc(b.title)} \u2014 projected backdrop" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+    <p class="scbd-note">${b.note}</p>
+    <div class="scbd-foot">${b.tags.map(t=>`<span class="scbd-tag">${esc(t)}</span>`).join("")}</div>
+  </section>`}
 function songFor(id){const x=SONGS.find(z=>z[4]===id);return x?`<section class="scmusic" aria-label="Music for this piece"><div class="sgicon">${icon("note",24)}</div><div class="sgmain"><p class="ckick" style="margin:0">Music</p><b>${esc(x[1])}</b><span>${x[2]}</span></div><audio controls preload="none" src="audio/${x[0]}.mp3" aria-label="Play ${esc(x[1])}"></audio></section>`:""}
 
 const APPROACH=[
