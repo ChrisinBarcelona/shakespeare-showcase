@@ -3868,7 +3868,14 @@ const ICONS={
 const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
 const AMBIENT=[["owl","Owls","Night in the wood: Midsummer, the witches"],["crow","Crows & ravens","Macbeth's heath and castle"],["bird","Birdsong","Morning: Arden, the lovers wake"],["forest","Forest","The Forest of Arden, the Athenian wood"],["water","Water","Ophelia's water"],["river","River","Ophelia's drowning, running under the scene"]];
 const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning","mos-crown"],["macbeth","Macbeth","1:32","The witches' ritual","mos-witches"],["rosemary","Rosemary","1:29","Ophelia's madness","ham45"],["the-changeling-boy","The Changeling Boy","1:00","The fairy dance","mos-fairy"]];
-const BACKDROPS={rom11:{yt:"Hs950SOy_70",title:"Dawn on the water",src:"Real ocean sunrise, 4K \u00b7 2 hours",
+const BACKDROPS={
+ "mos-witches":{yt:"jsoR_cMA3Yw",title:"The wood at night, with crows",src:"Night forest ambience, 4K \u00b7 4 hours",
+  note:"<b>This is projected, not decorated.</b> It is also the first thing the audience sees, so it sets the rule for the whole evening: the back wall is weather, and it never stops. Black trees, no moon, crows somewhere off. The three of them conjure in front of it and are lit from the front and low, so the wood stays flat and cold behind them while they are the only warm thing on stage. It runs silent \u2014 the ritual music is ours.",
+  tags:["Opens the show","Back wall, floor to grid","Plays silent","Front and low light on the witches"]},
+ ayl21:{yt:"xNN7iTA57jM",title:"Arden by daylight",src:"Woodland ambience, birdsong \u00b7 3 hours",
+  note:"<b>This is projected, not decorated.</b> It is the exact answer to the witches' wood: the same back wall, the same scale, but green, moving and full of light. Duke Senior argues that exile is better than court while real daylight comes through real leaves behind him \u2014 the staging makes his case before he opens his mouth. Silent, continuous, no cues; the birdsong, if we want it, comes from the score.",
+  tags:["Answers the witches' wood","Back wall, floor to grid","Plays silent","Continuous \u2014 no cues"]},
+ rom11:{yt:"Hs950SOy_70",title:"Dawn on the water",src:"Real ocean sunrise, 4K \u00b7 2 hours",
   note:"<b>This is projected, not decorated.</b> The stage is bare. This footage fills the back wall, floor to grid, behind the actors \u2014 so Benvolio finds Romeo at first light, on the edge of an ocean that keeps moving for the whole scene. It runs silent: the score carries the sound. Nothing is cued to a line, nothing cuts; it simply continues, which is why it reads as weather rather than as video. The actors play in front of it in near-silhouette.",
   tags:["Back wall, floor to grid","Plays silent","Continuous \u2014 no cues","Actors in silhouette"]}};
 function backdropFor(id){const b=BACKDROPS[id];if(!b)return "";
