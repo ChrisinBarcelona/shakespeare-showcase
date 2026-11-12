@@ -1074,7 +1074,8 @@ select option{background:#111113;color:#f5f5f4}
 .scbd-screen{position:relative;z-index:2;margin-top:16px;border-radius:10px;overflow:hidden;background:#000;
   border:1px solid #3a3a42;box-shadow:0 0 0 6px #101012,0 22px 60px rgba(0,0,0,.6),0 0 70px rgba(245,230,184,.07)}
 .scbd-screen .r{position:relative;width:100%;aspect-ratio:16/9}
-.scbd-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.scbd-screen iframe,.scbd-screen video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.scbd-screen video{object-fit:cover;background:#000}
 .scbd-note{position:relative;z-index:2;margin:14px 2px 0;color:#b8b8bd;font-size:14px;line-height:1.55}
 .scbd-note b{color:#ededf0}
 .scbd-foot{position:relative;z-index:2;margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
@@ -3875,6 +3876,9 @@ const BACKDROPS={
  ayl21:{yt:"xNN7iTA57jM",title:"Arden by daylight",src:"Woodland ambience, birdsong \u00b7 3 hours",
   note:"<b>This is projected, not decorated.</b> It is the exact answer to the witches' wood: the same back wall, the same scale, but green, moving and full of light. Duke Senior argues that exile is better than court while real daylight comes through real leaves behind him \u2014 the staging makes his case before he opens his mouth. Silent, continuous, no cues; the birdsong, if we want it, comes from the score.",
   tags:["Answers the witches' wood","Back wall, floor to grid","Plays silent","Continuous \u2014 no cues"]},
+ ham13:{mp4:"backdrops/elsinore-meadow.mp4",poster:"backdrops/elsinore-meadow.jpg",title:"Elsinore from the meadow",src:"Our own plate, 5 s \u00b7 looped silent",
+  note:"<b>This is projected, not decorated.</b> Laertes is leaving and the sun is out: the spires of Elsinore sit at the back of a summer meadow, and the camera drifts forward through the long grass so slowly that the audience reads it as air, not as film. It gives the scene the one thing the warning needs \u2014 somewhere pleasant to be standing while a brother tells his sister what the world will do to her. The white cow parsley at the front of frame is deliberate: those are Ophelia's flowers, four scenes early, and the same wall of grass turns to water for the drowning.",
+  tags:["Back wall, floor to grid","Plays silent","Loops \u2014 no cues","Her flowers, four scenes early"]},
  rom11:{yt:"Hs950SOy_70",title:"Dawn on the water",src:"Real ocean sunrise, 4K \u00b7 2 hours",
   note:"<b>This is projected, not decorated.</b> The stage is bare. This footage fills the back wall, floor to grid, behind the actors \u2014 so Benvolio finds Romeo at first light, on the edge of an ocean that keeps moving for the whole scene. It runs silent: the score carries the sound. Nothing is cued to a line, nothing cuts; it simply continues, which is why it reads as weather rather than as video. The actors play in front of it in near-silhouette.",
   tags:["Back wall, floor to grid","Plays silent","Continuous \u2014 no cues","Actors in silhouette"]}};
@@ -3883,7 +3887,9 @@ function backdropFor(id){const b=BACKDROPS[id];if(!b)return "";
     <div class="scbd-cone" aria-hidden="true"></div>
     <div class="scbd-head"><div class="scbd-lamp">${icon("projector",24)}</div>
       <div><p class="ckick" style="margin:0">Projected backdrop</p><b>${esc(b.title)}</b><span class="src">${esc(b.src)}</span></div></div>
-    <div class="scbd-screen"><div class="r"><iframe src="https://www.youtube-nocookie.com/embed/${esc(b.yt)}?rel=0&amp;modestbranding=1&amp;playsinline=1" title="${esc(b.title)} \u2014 projected backdrop" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+    <div class="scbd-screen"><div class="r">${b.mp4
+      ?`<video src="${esc(b.mp4)}"${b.poster?` poster="${esc(b.poster)}"`:""} title="${esc(b.title)} \u2014 projected backdrop" autoplay loop muted playsinline preload="metadata" controls disablepictureinpicture controlslist="nodownload noplaybackrate"></video>`
+      :`<iframe src="https://www.youtube-nocookie.com/embed/${esc(b.yt)}?rel=0&amp;modestbranding=1&amp;playsinline=1" title="${esc(b.title)} \u2014 projected backdrop" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`}</div></div>
     <p class="scbd-note">${b.note}</p>
     <div class="scbd-foot">${b.tags.map(t=>`<span class="scbd-tag">${esc(t)}</span>`).join("")}</div>
   </section>`}
