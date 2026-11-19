@@ -1382,6 +1382,9 @@ html.light .navlogin:hover{background:#000;color:#fff!important}
 .pbca{font-size:17px;line-height:1;opacity:.55;transition:transform .15s,opacity .15s}
 .pbc:hover .pbca{transform:translateX(4px);opacity:1}
 .pbcast{border-top:1px solid #26262b;padding:13px 16px 15px}
+.pbnotes{border-top:1px solid #26262b;padding:13px 16px 15px}
+.pbnotes .card{margin:0;background:transparent;border:0;padding:0}
+.pbnotes .notes{white-space:pre-wrap}
 .pbcl{display:block;font:600 10.5px var(--fb);letter-spacing:.09em;text-transform:uppercase;color:#8a8a90;margin-bottom:9px}
 .pbps{display:flex;flex-wrap:wrap;gap:9px 18px}
 .pbp{display:flex;gap:7px;align-items:baseline;text-decoration:none;color:inherit}
@@ -2471,6 +2474,7 @@ function initials(n){return n.split(" ").map(w=>w[0]).join("").slice(0,2)}
 /* editable notes (Chris only) */
 function notesBlock(key,label,fallback){
   const v=content[key]&&content[key].text;
+  if(!v&&!isOwner)return "";
   return `<div class="card"><span class="small">${esc(label)}</span><div class="notes body" id="n-${key}">${v?esc(v):`<span style="color:var(--muted)">${esc(fallback||"No notes yet.")}</span>`}</div>${isOwner?`<button class="btn sm edit" data-edit="${key}" data-label="${esc(label)}">Edit</button>`:""}</div>`;
 }
 function wireEdits(root){
@@ -2743,10 +2747,12 @@ function pPlays(){
       const who=c.actor.split(", ").map(a=>a==="Vacant"?`<em class="pbvac">Vacant</em>`:esc(a)).join(", ");
       return `<a class="pbp${c.actor.includes("Vacant")?" vac":""}" href="#character-${c.id}"><b>${esc(c.name)}</b><i>${who}</i></a>`;
     }).join("");
+    const notes=notesBlock("play-"+ck(g.play),"Notes: "+g.play,"Empty — tap Edit to publish notes for "+g.play+".");
     return `<article class="pbl" style="--bg:${bg};--fg:${fg}">
       <header class="pbhead"><h3 class="pbname">${esc(g.play)}</h3><span class="pbmeta">${g.items.length} piece${g.items.length===1?"":"s"} · ${nSc} scene${nSc===1?"":"s"} · ${Math.round(mins)} min</span></header>
       <div class="pbgrid">${cards}</div>
-      ${cast?`<div class="pbcast"><span class="pbcl">Who is in it</span><div class="pbps">${cast}</div></div>`:""}</article>`;
+      ${cast?`<div class="pbcast"><span class="pbcl">Who is in it</span><div class="pbps">${cast}</div></div>`:""}
+      ${notes?`<div class="pbnotes">${notes}</div>`:""}</article>`;
   }).join("");
   return folioHero(`${groups.length} plays · ${Math.round(ORDER.reduce((a,o)=>a+(o.mins||0),0))} minutes`,"Play by Play",
     `<p class="ftag">The running order taken apart and sorted by play, so each thread can be read on its own.</p>`)+`</section>
@@ -3013,7 +3019,7 @@ function pChar(id){
 
   ${cg?`<h2 class="chh">Costume</h2><div class="card chcost"><p style="margin:0 0 12px">${esc(cg.note)}</p><div class="costgrid">${cg.imgs.map(([f,alt])=>`<figure><img src="costume/${f}.jpg" data-full="costume/${f}.jpg" alt="${esc(alt)}" tabindex="0" role="button" aria-label="Open photo full size: ${esc(alt)}" loading="lazy"></figure>`).join("")}</div></div>`:""}
 
-  ${notesBlock("char-"+id,"Character notes (for the actor)","Chris's notes on playing this character will appear here.")}
+  ${notesBlock("char-"+id,"Character notes (for the actor)","Empty — tap Edit to write notes for whoever plays this.")}
   <nav class="chnav" aria-label="More characters from ${esc(c.play)}">${prev?`<a class="btn" href="#character-${prev.id}">← ${esc(prev.name)}</a>`:"<span></span>"}${next?`<a class="btn" href="#character-${next.id}">${esc(next.name)} →</a>`:"<span></span>"}</nav>`;
 }
 
