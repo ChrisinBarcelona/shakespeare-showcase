@@ -7,6 +7,8 @@
 <meta name="description" content="A CHRIS KELLY PRODUCTION. Love, power, madness and hate: scenes from eight of Shakespeare's plays in one evening. Opening night Friday 23 April 2027, Shakespeare's birthday, then Thursdays to Saturdays until 15 May in Barcelona. Curtain 20:00.">
 <meta name="theme-color" content="#000000">
 <script>(function(){try{var t=localStorage.getItem("ss_theme")||"dark";if(t==="light"){document.documentElement.classList.add("light");document.querySelector('meta[name="theme-color"]').content="#fafaf9"}}catch(e){}})()</script>
+<style>#gate{display:none}html.gated{overflow:hidden}html.gated body>*:not(#gate){display:none!important}html.gated #gate{display:flex}</style>
+<script>(function(){try{if(localStorage.getItem("ss_in")==="1")return}catch(e){}document.documentElement.classList.add("gated")})()</script>
 <link rel="canonical" href="https://shakespeareshow.actor/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Selected Works of Shakespeare">
@@ -2033,6 +2035,54 @@ a.pill.scchip:hover{border-color:var(--acc)!important;color:#fff!important;backg
 </style>
 </head>
 <body>
+<style>
+#gate{position:fixed;inset:0;z-index:999;background:var(--ink);align-items:center;justify-content:center;padding:24px}
+#gate form{width:100%;max-width:360px;display:flex;flex-direction:column}
+#gate h1{font-family:var(--fd);font-size:26px;font-weight:600;line-height:1.2;margin:0 0 6px;color:var(--paper)}
+#gate h1 em{font-style:normal;color:var(--gold)}
+#gate .gsub{margin:0 0 26px;color:var(--muted);font-size:14px}
+#gate label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+#gate input{width:100%;min-height:46px;background:#050505;border:1px solid var(--line);border-radius:12px;color:var(--paper);padding:0 14px;font:500 15px var(--fb);margin:0 0 16px}
+#gate input:focus{outline:2px solid var(--muted);outline-offset:1px}
+#gate button{min-height:46px;border:0;border-radius:999px;background:var(--paper);color:var(--ink);font:600 15px var(--fb);cursor:pointer;margin-top:4px}
+#gate button:hover{background:#fff}
+#gate .gerr{margin:16px 0 0;color:#e06a5a;font-size:13.5px}
+:where(html.light) #gate input{background:#f8f7f6;border-color:#d9d7d5;color:#151513}
+:where(html.light) #gate button{background:#18181b;color:#fafaf9}
+</style>
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gatettl">
+  <form id="gateform">
+    <h1 id="gatettl">Selected Works <em>of Shakespeare</em></h1>
+    <p class="gsub">Company access only. Please sign in.</p>
+    <label for="gateuser">User name</label>
+    <input id="gateuser" name="username" type="text" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+    <label for="gatepass">Password</label>
+    <input id="gatepass" name="password" type="password" autocomplete="current-password" required>
+    <button type="submit">Enter</button>
+    <p class="gerr" id="gateerr" role="alert" hidden>That is not the user name and password. Try again.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var U="actor",P="actor03";
+  var g=document.getElementById("gate"),f=document.getElementById("gateform"),
+      u=document.getElementById("gateuser"),p=document.getElementById("gatepass"),
+      e=document.getElementById("gateerr");
+  f.addEventListener("submit",function(ev){
+    ev.preventDefault();
+    if(u.value.trim().toLowerCase()===U&&p.value===P){
+      try{localStorage.setItem("ss_in","1")}catch(err){}
+      document.documentElement.classList.remove("gated");
+      g.remove();
+    }else{
+      e.hidden=false;p.value="";p.focus();
+    }
+  });
+  if(document.documentElement.classList.contains("gated")){
+    try{u.focus()}catch(err){}
+  }
+})();
+</script>
 
 
 <a class="skip" href="#view">Skip to content</a>
