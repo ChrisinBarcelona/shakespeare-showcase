@@ -1,0 +1,3347 @@
+{
+ "CHARS": [
+  " {id:\"rom-servingman\",name:\"Servingman\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"A servant at the Capulet feast. Romeo asks him who Juliet is, and he does not know.\"},",
+  " {id:\"romeo\",name:\"Romeo\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"Montague's only son. When we meet him he is not yet in love with Juliet: he is pining for Rosaline, who has sworn never to marry, and he has been wandering before dawn and shutting himself in his room. He talks about love in paradoxes and half enjoys his own misery.\"},",
+  " {id:\"benvolio\",name:\"Benvolio\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"Romeo's cousin and friend, and the peacemaker of the Montagues: his name means 'well-wishing'. He tried to stop the street brawl, and now he coaxes Romeo's secret out of him and prescribes the cure: look at other women.\"},",
+  " {id:\"mercutio\",name:\"Mercutio\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"Romeo's friend, a kinsman of the Prince, so neither Montague nor Capulet. Quick, bawdy and restless, he can't leave a word alone. His Queen Mab speech starts as a party piece and runs away with him into something darker.\"},",
+  " {id:\"juliet\",name:\"Juliet\",play:\"Romeo and Juliet\",actor:\"Sarah Burns\",bio:\"Capulet's only daughter, not yet fourteen. When we meet her she is obedient and almost silent, and has never thought about marriage: 'It is an honor that I dream not of.' By the end of the night she will have met Romeo.\"},",
+  " {id:\"lady-capulet\",name:\"Lady Capulet\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"Juliet's mother, married young herself and a stranger to her own daughter. She has come with one job: to sell Juliet on marrying the County Paris, and she pitches him like a well-bound book.\"},",
+  " {id:\"capulet\",name:\"Capulet\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"Juliet's father and the host of the feast, the loudest man in his own hall. He plays the genial old dancer for his guests, remembering when he could wear a mask himself, and turns on Tybalt the moment he is crossed in his own house.\"},",
+  " {id:\"tybalt\",name:\"Tybalt\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"Juliet's cousin, a Capulet who takes the feud personally. He knows Romeo by his voice alone, and being made to swallow the insult at the feast is what he carries out of the scene.\"},",
+  " {id:\"friar-lawrence\",name:\"Friar Lawrence\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"A Franciscan friar, Romeo's confessor and friend, and an expert in herbs. He married the lovers in secret and gave Juliet the potion that makes her seem dead. In the tomb he arrives minutes too late, and when he hears the watch coming his nerve fails: he runs, and leaves her alone.\"},",
+  " {id:\"nurse\",name:\"The Nurse\",play:\"Romeo and Juliet\",actor:\"Vacant\",bio:\"Juliet's nurse since birth, closer to her than her mother is. Earthy, garrulous and funny, she cannot tell a story without telling it twice, and she still grieves her own daughter, Susan, who died the same age as Juliet.\"},"
+ ],
+ "PARTS": [
+  " {id:\"romeo\",ch:\"romeo\",name:\"Romeo\",actor:\"Vacant\",words:721},",
+  " {id:\"benvolio\",ch:\"benvolio\",name:\"Benvolio\",actor:\"Vacant\",words:72},",
+  " {id:\"mercutio\",ch:\"mercutio\",name:\"Mercutio\",actor:\"Vacant\",words:294},",
+  " {id:\"juliet\",ch:\"juliet\",name:\"Juliet\",actor:\"Sarah Burns\",words:277},",
+  " {id:\"lady-capulet\",ch:\"lady-capulet\",name:\"Lady Capulet\",actor:\"Vacant\",words:230},",
+  " {id:\"capulet\",ch:\"capulet\",name:\"Capulet\",actor:\"Vacant\",words:161},",
+  " {id:\"tybalt\",ch:\"tybalt\",name:\"Tybalt\",actor:\"Vacant\",words:109},",
+  " {id:\"friar-lawrence\",ch:\"friar-lawrence\",name:\"Friar Lawrence\",actor:\"Vacant\",words:0},",
+  " {id:\"nurse\",ch:\"nurse\",name:\"The Nurse\",actor:\"Vacant\",words:231},",
+  " {id:\"rom-servingman\",ch:\"rom-servingman\",name:\"Servingman\",actor:\"Vacant\",words:12}"
+ ],
+ "ORDER": [
+  " {id:\"rom13\",type:\"scene\",n:\"2\",play:\"Romeo and Juliet 1.3\",title:\"Thinks she of marriage?\",actors:[\"Sarah Burns\",\"Vacant\",\"Vacant\"],chars:[\"juliet\",\"lady-capulet\",\"nurse\"],mins:4,",
+  "  syn:\"Lady Capulet sends for her daughter to talk about marriage, with the Nurse in the way of it. Our cut takes out the Nurse's long story about Juliet as a toddler, the wormwood and the fall, so the scene comes quickly to the pitch: the County Paris wants her. 'Can you love the gentleman?' Juliet promises only to look, no further than her mother allows.\",arc:\"Contrast: straight after Macbeth is promised a crown, a girl is offered a husband. Two prophecies of the future: one seized, one politely deferred.\"},",
+  " {id:\"rom11\",type:\"scene\",n:\"8\",play:\"Romeo and Juliet 1.1\",title:\"Good morrow, cousin\",actors:[\"Vacant\",\"Vacant\"],chars:[\"romeo\",\"benvolio\"],mins:2,",
+  "  syn:\"Benvolio finds his cousin out at nine in the morning and sad with it, and has the reason out of him in a breath: 'Out of her favor where I am in love.' Our cut stops there — no Rosaline, no catalogue of oxymorons, no cure. Romeo answers his cousin's sympathy with what love is instead: a smoke, a fire, a sea, 'a choking gall, and a preserving sweet.'\",arc:\"Love before the fall: Romeo pining for a woman who will not have him, just before Hamlet tells Ophelia he never loved her.\"},",
+  " {id:\"rom14\",type:\"scene\",n:\"9\",play:\"Romeo and Juliet 1.4\",title:\"Queen Mab\",actors:[\"Vacant\",\"Vacant\",\"Vacant\"],chars:[\"mercutio\",\"romeo\",\"benvolio\"],mins:4,",
+  "  syn:\"On the way to gatecrash the Capulets' feast, Mercutio tries to get the lovesick Romeo to dance. Romeo says he dreamt a dream tonight; Mercutio answers with the Queen Mab speech — in our cut, the fairy's coach built out of spider web and grasshopper wings, and then the hag who presses sleeping maids, which is where it turns and where Romeo stops him. Romeo is left with a premonition: this night will start something that ends in his death.\",arc:\"Dreams and premonition: Romeo fears 'some consequence yet hanging in the stars', straight before Hamlet tells Ophelia to get to a nunnery.\"},",
+  " {id:\"rom15\",type:\"scene\",n:\"10\",play:\"Romeo and Juliet 1.5\",title:\"The Capulet feast\",actors:[\"Vacant\",\"Vacant\",\"Sarah Burns\",\"Vacant\",\"Vacant\",\"Vacant\"],chars:[\"capulet\",\"romeo\",\"juliet\",\"tybalt\",\"nurse\",\"benvolio\"],mins:8,",
+  "  syn:\"Romeo gatecrashes the feast and sees Juliet across the room. Capulet plays the host, remembering when he could wear a mask himself, and when Tybalt knows Romeo by his voice he is told to leave him alone in his uncle's house — which he does not forget. Romeo and Juliet meet in a shared sonnet, kiss twice, and are pulled apart by the Nurse, who then tells each of them who the other is.\",arc:\"The meeting itself, played entire: the one scene where the love story actually happens, between Mercutio's dream of nothing and Hamlet telling Ophelia to get to a nunnery.\"},",
+  " {id:\"rom22\",type:\"scene\",n:\"16\",play:\"Romeo and Juliet 2.2\",title:\"Wherefore art thou Romeo?\",actors:[\"Sarah Burns\",\"Vacant\"],chars:[\"juliet\",\"romeo\"],mins:1,",
+  "  syn:\"After the feast, Romeo climbs into the Capulets' orchard and sees Juliet at her window. She, not knowing he can hear, asks the night why he must be a Montague: 'What's in a name? That which we call a rose / By any other name would smell as sweet.' He answers, and before dawn they have sworn to marry. 'Parting is such sweet sorrow.'\",arc:\"Romeo and Juliet arc: the vow.\"},",
+  " {id:\"rom53\",type:\"scene\",n:\"22\",play:\"Romeo and Juliet 5.3\",title:\"Thus with a kiss I die\",actors:[\"Vacant\",\"Sarah Burns\",\"Vacant\"],chars:[\"romeo\",\"juliet\",\"friar-lawrence\"],mins:4,",
+  "  syn:\"Believing Juliet dead, Romeo breaks into the Capulet tomb, drinks poison and dies beside her: 'Thus with a kiss I die.' Friar Lawrence comes too late and, in our cut, never says a word. Juliet wakes alone into it — 'where is my lord?' — finds the cup closed in his hand, kisses the poison from his lips, and at the sound of the watch takes his dagger: 'O happy dagger, / This is thy sheath.'\",arc:\"Romeo and Juliet arc: the end. The last image of the evening.\"},"
+ ],
+ "TRANS (removed, and the originals of the four rewritten)": [
+  " \"mac13\":{snd:\"Thunder cuts to a household bustle: a bell, distant kitchen noise, a woman calling 'Juliet!'\",lx:\"Fast crossfade from the cold heath to warm, candlelit domestic light.\",note:\"This is the big contrast moment, so keep it to 2 seconds. Lady Capulet and the Nurse are already in place.\"},",
+  " \"rom13\":{snd:\"Feast music swells offstage, then thins into birdsong and a light breeze.\",lx:\"Candlelight warms into green, dappled forest light.\",note:\"The three women exit towards the feast as Duke Senior and Amiens settle into Arden.\"},",
+  " \"cor45\":{snd:\"The embrace holds; a church bell, then morning street sounds.\",lx:\"Antium's red warms into early-morning Verona daylight.\",note:\"Benvolio is already waiting as Romeo wanders on.\"},",
+  " \"rom11\":{snd:\"Daylight street sounds fade into night: distant feast music and a drum.\",lx:\"Warm daylight to night, with torchlight on the maskers.\",note:\"Continuous: Romeo and Benvolio stay on, Mercutio bursts in with the masks. The same evening, a few days later.\"},",
+  " \"rom14\":{snd:\"'Strike, drum': the drum becomes the feast music.\",lx:\"Torchlight bursts into warm, golden party light.\",note:\"Continuous: the maskers march straight into the dance as the Capulet household spills on.\"},",
+  " \"rom15\":{snd:\"The feast music cuts out, then silence and a single piano note.\",lx:\"Party light drains to a cold, bare interior.\",note:\"The dancers sweep off; Ophelia waits with the letters.\"},",
+  " \"sil\":{snd:\"The hum gives way to Juliet's song: soft piano and a high voice ('Wherefore art thou').\",lx:\"The scrim goes dark; moonlight rises on a raised window and the orchard below.\",note:\"Juliet is already above when the light finds her; Romeo comes forward from the dark.\"},",
+  " \"rom22\":{snd:\"A last 'good night'; birdsong at the edge of dawn breaks into Puck's laughter.\",lx:\"Moonlight snaps to bright magic blue and green.\",note:\"From one pair of lovers to four: the vow, then the chaos.\"},",
+  " \"mnd41\":{snd:\"The birdsong stops dead. A single tolling bell.\",lx:\"Morning light drains to one cold torch in the dark: the tomb.\",note:\"The happy lovers exit laughing; Juliet is already laid out on the bier.\"},",
+  " \"rom53\":{snd:\"Silence after the dagger. Then Juliet's song, very soft, into the curtain call.\",lx:\"The torch on the two of them holds, then slow fade to black.\",note:\"End of show.\"},"
+ ],
+ "Edited text (original wording)": [
+  "[ham31 synopsis]  Staged inside the Capulet feast: Hamlet and Ophelia are two more guests at the party, and their scene happens in the middle of it — a scene within a scene.",
+  "[crowning ideas] \\n• The party runs into this. The feast and the nunnery scene are one continuous picture — Hamlet and Ophelia are guests at the Capulet party — and the warmth of it should drain away as this begins. Do not break the picture to set up.",
+  "[silhouette ideas]  Juliet's song begins in the dark.",
+  "[schedule 16 Jan] \"Blocking: Coriolanus · As You Like It · Romeo and Juliet\"",
+  "[schedule 27 Feb] \"Scene work: Richard III · Coriolanus · Romeo and Juliet\"",
+  "[themes] [\"Midsummer\",\"Shrew\",\"As You Like It\",\"Romeo and Juliet\"]",
+  "[play by play link] sorted into its eight plays, each thread",
+  "[make-up vacancy] across 8 plays, including",
+  "[running order card] \"21 scenes, 3 fights, 8 mosaics, in order.\""
+ ],
+ "SCRIPTS": {
+  "rom11": {
+   "play": "Romeo and Juliet",
+   "act": 1,
+   "scene": 1,
+   "title": "SCENE I.  Verona. A public place.",
+   "source": "Folger Shakespeare",
+   "url": "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/1/1/",
+   "first": "1.1.163",
+   "last": "1.1.247",
+   "items": [
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Good morrow, cousin."
+     ],
+     "n": "1.1.163"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Is the day so young?"
+     ],
+     "n": "1.1.164"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "But new struck nine."
+     ],
+     "n": "1.1.165"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Ay me, sad hours seem long.",
+      "Was that my father that went hence so fast?"
+     ],
+     "n": "1.1.166"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "It was. What sadness lengthens Romeo’s hours?"
+     ],
+     "n": "1.1.168"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Not having that which, having, makes them short."
+     ],
+     "n": "1.1.169"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "In love?"
+     ],
+     "n": "1.1.170"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Out—"
+     ],
+     "n": "1.1.171"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Of love?"
+     ],
+     "n": "1.1.172"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Out of her favor where I am in love."
+     ],
+     "n": "1.1.173"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Alas that love, so gentle in his view,",
+      "Should be so tyrannous and rough in proof!"
+     ],
+     "n": "1.1.174"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Alas that love, whose view is muffled still,",
+      "Should without eyes see pathways to his will!"
+     ],
+     "n": "1.1.176"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Where shall we dine?— O me! What fray was here?",
+      "Yet tell me not, for I have heard it all.",
+      "Here’s much to do with hate, but more with love.",
+      "Why then, O brawling love, O loving hate,",
+      "O anything of nothing first create!",
+      "O heavy lightness, serious vanity,",
+      "Misshapen chaos of well-seeming forms,",
+      "Feather of lead, bright smoke, cold fire, sick health,"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Still-waking sleep that is not what it is!",
+      "This love feel I, that feel no love in this.",
+      "Dost thou not laugh?"
+     ],
+     "n": null
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "No, coz, I rather weep."
+     ],
+     "n": "1.1.189"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Good heart, at what?"
+     ],
+     "n": "1.1.190"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "At thy good heart’s oppression."
+     ],
+     "n": "1.1.191"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Why, such is love’s transgression.",
+      "Griefs of mine own lie heavy in my breast,",
+      "Which thou wilt propagate to have it pressed",
+      "With more of thine. This love that thou hast shown",
+      "Doth add more grief to too much of mine own.",
+      "Love is a smoke made with the fume of sighs;",
+      "Being purged, a fire sparkling in lovers’ eyes;",
+      "Being vexed, a sea nourished with loving tears.",
+      "What is it else? A madness most discreet,",
+      "A choking gall, and a preserving sweet."
+     ],
+     "n": "1.1.192"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Farewell, my coz."
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Soft, I will go along.",
+      "An if you leave me so, you do me wrong."
+     ],
+     "n": "1.1.203",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Tut, I have lost myself. I am not here.",
+      "This is not Romeo. He’s some other where."
+     ],
+     "n": "1.1.205",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Tell me in sadness, who is that you love?"
+     ],
+     "n": "1.1.207",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "What, shall I groan and tell thee?"
+     ],
+     "n": "1.1.208",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Groan? Why, no. But sadly tell me who."
+     ],
+     "n": "1.1.209",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "A sick man in sadness makes his will—",
+      "A word ill urged to one that is so ill.",
+      "In sadness, cousin, I do love a woman."
+     ],
+     "n": "1.1.210",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "I aimed so near when I supposed you loved."
+     ],
+     "n": "1.1.213",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "A right good markman! And she’s fair I love."
+     ],
+     "n": "1.1.214",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "A right fair mark, fair coz, is soonest hit."
+     ],
+     "n": "1.1.215",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Well in that hit you miss. She’ll not be hit",
+      "With Cupid’s arrow. She hath Dian’s wit,",
+      "And, in strong proof of chastity well armed,",
+      "From love’s weak childish bow she lives uncharmed.",
+      "She will not stay the siege of loving terms,",
+      "Nor bide th’ encounter of assailing eyes,",
+      "Nor ope her lap to saint-seducing gold.",
+      "O, she is rich in beauty, only poor",
+      "That, when she dies, with beauty dies her store."
+     ],
+     "n": "1.1.216",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Then she hath sworn that she will still live chaste?"
+     ],
+     "n": "1.1.225",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "She hath, and in that sparing makes huge waste;",
+      "For beauty, starved with her severity,",
+      "Cuts beauty off from all posterity.",
+      "She is too fair, too wise, wisely too fair,",
+      "To merit bliss by making me despair.",
+      "She hath forsworn to love, and in that vow",
+      "Do I live dead, that live to tell it now."
+     ],
+     "n": "1.1.226",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Be ruled by me. Forget to think of her."
+     ],
+     "n": "1.1.233",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "O, teach me how I should forget to think!"
+     ],
+     "n": "1.1.234",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "By giving liberty unto thine eyes.",
+      "Examine other beauties."
+     ],
+     "n": "1.1.235",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "’Tis the way",
+      "To call hers, exquisite, in question more.",
+      "These happy masks that kiss fair ladies’ brows,",
+      "Being black, puts us in mind they hide the fair.",
+      "He that is strucken blind cannot forget",
+      "The precious treasure of his eyesight lost.",
+      "Show me a mistress that is passing fair;",
+      "What doth her beauty serve but as a note",
+      "Where I may read who passed that passing fair?",
+      "Farewell. Thou canst not teach me to forget."
+     ],
+     "n": "1.1.237",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "I’ll pay that doctrine or else die in debt."
+     ],
+     "n": "1.1.247",
+     "cut": true
+    },
+    {
+     "d": "They exit."
+    }
+   ]
+  },
+  "rom13": {
+   "play": "Romeo and Juliet",
+   "act": 1,
+   "scene": 3,
+   "title": "SCENE III.  A room in Capulet's house.",
+   "source": "Folger Shakespeare",
+   "url": "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/1/3/",
+   "first": "1.3.1",
+   "last": "1.3.113",
+   "items": [
+    {
+     "d": "Enter Lady Capulet and Nurse."
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "Nurse, where’s my daughter? Call her forth to me."
+     ],
+     "n": "1.3.1"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Now, by my maidenhead at twelve year old,",
+      "I bade her come.—"
+     ],
+     "n": "1.3.2",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "What, lamb! What, ladybird!",
+      "God forbid. Where’s this girl? What, Juliet!"
+     ],
+     "n": null
+    },
+    {
+     "d": "Enter Juliet."
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "How now, who calls?"
+     ],
+     "n": "1.3.5"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Your mother."
+     ],
+     "n": "1.3.6"
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Madam, I am here. What is your will?"
+     ],
+     "n": "1.3.7"
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "This is the matter.— Nurse, give leave awhile.",
+      "We must talk in secret.— Nurse, come back again.",
+      "I have remembered me, thou ’s hear our counsel.",
+      "Thou knowest my daughter’s of a pretty age."
+     ],
+     "n": "1.3.8"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Faith, I can tell her age unto an hour."
+     ],
+     "n": "1.3.12"
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "She’s not fourteen."
+     ],
+     "n": "1.3.13"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "I’ll lay fourteen of my teeth"
+     ],
+     "n": "1.3.14"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "( and yet, to my teen",
+      "be it spoken, I have but four)"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "she’s not fourteen."
+     ],
+     "n": null
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "How long is it now to Lammastide?"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "A fortnight and odd days."
+     ],
+     "n": "1.3.17",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Even or odd, of all days in the year,"
+     ],
+     "n": "1.3.18",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Come Lammas Eve at night shall she be fourteen.",
+      "Susan and she ( God rest all Christian souls!)",
+      "Were of an age. Well, Susan is with God;",
+      "She was too good for me. But, as I said,",
+      "On Lammas Eve at night shall she be fourteen."
+     ],
+     "n": null
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "That shall she. Marry, I remember it well.",
+      "’Tis since the earthquake now eleven years,",
+      "And she was weaned ( I never shall forget it)",
+      "Of all the days of the year, upon that day.",
+      "For I had then laid wormwood to my dug,",
+      "Sitting in the sun under the dovehouse wall.",
+      "My lord and you were then at Mantua.",
+      "Nay, I do bear a brain. But, as I said,",
+      "When it did taste the wormwood on the nipple",
+      "Of my dug and felt it bitter, pretty fool,",
+      "To see it tetchy and fall out with the dug.",
+      "“ Shake,” quoth the dovehouse. ’Twas no need, I trow,",
+      "To bid me trudge.",
+      "And since that time it is eleven years.",
+      "For then she could stand high-lone. Nay, by th’ rood,",
+      "She could have run and waddled all about,",
+      "For even the day before, she broke her brow,",
+      "And then my husband ( God be with his soul,",
+      "He was a merry man) took up the child.",
+      "“ Yea,” quoth he, “ Dost thou fall upon thy face?",
+      "Thou wilt fall backward when thou hast more wit,",
+      "Wilt thou not, Jule?” And, by my holidam,",
+      "The pretty wretch left crying and said “ Ay.”",
+      "To see now how a jest shall come about!",
+      "I warrant, an I should live a thousand years,",
+      "I never should forget it. “ Wilt thou not, Jule?” quoth he.",
+      "And, pretty fool, it stinted and said “ Ay.”"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "Enough of this. I pray thee, hold thy peace."
+     ],
+     "n": "1.3.54",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Yes, madam, yet I cannot choose but laugh",
+      "To think it should leave crying and say “ Ay.”",
+      "And yet, I warrant, it had upon its brow",
+      "A bump as big as a young cock’rel’s stone,",
+      "A perilous knock, and it cried bitterly.",
+      "“ Yea,” quoth my husband. “ Fall’st upon thy face?",
+      "Thou wilt fall backward when thou comest to age,",
+      "Wilt thou not, Jule?” It stinted and said “ Ay.”"
+     ],
+     "n": "1.3.55",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "And stint thou, too, I pray thee, nurse, say I."
+     ],
+     "n": "1.3.63",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Peace. I have done. God mark thee to his grace,"
+     ],
+     "n": "1.3.64",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Thou wast the prettiest babe that e’er I nursed.",
+      "An I might live to see thee married once,",
+      "I have my wish."
+     ],
+     "n": null
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "Marry, that “ marry” is the very theme",
+      "I came to talk of.— Tell me, daughter Juliet,",
+      "How stands your disposition to be married?"
+     ],
+     "n": "1.3.68"
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "It is an honor that I dream not of."
+     ],
+     "n": "1.3.71"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "An honor? Were not I thine only nurse,",
+      "I would say thou hadst sucked wisdom from thy teat."
+     ],
+     "n": "1.3.72"
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "Well, think of marriage now. Younger than you",
+      "Here in Verona, ladies of esteem,",
+      "Are made already mothers. By my count",
+      "I was your mother much upon these years",
+      "That you are now a maid. Thus, then, in brief:",
+      "The valiant Paris seeks you for his love."
+     ],
+     "n": "1.3.75"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "A man, young lady— lady, such a man",
+      "As all the world— why, he’s a man of wax."
+     ],
+     "n": "1.3.81"
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "Verona’s summer hath not such a flower."
+     ],
+     "n": "1.3.83"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Nay, he’s a flower, in faith, a very flower."
+     ],
+     "n": "1.3.84"
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "What say you? Can you love the gentleman?",
+      "This night you shall behold him at our feast.",
+      "Read o’er the volume of young Paris’ face,",
+      "And find delight writ there with beauty’s pen.",
+      "Examine every married lineament",
+      "And see how one another lends content,",
+      "And what obscured in this fair volume lies",
+      "Find written in the margent of his eyes.",
+      "This precious book of love, this unbound lover,",
+      "To beautify him only lacks a cover."
+     ],
+     "n": "1.3.85"
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "The fish lives in the sea, and ’tis much pride",
+      "For fair without the fair within to hide.",
+      "That book in many’s eyes doth share the glory",
+      "That in gold clasps locks in the golden story."
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "So shall you share all that he doth possess",
+      "By having him, making yourself no less."
+     ],
+     "n": null
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "No less? Nay, bigger. Women grow by men."
+     ],
+     "n": "1.3.101"
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "Speak briefly. Can you like of Paris’ love?"
+     ],
+     "n": "1.3.102"
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "I’ll look to like, if looking liking move.",
+      "But no more deep will I endart mine eye",
+      "Than your consent gives strength to make it fly."
+     ],
+     "n": "1.3.103"
+    },
+    {
+     "d": "Enter Servingman."
+    },
+    {
+     "s": "SERVINGMAN",
+     "l": [
+      "Madam, the guests are come, supper",
+      "served up,"
+     ],
+     "n": "1.3.106"
+    },
+    {
+     "s": "SERVINGMAN",
+     "l": [
+      "you called, my young lady asked for, the",
+      "Nurse cursed in the pantry, and everything in",
+      "extremity. I must hence to wait. I beseech you,",
+      "follow straight."
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "We follow thee.",
+      "[Servingman exits.]",
+      "Juliet, the County stays."
+     ],
+     "n": "1.3.111"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Go, girl, seek happy nights to happy days."
+     ],
+     "n": "1.3.113"
+    },
+    {
+     "d": "They exit."
+    }
+   ]
+  },
+  "rom14": {
+   "play": "Romeo and Juliet",
+   "act": 1,
+   "scene": 4,
+   "title": "SCENE IV.  A street.",
+   "source": "Folger Shakespeare",
+   "url": "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/1/4/",
+   "first": "1.4.13",
+   "last": "1.4.121",
+   "items": [
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "Nay, gentle Romeo, we must have you dance."
+     ],
+     "n": "1.4.13"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Not I, believe me. You have dancing shoes",
+      "With nimble soles. I have a soul of lead",
+      "So stakes me to the ground I cannot move."
+     ],
+     "n": "1.4.14"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "You are a lover. Borrow Cupid’s wings",
+      "And soar with them above a common bound."
+     ],
+     "n": "1.4.17"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "I am too sore enpiercèd with his shaft",
+      "To soar with his light feathers, and so bound",
+      "I cannot bound a pitch above dull woe.",
+      "Under love’s heavy burden do I sink."
+     ],
+     "n": "1.4.19"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "And to sink in it should you burden love—",
+      "Too great oppression for a tender thing."
+     ],
+     "n": "1.4.23",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Is love a tender thing? It is too rough,",
+      "Too rude, too boist’rous, and it pricks like thorn."
+     ],
+     "n": "1.4.25",
+     "cut": true
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "If love be rough with you, be rough with love.",
+      "Prick love for pricking, and you beat love down.—",
+      "Give me a case to put my visage in.—",
+      "A visor for a visor. What care I",
+      "What curious eye doth cote deformities?",
+      "Here are the beetle brows shall blush for me."
+     ],
+     "n": "1.4.27",
+     "cut": true
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Come, knock and enter, and no sooner in",
+      "But every man betake him to his legs."
+     ],
+     "n": "1.4.33",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "A torch for me. Let wantons light of heart",
+      "Tickle the senseless rushes with their heels,",
+      "For I am proverbed with a grandsire phrase:",
+      "I’ll be a candle holder and look on;",
+      "The game was ne’er so fair, and I am done."
+     ],
+     "n": "1.4.35",
+     "cut": true
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "Tut, dun’s the mouse, the constable’s own word.",
+      "If thou art dun, we’ll draw thee from the mire—",
+      "Or, save your reverence, love— wherein thou stickest",
+      "Up to the ears."
+     ],
+     "n": "1.4.40",
+     "cut": true
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "Come, we burn daylight, ho!"
+     ],
+     "n": null
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Nay, that’s not so."
+     ],
+     "n": "1.4.45"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "I mean, sir, in delay",
+      "We waste our lights; in vain, light lights by day.",
+      "Take our good meaning, for our judgment sits",
+      "Five times in that ere once in our five wits."
+     ],
+     "n": "1.4.46"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "And we mean well in going to this masque,",
+      "But ’tis no wit to go."
+     ],
+     "n": "1.4.50"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "Why, may one ask?"
+     ],
+     "n": "1.4.52"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "I dreamt a dream tonight."
+     ],
+     "n": "1.4.53"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "And so did I."
+     ],
+     "n": "1.4.54"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Well, what was yours?"
+     ],
+     "n": "1.4.55"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "That dreamers often lie."
+     ],
+     "n": "1.4.56"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "In bed asleep while they do dream things true."
+     ],
+     "n": "1.4.57"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "O, then I see Queen Mab hath been with you.",
+      "She is the fairies’ midwife, and she comes",
+      "In shape no bigger than an agate stone",
+      "On the forefinger of an alderman,",
+      "Drawn with a team of little atomi",
+      "Over men’s noses as they lie asleep.",
+      "Her wagon spokes made of long spinners’ legs,",
+      "The cover of the wings of grasshoppers,",
+      "Her traces of the smallest spider web,",
+      "Her collars of the moonshine’s wat’ry beams,",
+      "Her whip of cricket’s bone, the lash of film,",
+      "Her wagoner a small gray-coated gnat,",
+      "Not half so big as a round little worm",
+      "Pricked from the lazy finger of a maid."
+     ],
+     "n": "1.4.58"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "Her chariot is an empty hazelnut,",
+      "Made by the joiner squirrel or old grub,",
+      "Time out o’ mind the fairies’ coachmakers.",
+      "And in this state she gallops night by night",
+      "Through lovers’ brains, and then they dream of love;",
+      "On courtiers’ knees, that dream on cur’sies straight;",
+      "O’er lawyers’ fingers, who straight dream on fees;",
+      "O’er ladies’ lips, who straight on kisses dream,",
+      "Which oft the angry Mab with blisters plagues",
+      "Because their breaths with sweetmeats tainted are.",
+      "Sometime she gallops o’er a courtier’s nose,",
+      "And then dreams he of smelling out a suit.",
+      "And sometime comes she with a tithe-pig’s tail,",
+      "Tickling a parson’s nose as he lies asleep;",
+      "Then he dreams of another benefice.",
+      "Sometime she driveth o’er a soldier’s neck,",
+      "And then dreams he of cutting foreign throats,",
+      "Of breaches, ambuscadoes, Spanish blades,",
+      "Of healths five fathom deep, and then anon",
+      "Drums in his ear, at which he starts and wakes",
+      "And, being thus frighted, swears a prayer or two",
+      "And sleeps again."
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "This is that very Mab",
+      "That plats the manes of horses in the night",
+      "And bakes the elflocks in foul sluttish hairs,",
+      "Which once untangled much misfortune bodes.",
+      "This is the hag, when maids lie on their backs,",
+      "That presses them and learns them first to bear,",
+      "Making them women of good carriage.",
+      "This is she—"
+     ],
+     "n": null
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Peace, peace, Mercutio, peace.",
+      "Thou talk’st of nothing."
+     ],
+     "n": "1.4.101"
+    },
+    {
+     "s": "MERCUTIO",
+     "l": [
+      "True, I talk of dreams,",
+      "Which are the children of an idle brain,",
+      "Begot of nothing but vain fantasy,",
+      "Which is as thin of substance as the air",
+      "And more inconstant than the wind, who woos",
+      "Even now the frozen bosom of the north",
+      "And, being angered, puffs away from thence,",
+      "Turning his side to the dew-dropping south."
+     ],
+     "n": "1.4.103"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "This wind you talk of blows us from ourselves.",
+      "Supper is done, and we shall come too late."
+     ],
+     "n": "1.4.111"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "I fear too early, for my mind misgives",
+      "Some consequence yet hanging in the stars",
+      "Shall bitterly begin his fearful date",
+      "With this night’s revels, and expire the term",
+      "Of a despisèd life closed in my breast",
+      "By some vile forfeit of untimely death.",
+      "But he that hath the steerage of my course",
+      "Direct my sail. On, lusty gentlemen."
+     ],
+     "n": "1.4.113"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Strike, drum."
+     ],
+     "n": "1.4.121"
+    },
+    {
+     "d": "They march about the stage and then withdraw to the side."
+    }
+   ]
+  },
+  "rom15": {
+   "play": "Romeo and Juliet",
+   "act": 1,
+   "scene": 5,
+   "title": "SCENE V.  A hall in Capulet's house.",
+   "source": "Folger Shakespeare",
+   "url": "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/1/5/",
+   "first": "1.5.1",
+   "last": "1.5.160",
+   "items": [
+    {
+     "d": "Servingmen come forth with napkins.",
+     "cut": true
+    },
+    {
+     "s": "FIRST SERVINGMAN",
+     "l": [
+      "Where’s Potpan that he helps not",
+      "to take away? He shift a trencher? He scrape a",
+      "trencher?"
+     ],
+     "n": "1.5.1",
+     "cut": true
+    },
+    {
+     "s": "SECOND SERVINGMAN",
+     "l": [
+      "When good manners shall lie",
+      "all in one or two men’s hands, and they unwashed",
+      "too, ’tis a foul thing."
+     ],
+     "n": "1.5.4",
+     "cut": true
+    },
+    {
+     "s": "FIRST SERVINGMAN",
+     "l": [
+      "Away with the joint stools, remove",
+      "the court cupboard, look to the plate.—",
+      "Good thou, save me a piece of marchpane, and, as",
+      "thou loves me, let the porter let in Susan Grindstone",
+      "and Nell.— Anthony and Potpan!"
+     ],
+     "n": "1.5.7",
+     "cut": true
+    },
+    {
+     "s": "THIRD SERVINGMAN",
+     "l": [
+      "Ay, boy, ready."
+     ],
+     "n": "1.5.12",
+     "cut": true
+    },
+    {
+     "s": "FIRST SERVINGMAN",
+     "l": [
+      "You are looked for and called for,",
+      "asked for and sought for, in the great chamber."
+     ],
+     "n": "1.5.13",
+     "cut": true
+    },
+    {
+     "s": "THIRD SERVINGMAN",
+     "l": [
+      "We cannot be here and there too.",
+      "Cheerly, boys! Be brisk awhile, and the longer liver",
+      "take all."
+     ],
+     "n": "1.5.15",
+     "cut": true
+    },
+    {
+     "d": "They move aside.",
+     "cut": true
+    },
+    {
+     "d": "Enter Capulet and his household, all the guests and gentlewomen to Romeo, Mercutio, Benvolio, and the other Maskers."
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Welcome, gentlemen."
+     ],
+     "n": "1.5.18"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Ladies that have their toes",
+      "Unplagued with corns will walk a bout with you.—",
+      "Ah, my mistresses, which of you all",
+      "Will now deny to dance? She that makes dainty,",
+      "She, I’ll swear, hath corns. Am I come near you now?—"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Welcome, gentlemen. I have seen the day",
+      "That I have worn a visor and could tell",
+      "A whispering tale in a fair lady’s ear,",
+      "Such as would please. ’Tis gone, ’tis gone, ’tis gone."
+     ],
+     "n": null
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "You are welcome, gentlemen.— Come, musicians, play.",
+      "[Music plays and they dance.]"
+     ],
+     "n": null
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "A hall, a hall, give room!— And foot it, girls.—",
+      "More light, you knaves, and turn the tables up,",
+      "And quench the fire; the room is grown too hot.—",
+      "Ah, sirrah, this unlooked-for sport comes well.—",
+      "Nay, sit, nay, sit, good cousin Capulet,",
+      "For you and I are past our dancing days.",
+      "How long is ’t now since last yourself and I",
+      "Were in a mask?"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "CAPULET’S COUSIN",
+     "l": [
+      "By ’r Lady, thirty years."
+     ],
+     "n": "1.5.39",
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "What, man, ’tis not so much, ’tis not so much.",
+      "’Tis since the nuptial of Lucentio,",
+      "Come Pentecost as quickly as it will,",
+      "Some five and twenty years, and then we masked."
+     ],
+     "n": "1.5.40",
+     "cut": true
+    },
+    {
+     "s": "CAPULET’S COUSIN",
+     "l": [
+      "’Tis more, ’tis more. His son is elder, sir.",
+      "His son is thirty."
+     ],
+     "n": "1.5.44",
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Will you tell me that?",
+      "His son was but a ward two years ago."
+     ],
+     "n": "1.5.46",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "[, to a Servingman]",
+      "What lady’s that which doth enrich the hand",
+      "Of yonder knight?"
+     ],
+     "n": "1.5.48"
+    },
+    {
+     "s": "SERVINGMAN",
+     "l": [
+      "I know not, sir."
+     ],
+     "n": "1.5.50"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "O, she doth teach the torches to burn bright!",
+      "It seems she hangs upon the cheek of night"
+     ],
+     "n": "1.5.51"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "As a rich jewel in an Ethiop’s ear—",
+      "Beauty too rich for use, for Earth too dear.",
+      "So shows a snowy dove trooping with crows",
+      "As yonder lady o’er her fellows shows.",
+      "The measure done, I’ll watch her place of stand",
+      "And, touching hers, make blessèd my rude hand."
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Did my heart love till now? Forswear it, sight,",
+      "For I ne’er saw true beauty till this night."
+     ],
+     "n": null
+    },
+    {
+     "s": "TYBALT",
+     "l": [
+      "This, by his voice, should be a Montague.—",
+      "Fetch me my rapier, boy.",
+      "[Page exits.]",
+      "What, dares the slave",
+      "Come hither covered with an antic face",
+      "To fleer and scorn at our solemnity?",
+      "Now, by the stock and honor of my kin,",
+      "To strike him dead I hold it not a sin."
+     ],
+     "n": "1.5.61"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Why, how now, kinsman? Wherefore storm you so?"
+     ],
+     "n": "1.5.68"
+    },
+    {
+     "s": "TYBALT",
+     "l": [
+      "Uncle, this is a Montague, our foe,",
+      "A villain that is hither come in spite",
+      "To scorn at our solemnity this night."
+     ],
+     "n": "1.5.69"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Young Romeo is it?"
+     ],
+     "n": "1.5.72"
+    },
+    {
+     "s": "TYBALT",
+     "l": [
+      "’Tis he, that villain Romeo."
+     ],
+     "n": "1.5.73"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Content thee, gentle coz. Let him alone.",
+      "He bears him like a portly gentleman,",
+      "And, to say truth, Verona brags of him",
+      "To be a virtuous and well-governed youth.",
+      "I would not for the wealth of all this town",
+      "Here in my house do him disparagement.",
+      "Therefore be patient. Take no note of him."
+     ],
+     "n": "1.5.74"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "It is my will, the which if thou respect,",
+      "Show a fair presence and put off these frowns,",
+      "An ill-beseeming semblance for a feast."
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "TYBALT",
+     "l": [
+      "It fits when such a villain is a guest.",
+      "I’ll not endure him."
+     ],
+     "n": "1.5.84"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "He shall be endured."
+     ],
+     "n": "1.5.86"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "What, goodman boy?"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "I say he shall. Go to.",
+      "Am I the master here or you? Go to.",
+      "You’ll not endure him! God shall mend my soul,",
+      "You’ll make a mutiny among my guests,"
+     ],
+     "n": null
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "You will set cock-a-hoop, you’ll be the man!"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "TYBALT",
+     "l": [
+      "Why, uncle, ’tis a shame."
+     ],
+     "n": "1.5.92"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Go to, go to.",
+      "You are a saucy boy. Is ’t so indeed?",
+      "This trick may chance to scathe you. I know what.",
+      "You must contrary me. Marry, ’tis time—",
+      "Well said, my hearts.— You are a princox, go."
+     ],
+     "n": "1.5.93",
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Be quiet, or— More light, more light!— for shame,",
+      "I’ll make you quiet.— What, cheerly, my hearts!"
+     ],
+     "n": null
+    },
+    {
+     "s": "TYBALT",
+     "l": [
+      "Patience perforce with willful choler meeting",
+      "Makes my flesh tremble in their different greeting."
+     ],
+     "n": "1.5.100",
+     "cut": true
+    },
+    {
+     "s": "TYBALT",
+     "l": [
+      "I will withdraw, but this intrusion shall,",
+      "Now seeming sweet, convert to bitt’rest gall."
+     ],
+     "n": null
+    },
+    {
+     "d": "He exits."
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "[, taking Juliet’s hand]",
+      "If I profane with my unworthiest hand",
+      "This holy shrine, the gentle sin is this:",
+      "My lips, two blushing pilgrims, ready stand",
+      "To smooth that rough touch with a tender kiss."
+     ],
+     "n": "1.5.104"
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Good pilgrim, you do wrong your hand too much,",
+      "Which mannerly devotion shows in this;",
+      "For saints have hands that pilgrims’ hands do touch,",
+      "And palm to palm is holy palmers’ kiss."
+     ],
+     "n": "1.5.108"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Have not saints lips, and holy palmers too?"
+     ],
+     "n": "1.5.112"
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Ay, pilgrim, lips that they must use in prayer."
+     ],
+     "n": "1.5.113"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "O then, dear saint, let lips do what hands do.",
+      "They pray: grant thou, lest faith turn to despair."
+     ],
+     "n": "1.5.114"
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Saints do not move, though grant for prayers’ sake."
+     ],
+     "n": "1.5.116"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Then move not while my prayer’s effect I take.",
+      "[He kisses her.]",
+      "Thus from my lips, by thine, my sin is purged."
+     ],
+     "n": "1.5.117"
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Then have my lips the sin that they have took."
+     ],
+     "n": "1.5.119"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Sin from my lips? O trespass sweetly urged!",
+      "Give me my sin again."
+     ],
+     "n": "1.5.120"
+    },
+    {
+     "d": "He kisses her."
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "You kiss by th’ book."
+     ],
+     "n": "1.5.122"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Madam, your mother craves a word with you."
+     ],
+     "n": "1.5.123"
+    },
+    {
+     "d": "Juliet moves toward her mother."
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "What is her mother?"
+     ],
+     "n": "1.5.124"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Marry, bachelor,",
+      "Her mother is the lady of the house,",
+      "And a good lady, and a wise and virtuous.",
+      "I nursed her daughter that you talked withal.",
+      "I tell you, he that can lay hold of her",
+      "Shall have the chinks."
+     ],
+     "n": "1.5.125"
+    },
+    {
+     "d": "Nurse moves away."
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "[, aside]",
+      "Is she a Capulet?",
+      "O dear account! My life is my foe’s debt."
+     ],
+     "n": "1.5.131"
+    },
+    {
+     "s": "BENVOLIO",
+     "l": [
+      "Away, begone. The sport is at the best."
+     ],
+     "n": "1.5.133"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Ay, so I fear. The more is my unrest."
+     ],
+     "n": "1.5.134"
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "Nay, gentlemen, prepare not to be gone.",
+      "We have a trifling foolish banquet towards.—",
+      "Is it e’en so? Why then, I thank you all.",
+      "I thank you, honest gentlemen. Good night.—",
+      "More torches here.— Come on then, let’s to bed.—",
+      "Ah, sirrah, by my fay, it waxes late.",
+      "I’ll to my rest."
+     ],
+     "n": "1.5.135",
+     "cut": true
+    },
+    {
+     "d": "All but Juliet and the Nurse begin to exit."
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Come hither, nurse. What is yond gentleman?"
+     ],
+     "n": "1.5.142"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "The son and heir of old Tiberio."
+     ],
+     "n": "1.5.143",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "What’s he that now is going out of door?"
+     ],
+     "n": "1.5.144",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Marry, that, I think, be young Petruchio."
+     ],
+     "n": "1.5.145",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "What’s he that follows here, that would not dance?"
+     ],
+     "n": "1.5.146",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "I know not."
+     ],
+     "n": "1.5.147",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Go ask his name. The Nurse goes. If he be marrièd,",
+      "My grave is like to be my wedding bed."
+     ],
+     "n": "1.5.148",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "[, returning]"
+     ],
+     "n": "1.5.150",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "His name is Romeo, and a Montague,",
+      "The only son of your great enemy."
+     ],
+     "n": null
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "My only love sprung from my only hate!",
+      "Too early seen unknown, and known too late!",
+      "Prodigious birth of love it is to me",
+      "That I must love a loathèd enemy."
+     ],
+     "n": "1.5.152"
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "What’s this? What’s this?"
+     ],
+     "n": "1.5.156",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "A rhyme I learned even now",
+      "Of one I danced withal."
+     ],
+     "n": "1.5.157",
+     "cut": true
+    },
+    {
+     "d": "One calls within “ Juliet.”",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Anon, anon."
+     ],
+     "n": "1.5.159",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "Come, let’s away. The strangers all are gone."
+     ],
+     "n": null
+    },
+    {
+     "d": "They exit."
+    }
+   ]
+  },
+  "rom22": {
+   "play": "Romeo and Juliet",
+   "act": 2,
+   "scene": 2,
+   "title": "SCENE II.  Capulet's orchard.",
+   "source": "Folger Shakespeare",
+   "url": "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/2/2/",
+   "first": "2.2.1",
+   "last": "2.2.205",
+   "items": [
+    {
+     "d": "Romeo comes forward.",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "He jests at scars that never felt a wound.",
+      "[Enter Juliet above.]",
+      "But soft, what light through yonder window breaks?",
+      "It is the East, and Juliet is the sun.",
+      "Arise, fair sun, and kill the envious moon,",
+      "Who is already sick and pale with grief",
+      "That thou, her maid, art far more fair than she.",
+      "Be not her maid since she is envious.",
+      "Her vestal livery is but sick and green,",
+      "And none but fools do wear it. Cast it off.",
+      "It is my lady. O, it is my love!",
+      "O, that she knew she were!",
+      "She speaks, yet she says nothing. What of that?",
+      "Her eye discourses; I will answer it.",
+      "I am too bold. ’Tis not to me she speaks.",
+      "Two of the fairest stars in all the heaven,",
+      "Having some business, do entreat her eyes",
+      "To twinkle in their spheres till they return.",
+      "What if her eyes were there, they in her head?",
+      "The brightness of her cheek would shame those stars",
+      "As daylight doth a lamp; her eye in heaven",
+      "Would through the airy region stream so bright",
+      "That birds would sing and think it were not night.",
+      "See how she leans her cheek upon her hand.",
+      "O, that I were a glove upon that hand,",
+      "That I might touch that cheek!"
+     ],
+     "n": "2.2.1",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Ay me."
+     ],
+     "n": "2.2.27"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "[, aside]",
+      "She speaks.",
+      "O, speak again, bright angel, for thou art",
+      "As glorious to this night, being o’er my head,",
+      "As is a wingèd messenger of heaven",
+      "Unto the white-upturnèd wond’ring eyes",
+      "Of mortals that fall back to gaze on him",
+      "When he bestrides the lazy puffing clouds",
+      "And sails upon the bosom of the air."
+     ],
+     "n": "2.2.28",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "O Romeo, Romeo, wherefore art thou Romeo?",
+      "Deny thy father and refuse thy name,",
+      "Or, if thou wilt not, be but sworn my love,",
+      "And I’ll no longer be a Capulet."
+     ],
+     "n": "2.2.36"
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "[, aside]",
+      "Shall I hear more, or shall I speak at this?"
+     ],
+     "n": "2.2.40",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "’Tis but thy name that is my enemy.",
+      "Thou art thyself, though not a Montague.",
+      "What’s Montague? It is nor hand, nor foot,",
+      "Nor arm, nor face. O, be some other name",
+      "Belonging to a man.",
+      "What’s in a name? That which we call a rose",
+      "By any other word would smell as sweet.",
+      "So Romeo would, were he not Romeo called,",
+      "Retain that dear perfection which he owes",
+      "Without that title. Romeo, doff thy name,",
+      "And, for thy name, which is no part of thee,",
+      "Take all myself."
+     ],
+     "n": "2.2.41",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "I take thee at thy word.",
+      "Call me but love, and I’ll be new baptized.",
+      "Henceforth I never will be Romeo."
+     ],
+     "n": "2.2.53",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "What man art thou that, thus bescreened in night,",
+      "So stumblest on my counsel?"
+     ],
+     "n": "2.2.56",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "By a name",
+      "I know not how to tell thee who I am.",
+      "My name, dear saint, is hateful to myself",
+      "Because it is an enemy to thee.",
+      "Had I it written, I would tear the word."
+     ],
+     "n": "2.2.58",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "My ears have yet not drunk a hundred words",
+      "Of thy tongue’s uttering, yet I know the sound.",
+      "Art thou not Romeo, and a Montague?"
+     ],
+     "n": "2.2.63",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Neither, fair maid, if either thee dislike."
+     ],
+     "n": "2.2.66",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "How camest thou hither, tell me, and wherefore?",
+      "The orchard walls are high and hard to climb,",
+      "And the place death, considering who thou art,",
+      "If any of my kinsmen find thee here."
+     ],
+     "n": "2.2.67",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "With love’s light wings did I o’erperch these walls,",
+      "For stony limits cannot hold love out,",
+      "And what love can do, that dares love attempt.",
+      "Therefore thy kinsmen are no stop to me."
+     ],
+     "n": "2.2.71",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "If they do see thee, they will murder thee."
+     ],
+     "n": "2.2.75",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Alack, there lies more peril in thine eye",
+      "Than twenty of their swords. Look thou but sweet,",
+      "And I am proof against their enmity."
+     ],
+     "n": "2.2.76",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "I would not for the world they saw thee here."
+     ],
+     "n": "2.2.79",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "I have night’s cloak to hide me from their eyes,",
+      "And, but thou love me, let them find me here.",
+      "My life were better ended by their hate",
+      "Than death proroguèd, wanting of thy love."
+     ],
+     "n": "2.2.80",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "By whose direction found’st thou out this place?"
+     ],
+     "n": "2.2.84",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "By love, that first did prompt me to inquire.",
+      "He lent me counsel, and I lent him eyes.",
+      "I am no pilot; yet, wert thou as far",
+      "As that vast shore washed with the farthest sea,",
+      "I should adventure for such merchandise."
+     ],
+     "n": "2.2.85",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Thou knowest the mask of night is on my face,",
+      "Else would a maiden blush bepaint my cheek",
+      "For that which thou hast heard me speak tonight.",
+      "Fain would I dwell on form; fain, fain deny",
+      "What I have spoke. But farewell compliment.",
+      "Dost thou love me? I know thou wilt say “ Ay,”",
+      "And I will take thy word. Yet, if thou swear’st,",
+      "Thou mayst prove false. At lovers’ perjuries,",
+      "They say, Jove laughs. O gentle Romeo,",
+      "If thou dost love, pronounce it faithfully.",
+      "Or, if thou thinkest I am too quickly won,",
+      "I’ll frown and be perverse and say thee nay,",
+      "So thou wilt woo, but else not for the world.",
+      "In truth, fair Montague, I am too fond,",
+      "And therefore thou mayst think my havior light.",
+      "But trust me, gentleman, I’ll prove more true",
+      "Than those that have more coying to be strange.",
+      "I should have been more strange, I must confess,",
+      "But that thou overheard’st ere I was ware",
+      "My true-love passion. Therefore pardon me,",
+      "And not impute this yielding to light love,",
+      "Which the dark night hath so discoverèd."
+     ],
+     "n": "2.2.90",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Lady, by yonder blessèd moon I vow,",
+      "That tips with silver all these fruit-tree tops—"
+     ],
+     "n": "2.2.112",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "O, swear not by the moon, th’ inconstant moon,",
+      "That monthly changes in her circled orb,",
+      "Lest that thy love prove likewise variable."
+     ],
+     "n": "2.2.114",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "What shall I swear by?"
+     ],
+     "n": "2.2.117",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Do not swear at all.",
+      "Or, if thou wilt, swear by thy gracious self,",
+      "Which is the god of my idolatry,",
+      "And I’ll believe thee."
+     ],
+     "n": "2.2.118",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "If my heart’s dear love—"
+     ],
+     "n": "2.2.122",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Well, do not swear. Although I joy in thee,",
+      "I have no joy of this contract tonight.",
+      "It is too rash, too unadvised, too sudden,",
+      "Too like the lightning, which doth cease to be",
+      "Ere one can say “ It lightens.” Sweet, good night.",
+      "This bud of love, by summer’s ripening breath,",
+      "May prove a beauteous flower when next we meet.",
+      "Good night, good night. As sweet repose and rest",
+      "Come to thy heart as that within my breast."
+     ],
+     "n": "2.2.123",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "O, wilt thou leave me so unsatisfied?"
+     ],
+     "n": "2.2.132",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "What satisfaction canst thou have tonight?"
+     ],
+     "n": "2.2.133",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Th’ exchange of thy love’s faithful vow for mine."
+     ],
+     "n": "2.2.134",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "I gave thee mine before thou didst request it,",
+      "And yet I would it were to give again."
+     ],
+     "n": "2.2.135",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Wouldst thou withdraw it? For what purpose, love?"
+     ],
+     "n": "2.2.137",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "But to be frank and give it thee again.",
+      "And yet I wish but for the thing I have.",
+      "My bounty is as boundless as the sea,",
+      "My love as deep. The more I give to thee,",
+      "The more I have, for both are infinite.",
+      "[Nurse calls from within.]",
+      "I hear some noise within. Dear love, adieu.—",
+      "Anon, good nurse.— Sweet Montague, be true.",
+      "Stay but a little; I will come again."
+     ],
+     "n": "2.2.138",
+     "cut": true
+    },
+    {
+     "d": "She exits.",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "O blessèd, blessèd night! I am afeard,",
+      "Being in night, all this is but a dream,",
+      "Too flattering sweet to be substantial."
+     ],
+     "n": "2.2.146",
+     "cut": true
+    },
+    {
+     "d": "Reenter Juliet above.",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Three words, dear Romeo, and good night indeed.",
+      "If that thy bent of love be honorable,",
+      "Thy purpose marriage, send me word tomorrow,",
+      "By one that I’ll procure to come to thee,",
+      "Where and what time thou wilt perform the rite,",
+      "And all my fortunes at thy foot I’ll lay",
+      "And follow thee my lord throughout the world."
+     ],
+     "n": "2.2.149",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "[, within]",
+      "Madam."
+     ],
+     "n": "2.2.156",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "I come anon.— But if thou meanest not well,",
+      "I do beseech thee—"
+     ],
+     "n": "2.2.157",
+     "cut": true
+    },
+    {
+     "s": "NURSE",
+     "l": [
+      "[, within]",
+      "Madam."
+     ],
+     "n": "2.2.159",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "By and by, I come.—",
+      "To cease thy strife and leave me to my grief.",
+      "Tomorrow will I send."
+     ],
+     "n": "2.2.160",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "So thrive my soul—"
+     ],
+     "n": "2.2.163",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "A thousand times good night."
+     ],
+     "n": "2.2.164",
+     "cut": true
+    },
+    {
+     "d": "She exits.",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "A thousand times the worse to want thy light.",
+      "Love goes toward love as schoolboys from their books,",
+      "But love from love, toward school with heavy looks."
+     ],
+     "n": "2.2.165",
+     "cut": true
+    },
+    {
+     "d": "Going.",
+     "cut": true
+    },
+    {
+     "d": "Enter Juliet above again.",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Hist, Romeo, hist! O, for a falc’ner’s voice",
+      "To lure this tassel-gentle back again!",
+      "Bondage is hoarse and may not speak aloud,",
+      "Else would I tear the cave where Echo lies",
+      "And make her airy tongue more hoarse than mine",
+      "With repetition of “ My Romeo!”"
+     ],
+     "n": "2.2.169",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "It is my soul that calls upon my name.",
+      "How silver-sweet sound lovers’ tongues by night,",
+      "Like softest music to attending ears."
+     ],
+     "n": "2.2.175",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Romeo."
+     ],
+     "n": "2.2.178",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "My dear."
+     ],
+     "n": "2.2.179",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "What o’clock tomorrow",
+      "Shall I send to thee?"
+     ],
+     "n": "2.2.180",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "By the hour of nine."
+     ],
+     "n": "2.2.182",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "I will not fail. ’Tis twenty year till then.",
+      "I have forgot why I did call thee back."
+     ],
+     "n": "2.2.183",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Let me stand here till thou remember it."
+     ],
+     "n": "2.2.185",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "I shall forget, to have thee still stand there,",
+      "Rememb’ring how I love thy company."
+     ],
+     "n": "2.2.186",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "And I’ll still stay, to have thee still forget,",
+      "Forgetting any other home but this."
+     ],
+     "n": "2.2.188",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "’Tis almost morning. I would have thee gone,",
+      "And yet no farther than a wanton’s bird,",
+      "That lets it hop a little from his hand,",
+      "Like a poor prisoner in his twisted gyves,",
+      "And with a silken thread plucks it back again,",
+      "So loving-jealous of his liberty."
+     ],
+     "n": "2.2.190",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "I would I were thy bird."
+     ],
+     "n": "2.2.196",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Sweet, so would I.",
+      "Yet I should kill thee with much cherishing.",
+      "Good night, good night. Parting is such sweet sorrow",
+      "That I shall say “ Good night” till it be morrow."
+     ],
+     "n": "2.2.197",
+     "cut": true
+    },
+    {
+     "d": "She exits.",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Sleep dwell upon thine eyes, peace in thy breast.",
+      "Would I were sleep and peace so sweet to rest.",
+      "Hence will I to my ghostly friar’s close cell,",
+      "His help to crave, and my dear hap to tell."
+     ],
+     "n": "2.2.202",
+     "cut": true
+    },
+    {
+     "d": "He exits.",
+     "cut": true
+    }
+   ]
+  },
+  "rom53": {
+   "play": "Romeo and Juliet",
+   "act": 5,
+   "scene": 3,
+   "title": "SCENE III.  A churchyard; in it a monument belonging to the Capulets.",
+   "source": "Folger Shakespeare",
+   "url": "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/read/5/3/",
+   "first": "5.3.1",
+   "last": "5.3.321",
+   "items": [
+    {
+     "d": "Enter Paris and his Page.",
+     "cut": true
+    },
+    {
+     "s": "PARIS",
+     "l": [
+      "Give me thy torch, boy. Hence and stand aloof.",
+      "Yet put it out, for I would not be seen.",
+      "Under yond yew trees lay thee all along,",
+      "Holding thy ear close to the hollow ground.",
+      "So shall no foot upon the churchyard tread",
+      "( Being loose, unfirm, with digging up of graves)",
+      "But thou shalt hear it. Whistle then to me",
+      "As signal that thou hearest something approach.",
+      "Give me those flowers. Do as I bid thee. Go."
+     ],
+     "n": "5.3.1",
+     "cut": true
+    },
+    {
+     "s": "PAGE",
+     "l": [
+      "[, aside]",
+      "I am almost afraid to stand alone",
+      "Here in the churchyard. Yet I will adventure."
+     ],
+     "n": "5.3.10",
+     "cut": true
+    },
+    {
+     "d": "He moves away from Paris.",
+     "cut": true
+    },
+    {
+     "s": "PARIS",
+     "l": [
+      "[, scattering flowers]",
+      "Sweet flower, with flowers thy bridal bed I strew",
+      "( O woe, thy canopy is dust and stones!)",
+      "Which with sweet water nightly I will dew,",
+      "Or, wanting that, with tears distilled by moans.",
+      "The obsequies that I for thee will keep",
+      "Nightly shall be to strew thy grave and weep.",
+      "[Page whistles.]",
+      "The boy gives warning something doth approach.",
+      "What cursèd foot wanders this way tonight,",
+      "To cross my obsequies and true love’s rite?",
+      "What, with a torch? Muffle me, night, awhile."
+     ],
+     "n": "5.3.12",
+     "cut": true
+    },
+    {
+     "d": "He steps aside.",
+     "cut": true
+    },
+    {
+     "d": "Enter Romeo and Balthasar.",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Give me that mattock and the wrenching iron.",
+      "Hold, take this letter. Early in the morning",
+      "See thou deliver it to my lord and father.",
+      "Give me the light. Upon thy life I charge thee,",
+      "Whate’er thou hearest or seest, stand all aloof",
+      "And do not interrupt me in my course.",
+      "Why I descend into this bed of death",
+      "Is partly to behold my lady’s face,",
+      "But chiefly to take thence from her dead finger",
+      "A precious ring, a ring that I must use",
+      "In dear employment. Therefore hence, begone.",
+      "But, if thou, jealous, dost return to pry",
+      "In what I farther shall intend to do,",
+      "By heaven, I will tear thee joint by joint",
+      "And strew this hungry churchyard with thy limbs.",
+      "The time and my intents are savage-wild,",
+      "More fierce and more inexorable far",
+      "Than empty tigers or the roaring sea."
+     ],
+     "n": "5.3.22",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "I will be gone, sir, and not trouble you."
+     ],
+     "n": "5.3.40",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "So shalt thou show me friendship. Take thou that.",
+      "[Giving money.]",
+      "Live and be prosperous, and farewell, good fellow."
+     ],
+     "n": "5.3.41",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "[, aside]",
+      "For all this same, I’ll hide me hereabout.",
+      "His looks I fear, and his intents I doubt."
+     ],
+     "n": "5.3.43",
+     "cut": true
+    },
+    {
+     "d": "He steps aside.",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "[, beginning to force open the tomb]",
+      "Thou detestable maw, thou womb of death,",
+      "Gorged with the dearest morsel of the earth,",
+      "Thus I enforce thy rotten jaws to open,",
+      "And in despite I’ll cram thee with more food."
+     ],
+     "n": "5.3.45",
+     "cut": true
+    },
+    {
+     "s": "PARIS",
+     "l": [
+      "This is that banished haughty Montague",
+      "That murdered my love’s cousin, with which grief",
+      "It is supposèd the fair creature died,",
+      "And here is come to do some villainous shame",
+      "To the dead bodies. I will apprehend him.",
+      "[Stepping forward.]",
+      "Stop thy unhallowed toil, vile Montague.",
+      "Can vengeance be pursued further than death?",
+      "Condemnèd villain, I do apprehend thee.",
+      "Obey and go with me, for thou must die."
+     ],
+     "n": "5.3.49",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "I must indeed, and therefore came I hither.",
+      "Good gentle youth, tempt not a desp’rate man.",
+      "Fly hence and leave me. Think upon these gone.",
+      "Let them affright thee. I beseech thee, youth,",
+      "Put not another sin upon my head",
+      "By urging me to fury. O, begone!",
+      "By heaven, I love thee better than myself,",
+      "For I come hither armed against myself.",
+      "Stay not, begone, live, and hereafter say",
+      "A madman’s mercy bid thee run away."
+     ],
+     "n": "5.3.58",
+     "cut": true
+    },
+    {
+     "s": "PARIS",
+     "l": [
+      "I do defy thy commination",
+      "And apprehend thee for a felon here."
+     ],
+     "n": "5.3.68",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "Wilt thou provoke me? Then have at thee, boy!"
+     ],
+     "n": "5.3.70",
+     "cut": true
+    },
+    {
+     "d": "They draw and fight.",
+     "cut": true
+    },
+    {
+     "s": "PAGE",
+     "l": [
+      "O Lord, they fight! I will go call the watch."
+     ],
+     "n": "5.3.71",
+     "cut": true
+    },
+    {
+     "d": "He exits.",
+     "cut": true
+    },
+    {
+     "s": "PARIS",
+     "l": [
+      "O, I am slain! If thou be merciful,",
+      "Open the tomb; lay me with Juliet."
+     ],
+     "n": "5.3.72",
+     "cut": true
+    },
+    {
+     "d": "He dies.",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "In faith, I will.— Let me peruse this face.",
+      "Mercutio’s kinsman, noble County Paris!",
+      "What said my man when my betossèd soul",
+      "Did not attend him as we rode? I think",
+      "He told me Paris should have married Juliet.",
+      "Said he not so? Or did I dream it so?",
+      "Or am I mad, hearing him talk of Juliet,",
+      "To think it was so?— O, give me thy hand,",
+      "One writ with me in sour misfortune’s book!",
+      "I’ll bury thee in a triumphant grave.—",
+      "[He opens the tomb.]",
+      "A grave? O, no. A lantern, slaughtered youth,",
+      "For here lies Juliet, and her beauty makes",
+      "This vault a feasting presence full of light.—",
+      "Death, lie thou there, by a dead man interred.",
+      "[Laying Paris in the tomb.]"
+     ],
+     "n": "5.3.74",
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "How oft when men are at the point of death",
+      "Have they been merry, which their keepers call",
+      "A light’ning before death! O, how may I",
+      "Call this a light’ning?—"
+     ],
+     "n": null,
+     "cut": true
+    },
+    {
+     "s": "ROMEO",
+     "l": [
+      "O my love, my wife,",
+      "Death, that hath sucked the honey of thy breath,",
+      "Hath had no power yet upon thy beauty.",
+      "Thou art not conquered. Beauty’s ensign yet",
+      "Is crimson in thy lips and in thy cheeks,",
+      "And death’s pale flag is not advancèd there.—",
+      "Tybalt, liest thou there in thy bloody sheet?",
+      "O, what more favor can I do to thee",
+      "Than with that hand that cut thy youth in twain",
+      "To sunder his that was thine enemy?",
+      "Forgive me, cousin.— Ah, dear Juliet,",
+      "Why art thou yet so fair? Shall I believe",
+      "That unsubstantial death is amorous,",
+      "And that the lean abhorrèd monster keeps",
+      "Thee here in dark to be his paramour?",
+      "For fear of that I still will stay with thee",
+      "And never from this palace of dim night",
+      "Depart again. Here, here will I remain",
+      "With worms that are thy chambermaids. O, here",
+      "Will I set up my everlasting rest",
+      "And shake the yoke of inauspicious stars",
+      "From this world-wearied flesh! Eyes, look your last.",
+      "Arms, take your last embrace. And, lips, O, you",
+      "The doors of breath, seal with a righteous kiss",
+      "A dateless bargain to engrossing death.",
+      "[Kissing Juliet.]",
+      "Come, bitter conduct, come, unsavory guide!",
+      "Thou desperate pilot, now at once run on",
+      "The dashing rocks thy seasick weary bark!",
+      "Here’s to my love. Drinking. O true apothecary,",
+      "Thy drugs are quick. Thus with a kiss I die."
+     ],
+     "n": null
+    },
+    {
+     "d": "He dies."
+    },
+    {
+     "d": "Enter Friar Lawrence with lantern, crow, and spade."
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "Saint Francis be my speed! How oft tonight",
+      "Have my old feet stumbled at graves!— Who’s there?"
+     ],
+     "n": "5.3.121",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "Here’s one, a friend, and one that knows you well."
+     ],
+     "n": "5.3.123",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "Bliss be upon you. Tell me, good my friend,",
+      "What torch is yond that vainly lends his light",
+      "To grubs and eyeless skulls? As I discern,",
+      "It burneth in the Capels’ monument."
+     ],
+     "n": "5.3.124",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "It doth so, holy sir, and there’s my master,",
+      "One that you love."
+     ],
+     "n": "5.3.128",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "Who is it?"
+     ],
+     "n": "5.3.130",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "Romeo."
+     ],
+     "n": "5.3.131",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "How long hath he been there?"
+     ],
+     "n": "5.3.132",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "Full half an hour."
+     ],
+     "n": "5.3.133",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "Go with me to the vault."
+     ],
+     "n": "5.3.134",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "I dare not, sir.",
+      "My master knows not but I am gone hence,",
+      "And fearfully did menace me with death",
+      "If I did stay to look on his intents."
+     ],
+     "n": "5.3.135",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "Stay, then. I’ll go alone. Fear comes upon me.",
+      "O, much I fear some ill unthrifty thing."
+     ],
+     "n": "5.3.139",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "As I did sleep under this yew tree here,",
+      "I dreamt my master and another fought,",
+      "And that my master slew him."
+     ],
+     "n": "5.3.141",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "[, moving toward the tomb]",
+      "Romeo!—",
+      "Alack, alack, what blood is this which stains",
+      "The stony entrance of this sepulcher?",
+      "What mean these masterless and gory swords",
+      "To lie discolored by this place of peace?",
+      "Romeo! O, pale! Who else? What, Paris too?",
+      "And steeped in blood? Ah, what an unkind hour",
+      "Is guilty of this lamentable chance!",
+      "The lady stirs."
+     ],
+     "n": "5.3.144",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "O comfortable friar,"
+     ],
+     "n": "5.3.153",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "where is my lord?",
+      "I do remember well where I should be,",
+      "And there I am. Where is my Romeo?"
+     ],
+     "n": null
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "I hear some noise.— Lady, come from that nest",
+      "Of death, contagion, and unnatural sleep.",
+      "A greater power than we can contradict",
+      "Hath thwarted our intents. Come, come away.",
+      "Thy husband in thy bosom there lies dead,",
+      "And Paris, too. Come, I’ll dispose of thee",
+      "Among a sisterhood of holy nuns.",
+      "Stay not to question, for the watch is coming.",
+      "Come, go, good Juliet. I dare no longer stay."
+     ],
+     "n": "5.3.156",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Go, get thee hence, for I will not away.",
+      "[He exits.]"
+     ],
+     "n": "5.3.165",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "What’s here? A cup closed in my true love’s hand?",
+      "Poison, I see, hath been his timeless end.—",
+      "O churl, drunk all, and left no friendly drop",
+      "To help me after! I will kiss thy lips.",
+      "Haply some poison yet doth hang on them,",
+      "To make me die with a restorative.",
+      "[She kisses him.]",
+      "Thy lips are warm!"
+     ],
+     "n": null
+    },
+    {
+     "d": "Enter Paris’s Page and Watch."
+    },
+    {
+     "s": "FIRST WATCH",
+     "l": [
+      "Lead, boy. Which way?"
+     ],
+     "n": "5.3.173",
+     "cut": true
+    },
+    {
+     "s": "JULIET",
+     "l": [
+      "Yea, noise? Then I’ll be brief. O, happy dagger,",
+      "This is thy sheath. There rust, and let me die."
+     ],
+     "n": "5.3.174"
+    },
+    {
+     "d": "She takes Romeo’s dagger, stabs herself, and dies."
+    },
+    {
+     "s": "PAGE",
+     "l": [
+      "This is the place, there where the torch doth burn."
+     ],
+     "n": "5.3.176",
+     "cut": true
+    },
+    {
+     "s": "FIRST WATCH",
+     "l": [
+      "The ground is bloody.— Search about the churchyard.",
+      "Go, some of you; whoe’er you find, attach.",
+      "[Some watchmen exit.]",
+      "Pitiful sight! Here lies the County slain,",
+      "And Juliet bleeding, warm, and newly dead,",
+      "Who here hath lain this two days burièd.—",
+      "Go, tell the Prince. Run to the Capulets.",
+      "Raise up the Montagues. Some others search.",
+      "[Others exit.]",
+      "We see the ground whereon these woes do lie,",
+      "But the true ground of all these piteous woes",
+      "We cannot without circumstance descry."
+     ],
+     "n": "5.3.177",
+     "cut": true
+    },
+    {
+     "d": "Enter Watchmen with Romeo’s man Balthasar.",
+     "cut": true
+    },
+    {
+     "s": "SECOND WATCH",
+     "l": [
+      "Here’s Romeo’s man. We found him in the churchyard."
+     ],
+     "n": "5.3.188",
+     "cut": true
+    },
+    {
+     "s": "FIRST WATCH",
+     "l": [
+      "Hold him in safety till the Prince come hither."
+     ],
+     "n": "5.3.190",
+     "cut": true
+    },
+    {
+     "d": "Enter Friar Lawrence and another Watchman.",
+     "cut": true
+    },
+    {
+     "s": "THIRD WATCH",
+     "l": [
+      "Here is a friar that trembles, sighs, and weeps.",
+      "We took this mattock and this spade from him",
+      "As he was coming from this churchyard’s side."
+     ],
+     "n": "5.3.191",
+     "cut": true
+    },
+    {
+     "s": "FIRST WATCH",
+     "l": [
+      "A great suspicion. Stay the Friar too."
+     ],
+     "n": "5.3.194",
+     "cut": true
+    },
+    {
+     "d": "Enter the Prince with Attendants.",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "What misadventure is so early up",
+      "That calls our person from our morning rest?"
+     ],
+     "n": "5.3.195",
+     "cut": true
+    },
+    {
+     "d": "Enter Capulet and Lady Capulet.",
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "What should it be that is so shrieked abroad?"
+     ],
+     "n": "5.3.197",
+     "cut": true
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "O, the people in the street cry “ Romeo,”",
+      "Some “ Juliet,” and some “ Paris,” and all run",
+      "With open outcry toward our monument."
+     ],
+     "n": "5.3.198",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "What fear is this which startles in our ears?"
+     ],
+     "n": "5.3.201",
+     "cut": true
+    },
+    {
+     "s": "FIRST WATCH",
+     "l": [
+      "Sovereign, here lies the County Paris slain,",
+      "And Romeo dead, and Juliet, dead before,",
+      "Warm and new killed."
+     ],
+     "n": "5.3.202",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "Search, seek, and know how this foul murder comes."
+     ],
+     "n": "5.3.205",
+     "cut": true
+    },
+    {
+     "s": "FIRST WATCH",
+     "l": [
+      "Here is a friar, and slaughtered Romeo’s man,",
+      "With instruments upon them fit to open",
+      "These dead men’s tombs."
+     ],
+     "n": "5.3.207",
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "O heavens! O wife, look how our daughter bleeds!",
+      "This dagger hath mista’en, for, lo, his house",
+      "Is empty on the back of Montague,",
+      "And it mis-sheathèd in my daughter’s bosom."
+     ],
+     "n": "5.3.210",
+     "cut": true
+    },
+    {
+     "s": "LADY CAPULET",
+     "l": [
+      "O me, this sight of death is as a bell",
+      "That warns my old age to a sepulcher."
+     ],
+     "n": "5.3.214",
+     "cut": true
+    },
+    {
+     "d": "Enter Montague.",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "Come, Montague, for thou art early up",
+      "To see thy son and heir now early down."
+     ],
+     "n": "5.3.216",
+     "cut": true
+    },
+    {
+     "s": "MONTAGUE",
+     "l": [
+      "Alas, my liege, my wife is dead tonight.",
+      "Grief of my son’s exile hath stopped her breath.",
+      "What further woe conspires against mine age?"
+     ],
+     "n": "5.3.218",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "Look, and thou shalt see."
+     ],
+     "n": "5.3.221",
+     "cut": true
+    },
+    {
+     "s": "MONTAGUE",
+     "l": [
+      "[, seeing Romeo dead]",
+      "O thou untaught! What manners is in this,",
+      "To press before thy father to a grave?"
+     ],
+     "n": "5.3.222",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "Seal up the mouth of outrage for awhile,",
+      "Till we can clear these ambiguities",
+      "And know their spring, their head, their true descent,",
+      "And then will I be general of your woes",
+      "And lead you even to death. Meantime forbear,",
+      "And let mischance be slave to patience.—",
+      "Bring forth the parties of suspicion."
+     ],
+     "n": "5.3.224",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "I am the greatest, able to do least,",
+      "Yet most suspected, as the time and place",
+      "Doth make against me, of this direful murder.",
+      "And here I stand, both to impeach and purge",
+      "Myself condemnèd and myself excused."
+     ],
+     "n": "5.3.232",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "Then say at once what thou dost know in this."
+     ],
+     "n": "5.3.237",
+     "cut": true
+    },
+    {
+     "s": "FRIAR LAWRENCE",
+     "l": [
+      "I will be brief, for my short date of breath",
+      "Is not so long as is a tedious tale.",
+      "Romeo, there dead, was husband to that Juliet,",
+      "And she, there dead, that Romeo’s faithful wife.",
+      "I married them, and their stol’n marriage day",
+      "Was Tybalt’s doomsday, whose untimely death",
+      "Banished the new-made bridegroom from this city,",
+      "For whom, and not for Tybalt, Juliet pined.",
+      "You, to remove that siege of grief from her,",
+      "Betrothed and would have married her perforce",
+      "To County Paris. Then comes she to me,",
+      "And with wild looks bid me devise some mean",
+      "To rid her from this second marriage,",
+      "Or in my cell there would she kill herself.",
+      "Then gave I her ( so tutored by my art)",
+      "A sleeping potion, which so took effect",
+      "As I intended, for it wrought on her",
+      "The form of death. Meantime I writ to Romeo",
+      "That he should hither come as this dire night",
+      "To help to take her from her borrowed grave,",
+      "Being the time the potion’s force should cease.",
+      "But he which bore my letter, Friar John,",
+      "Was stayed by accident, and yesternight",
+      "Returned my letter back. Then all alone",
+      "At the prefixèd hour of her waking",
+      "Came I to take her from her kindred’s vault,",
+      "Meaning to keep her closely at my cell",
+      "Till I conveniently could send to Romeo.",
+      "But when I came, some minute ere the time",
+      "Of her awakening, here untimely lay",
+      "The noble Paris and true Romeo dead.",
+      "She wakes, and I entreated her come forth",
+      "And bear this work of heaven with patience.",
+      "But then a noise did scare me from the tomb,",
+      "And she, too desperate, would not go with me",
+      "But, as it seems, did violence on herself.",
+      "All this I know, and to the marriage",
+      "Her nurse is privy. And if aught in this",
+      "Miscarried by my fault, let my old life",
+      "Be sacrificed some hour before his time",
+      "Unto the rigor of severest law."
+     ],
+     "n": "5.3.238",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "We still have known thee for a holy man.—",
+      "Where’s Romeo’s man? What can he say to this?"
+     ],
+     "n": "5.3.279",
+     "cut": true
+    },
+    {
+     "s": "BALTHASAR",
+     "l": [
+      "I brought my master news of Juliet’s death,",
+      "And then in post he came from Mantua",
+      "To this same place, to this same monument.",
+      "This letter he early bid me give his father",
+      "And threatened me with death, going in the vault,",
+      "If I departed not and left him there."
+     ],
+     "n": "5.3.281",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "Give me the letter. I will look on it.—",
+      "[He takes Romeo’s letter.]",
+      "Where is the County’s page, that raised the watch?—",
+      "Sirrah, what made your master in this place?"
+     ],
+     "n": "5.3.287",
+     "cut": true
+    },
+    {
+     "s": "PAGE",
+     "l": [
+      "He came with flowers to strew his lady’s grave",
+      "And bid me stand aloof, and so I did.",
+      "Anon comes one with light to ope the tomb,",
+      "And by and by my master drew on him,",
+      "And then I ran away to call the watch."
+     ],
+     "n": "5.3.291",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "This letter doth make good the Friar’s words,",
+      "Their course of love, the tidings of her death;",
+      "And here he writes that he did buy a poison",
+      "Of a poor ’pothecary, and therewithal",
+      "Came to this vault to die and lie with Juliet.",
+      "Where be these enemies?— Capulet, Montague,",
+      "See what a scourge is laid upon your hate,",
+      "That heaven finds means to kill your joys with love,",
+      "And I, for winking at your discords too,",
+      "Have lost a brace of kinsmen. All are punished."
+     ],
+     "n": "5.3.296",
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "O brother Montague, give me thy hand.",
+      "This is my daughter’s jointure, for no more",
+      "Can I demand."
+     ],
+     "n": "5.3.306",
+     "cut": true
+    },
+    {
+     "s": "MONTAGUE",
+     "l": [
+      "But I can give thee more,",
+      "For I will ray her statue in pure gold,",
+      "That whiles Verona by that name is known,",
+      "There shall no figure at such rate be set",
+      "As that of true and faithful Juliet."
+     ],
+     "n": "5.3.309",
+     "cut": true
+    },
+    {
+     "s": "CAPULET",
+     "l": [
+      "As rich shall Romeo’s by his lady’s lie,",
+      "Poor sacrifices of our enmity."
+     ],
+     "n": "5.3.314",
+     "cut": true
+    },
+    {
+     "s": "PRINCE",
+     "l": [
+      "A glooming peace this morning with it brings.",
+      "The sun for sorrow will not show his head.",
+      "Go hence to have more talk of these sad things.",
+      "Some shall be pardoned, and some punishèd.",
+      "For never was a story of more woe",
+      "Than this of Juliet and her Romeo."
+     ],
+     "n": "5.3.316",
+     "cut": true
+    },
+    {
+     "d": "All exit.",
+     "cut": true
+    }
+   ]
+  }
+ },
+ "SCRIPT_OF": [
+  "\"rom11\":\"rom11\"",
+  "\"rom13\":\"rom13\"",
+  "\"rom14\":\"rom14\"",
+  "\"rom15\":\"rom15\"",
+  "\"rom22\":\"rom22\"",
+  "\"rom53\":\"rom53\""
+ ],
+ "SCRIPT_NOTE": [
+  "rom11:\"Our cut: from Benvolio's 'Good morrow, cousin' to the end of the scene.\"",
+  "rom14:\"Our cut: from Mercutio's 'Nay, gentle Romeo' to Benvolio's 'Strike, drum' (the end of the scene). Speeches marked Cut are Chris's internal cuts.\"",
+  "rom15:\"Source for the party mosaic: Romeo and Juliet's shared sonnet and the kiss.\"",
+  "rom22:\"The whole balcony scene for now, from 'He jests at scars' to Romeo's exit. The Nurse only calls from offstage ('Madam!').\"",
+  "rom53:\"Our cut: from Romeo's 'How oft when men are at the point of death' to Juliet's death. Paris is cut, so the scene opens on Romeo alone in the tomb; the Friar's exchange with Balthasar is marked Cut.\""
+ ],
+ "PART_SPEAKERS": [
+  "romeo:[\"ROMEO\"]",
+  "benvolio:[\"BENVOLIO\"]",
+  "mercutio:[\"MERCUTIO\"]",
+  "juliet:[\"JULIET\"]",
+  "\"lady-capulet\":[\"LADY CAPULET\"]",
+  "capulet:[\"CAPULET\"]",
+  "tybalt:[\"TYBALT\"]",
+  "\"friar-lawrence\":[\"FRIAR LAWRENCE\"]",
+  "nurse:[\"NURSE\"]",
+  "\"rom-servingman\":[\"SERVINGMAN\"]"
+ ],
+ "SCENE_ABOUT": {
+  "rom11": {
+   "before": "The play opens with a brawl between Montague and Capulet servants that drags in both old men; the Prince threatens death for the next disturbance of the peace. Romeo's parents then tell Benvolio that their son has been seen wandering before dawn in tears and shutting himself away from the daylight.",
+   "about": "Love, but not yet Juliet. Romeo is lovesick for Rosaline, who has sworn to stay chaste, and he talks in paradoxes ('O brawling love, O loving hate'): he is in love with being in love. Benvolio is the patient friend who listens, teases and tries to cure him. Keep it light and young. Benvolio's advice, 'examine other beauties', is exactly what will send Romeo to the Capulet feast, where he meets Juliet."
+  },
+  "rom13": {
+   "before": "The play has opened with a street brawl between the Montagues and Capulets. In 1.2 the County Paris, a young nobleman related to the Prince, asked old Capulet for Juliet's hand; Capulet told him to wait two years and woo her, and invited him to the feast tonight. Juliet is not yet fourteen, and she has not met Romeo.",
+   "about": "A girl being prepared for the marriage market by two very different mothers. Lady Capulet is formal and uneasy alone with her daughter: she sends the Nurse out, then calls her straight back. The Nurse is the one who actually raised Juliet, and her rambling story of the weaning and the fall ('Wilt thou not, Jule?') is full of love and of grief for her own dead daughter, Susan. Juliet barely speaks, and her answers are careful: 'I'll look to like, if looking liking move.' Play the comedy of the Nurse, and the pressure underneath it."
+  },
+  "rom14": {
+   "before": "Romeo has been moping over Rosaline (1.1). Capulet's servant, who can't read, asked Romeo to read out the guest list for tonight's feast; Rosaline is on it, so Benvolio talks Romeo into going in masks, to compare her with other beauties (1.2). Meanwhile Juliet has been told to look at Paris at the same feast (1.3).",
+   "about": "Two ways of handling dreams. Romeo is heavy, love-sick and full of foreboding; Mercutio is all speed and wit and cannot bear him being sad. The Queen Mab speech starts as a party piece, a miniature world of gnats and hazelnut-shell chariots, then darkens as Mab visits lawyers, parsons and soldiers and becomes the hag who presses on sleeping girls, until Romeo has to stop him: 'Thou talk'st of nothing.' Find what Mercutio is running from. The scene ends with Romeo's premonition of 'untimely death', and he goes in anyway: 'He that hath the steerage of my course / Direct my sail.'"
+  },
+  "rom22": {
+   "before": "Romeo and Mercutio went masked to the Capulets' feast (1.4). There Romeo forgot Rosaline the moment he saw Juliet; they met, spoke a sonnet together and kissed, and only afterwards each learned that the other belonged to the enemy house (1.5). Romeo has given his friends the slip and climbed the orchard wall.",
+   "about": "The most famous love scene ever written, and it is mostly Juliet's. She thinks she is alone and says what she would never say to his face; he overhears, and she is mortified, then refuses to play games: 'Dost thou love me? I know thou wilt say \"Ay.\"' She is the practical one: the wall is high, her kinsmen will kill him, and if his love is honourable, he can send word tomorrow about the wedding. Romeo swears by the moon; she stops him. Find the speed of it, the interruptions (the Nurse calling), and how neither can bear to say goodnight."
+  },
+  "rom53": {
+   "before": "Since the balcony: the Friar married them in secret (2.6); Romeo killed Juliet's cousin Tybalt after Tybalt killed Mercutio, and was banished to Mantua (3.1); the lovers had one night together (3.5). Forced to marry Paris, Juliet took the Friar's potion to sleep like death and was laid in the family tomb (4.3–5). The Friar's letter explaining the plan never reached Romeo (5.2). He only heard she was dead, bought poison, and rode back to Verona (5.1). At the tomb door he has already killed Paris.",
+   "about": "The night that began on the balcony ends here. Romeo's last speech is not panic: he sees how beautiful she still looks ('Death, that hath sucked the honey of thy breath, / Hath had no power yet upon thy beauty'), which the audience knows means she is alive, and drinks anyway. Then Juliet wakes, asking for him. The Friar's lines are short and frightened; hers are shorter still. Find the stillness, and how fast it ends: she kisses him, hoping some poison is left, and when the watch comes she does not hesitate."
+  }
+ },
+ "BACKDROPS": [
+  " rom11:{yt:\"Hs950SOy_70\",title:\"Dawn on the water\",src:\"Real ocean sunrise, 4K \\u00b7 2 hours\",",
+  "  note:\"<b>This is projected, not decorated.</b> The stage is bare. This footage fills the back wall, floor to grid, behind the actors \\u2014 so Benvolio finds Romeo at first light, on the edge of an ocean that keeps moving for the whole scene. It runs silent: the score carries the sound. Nothing is cued to a line, nothing cuts; it simply continues, which is why it reads as weather rather than as video. The actors play in front of it in near-silhouette.\",",
+  "  tags:[\"Back wall, floor to grid\",\"Plays silent\",\"Continuous \\u2014 no cues\",\"Actors in silhouette\"]}};"
+ ],
+ "_positions": [
+  [
+   "rom13",
+   "mac13",
+   "ayl21"
+  ],
+  [
+   "rom11",
+   "cor45",
+   "rom14"
+  ],
+  [
+   "rom14",
+   "rom11",
+   "rom15"
+  ],
+  [
+   "rom15",
+   "rom14",
+   "ham31"
+  ],
+  [
+   "rom22",
+   "sil",
+   "mnd32"
+  ],
+  [
+   "rom53",
+   "mnd41",
+   "(end of show)"
+  ]
+ ]
+}

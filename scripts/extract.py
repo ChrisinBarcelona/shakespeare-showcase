@@ -11,6 +11,7 @@ Each scene is written as {play, act, scene, title, source, url, first, last, ite
 items are {"d": stage direction} or {"s": speaker, "l": [lines], "n": first Folger line number}.
 Stage directions inside a speech become "[...]" lines. Prose is split at Folger's line breaks.
 """
+import os
 import xml.etree.ElementTree as ET, json, re, sys
 
 NS = '{http://www.tei-c.org/ns/1.0}'
@@ -363,6 +364,15 @@ for k, (f, a, s, loc, start, end) in WANT.items():
         'url': f'https://www.folger.edu/explore/shakespeares-works/{f}/read/{a}/{s}/',
         'first': nums[0] if nums else None, 'last': final, 'items': items,
     }
+
+# Romeo and Juliet is archived (Nov 2026): it is off the BCN Studio version of the show and
+# comes back for the Gaudí run. Its scenes are still extracted with all the cuts above, but
+# they are written to archive/romeo-and-juliet/scenes.json, not to the live scenes.json.
+ARCHIVED = ('rom11', 'rom13', 'rom14', 'rom15', 'rom22', 'rom53')
+archived = {k: out.pop(k) for k in ARCHIVED if k in out}
+if archived:
+    arch = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'archive', 'romeo-and-juliet', 'scenes.json')
+    json.dump(archived, open(arch, 'w'), ensure_ascii=False, indent=1)
 
 json.dump(out, open(OUT, 'w'), ensure_ascii=False)
 

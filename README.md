@@ -13,7 +13,7 @@ Live at [shakespeareshow.actor](https://shakespeareshow.actor) (and chrisinbarce
 | Official title (tickets, venue listing, press, programme) | **Selected Works of Shakespeare** |
 | Campaign titles (posters, social) | **The Love / The Power / The Madness / The Hate of Shakespeare** |
 
-Themes by play: Love = Midsummer, Shrew, As You Like It, Romeo and Juliet · Power = Macbeth, Richard III · Madness = Hamlet (and Lady Macbeth) · Hate = Coriolanus (and Richard III).
+Themes by play: Love = Midsummer, Shrew, As You Like It · Power = Macbeth, Richard III · Madness = Hamlet (and Lady Macbeth) · Hate = Coriolanus (and Richard III).
 
 ## What's here
 
