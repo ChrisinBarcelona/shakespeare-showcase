@@ -1278,6 +1278,22 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 .vbtns .btn{flex:0 0 auto!important;width:auto!important}
 .vstats .vyes b{color:#4ade80}.vstats .vdueT b{color:#f87171}
 .vadd{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
+.tdsec{margin-top:26px}
+.tdlist{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.tdi{display:flex;gap:12px;align-items:flex-start;background:#111113;border:1px solid #27272a;border-radius:12px;padding:10px 12px}
+.tdi.late{border-color:#f87171}
+.tdi.done{opacity:.5}.tdi.done .tdt{text-decoration:line-through}
+.tdi input[type=checkbox]{width:20px;height:20px;margin:2px 0 0;flex:0 0 auto;accent-color:#4ade80;cursor:pointer}
+.tdbody{flex:1;min-width:0}
+.tdt{margin:0;font-size:15px;line-height:1.4;overflow-wrap:anywhere}
+.tdm{margin:3px 0 0;font-size:12.5px;color:#a1a1aa}
+.tdm .late{color:#fca5a5;font-weight:600}
+.tdn{margin:4px 0 0;font-size:13px;color:#a1a1aa;line-height:1.45;white-space:pre-wrap}
+.tdi .btn{flex:0 0 auto!important;width:auto!important}
+.tdbar{height:8px;border-radius:99px;background:#27272a;overflow:hidden;margin-top:10px}.tdbar i{display:block;height:100%;background:#4ade80}
+:where(html.light) .tdi{background:#fff;border-color:#e4e3e1}
+:where(html.light) .tdbar{background:#e4e3e1}
+
 .vadd .btn{flex:0 0 auto!important;width:auto!important}
 #sheet .field label{display:block;font-size:12.5px;color:#a1a1aa;margin-bottom:4px}
 :where(html.light) .vcard{background:#fff;border-color:#e4e3e1}
@@ -2398,7 +2414,7 @@ function supaDB(){
   const enc=encodeURIComponent,L={};
   const pin=()=>{try{return localStorage.getItem("ss_dir_pin")||""}catch(_){return ""}};
   const fail=async r=>{let j={};try{j=await r.json()}catch(_){}const e={code:(r.status===401||r.status===403||j.code==="42501")?"not_allowed":r.status===409||j.code==="23505"?"exists":"http_"+r.status,message:j.message};throw e};
-  async function rows(c){if((c==="outreach"||c==="applications")&&pin()){const q=await fetch(`${R}/rpc/director_read`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c})});if(q.ok)return q.json()}const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
+  async function rows(c){if((c==="outreach"||c==="applications"||c==="todos")&&pin()){const q=await fetch(`${R}/rpc/director_read`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c})});if(q.ok)return q.json()}const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
   const LAST={};
   function refresh(c){const ls=L[c];if(!ls||!ls.length)return;rows(c).then(rs=>{const sig=JSON.stringify(rs);if(LAST[c]===sig)return;LAST[c]=sig;const snap={docs:rs.map(x=>({id:x.id,exists:true,data:()=>x.data})),metadata:{fromCache:false}};ls.forEach(l=>l.cb(snap))}).catch(e=>ls.forEach(l=>l.err&&l.err(e)))}
   async function dwrite(c,id,data,del){const r=await fetch(`${R}/rpc/director_write`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c,p_id:id,p_data:data||{},p_delete:!!del})});if(!r.ok)await fail(r)}
@@ -2498,7 +2514,7 @@ function venueTidy(v){
   v.querySelectorAll('p.sub').forEach(p=>{if(/rehearsal sessions/.test(p.textContent))p.remove()});
   v.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(/^#(scene-|character-|script-|booking|rehearsals|me|home|staging|characters|transitions|fights|mosaics|costume)/.test(h)){a.removeAttribute('href');a.classList.add('vnolink')}});
 }
-const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["vacancies","Vacancies"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["venues","Venues"],["me","My panel"]];
+const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["vacancies","Vacancies"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["venues","Venues"],["todo","To do"],["me","My panel"]];
 let cdTimer=null;
 function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Logged out on this device")}
 function route(){
@@ -2507,7 +2523,7 @@ function route(){
   const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h==="mybookings"?"me":h;
   if(VENUE){const nu=$("navuser");if(nu)nu.innerHTML=""}
   if(VENUE)$("nav").innerHTML=VENUE_PAGES.map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${LANG==="ca"?VENUE_PAGES_CA[k]:l}</a>`).join("")+`<a href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027")}" class="navcta">${LANG==="ca"?"Escriu a Chris":"Email Chris"}</a>`;
-  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&(k!=="venues"||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
+  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&((k!=="venues"&&k!=="todo")||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
   renderNavUser(base);
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
   const lbl=((VENUE?VENUE_PAGES:PAGES).find(([k])=>k===base)||[,base==="plays"?"Play by play":"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
@@ -2516,7 +2532,7 @@ function route(){
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,plays:pPlays,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,vacancies:pVacancies,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h==="mybookings"?"me":h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,plays:pPlays,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,vacancies:pVacancies,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,todo:pTodo,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h==="mybookings"?"me":h]||pHome)();
   wireEdits(v);
   if(VENUE)venueTidy(v);
   {const fs=document.getElementById("fullsite");if(fs)fs.hidden=!VENUE}
@@ -2535,6 +2551,7 @@ function route(){
   v.querySelectorAll('[data-psize]').forEach(b=>b.onclick=()=>{posterSize=b.dataset.psize;route()});
   if(base==="cast")wireCast();
   if(base==="venues")wireVenues(v);
+  if(base==="todo")wireTodo(v);
   if(h==="staging")wireStaging(v);
 }
 function jumpBookings(){if(location.hash!=="#mybookings")return false;const el=$("mybookings");if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),60);return !!el}
@@ -3475,7 +3492,7 @@ function renderNavUser(base){const nu=$("navuser");if(!nu)return;
   const av=src?`<img src="${esc(src)}" alt="" width="32" height="32">`:`<span aria-hidden="true">${esc(initials(me))}</span>`;
   nu.innerHTML=`<button type="button" class="navav${base==="me"?" on":""}" id="navav" aria-haspopup="menu" aria-expanded="false" aria-controls="navmenu" aria-label="${esc(me)}: profile menu"><span class="avc">${av}</span><span class="avn">${esc(me.split(" ")[0])}</span><svg class="avch" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
   <div class="navmenu" id="navmenu" role="menu" hidden><div class="nmhead"><span class="avc lg">${av}</span><div><b>${esc(me)}</b><span>${esc(role)}</span></div></div>
-    <a role="menuitem" href="#me">My profile</a>${CAST.includes(me)?`<a role="menuitem" href="#mybookings">My bookings</a>`:""}${isOwner?`<a role="menuitem" href="#venues">Venues</a>`:""}<a role="menuitem" href="#signout" class="nmout">Log out</a></div>`;
+    <a role="menuitem" href="#me">My profile</a>${CAST.includes(me)?`<a role="menuitem" href="#mybookings">My bookings</a>`:""}${isOwner?`<a role="menuitem" href="#venues">Venues</a><a role="menuitem" href="#todo">To do</a>`:""}<a role="menuitem" href="#signout" class="nmout">Log out</a></div>`;
   const b=$("navav"),m=$("navmenu");
   const close=()=>{m.hidden=true;b.setAttribute("aria-expanded","false")};
   b.onclick=e=>{e.stopPropagation();const open=m.hidden;m.hidden=!open;b.setAttribute("aria-expanded",String(open));if(open){const f=m.querySelector("a");if(f)f.focus()}};
@@ -3693,6 +3710,86 @@ function wireVenues(v){
   v.querySelectorAll("[data-vfu]").forEach(b=>b.onclick=async()=>{if(await saveVenue(b.dataset.vfu,{st:"Followed up",fu:oToday()})){toast("Followed up. Next check in 7 days");rerender()}});
   v.querySelectorAll("[data-vedit]").forEach(b=>b.onclick=()=>editVenue(b.dataset.vedit));
   const a=$("vaddbtn");if(a)a.onclick=()=>editVenue("");
+}
+/* ---------- To do (director only) ---------- */
+const TD_SECS=["This week","Casting workshop","Offers & sign-off","Social media","Soundtrack","Production"];
+const TD_GOAL="2026-12-31";
+const TD_SEED=[
+ ["venue","This week","Lock the venue in writing: dates, fee or box-office split, tech spec, get-in times, deposit","2026-11-30"],
+ ["script","This week","Lock the script: final scene order and cuts (R&J out)","2026-11-30"],
+ ["doubling","This week","Doubling chart for 8 men and 4 women","2026-11-30"],
+ ["open-roles","This week","List every open role (Macbeth, Tullus Aufidius, anything still Pending)","2026-11-30"],
+ ["jb","This week","Coffee with JB: yes or no","2026-11-30"],
+ ["ws-room","Casting workshop","Book the room for the workshop day (Albareda?)","2026-12-01"],
+ ["ws-form","Casting workshop","Sign-up form: name, contact, headshot, availability to May, Saturdays OK","2026-12-01"],
+ ["ws-announce","Casting workshop","Announce the workshop: actor groups, drama schools, expat theatre networks, cast shares","2026-12-01"],
+ ["ws-plan","Casting workshop","Plan the day: warm-up, verse session, audition sides from the locked script","2026-12-08"],
+ ["ws-help","Casting workshop","Get a helper for the day (Jessica?)","2026-12-08"],
+ ["ws-day","Casting workshop","Run the casting workshop","2026-12-12"],
+ ["offers","Offers & sign-off","Send offers with a reply-by date; keep backups","2026-12-18"],
+ ["site-cast","Offers & sign-off","Every new actor on the site and Accepted","2026-12-31"],
+ ["agreements","Offers & sign-off","One-page cast agreement: commitment, dates, charity, no recording","2026-12-31"],
+ ["calendar","Offers & sign-off","Lock the January–April rehearsal calendar","2026-12-31"],
+ ["sm-accounts","Social media","Set up accounts, bio link to shakespeareshow.actor","2026-11-30"],
+ ["sm-casting","Social media","Casting-call posts as the first campaign","2026-12-01"],
+ ["sm-plan","Social media","Posting plan: cast reveals (Jan), Diigima rehearsal clips, ticket pushes",""],
+ ["st-tracks","Soundtrack","Choose tracks and map them to scenes and transitions",""],
+ ["st-rights","Soundtrack","Check music rights (SGAE) with the venue",""],
+ ["st-mix","Soundtrack","Rough mix ready for rehearsals","2027-01-31"],
+ ["tickets","Production","Ticketing platform and prices (or the venue's box office)",""],
+ ["crew","Production","Find a stage manager and a light/sound operator",""],
+ ["costumes","Production","Costumes and props: budget and owner",""],
+ ["fights","Production","Fight choreography plan (Hamlet/Laertes)",""],
+ ["charity","Production","Confirm with Save the Children Spain how we can use their name",""],
+ ["insurance","Production","Check Arms and Legs insurance covers the venue and dates",""],
+ ["budget","Production","One-page budget: costs vs ticket income",""]
+].map(([k,sec,t,due],i)=>({k,sec,t,due,o:i}));
+let todos={},tdSub=false;
+function ensureTodo(){if(tdSub||!db||!isOwner||!db.collection)return;tdSub=true;db.collection("todos").onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{if(d.exists)m[d.id]=d.data()});todos=m;rerender()},()=>{})}
+function todoList(){const base=TD_SEED.map(x=>({...x,...(todos[x.k]||{}),k:x.k,custom:false}));
+  const extra=Object.entries(todos).filter(([k,d])=>d&&d.custom&&!TD_SEED.some(x=>x.k===k)).map(([k,d])=>({o:999,...d,k,custom:true}));
+  return base.concat(extra).filter(x=>!x.del).map(x=>({...x,late:!x.done&&!!x.due&&x.due<oToday()}))}
+async function saveTodo(k,patch){const cur=todos[k]||{};const data={...cur,...patch,at:new Date().toISOString()};todos={...todos,[k]:data};try{await db.collection("todos").doc(k).set(data);return true}catch(e){toast("Couldn't save: "+(e&&e.code||"error"));return false}}
+function tdItem(x){return `<li class="tdi${x.done?" done":""}${x.late?" late":""}">
+  <input type="checkbox" data-tdk="${esc(x.k)}"${x.done?" checked":""} aria-label="Done: ${esc(x.t)}">
+  <div class="tdbody"><p class="tdt">${esc(x.t)}</p>${x.due?`<p class="tdm">${x.late?`<span class="late">Overdue · ${oFmtDay(x.due)}</span>`:"Due "+oFmtDay(x.due)}</p>`:""}${x.note?`<p class="tdn">${esc(x.note)}</p>`:""}</div>
+  <button type="button" class="btn sm ghost" data-tde="${esc(x.k)}">Edit</button></li>`}
+function pTodo(){
+  if(!isOwner)return folioHero("Director only","To do",`<p class="ftag">This page is just for the director. Unlock it in <a href="#me">My panel</a> with the director code.</p>`)+`</section>`;
+  ensureTodo();
+  const L=todoList(),done=L.filter(x=>x.done).length,late=L.filter(x=>x.late).length;
+  const [y,m,d]=TD_GOAL.split("-").map(Number),days=Math.max(0,Math.ceil((new Date(y,m-1,d)-new Date())/864e5));
+  const pct=L.length?Math.round(done/L.length*100):0;
+  const tile=(n,l,cls)=>`<div class="${cls||""}"><b>${n}</b><span>${l}</span></div>`;
+  const secs=TD_SECS.concat([...new Set(L.map(x=>x.sec).filter(s=>s&&!TD_SECS.includes(s)))]);
+  return folioHero("Director only","To do",`<p class="ftag">Everything to get the show <em>fully cast before the new year.</em> Only you can see this page.</p>`)+`</section>
+  <div class="aud vstats">${tile(days,"days to 31 Dec")}${tile(L.length-done,"to do")}${tile(done,"done","vyes")}${tile(late,"overdue",late?"vdueT":"")}</div>
+  <div class="tdbar" aria-label="${pct}% done"><i style="width:${pct}%"></i></div>
+  ${secs.map(sec=>{const xs=L.filter(x=>(x.sec||"Production")===sec).sort((a,b)=>(!!a.done-!!b.done)||((a.due||"9")<(b.due||"9")?-1:(a.due||"9")>(b.due||"9")?1:a.o-b.o));if(!xs.length)return"";const n=xs.filter(x=>x.done).length;return `<section class="tdsec"><h2>${esc(sec)} <em>· ${n}/${xs.length}</em></h2><ul class="tdlist">${xs.map(tdItem).join("")}</ul></section>`}).join("")}
+  <div class="vadd"><button type="button" class="btn" id="tdadd">+ Add a task</button></div>`}
+function editTodo(k){
+  const x=k?todoList().find(z=>z.k===k):{k:"",t:"",sec:TD_SECS[0],due:"",note:""};if(!x)return;
+  $("sheet").innerHTML=`<h3>${k?"Edit task":"Add a task"}</h3>
+    <div class="field"><label for="tdt">Task</label><textarea id="tdt" rows="2">${esc(x.t)}</textarea></div>
+    <div class="field"><label for="tds">Section</label><select id="tds">${TD_SECS.map(s=>`<option${s===x.sec?" selected":""}>${esc(s)}</option>`).join("")}</select></div>
+    <div class="field"><label for="tdd">Due</label><input id="tdd" type="date" value="${esc(x.due||"")}"></div>
+    <div class="field"><label for="tdn">Notes</label><textarea id="tdn" rows="3">${esc(x.note||"")}</textarea></div>
+    <div class="btns">${k?`<button class="btn ghost" id="tddel">Delete</button>`:""}<button class="btn" id="cx">Cancel</button><button class="btn primary" id="sv">Save</button></div>`;
+  $("sheet").classList.add("wide");$("cx").onclick=closeSheet;
+  $("sv").onclick=async()=>{const t=$("tdt").value.trim();if(!t){toast("Write the task");return}
+    const patch={t,sec:$("tds").value,due:$("tdd").value,note:$("tdn").value.trim()};
+    let key=k;if(!k){key="x-"+Date.now().toString(36);patch.custom=true;patch.o=999}
+    if(await saveTodo(key,patch)){toast("Saved");closeSheet();rerender()}};
+  const del=$("tddel");if(del)del.onclick=async()=>{if(!confirmDel(del))return;
+    if(x.custom){try{await db.collection("todos").doc(k).delete();const o={...todos};delete o[k];todos=o;toast("Deleted");closeSheet();rerender()}catch(e){toast("Couldn't delete")}}
+    else if(await saveTodo(k,{del:true})){toast("Deleted");closeSheet();rerender()}};
+  $("sheetbg").classList.add("on");
+}
+function confirmDel(b){if(b.dataset.sure)return true;b.dataset.sure="1";b.textContent="Tap again to delete";setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent="Delete"}},3000);return false}
+function wireTodo(v){
+  v.querySelectorAll("[data-tdk]").forEach(c=>c.onchange=async()=>{if(await saveTodo(c.dataset.tdk,{done:c.checked})){toast(c.checked?"Done":"Back on the list");rerender()}});
+  v.querySelectorAll("[data-tde]").forEach(b=>b.onclick=()=>editTodo(b.dataset.tde));
+  const a=$("tdadd");if(a)a.onclick=()=>editTodo("");
 }
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){

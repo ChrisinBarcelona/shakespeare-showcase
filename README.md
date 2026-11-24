@@ -35,4 +35,6 @@ Themes by play: Love = Midsummer, Shrew, As You Like It · Power = Macbeth, Rich
 
 ## Saving
 
-Accepting parts and roles, bookings, attendance and director's notes are saved in Supabase. Everyone picks their name in My panel; editing notes and settings needs the director code.
+Accepting parts and roles, bookings, attendance and director's notes are saved in Supabase.
+
+The director-only **To do** page (`#todo`) saves to the `todos` collection through the director code; run `supabase/todos-private.sql` once so the list is hidden from everyone else. Everyone picks their name in My panel; editing notes and settings needs the director code.
