@@ -1279,6 +1279,8 @@ ul.pedu .pnote b.pin{display:inline;font-size:inherit;color:#e4e4e7}
 .vstats .vyes b{color:#4ade80}.vstats .vdueT b{color:#f87171}
 .vadd{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
 .tdsec{margin-top:26px}
+.satwhere{margin:6px 0 8px;font-size:13px;color:#fbbf24;line-height:1.45}
+.emrow .tdt a{color:inherit}
 .tdlist{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
 .tdi{display:flex;gap:12px;align-items:flex-start;background:#111113;border:1px solid #27272a;border-radius:12px;padding:10px 12px}
 .tdi.late{border-color:#f87171}
@@ -2310,7 +2312,7 @@ const SAT_ALL=[
  ["2026-11-07","Opening mosaic: the characters","Movement for the opening mosaic","Mosaics"],
  ["2026-11-14","Stage combat","Stage combat","Stage combat"],
  ["2026-11-21","The witches' ritual","The crowning · Banquo's funeral procession","Mosaics"],
- ["2026-11-28","The fairy dance","The fairy dance","Mosaics"],
+ ["2026-11-28","Hamlet: Hamlet, Laertes & Ophelia","Into the Gravedigger scene (Hamlet 5.1)","Scene work"],
  ["2026-12-05","Ophelia's water","Ophelia's water · Ophelia sees her father","Mosaics"],
  ["2026-12-12","Stage combat","Stage combat","Stage combat"],
  ["2026-12-19","Character physicality","Animals","Workshop"],
@@ -2331,6 +2333,9 @@ const SAT_ALL=[
  ["2027-04-03","Full run-through 1","Notes","Run-through"],
  ["2027-04-10","Full run-through 2","Notes","Run-through"],
  ["2027-04-17","Full run-through 3","Director's notes","Run-through"]];
+/* One-off Saturdays away from Albareda, or at different times */
+const SAT_AT={"2026-11-28":{v:"bcs",from:"09:30",to:"12:00",slots:["09:45","10:45"],where:"Ground floor, black door"}};
+const satAt=d=>{const o=SAT_AT[d]||{};return{venue:VENUES[o.v||"albareda"],from:o.from||"09:00",to:o.to||"11:30",slots:o.slots||["09:15","10:30"],where:o.where||"",moved:!!SAT_AT[d]}};
 const SATURDAYS=SAT_ALL.filter(x=>x[1]).map(x=>x[0]);
 const FIRST={date:"2026-11-10",time:"13:30",what:"Full read-through & first dramaturgy session"};
 const TECH={date:"2027-04-22",label:"Thu 22 April 2027 (approx.)"};
@@ -2414,7 +2419,7 @@ function supaDB(){
   const enc=encodeURIComponent,L={};
   const pin=()=>{try{return localStorage.getItem("ss_dir_pin")||""}catch(_){return ""}};
   const fail=async r=>{let j={};try{j=await r.json()}catch(_){}const e={code:(r.status===401||r.status===403||j.code==="42501")?"not_allowed":r.status===409||j.code==="23505"?"exists":"http_"+r.status,message:j.message};throw e};
-  async function rows(c){if((c==="outreach"||c==="applications"||c==="todos")&&pin()){const q=await fetch(`${R}/rpc/director_read`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c})});if(q.ok)return q.json()}const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
+  async function rows(c){if((c==="outreach"||c==="applications"||c==="todos"||c==="contacts")&&pin()){const q=await fetch(`${R}/rpc/director_read`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c})});if(q.ok)return q.json()}const r=await fetch(`${R}/docs?collection=eq.${enc(c)}&select=id,data`,{headers:H});if(!r.ok)await fail(r);return r.json()}
   const LAST={};
   function refresh(c){const ls=L[c];if(!ls||!ls.length)return;rows(c).then(rs=>{const sig=JSON.stringify(rs);if(LAST[c]===sig)return;LAST[c]=sig;const snap={docs:rs.map(x=>({id:x.id,exists:true,data:()=>x.data})),metadata:{fromCache:false}};ls.forEach(l=>l.cb(snap))}).catch(e=>ls.forEach(l=>l.err&&l.err(e)))}
   async function dwrite(c,id,data,del){const r=await fetch(`${R}/rpc/director_write`,{method:"POST",headers:H,body:JSON.stringify({p_pin:pin(),p_collection:c,p_id:id,p_data:data||{},p_delete:!!del})});if(!r.ok)await fail(r)}
@@ -2514,7 +2519,7 @@ function venueTidy(v){
   v.querySelectorAll('p.sub').forEach(p=>{if(/rehearsal sessions/.test(p.textContent))p.remove()});
   v.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(/^#(scene-|character-|script-|booking|rehearsals|me|home|staging|characters|transitions|fights|mosaics|costume)/.test(h)){a.removeAttribute('href');a.classList.add('vnolink')}});
 }
-const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["vacancies","Vacancies"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["venues","Venues"],["todo","To do"],["me","My panel"]];
+const PAGES=[["home","Home"],["shows","Shows"],["scenes","Scenes"],["cast","The Company"],["characters","Characters"],["vacancies","Vacancies"],["approach","Approach"],["rehearsals","Rehearsals"],["booking","Booking"],["marketing","Marketing"],["staging","Staging"],["pitch","Pitch"],["venues","Venues"],["todo","To do"],["emails","Emails"],["me","My panel"]];
 let cdTimer=null;
 function signOut(){try{["ss_me","ss_dir_pin"].forEach(k=>localStorage.removeItem(k))}catch(_){}me="";isOwner=false;history.replaceState(null,"",location.pathname+location.search);route();toast("Logged out on this device")}
 function route(){
@@ -2523,7 +2528,7 @@ function route(){
   const base=h.startsWith("scene-")?"scenes":h.startsWith("character-")?"characters":h.startsWith("script-")?"scripts":["transitions","fights","mosaics","costume"].includes(h)?"staging":h==="mybookings"?"me":h;
   if(VENUE){const nu=$("navuser");if(nu)nu.innerHTML=""}
   if(VENUE)$("nav").innerHTML=VENUE_PAGES.map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${LANG==="ca"?VENUE_PAGES_CA[k]:l}</a>`).join("")+`<a href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Selected Works of Shakespeare: a venue for April 2027")}" class="navcta">${LANG==="ca"?"Escriu a Chris":"Email Chris"}</a>`;
-  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&((k!=="venues"&&k!=="todo")||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
+  else $("nav").innerHTML=PAGES.filter(([k])=>k!=="me"&&((k!=="venues"&&k!=="todo"&&k!=="emails")||isOwner)).map(([k,l])=>`<a href="#${k}" class="${k===base?"on":""}" ${k===base?'aria-current="page"':""}>${l}</a>`).join("");
   renderNavUser(base);
   document.body.classList.remove("menuopen");$("menubtn").setAttribute("aria-expanded","false");
   const lbl=((VENUE?VENUE_PAGES:PAGES).find(([k])=>k===base)||[,base==="plays"?"Play by play":"Home"])[1];document.title=`${lbl} · Selected Works of Shakespeare`;
@@ -2532,7 +2537,7 @@ function route(){
   if(h.startsWith("scene-"))v.innerHTML=pScene(h.slice(6));
   else if(h.startsWith("character-"))v.innerHTML=pChar(h.slice(10));
   else if(h.startsWith("script-"))v.innerHTML=pScript(h.slice(7));
-  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,plays:pPlays,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,vacancies:pVacancies,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,todo:pTodo,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h==="mybookings"?"me":h]||pHome)();
+  else v.innerHTML=({home:pHome,shows:pShows,scenes:pScenes,plays:pPlays,scripts:pScripts,transitions:pTrans,cast:pCast,characters:pChars,vacancies:pVacancies,rehearsals:pRehearsals,booking:pBooking,marketing:pMarketing,pitch:pPitch,venues:pVenues,todo:pTodo,emails:pEmails,staging:pStaging,approach:pApproach,fights:pFights,mosaics:pMosaics,costume:pCostume,me:pMe}[h==="mybookings"?"me":h]||pHome)();
   wireEdits(v);
   if(VENUE)venueTidy(v);
   {const fs=document.getElementById("fullsite");if(fs)fs.hidden=!VENUE}
@@ -2552,6 +2557,7 @@ function route(){
   if(base==="cast")wireCast();
   if(base==="venues")wireVenues(v);
   if(base==="todo")wireTodo(v);
+  if(base==="emails")wireEmails(v);
   if(h==="staging")wireStaging(v);
 }
 function jumpBookings(){if(location.hash!=="#mybookings")return false;const el=$("mybookings");if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),60);return !!el}
@@ -2594,7 +2600,7 @@ function pHome(){
     </div>
   </section>
   <div id="checkin">${checkIn()}</div>
-  <h2>This <em>Saturday</em></h2><p class="sub">Company rehearsal at <a href="${VENUES.albareda.map}" target="_blank" rel="noopener"><b>${VENUES.albareda.name}</b></a>, 09:00–11:30.</p>
+  <h2>This <em>Saturday</em></h2>${(()=>{const a=satAt(nextSat);return `<p class="sub">Company rehearsal at <a href="${a.venue.map}" target="_blank" rel="noopener"><b>${a.venue.name}</b></a>${a.moved?`, ${esc(a.venue.addr)}${a.where?" · "+esc(a.where):""}`:""}, ${a.from}–${a.to}.${a.moved?" <b>Change of venue this week.</b>":""}</p>`})()}
   ${meSelect()}
   <div class="satgrid2 one">${satCard(nextSat,true)}</div>
   <a class="btn sm" href="#rehearsals" style="display:inline-block;margin-top:12px">Rehearsal format and every Saturday →</a>
@@ -2636,7 +2642,7 @@ function satRow(x){const [date,a,b,ph,note]=x,d=new Date(date+"T09:00");
   const nextUp=date===(SATURDAYS.find(z=>new Date(z+"T11:30")>new Date())||"");
   return `<li class="srow ${past?"past":""} ${nextUp?"next":""}">${cal}
     <div class="srmain"><p class="ckick">Saturday ${idx} of ${SATURDAYS.length}${nextUp?" · Next up":""} <span class="satphase ${phaseCls(ph)}">${esc(ph)}</span></p>
-      <ol class="srplan"><li><b>09:15</b> ${esc(a)}</li><li><b>10:30</b> ${esc(b)}</li></ol>
+      ${(()=>{const t=satAt(date);return (t.moved?`<p class="satwhere"><b>At ${esc(t.venue.name)}</b> · ${esc(t.venue.addr)}${t.where?" · "+esc(t.where):""} · ${t.from}–${t.to}</p>`:"")+`<ol class="srplan"><li><b>${t.slots[0]}</b> ${esc(a)}</li><li><b>${t.slots[1]}</b> ${esc(b)}</li></ol>`})()}
       <p class="srwho"><b class="g">${go.length} going</b>${no.length?` · ${no.length} not going`:""}${go.length?` · <span>${go.map(esc).join(", ")}</span>`:""}</p></div>
     <div class="srbtns"><button type="button" class="btn ${mine==="going"?"on-go":"primary"}" data-att="going" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="going"}" aria-label="I'm going on ${d.toLocaleDateString("en-GB",{day:"numeric",month:"long"})}">${mine==="going"?"✓ Going":"I'm going"}</button><button type="button" class="btn ${mine==="no"?"on-no":""}" data-att="no" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="no"}" aria-label="Not going on ${d.toLocaleDateString("en-GB",{day:"numeric",month:"long"})}">${mine==="no"?"Not going ✕":"Not going"}</button></div></li>`;
 }
@@ -2656,7 +2662,7 @@ function satCard(date,big){
   const nextUp=date===(SATURDAYS.find(x=>new Date(x+"T11:30")>new Date())||"");
   return `<article class="satc ${past?"past":""} ${nextUp?"next":""} ${big?"big":""}">
     <div class="sathead"><div><p class="ckick">Saturday ${idx} of ${SATURDAYS.length}${nextUp?" · Next up":""}</p><h3>${d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}</h3></div><span class="satphase ${phaseCls(plan[2])}">${esc(plan[2]||"")}</span></div>
-    <ol class="satplan"><li><b>09:15</b><span>${esc(plan[0]||"")}</span></li><li><b>10:30</b><span>${esc(plan[1]||"")}</span></li></ol>
+    ${(()=>{const a=satAt(date);return (a.moved?`<p class="satwhere"><b>At ${esc(a.venue.name)}</b> · ${esc(a.venue.addr)}${a.where?" · "+esc(a.where):""} · ${a.from}–${a.to}</p>`:"")+`<ol class="satplan"><li><b>${a.slots[0]}</b><span>${esc(plan[0]||"")}</span></li><li><b>${a.slots[1]}</b><span>${esc(plan[1]||"")}</span></li></ol>`})()}
     <div class="satbtns"><button type="button" class="btn ${mine==="going"?"on-go":"primary"}" data-att="going" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="going"}">${mine==="going"?"✓ Going":"I'm going"}</button><button type="button" class="btn ${mine==="no"?"on-no":""}" data-att="no" data-date="${date}" ${past?"disabled":""} aria-pressed="${mine==="no"}">${mine==="no"?"Not going ✕":"Not going"}</button></div>
     <div class="satwho"><p><b class="g">${go.length} going</b>${no.length?` · <span>${no.length} not going</span>`:""}</p>
       ${go.length||no.length?`<div class="satnames">${go.map(n=>`<span class="nm go ${n===me?"me":""}">${esc(n)}</span>`).join("")}${no.map(n=>`<span class="nm no ${n===me?"me":""}">${esc(n)}</span>`).join("")}</div>`:`<p class="meta" style="margin:0">No answers yet.</p>`}</div>
@@ -3790,6 +3796,37 @@ function wireTodo(v){
   v.querySelectorAll("[data-tdk]").forEach(c=>c.onchange=async()=>{if(await saveTodo(c.dataset.tdk,{done:c.checked})){toast(c.checked?"Done":"Back on the list");rerender()}});
   v.querySelectorAll("[data-tde]").forEach(b=>b.onclick=()=>editTodo(b.dataset.tde));
   const a=$("tdadd");if(a)a.onclick=()=>editTodo("");
+}
+/* ---------- Emails (director only, private collection 'contacts') ---------- */
+let contacts={},ctSub=false;
+function ensureContacts(){if(ctSub||!db||!isOwner||!db.collection)return;ctSub=true;db.collection("contacts").onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{if(d.exists)m[d.id]=d.data()});contacts=m;rerender()},()=>{})}
+const ctList=()=>Object.entries(contacts).map(([k,d])=>({k,...d})).filter(x=>x.email).sort((a,b)=>(a.o||999)-(b.o||999)||String(a.name||a.email).localeCompare(b.name||b.email));
+function pEmails(){
+  if(!isOwner)return folioHero("Director only","Emails",`<p class="ftag">This page is just for the director. Unlock it in <a href="#me">My panel</a> with the director code.</p>`)+`</section>`;
+  ensureContacts();
+  const L=ctList(),all=L.map(x=>x.email).join(", ");
+  return folioHero("Director only","Emails",`<p class="ftag">The company's email addresses. <em>Only you can see this page.</em></p>`)+`</section>
+  <section class="tdsec"><h2>Company <em>· ${L.length}</em></h2>
+  ${L.length?`<ul class="tdlist">${L.map(x=>`<li class="tdi emrow"><div class="tdbody"><p class="tdt">${x.name?`<b>${esc(x.name)}</b> · `:""}<a href="mailto:${esc(x.email)}">${esc(x.email)}</a></p>${x.role?`<p class="tdm">${esc(x.role)}</p>`:""}</div><button type="button" class="btn sm ghost" data-cte="${esc(x.k)}">Edit</button></li>`).join("")}</ul>`:`<p class="meta">No emails yet.</p>`}
+  <div class="vadd">${L.length?`<a class="btn primary" href="mailto:?bcc=${encodeURIComponent(all)}">Email everyone (BCC)</a><button type="button" class="btn" id="ctcopy">Copy all</button>`:""}<button type="button" class="btn" id="ctadd">+ Add an email</button></div></section>`}
+function editContact(k){
+  const x=k?(contacts[k]||{}):{name:"",email:"",role:""};
+  $("sheet").innerHTML=`<h3>${k?"Edit email":"Add an email"}</h3>
+    <div class="field"><label for="ctn">Name</label><input id="ctn" value="${esc(x.name||"")}"></div>
+    <div class="field"><label for="cte">Email</label><input id="cte" type="email" value="${esc(x.email||"")}"></div>
+    <div class="field"><label for="ctr">Part or job</label><input id="ctr" value="${esc(x.role||"")}"></div>
+    <div class="btns">${k?`<button class="btn ghost" id="ctdel">Delete</button>`:""}<button class="btn" id="cx">Cancel</button><button class="btn primary" id="sv">Save</button></div>`;
+  $("cx").onclick=closeSheet;
+  $("sv").onclick=async()=>{const email=$("cte").value.trim();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){toast("Check the email");return}
+    const key=k||email.toLowerCase().replace(/[^a-z0-9]+/g,"-");const data={...x,name:$("ctn").value.trim(),email,role:$("ctr").value.trim(),at:new Date().toISOString()};
+    try{await db.collection("contacts").doc(key).set(data);contacts={...contacts,[key]:data};toast("Saved");closeSheet();rerender()}catch(e){toast("Couldn't save")}};
+  const del=$("ctdel");if(del)del.onclick=async()=>{if(!confirmDel(del))return;try{await db.collection("contacts").doc(k).delete();const o={...contacts};delete o[k];contacts=o;toast("Deleted");closeSheet();rerender()}catch(e){toast("Couldn't delete")}};
+  $("sheetbg").classList.add("on");
+}
+function wireEmails(v){
+  v.querySelectorAll("[data-cte]").forEach(b=>b.onclick=()=>editContact(b.dataset.cte));
+  const a=$("ctadd");if(a)a.onclick=()=>editContact("");
+  const c=$("ctcopy");if(c)c.onclick=async()=>{try{await navigator.clipboard.writeText(ctList().map(x=>x.email).join(", "));toast("Copied")}catch(_){toast("Couldn't copy")}};
 }
 /* ---------- Rehearsals (Saturdays) ---------- */
 function pRehearsals(){

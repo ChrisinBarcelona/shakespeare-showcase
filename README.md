@@ -30,7 +30,7 @@ Themes by play: Love = Midsummer, Shrew, As You Like It · Power = Macbeth, Rich
 ## Key details
 
 - **Shows:** Venue to be announced (Barcelona). Opening night Friday 23 April 2027, Shakespeare's birthday and Sant Jordi; then every Thursday, Friday and Saturday to Saturday 15 May (11 performances). Arrive 18:00, warm-up 18:30–19:30, curtain 20:00. Tech on Thu 22 April (approx.).
-- **Saturday rehearsals:** Centre Cultural Albareda, Carrer d'Albareda 22–24, 08004 Barcelona. 09:00–11:30, every Saturday 7 Nov 2026 – 17 Apr 2027 (breaks 26 Dec, 2 Jan, 27 Mar). Full run-throughs on 3, 10 and 17 April.
+- **Saturday rehearsals:** Centre Cultural Albareda, Carrer d'Albareda 22–24, 08004 Barcelona. 09:00–11:30, every Saturday 7 Nov 2026 – 17 Apr 2027 (breaks 26 Dec, 2 Jan, 27 Mar). Sat 28 Nov 2026 is at Barcelona Code School, Carrer de París 157 (ground floor, black door), 09:30–12:00. Full run-throughs on 3, 10 and 17 April.
 - **Weekday sessions:** Barcelona Code School, Carrer de París 157, 08036 Barcelona. Mon–Fri 15:30–19:30.
 
 ## Saving
