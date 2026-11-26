@@ -39,7 +39,7 @@ WANT = {
     'ham51': ('hamlet', 5, 1, 'A churchyard.', None, None),
     'ham52': ('hamlet', 5, 2, 'A hall in the castle.', None, None),
     'mnd21': ('a-midsummer-nights-dream', 2, 1, 'A wood near Athens.', None, None),
-    # Puck anoints the wrong man. The Titania bower that opens the scene is cut with the
+    # Puck anoints Lysander. The Titania bower that opens the scene is cut with the
     # rest of the enchantment plot (see RANGE_CUTS), so it starts on Lysander and Hermia lost
     'mnd22': ('a-midsummer-nights-dream', 2, 2, 'Another part of the wood.', None, None),
     'mnd32': ('a-midsummer-nights-dream', 3, 2, 'Another part of the wood.', None, None),
