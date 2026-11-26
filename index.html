@@ -2239,14 +2239,14 @@ const ORDER=[
   syn:"Petruchio meets Kate for the first time and declares he will marry her whether she likes it or not. Insult after insult, pun after pun: a duel of wits played at full speed.",arc:"Mirror pair, B: hostile wooing as comedy. After the interval, the same situation as Richard and Anne, played for laughs."},
  {id:"ham34",type:"scene",n:"11",play:"Hamlet 3.4",title:"The closet scene",actors:["Julien Paschal","Vacant","Adrian P. Smith"],chars:["hamlet","gertrude","polonius"],mins:6,
   syn:"Hamlet confronts his mother in her chamber: 'Come, come, and sit you down.' Hearing a noise behind the arras, he stabs through it, 'How now! A rat?', and kills Polonius.",arc:"Ophelia arc: her father dies (offstage to her)."},
- {id:"sil",type:"mosaic",n:"◐",play:"Hamlet 3.4",title:"Ophelia sees her father",actors:["Chrystele Alix","Adrian P. Smith"],chars:["ophelia","polonius"],mins:0.5,
+ {id:"sil",type:"mosaic",n:"◐",play:"Silhouette",title:"Ophelia sees her father",actors:["Chrystele Alix","Adrian P. Smith"],chars:["ophelia","polonius"],mins:0.5,
   syn:"A backlit, wordless image: Ophelia and the body of her father. It is played as something she imagines or fears rather than a literal discovery, since in the play she never sees him. It follows straight on from the arras: the body her father has just become.",
   ideas:"Use a backlit scrim. Polonius lies still and Ophelia reaches but never touches. Hold for 20–30 seconds, then she turns away and the scrim goes dark."},
  {id:"mnd32",type:"scene",n:"12",play:"Midsummer 3.2",title:"Puck's mistake & the lovers",actors:["Kyle Scudder","Jan Zammit","Sarah Dillamore","Hannah Di Bella","Jean-Baptiste Courtois","Teo Jansen","Aldo D'Ibaños"],chars:["oberon","puck","lysander","demetrius","helena","hermia","oberons-fairy"],mins:8,
   syn:"Oberon discovers Puck enchanted the wrong man. Both Lysander and Demetrius now adore Helena, who thinks it's a cruel joke, and Hermia is ready to claw her eyes out. Puck finally sets it right: 'Jack shall have Jill.'",arc:"Midsummer arc: the chaos and the resolution."},
  {id:"ham45",type:"scene",n:"13",play:"Hamlet 4.5",title:"Ophelia's madness",actors:["Chrystele Alix","Carlos Toca","Vacant","Alex Lui"],chars:["ophelia","laertes","gertrude","claudius"],mins:7,
   syn:"Ophelia, mad with grief, sings fragments of songs to the king and queen. Laertes storms back for revenge and sees his sister: she hands out flowers: 'There's rosemary, that's for remembrance.'",arc:"Ophelia arc: madness."},
- {id:"mos-water",type:"mosaic",n:"◐",play:"Hamlet 4.7",title:"Ophelia's water",actors:["Chrystele Alix","Vacant"],chars:["ophelia","gertrude"],mins:2,
+ {id:"mos-water",type:"mosaic",n:"◐",play:"Mosaic",title:"Ophelia's water",actors:["Chrystele Alix","Vacant"],chars:["ophelia","gertrude"],mins:2,
   syn:"Ophelia's drowning, shown in movement while Gertrude speaks (or a voiceover gives) 'There is a willow grows aslant a brook…' from Act 4.7. It is the image the whole play remembers her by.",
   ideas:"Use blue light and slow movement. Fabric could suggest the water and her garments spreading. Flowers fall from her hands one by one, the same flowers she handed out in 4.5."},
  {id:"ham51",type:"scene",n:"14",play:"Hamlet 5.1",title:"The graveyard",actors:["Julien Paschal","Michael Strelow","Dario Roberto","Teo Jansen"],chars:["hamlet","horatio","gravedigger","other-gravemaker"],mins:6,
@@ -2764,8 +2764,8 @@ function pPlays(){
 }
 function pScenes(){
   const total=ITEMS.reduce((a,i)=>a+(i.mins||0),0);
-  const vols=ITEMS.map((o,i)=>{const pl=itemPlay(o);const [bg,fg]=o.type==="scene"||(o.type==="mosaic"&&o.play!=="Mosaic"&&pl)?playColors(pl):o.type==="fight"?["#120707","#e46a6a"]:["#0d0d0d","#f5f5f4"];
-    return vol2({href:"#scene-"+o.id,bg,fg,i,slim:o.type==="fight"||o.play==="Mosaic",kick:o.type==="scene"?o.play:(o.type==="fight"?"Fight":o.play),title:o.title,meta:(o.type==="scene"?o.n+" · ":"")+(o.actors[0]==="Whole company"?"Company":o.actors.length+" players"),sub:"≈ "+o.mins+" min",label:o.play+": "+o.title})}).join("");
+  const vols=ITEMS.map((o,i)=>{const pl=itemPlay(o);const [bg,fg]=o.type==="scene"||(o.type==="mosaic"&&!["Mosaic","Silhouette"].includes(o.play)&&pl)?playColors(pl):o.type==="fight"?["#120707","#e46a6a"]:["#0d0d0d","#f5f5f4"];
+    return vol2({href:"#scene-"+o.id,bg,fg,i,slim:o.type==="fight"||["Mosaic","Silhouette"].includes(o.play),kick:o.type==="scene"?o.play:(o.type==="fight"?"Fight":o.play),title:o.title,meta:(o.type==="scene"?o.n+" · ":"")+(o.actors[0]==="Whole company"?"Company":o.actors.length+" players"),sub:"≈ "+o.mins+" min",label:o.play+": "+o.title})}).join("");
   return folioHero(`${ITEMS.filter(i=>i.type==="scene").length} scenes · ${ITEMS.filter(i=>i.type==="fight").length} fights · ${ITEMS.filter(i=>i.type==="mosaic").length} mosaics · ≈ ${Math.round(total)} minutes`,"The Evening",`<p class="ftag">The running order on one shelf, left to right. Pick a volume to open it.</p>`)+shelf2(vols,"Running order")+`</section>
   <a class="pbcta" href="#plays"><span><b>Play by play</b><i>The same evening sorted into its seven plays, each thread in the order we tell it.</i></span><span class="pbgo" aria-hidden="true">→</span></a>
   <h2 style="margin-top:36px">Running <em>order</em></h2><p class="sub">The number on the right is how many rehearsal sessions are booked.</p><div class="rule"></div>`+
@@ -3080,7 +3080,7 @@ function pFights(){
 function pMosaics(){
   const m=ITEMS.filter(i=>i.type==="mosaic");
   return `<h1>Mosaics <em>&amp; silhouettes</em></h1><p class="sub">The wordless images that stitch the evening together.</p>`+
-  m.map(o=>`<div class="card"><div class="kicker">${o.play!=="Mosaic"?esc(o.play)+" · ":""}≈ ${o.mins} min · ${o.actors.join(", ")}</div><h3>${esc(o.title)}</h3><div class="body">${esc(o.syn)}</div><span class="small" style="margin-top:12px">Staging ideas</span><div class="body">${esc(o.ideas)}</div><a class="btn sm" style="margin-top:10px;display:inline-block" href="#scene-${o.id}">Open</a></div>
+  m.map(o=>`<div class="card"><div class="kicker">${!["Mosaic","Silhouette"].includes(o.play)?esc(o.play)+" · ":""}≈ ${o.mins} min · ${o.actors.join(", ")}</div><h3>${esc(o.title)}</h3><div class="body">${esc(o.syn)}</div><span class="small" style="margin-top:12px">Staging ideas</span><div class="body">${esc(o.ideas)}</div><a class="btn sm" style="margin-top:10px;display:inline-block" href="#scene-${o.id}">Open</a></div>
     ${notesBlock("mos-"+o.id,"Notes: "+o.title)}`).join("");
 }
 
