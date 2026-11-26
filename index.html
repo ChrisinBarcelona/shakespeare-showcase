@@ -4036,7 +4036,7 @@ const ICONS={
  note:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'};
 const icon=(k,sz)=>`<svg viewBox="0 0 24 24" width="${sz||28}" height="${sz||28}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
 const AMBIENT=[["owl","Owls","Night in the wood: Midsummer, the witches"],["crow","Crows & ravens","Macbeth's heath and castle"],["bird","Birdsong","Morning: Arden, the lovers wake"],["forest","Forest","The Forest of Arden, the Athenian wood"],["water","Water","Ophelia's water"],["river","River","Ophelia's drowning, running under the scene"]];
-const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning","mos-crown"],["macbeth","Macbeth","1:32","The witches' ritual","mos-witches"],["rosemary","Rosemary","1:29","Ophelia's madness","ham45"],["the-changeling-boy","The Changeling Boy","1:00","The fairy dance","mos-fairy"]];
+const SONGS=[["all-hail-king-macbeth","All Hail King Macbeth","1:30","The crowning","mos-crown"],["macbeth","Macbeth","1:32","The witches' ritual","mos-witches"],["war-drum","War Drum","0:34","The witches' ritual","mos-witches"],["rosemary","Rosemary","1:29","Ophelia's madness","ham45"],["the-changeling-boy","The Changeling Boy","1:00","The fairy dance","mos-fairy"]];
 const BACKDROPS={
  "mos-witches":{mp4:"backdrops/cauldron.mp4",poster:"backdrops/cauldron.jpg",title:"What the spell is made of",src:"Our own plate, 22 s \u00b7 seamless loop, silent",
   note:"<b>This is projected, not decorated.</b> It is also the first thing the audience sees, so it sets the rule for the whole evening: the back wall is weather, and it never stops. Eleven images on a damaged print \u2014 a black house in the trees, a crow, eyes, a frog, open mouths \u2014 cut slow and pushed in on, so the wall is showing the spell's ingredients while the three of them speak it. Nothing in it is literal and nothing in it is pretty; it is the inside of the chant, not an illustration of the heath. They are lit from the front and low, so the print stays flat and cold behind them while they are the only warm thing on stage. It runs silent \u2014 the ritual music is ours.",
@@ -4061,7 +4061,7 @@ function backdropFor(id){const b=BACKDROPS[id];if(!b)return "";
     <p class="scbd-note">${b.note}</p>
     <div class="scbd-foot">${b.tags.map(t=>`<span class="scbd-tag">${esc(t)}</span>`).join("")}</div>
   </section>`}
-function songFor(id){const x=SONGS.find(z=>z[4]===id);return x?`<section class="scmusic" aria-label="Music for this piece"><div class="sgicon">${icon("note",24)}</div><div class="sgmain"><p class="ckick" style="margin:0">Music</p><b>${esc(x[1])}</b><span>${x[2]}</span></div><audio controls preload="none" src="audio/${x[0]}.mp3" aria-label="Play ${esc(x[1])}"></audio></section>`:""}
+function songFor(id){return SONGS.filter(z=>z[4]===id).map(x=>`<section class="scmusic" aria-label="Music for this piece"><div class="sgicon">${icon("note",24)}</div><div class="sgmain"><p class="ckick" style="margin:0">Music</p><b>${esc(x[1])}</b><span>${x[2]}</span></div><audio controls preload="none" src="audio/${x[0]}.mp3" aria-label="Play ${esc(x[1])}"></audio></section>`).join("")}
 
 const APPROACH=[
  {h:"The text and the voice",c:"#f4c75c",cl:"#9a6700",items:[
