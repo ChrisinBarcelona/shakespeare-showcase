@@ -1436,6 +1436,18 @@ html.light .navlogin:hover{background:#000;color:#fff!important}
 .pbcta .pbgo{margin-left:auto;font-size:20px;color:#e3b341;transition:transform .15s}
 .pbcta:hover .pbgo{transform:translateX(4px)}
 @media (max-width:560px){.pbgrid{padding:10px;gap:8px}.pbc{width:auto;flex:1 1 calc(50% - 4px);min-height:106px}.pbhead{padding:14px}.pbname{font-size:22px}.pbmeta{margin-left:0;width:100%}}
+.wsform{margin:0 0 18px;padding:18px;border:1px solid #26262b;border-radius:14px;background:#111113}
+.wsh{font:600 20px var(--fd,inherit);margin:0 0 12px;letter-spacing:-.01em}
+.wsrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wsform .field{display:flex;flex-direction:column;gap:5px;margin:0}
+.wsform input[name=name],.wsform input[name=email]{font:500 15px var(--fb,inherit);padding:11px 12px;border-radius:10px;border:1px solid #33333a;background:#0b0b0c;color:inherit}
+.wstick{display:flex;align-items:center;gap:9px;margin:14px 0;font:500 15px var(--fb,inherit);cursor:pointer}
+.wstick input{width:20px;height:20px;accent-color:#D8432A}
+.wsnote{margin:10px 0 0}
+.wsdone{display:flex;gap:14px;align-items:flex-start}
+@media(max-width:640px){.wsrow{grid-template-columns:1fr}}
+:where(html.light) .wsform{background:#fff;border-color:#e2e0de}
+:where(html.light) .wsform input[name=name],:where(html.light) .wsform input[name=email]{background:#faf9f8;border-color:#d8d6d3}
 </style>
 <style id="light-theme">
 html.light{--ink:#f1eeec;--ink2:#eae6e4;--ink3:#e5e0dc;--line:#e5e0dc;--paper:#9e803f;--muted:#6f6a62;--blood:#ecd5d5;--moss:#4b5e40;--sky:#355e89}
@@ -2545,7 +2557,7 @@ function route(){
   if(base==="me"||base==="home")wireNotes();
   v.querySelectorAll("[data-jumpid]").forEach(b=>b.onclick=()=>{const t=document.getElementById(b.dataset.jumpid);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})});
   v.querySelectorAll("[data-apply]").forEach(b=>b.onclick=()=>openApply(b.dataset.apply));
-  wireAttend(v);wireDownloads(v);wireShelf2(v);
+  wireAttend(v);wireWorkshop(v);wireDownloads(v);wireShelf2(v);
   v.querySelectorAll('[data-psize]').forEach(b=>b.onclick=()=>{posterSize=b.dataset.psize;route()});
   if(base==="cast")wireCast();
   if(base==="venues")wireVenues(v);
@@ -2606,6 +2618,19 @@ function pHome(){
 `;
 }
 /* ---- Home: notice from Chris + where we are ---- */
+let WSD={name:"",email:"",there:false,done:""};
+function wireWorkshop(root){root.querySelectorAll(".wsform").forEach(f=>{f.oninput=()=>{if(f.elements.name){WSD.name=f.elements.name.value;WSD.email=f.elements.email.value;WSD.there=f.elements.there.checked}}});root.querySelectorAll(".wsform").forEach(f=>f.onsubmit=async e=>{e.preventDefault();
+  const g=n=>(f.elements[n].value||"").trim(),name=g("name"),email=g("email");if(g("hp"))return;
+  if(!name){toast("Add your name");f.elements.name.focus();return}
+  if(!/^\S+@\S+\.\S+$/.test(email)){toast("Add a valid email");f.elements.email.focus();return}
+  if(!f.elements.there.checked){toast("Tick “I’ll be there!”");return}
+  if(!db){toast("Couldn't send. Please email chris@chriskelly.it");return}
+  const b=f.querySelector("button[type=submit]");b.disabled=true;b.textContent="Sending…";
+  const data={kind:"actor",workshop:true,role:"Open Casting Workshop",name:name.slice(0,120),email:email.slice(0,160),phone:"",date:"2026-12-19",time:"09:30",
+    msg:"I'll be there! Signed up for the Open Casting Workshop, Saturday 19 December 9:30–12:00 at Centre Cultural Albareda, Poble-sec.",at:new Date().toISOString()};
+  try{await db.collection("applications").doc("w-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,6)).create(data);
+    WSD.done=name;f.innerHTML=`<div class="wsdone"><span class="apok" aria-hidden="true">✓</span><div><h3 class="wsh">See you on the 19th, ${esc(name.split(" ")[0])}!</h3><p class="meta">You're signed up for Saturday 19 December, 9:30 at Centre Cultural Albareda. Chris will email ${esc(email)} if anything changes.</p></div></div>`}
+  catch(err){b.disabled=false;b.textContent="Submit";toast("Couldn't send. Please try again, or email chris@chriskelly.it")}})}
 function castingBlock(compact){
   if(new Date()>new Date("2026-12-19T12:00:00+01:00"))return "";
   const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent("Centre Cultural Albareda, Carrer d'Albareda 22-24, Barcelona");
@@ -2615,12 +2640,21 @@ function castingBlock(compact){
       <div class="kicker">Open casting workshop</div>
       <h2 id="castwsh" style="margin:4px 0 10px">Come and <em>play</em></h2>
       <p class="clede" style="margin:0 0 14px">Not a normal audition: a full working session where everyone takes part, run like a live rehearsal. We work on the text, the verse and the scenes, on our feet. Even if you don't join the show, you leave with a morning of hands-on Shakespeare. Casting is announced after the workshop.</p>
+      ${WSD.done?`<div class="wsform"><div class="wsdone"><span class="apok" aria-hidden="true">✓</span><div><h3 class="wsh">You’re signed up, ${esc(WSD.done.split(" ")[0])}!</h3><p class="meta">See you Saturday 19 December, 9:30.</p></div></div></div>`:`<form class="wsform" novalidate>
+        <h3 class="wsh">Apply for open casting now</h3>
+        <div class="wsrow"><label class="field"><span class="small">Name</span><input name="name" required autocomplete="name" maxlength="120" placeholder="Your name" value="${esc(WSD.name)}"></label>
+        <label class="field"><span class="small">Email</span><input name="email" type="email" required autocomplete="email" maxlength="160" placeholder="you@example.com" value="${esc(WSD.email)}"></label></div>
+        <label class="wstick"><input type="checkbox" name="there" required ${WSD.there?"checked":""}> <span><b>I’ll be there!</b> <span class="meta">Saturday 19 December, 9:30</span></span></label>
+        <input name="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <div class="btns"><button type="submit" class="btn primary">Submit</button>${compact?"":`<a class="btn" href="#vacancies">See the open parts</a>`}</div>
+        <p class="meta wsnote">Walk-ins welcome too. Only Chris sees your details.</p>
+      </form>`}
       <dl class="facts">
         <div><dt>When</dt><dd><b>Saturday 19 December · 9:30–12:00</b><br><span class="meta">Starts 9:30 sharp · walk-ins welcome</span></dd></div>
         <div><dt>Where</dt><dd><a href="${map}" target="_blank" rel="noopener">Centre Cultural Albareda</a><br><span class="meta">C/ Albareda 22–24, Poble-sec, Barcelona</span></dd></div>
         <div><dt>Casting</dt><dd>Macbeth, Hamlet, A Midsummer Night's Dream, The Taming of the Shrew, Richard III, Coriolanus, As You Like It, Romeo &amp; Juliet<br><span class="meta">Also looking for an Assistant Producer</span></dd></div>
       </dl>
-      <div class="btns">${compact?"":`<a class="btn primary" href="#vacancies">See the open parts</a>`}<a class="btn${compact?" primary":""}" href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Open Casting Workshop, 19 December")}">Sign up by email</a><a class="btn" href="posters/jpg/casting-story.jpg">Story poster</a></div>
+
     </div>
   </section>`}
 function newsBlock(){
