@@ -13,10 +13,10 @@ PARTS = [  # play, parts we're casting
     ("Hamlet", ["Claudius", "Horatio", "Gravedigger", "Other Gravemaker", "Osric", "Fortinbras", "Priest"]),
     ("Midsummer", ["Oberon", "Titania", "Puck", "Mustardseed", "Fairies", "Demetrius", "Lysander"]),
     ("The Shrew", ["Katherine", "Petruchio"]),
-    ("Richard III", ["Richard III", "Queen Anne"]),
+    ("Richard III", ["Richard III"]),
     ("Coriolanus", ["Coriolanus", "Tullus Aufidius"]),
     ("As You Like It", ["Duke Senior", "Amiens"]),
-    ("Romeo & Juliet", ["Romeo", "Juliet", "Nurse"]),
+    ("Romeo & Juliet", ["Romeo", "Juliet", "Nurse", "Mercutio", "Tybalt", "Benvolio"]),
     ("Crew", ["Assistant Producer"]),
 ]
 
