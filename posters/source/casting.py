@@ -107,9 +107,13 @@ def casting(W, H):
     fs = round(28 * k)
     by = H - (270 if tall else 50)
     s.append(f'<line x1="{M}" y1="{by-fs-32}" x2="{W-M}" y2="{by-fs-32}" stroke="{WHITE}" stroke-opacity=".14" stroke-width="2"/>')
-    s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Walk-ins welcome <tspan fill="{bg}">·</tspan> Starts 9:30 sharp</text>')
-    if tall: s.append(f'<text x="{M}" y="{by+fs*1.6:.0f}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">shakespeareshow.actor</text>')
-    else: s.append(f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">shakespeareshow.actor</text>')
+    url = f'Apply at <tspan fill="{WHITE}" font-weight="600">shakespeareshow.actor/#vacancies</tspan>'
+    if tall:
+        s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="500" font-size="{fs}" fill="{GREY}">{url}</text>')
+        s.append(f'<text x="{M}" y="{by+fs*1.6:.0f}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Walk-ins welcome <tspan fill="{bg}">·</tspan> Starts 9:30 sharp</text>')
+    else:
+        s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="500" font-size="{fs-2}" fill="{GREY}">{url}</text>')
+        s.append(f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="600" font-size="{fs-2}" fill="{WHITE}">Walk-ins welcome</text>')
     s.append(f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".12"/></svg>')
     return "".join(s), y, by
 
