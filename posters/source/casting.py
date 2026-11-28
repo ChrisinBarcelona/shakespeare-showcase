@@ -99,7 +99,7 @@ def casting(W, H):
         y += ps * .25
     ns = 26 if tall else 22
     y += ns * .5
-    s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{ns}" fill="{GREY}">A cast of 12–14 · <tspan fill="{WHITE}">actors play double roles</tspan></text>')
+    s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{ns}" fill="{GREY}">A cast of 12–13 · <tspan fill="{WHITE}">actors play double roles</tspan></text>')
     y += ns * 1.4
     if False:
         qs = 34
