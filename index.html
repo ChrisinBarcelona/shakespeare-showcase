@@ -2086,7 +2086,7 @@ a.pill.scchip:hover{border-color:var(--acc)!important;color:#fff!important;backg
 
 <script>
 /* ================= DATA ================= */
-const CAST=["Julien Paschal","Hannah Di Bella","Chrystele Alix","Carlos Toca","Sophie Heideker","Alex Lui","Sarah Dillamore","Sarah Burns","Adrian P. Smith","Michael Strelow","Kyle Scudder","Dario Roberto","Teo Jansen","Jean-Baptiste Courtois","Ella Arkeus","Aldo D'Ibaños","Jessica Kollande"];
+const CAST=["Julien Paschal","Hannah Di Bella","Chrystele Alix","Carlos Toca","Sophie Heideker","Alex Lui","Sarah Dillamore","Sarah Burns","Adrian P. Smith","Michael Strelow","Kyle Scudder","Dario Roberto","Teo Jansen","Ella Arkeus","Aldo D'Ibaños","Jessica Kollande"];
 const ck=n=>n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
 
 const CHARS=[
@@ -2104,7 +2104,7 @@ const CHARS=[
  {id:"horatio",name:"Horatio",play:"Hamlet",actor:"Michael Strelow",bio:"Hamlet's loyal friend from university, the one steady and honest person in Elsinore. He is with Hamlet in the graveyard."},
  {id:"gravedigger",name:"The Gravedigger",play:"Hamlet",actor:"Dario Roberto",bio:"A clown who digs Ophelia's grave and jokes about death. He trades wit with Hamlet and turns up Yorick's skull."},
  {id:"other-gravemaker",name:"The Other Gravemaker",play:"Hamlet",actor:"Vacant",bio:"The gravedigger's fellow digger. He puts riddles to his partner and joins the jokes about death as they dig Ophelia's grave."},
- {id:"oberon",name:"Oberon",play:"A Midsummer Night's Dream",actor:"Jean-Baptiste Courtois",bio:"King of the Fairies. Quarrelling with Titania, he uses a love potion to humiliate her. He also takes pity on Helena, which sets off the lovers' chaos."},
+ {id:"oberon",name:"Oberon",play:"A Midsummer Night's Dream",actor:"Vacant",bio:"King of the Fairies. Quarrelling with Titania, he uses a love potion to humiliate her. He also takes pity on Helena, which sets off the lovers' chaos."},
  {id:"titania",name:"Titania",play:"A Midsummer Night's Dream",actor:"Ella Arkeus",bio:"Queen of the Fairies, proud and defiant. She refuses to give up a changeling boy to Oberon, and their quarrel has thrown the seasons into disorder."},
  {id:"puck",name:"Puck",play:"A Midsummer Night's Dream",actor:"Vacant",bio:"Oberon's mischievous servant, also called Robin Goodfellow. He puts the potion on the wrong Athenian and finds the result hilarious: 'Lord, what fools these mortals be!'"},
  {id:"fairy",name:"Mustardseed",play:"A Midsummer Night's Dream",actor:"Sophie Heideker",bio:"Fairy spirit Mustardseed. Cheeky, loves a gossip. She meets Puck in the wood, sings of her work for the queen, 'Over hill, over dale', and recognises him as the mischief-maker Robin Goodfellow."},
@@ -2161,7 +2161,7 @@ const PARTS=[
  {id:"gravedigger",ch:"gravedigger",name:"The Gravedigger",actor:"Dario Roberto",words:739},
  {id:"other-gravemaker",ch:"other-gravemaker",name:"The Other Gravemaker",actor:"Vacant",words:98},
  {id:"puck",ch:"puck",name:"Puck",actor:"Vacant",words:656},
- {id:"oberon",ch:"oberon",name:"Oberon",actor:"Jean-Baptiste Courtois",words:925},
+ {id:"oberon",ch:"oberon",name:"Oberon",actor:"Vacant",words:925},
  {id:"titania",ch:"titania",name:"Titania",actor:"Ella Arkeus",words:286},
  {id:"oberons-fairy",ch:"oberons-fairy",name:"Oberon's Fairy",actor:"Aldo D'Ibaños",words:53},
  {id:"amiens",ch:"amiens",name:"Amiens",actor:"Vacant",words:24},
@@ -2204,10 +2204,10 @@ const ORDER=[
   syn:"On a blasted heath, the witches greet Macbeth as Thane of Glamis, Thane of Cawdor and king hereafter, and tell Banquo his children will be kings. Moments later, news arrives that Macbeth has been made Thane of Cawdor.",arc:"Macbeth arc: the beginning (temptation)."},
  {id:"ayl21",type:"scene",n:"2",play:"As You Like It 2.1",title:"Now, my co-mates",actors:["Aldo D'Ibaños","Vacant"],chars:["duke-senior","amiens"],mins:2,
   syn:"In the Forest of Arden, the exiled Duke tells his followers that this life is sweeter than the 'painted pomp' of court: 'sweet are the uses of adversity.'",arc:"Contrast: a ruler at peace without his crown, soon after Macbeth is promised one."},
- {id:"mos-fairy",type:"mosaic",n:"◐",play:"Mosaic",title:"The fairy dance",actors:["Ella Arkeus","Jean-Baptiste Courtois","Vacant","Sophie Heideker","Aldo D'Ibaños"],chars:["titania","oberon","puck","fairy","oberons-fairy"],mins:2,
+ {id:"mos-fairy",type:"mosaic",n:"◐",play:"Mosaic",title:"The fairy dance",actors:["Ella Arkeus","Vacant","Vacant","Sophie Heideker","Aldo D'Ibaños"],chars:["titania","oberon","puck","fairy","oberons-fairy"],mins:2,
   syn:"The wood wakes. Titania's fairies and Oberon's fairy dance in from the dark, circling and teasing, until the fairy king and queen arrive. It opens the Midsummer scenes and turns the stage into the Athenian wood.",
   ideas:"Low moonlight and haze. Fairies enter in pairs, weaving between the foam rocks; one held picture as Titania and Oberon meet, then straight into 'Ill met by moonlight'."},
- {id:"mnd21a",type:"scene",n:"3",play:"Midsummer 2.1",title:"Oberon & Titania",actors:["Jean-Baptiste Courtois","Ella Arkeus","Vacant","Sophie Heideker","Aldo D'Ibaños","Sarah Dillamore","Vacant"],chars:["oberon","titania","puck","fairy","oberons-fairy","helena","demetrius"],mins:7,
+ {id:"mnd21a",type:"scene",n:"3",play:"Midsummer 2.1",title:"Oberon & Titania",actors:["Vacant","Ella Arkeus","Vacant","Sophie Heideker","Aldo D'Ibaños","Sarah Dillamore","Vacant"],chars:["oberon","titania","puck","fairy","oberons-fairy","helena","demetrius"],mins:7,
   syn:"The fairy king and queen meet by moonlight and quarrel over a changeling boy. Titania describes how their feud has wrecked the seasons, and they part with nothing settled. Oberon sends Puck for the love-in-idleness flower; then Demetrius storms through the wood hunting Hermia, with Helena begging at his heels: 'I am your spaniel.' Oberon, invisible, watches, pities her, and sends Puck to anoint 'the Athenian'.",arc:"Midsummer arc: the cause, and the plan set in motion."},
  {id:"ham13",type:"scene",n:"4",play:"Hamlet 1.3",title:"Laertes warns Ophelia",actors:["Carlos Toca","Chrystele Alix","Teo Jansen"],chars:["laertes","ophelia","polonius"],mins:2,
   syn:"Leaving for France, Laertes warns his sister that Hamlet's love is a passing fancy and that a prince cannot choose freely. Ophelia promises to keep his advice, and teases him to follow it himself.",arc:"Ophelia arc: innocence and warning."},
@@ -2229,7 +2229,7 @@ const ORDER=[
  {id:"f1",type:"fight",n:"⚔",play:"Fight",title:"Macbeth vs Banquo",actors:["Vacant","Julien Paschal"],chars:["macbeth","banquo"],mins:1.5,
   syn:"The 'deed of dreadful note' made visible. It is abstract: Macbeth, the friend who shared the prophecy, cuts it down. Banquo's body stays on stage and becomes the body in the funeral procession that leads into Richard III.",
   beats:"1. Banquo walks in a pool of light.\n2. Macbeth circles at the edge, in shadow.\n3. The strike lands with the blackout or the music sting.\n4. The light lingers on Macbeth and the body. No blackout: the bearers enter for Banquo."},
- {id:"mos-bier",type:"mosaic",n:"◐",play:"Richard III 1.2",title:"The funeral: Banquo becomes Edward",actors:["Julien Paschal","Carlos Toca","Alex Lui","Adrian P. Smith","Michael Strelow","Kyle Scudder","Teo Jansen","Jean-Baptiste Courtois","Aldo D'Ibaños","Sarah Burns"],chars:["anne","banquo"],mins:1.5,
+ {id:"mos-bier",type:"mosaic",n:"◐",play:"Richard III 1.2",title:"The funeral: Banquo becomes Edward",actors:["Julien Paschal","Carlos Toca","Alex Lui","Adrian P. Smith","Michael Strelow","Kyle Scudder","Teo Jansen","Aldo D'Ibaños","Sarah Burns"],chars:["anne","banquo"],mins:1.5,
   syn:"The funeral scene. Banquo falls. Macbeth, just out of the fight, takes Banquo's sash and goes. The men of the company come out of the dark, load Julien onto a stretcher, and in that one move it becomes a coffin: Banquo's body is now Edward's. Anne takes the helm and leads the procession. This is the procession Richard interrupts, and every man in it is terrified of him, which hands Dario an enormous amount of status before he has said a word.",
   ideas:"No blackout after the kill. Macbeth strips the sash from Banquo as the light holds on them both, then exits. The bearers enter with the stretcher, lift Julien on together and turn it into a coffin with a cloth. Anne at the head, in front of the stretcher; the men behind, in step, to the funeral bell. When Richard appears, the men freeze, drop their eyes and back away from him: play their fear, and his status comes from it. Julien stays still on the stretcher for the whole of Richard and Anne."},
  {id:"r312",type:"scene",n:"9",play:"Richard III 1.2",title:"Richard woos Anne",actors:["Dario Roberto","Sarah Burns"],chars:["richard","anne"],mins:7,
@@ -2242,7 +2242,7 @@ const ORDER=[
  {id:"sil",type:"mosaic",n:"◐",play:"Silhouette",title:"Ophelia sees her father",actors:["Chrystele Alix","Teo Jansen"],chars:["ophelia","polonius"],mins:0.5,
   syn:"A backlit, wordless image: Ophelia and the body of her father. It is played as something she imagines or fears rather than a literal discovery, since in the play she never sees him. It follows straight on from the arras: the body her father has just become.",
   ideas:"Use a backlit scrim. Polonius lies still and Ophelia reaches but never touches. Hold for 20–30 seconds, then she turns away and the scrim goes dark."},
- {id:"mnd32",type:"scene",n:"12",play:"Midsummer 3.2",title:"Puck's mistake & the lovers",actors:["Kyle Scudder","Vacant","Sarah Dillamore","Hannah Di Bella","Jean-Baptiste Courtois","Vacant","Aldo D'Ibaños"],chars:["oberon","puck","lysander","demetrius","helena","hermia","oberons-fairy"],mins:8,
+ {id:"mnd32",type:"scene",n:"12",play:"Midsummer 3.2",title:"Puck's mistake & the lovers",actors:["Kyle Scudder","Vacant","Sarah Dillamore","Hannah Di Bella","Vacant","Vacant","Aldo D'Ibaños"],chars:["oberon","puck","lysander","demetrius","helena","hermia","oberons-fairy"],mins:8,
   syn:"Oberon discovers Puck enchanted the wrong man. Both Lysander and Demetrius now adore Helena, who thinks it's a cruel joke, and Hermia is ready to claw her eyes out. Puck finally sets it right: 'Jack shall have Jill.'",arc:"Midsummer arc: the chaos and the resolution."},
  {id:"ham45",type:"scene",n:"13",play:"Hamlet 4.5",title:"Ophelia's madness",actors:["Chrystele Alix","Carlos Toca","Jessica Kollande","Alex Lui"],chars:["ophelia","laertes","gertrude","claudius"],mins:7,
   syn:"Ophelia, mad with grief, sings fragments of songs to the king and queen. Laertes storms back for revenge and sees his sister: she hands out flowers: 'There's rosemary, that's for remembrance.'",arc:"Ophelia arc: madness."},
