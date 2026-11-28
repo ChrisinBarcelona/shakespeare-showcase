@@ -9,7 +9,7 @@ TIME = "9:30 – 12:00"
 PLACE = "Centre Cultural Albareda"
 ADDR = "C/ Albareda 22–24 · Poble-sec"
 PARTS = [  # play, parts we're casting
-    ("Macbeth", ["Macbeth", "Witches", "Ross", "Angus", "Servant"]),
+    ("Macbeth", ["Macbeth", "Banquo", "Witches", "Ross", "Angus", "Servant"]),
     ("Hamlet", ["Claudius", "Horatio", "Gravedigger", "Other Gravemaker", "Osric", "Fortinbras", "Priest"]),
     ("Midsummer", ["Oberon", "Titania", "Puck", "Mustardseed", "Fairies", "Demetrius", "Lysander"]),
     ("The Shrew", ["Katherine", "Petruchio"]),
@@ -46,7 +46,7 @@ def casting(W, H):
     k = 1.12 if tall else 1
     rnd = random.Random("casting" + str(H))
     bg = "#D8432A"
-    ground = 400 if tall else 290
+    ground = 360 if tall else 290
     figh = 130 if tall else 84
     M = 80; TW = W - 2 * M
     s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
@@ -81,7 +81,7 @@ def casting(W, H):
     ls = round(22 * k)
     y += ls * 2.2
     s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="600" font-size="{ls}" fill="{GREY}" letter-spacing="1.5">PARTS WE’RE LOOKING FOR</text>')
-    ps = round(26 * k) if tall else 24; col = 200 if tall else 180
+    ps = 28 if tall else 24; col = 196 if tall else 180
     y += ps * 1.9
     for play, parts in PARTS:
         s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="600" font-size="{round(ps*.82)}" fill="{GREY}">{esc(play)}</text>')
