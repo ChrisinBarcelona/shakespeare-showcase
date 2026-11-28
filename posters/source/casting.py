@@ -46,8 +46,8 @@ def casting(W, H):
     k = 1.12 if tall else 1
     rnd = random.Random("casting" + str(H))
     bg = "#D8432A"
-    ground = 330 if tall else 240
-    figh = 124 if tall else 74
+    ground = 330 if tall else 205
+    figh = 124 if tall else 66
     M = 80; TW = W - 2 * M
     s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
          '<defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.2 1.05"/></filter>',
@@ -97,6 +97,10 @@ def casting(W, H):
             s.append(f'<text x="{M+col}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{ps}" fill="{WHITE}">{esc(line).replace(" · ", f" <tspan fill=\'{GREY}\'>·</tspan> ")}</text>')
             y += ps * 1.36
         y += ps * .25
+    ns = 26 if tall else 22
+    y += ns * .5
+    s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{ns}" fill="{GREY}">A cast of 12–14 · <tspan fill="{WHITE}">actors play double roles</tspan></text>')
+    y += ns * 1.4
     if False:
         qs = 34
         y += qs * 1.6
@@ -106,14 +110,16 @@ def casting(W, H):
     # footer
     fs = round(28 * k)
     by = H - (270 if tall else 50)
-    s.append(f'<line x1="{M}" y1="{by-fs-32}" x2="{W-M}" y2="{by-fs-32}" stroke="{WHITE}" stroke-opacity=".14" stroke-width="2"/>')
-    url = f'Apply at <tspan fill="{WHITE}" font-weight="600">shakespeareshow.actor/#vacancies</tspan>'
+    s.append(f'<line x1="{M}" y1="{by-fs-32-(0 if tall else fs*1.3):.0f}" x2="{W-M}" y2="{by-fs-32-(0 if tall else fs*1.3):.0f}" stroke="{WHITE}" stroke-opacity=".14" stroke-width="2"/>')
+    url = f'Register at <tspan fill="{WHITE}" font-weight="600">shakespeareshow.actor/#vacancies</tspan>'
+    dl = f'Registration closes <tspan fill="{WHITE}" font-weight="600">Thursday 17 December, 21:30</tspan>'
     if tall:
         s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="500" font-size="{fs}" fill="{GREY}">{url}</text>')
-        s.append(f'<text x="{M}" y="{by+fs*1.6:.0f}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Starts 9:30 sharp</text>')
+        s.append(f'<text x="{M}" y="{by+fs*1.6:.0f}" font-family="Inter" font-weight="500" font-size="{fs}" fill="{GREY}">{dl}</text>')
     else:
-        s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="500" font-size="{fs-2}" fill="{GREY}">{url}</text>')
-        s.append(f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="600" font-size="{fs-2}" fill="{WHITE}">Starts 9:30 sharp</text>')
+        s.append(f'<text x="{M}" y="{by-fs*1.45:.0f}" font-family="Inter" font-weight="500" font-size="{fs-3}" fill="{GREY}">{url}</text>')
+        s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="500" font-size="{fs-3}" fill="{GREY}">{dl}</text>')
+        s.append(f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="600" font-size="{fs-3}" fill="{WHITE}">Starts 9:30 sharp</text>')
     s.append(f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".12"/></svg>')
     return "".join(s), y, by
 
