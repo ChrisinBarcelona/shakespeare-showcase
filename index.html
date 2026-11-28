@@ -2514,7 +2514,7 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
   else if(q.has("venue")||((location.hash||"")==="#pitch"&&!localStorage.getItem("ss_me")&&!localStorage.getItem("ss_dir_pin")))sessionStorage.setItem("ss_venue","1");
   VENUE=sessionStorage.getItem("ss_venue")==="1"}catch(_){}})();
 function venueTidy(v){
-  v.querySelectorAll('.checkin,.stb,.acard.vacant,.ro .count,.notes,.cfoot,.hnotes,.ncard').forEach(e=>{(e.classList.contains('notes')?e.closest('.card'):e).remove()});
+  v.querySelectorAll('.castws,.checkin,.stb,.acard.vacant,.ro .count,.notes,.cfoot,.hnotes,.ncard').forEach(e=>{(e.classList.contains('notes')?e.closest('.card'):e).remove()});
   v.querySelectorAll('p.sub').forEach(p=>{if(/rehearsal sessions/.test(p.textContent))p.remove()});
   v.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(/^#(scene-|character-|script-|booking|rehearsals|me|home|staging|characters|transitions|fights|mosaics|costume)/.test(h)){a.removeAttribute('href');a.classList.add('vnolink')}});
 }
@@ -2578,6 +2578,7 @@ function pHome(){
       <div class="op-btns"><button type="button" class="btn primary" id="tockin">Who's in? ↓</button><a class="btn" href="#shows">Performance schedule</a>${isOwner?`<button class="btn" id="setdate">Change opening date</button>`:""}</div>
     </div>
   </section>
+  ${castingBlock()}
   ${newsBlock()}
   ${homeNotesBlock()}
   ${vacanciesBlock()}
@@ -2611,6 +2612,23 @@ function pHome(){
 `;
 }
 /* ---- Home: notice from Chris + where we are ---- */
+function castingBlock(compact){
+  if(new Date()>new Date("2026-12-19T12:00:00+01:00"))return "";
+  const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent("Centre Cultural Albareda, Carrer d'Albareda 22-24, Barcelona");
+  return `<section class="flyer castws" aria-labelledby="castwsh">
+    <a class="flyerimg" href="posters/jpg/casting-ig.jpg"><img src="posters/jpg/casting-ig.jpg" alt="Open Casting Workshop poster: Saturday 19 December, 9:30 to 12:00, Centre Cultural Albareda" loading="lazy"></a>
+    <div class="flyerinfo">
+      <div class="kicker">Open casting workshop</div>
+      <h2 id="castwsh" style="margin:4px 0 10px">Come and <em>play</em></h2>
+      <p class="clede" style="margin:0 0 14px">Not a normal audition: a full working session where everyone takes part, run like a live rehearsal. We work on the text, the verse and the scenes, on our feet. Even if you don't join the show, you leave with a morning of hands-on Shakespeare. Casting is announced after the workshop.</p>
+      <dl class="facts">
+        <div><dt>When</dt><dd><b>Saturday 19 December · 9:30–12:00</b><br><span class="meta">Starts 9:30 sharp</span></dd></div>
+        <div><dt>Where</dt><dd><a href="${map}" target="_blank" rel="noopener">Centre Cultural Albareda</a><br><span class="meta">C/ Albareda 22–24, Poble-sec, Barcelona</span></dd></div>
+        <div><dt>Casting</dt><dd>Macbeth, Hamlet, A Midsummer Night's Dream, The Taming of the Shrew, Richard III, Coriolanus, As You Like It, Romeo &amp; Juliet<br><span class="meta">Also looking for an Assistant Producer</span></dd></div>
+      </dl>
+      <div class="btns">${compact?"":`<a class="btn primary" href="#vacancies">See the open parts</a>`}<a class="btn${compact?" primary":""}" href="mailto:chris@chriskelly.it?subject=${encodeURIComponent("Open Casting Workshop, 19 December")}">Sign up by email</a><a class="btn" href="posters/jpg/casting-story.jpg">Story poster</a></div>
+    </div>
+  </section>`}
 function newsBlock(){
   const n=content["home-news"],txt=n&&n.text&&n.text.trim();
   if(!txt&&!isOwner)return "";
@@ -3005,6 +3023,7 @@ function pVacancies(){
   }).join("");
   return folioHero(`${open.length} parts open · ${plays.length} play${plays.length===1?"":"s"}`,"Vacancies",
     `<p class="ftag">These are the parts still to be cast. Every one of them is open to audition for.</p>`)+`</section>
+  ${castingBlock(true)}
   <div class="card" style="margin-top:22px">
     <span class="small">How to audition</span>
     <p class="body" style="margin:8px 0 0">Email me the part or parts you want to read for and I'll send you the cut we're using, then we'll find a slot to work it together. Sessions run Monday to Friday at Barcelona Code School, and the company rehearses on Saturdays.</p>
