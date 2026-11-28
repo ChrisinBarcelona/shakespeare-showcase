@@ -37,8 +37,8 @@ def wrapw(words, face, size, width, sep=" · "):
         else: cur = t
     lines.append(cur)
     # no orphans: if the last line is a single part, take one more down with it
-    if len(lines) > 1 and " · " not in lines[-1] and " · " in lines[-2]:
-        a, b = lines[-2].rsplit(" · ", 1); lines[-2:] = [a, b + sep + lines[-1]]
+    if len(lines) > 1 and sep not in lines[-1] and sep in lines[-2]:
+        a, b = lines[-2].rsplit(sep, 1); lines[-2:] = [a, b + sep + lines[-1]]
     return lines
 
 def casting(W, H):
@@ -46,8 +46,8 @@ def casting(W, H):
     k = 1.12 if tall else 1
     rnd = random.Random("casting" + str(H))
     bg = "#D8432A"
-    ground = 360 if tall else 290
-    figh = 130 if tall else 84
+    ground = 330 if tall else 240
+    figh = 124 if tall else 74
     M = 80; TW = W - 2 * M
     s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
          '<defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.2 1.05"/></filter>',
@@ -75,21 +75,29 @@ def casting(W, H):
     s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="600" font-size="{ds}" fill="{WHITE}">{DATE} <tspan fill="{bg}">·</tspan> {TIME}</text>')
     y += ds * 1.35
     s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{round(ds*.8)}" fill="{GREY}">{esc(PLACE)} · {esc(ADDR)}</text>')
+    # what it is
+    bs = 26 if tall else 23
+    y += bs * 1.9
+    blurb = ("Not an audition: a full working session, run like a live rehearsal. Everyone takes part, "
+             "worth it even if you don't join the show. Casting is announced after.")
+    for line in wrapw(blurb.split(" "), "Inter500", bs, TW, sep=" "):
+        s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{bs}" fill="{WHITE}" fill-opacity=".8">{esc(line)}</text>')
+        y += bs * 1.4
     # parts
-    y += ds * 1.25
+    y += ds * .55
     s.append(f'<line x1="{M}" y1="{y:.0f}" x2="{W-M}" y2="{y:.0f}" stroke="{WHITE}" stroke-opacity=".14" stroke-width="2"/>')
     ls = round(22 * k)
-    y += ls * 2.2
+    y += ls * (2.2 if tall else 1.9)
     s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="600" font-size="{ls}" fill="{GREY}" letter-spacing="1.5">PARTS WE’RE LOOKING FOR</text>')
-    ps = 28 if tall else 24; col = 196 if tall else 180
-    y += ps * 1.9
+    ps = 28 if tall else 23; col = 196 if tall else 180
+    y += ps * (1.9 if tall else 1.7)
     for play, parts in PARTS:
         s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="600" font-size="{round(ps*.82)}" fill="{GREY}">{esc(play)}</text>')
         for line in wrapw(parts, "Inter500", ps, TW - col):
             s.append(f'<text x="{M+col}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{ps}" fill="{WHITE}">{esc(line).replace(" · ", f" <tspan fill=\'{GREY}\'>·</tspan> ")}</text>')
             y += ps * 1.36
         y += ps * .25
-    if tall:
+    if False:
         qs = 34
         y += qs * 1.6
         s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-style="italic" font-size="{qs}" fill="{WHITE}" fill-opacity=".88">“We know what we are, but know not what we may be.”</text>')
@@ -97,12 +105,11 @@ def casting(W, H):
         s.append(f'<text x="{M}" y="{y:.0f}" font-family="Inter" font-weight="500" font-size="{round(qs*.66)}" fill="{GREY}">Hamlet, IV.v</text>')
     # footer
     fs = round(28 * k)
-    by = H - (220 if tall else 56)
+    by = H - (270 if tall else 50)
     s.append(f'<line x1="{M}" y1="{by-fs-32}" x2="{W-M}" y2="{by-fs-32}" stroke="{WHITE}" stroke-opacity=".14" stroke-width="2"/>')
-    s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Starts 9:30 sharp · Apply at shakespeareshow.actor</text>' if not tall else
-             f'<text x="{M}" y="{by}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Starts 9:30 sharp</text>')
-    if tall:
-        s.append(f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="500" font-size="{fs-4}" fill="{GREY}">shakespeareshow.actor</text>')
+    s.append(f'<text x="{M}" y="{by}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">Walk-ins welcome <tspan fill="{bg}">·</tspan> Starts 9:30 sharp</text>')
+    if tall: s.append(f'<text x="{M}" y="{by+fs*1.6:.0f}" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">shakespeareshow.actor</text>')
+    else: s.append(f'<text x="{W-M}" y="{by}" text-anchor="end" font-family="Inter" font-weight="600" font-size="{fs}" fill="{WHITE}">shakespeareshow.actor</text>')
     s.append(f'<rect width="{W}" height="{H}" filter="url(#grain)" opacity=".12"/></svg>')
     return "".join(s), y, by
 
